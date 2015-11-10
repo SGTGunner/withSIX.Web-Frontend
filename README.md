@@ -3,6 +3,10 @@ withSIX.Web-Frontend - SIX Networks
 
 Homepage: http://www.withSIX.com
 
+## Notes
+
+Angular code (cdn_source/app) is considered legacy code.
+The new framework used is Aurelia (cdn_source/aurelia).
 
 ## How to build
 
