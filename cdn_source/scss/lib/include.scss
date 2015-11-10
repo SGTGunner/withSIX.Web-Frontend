@@ -1,8 +1,8 @@
 @import "bootstrap"; // ../../../cdn/bower_components/bootstrap-sass-xl/assets/stylesheets/bootstrap
 
-@import "../../../cdn/bower_components/toastr/toastr";
+@import "../../../cdn/bower_components/toastr/toastr.scss";
 @import "../../../cdn/bower_components/angular-ui/build/angular-ui";
-@import "../../../cdn/bower_components/ng-tags-input/ng-tags-input";
+@import "../../../cdn/bower_components/ng-tags-input/ng-tags-input"; // what about .bootstrap?
 @import "../../../cdn/bower_components/select2/dist/css/select2";
 
 //@import "../../../cdn/bower_components/breezejs/labs/breeze.directives";
