@@ -1,0 +1,53 @@
+﻿<div class="popover manage-link" ng-init="title = item.title; path = item.path;">
+    <div class="arrow"></div>
+    <div class="popover-title">
+        <b>Manage Modification</b>
+    </div>
+    <div class="popover-content">
+        <div class="checkbox-container">
+            <div class="squaredTwo ckInner">
+                <input type="checkbox"
+                        id="group-manage"
+                        name="group-manage"
+                        ng-model="item.isRequired" />
+                <label for="group-manage"></label>
+            </div>
+            <label class="text-label" for="group-manage">Required?</label>
+        </div>
+        <!--<div class="popover-field" ng-class="{ 'has-error has-feedback' : form.title.$invalid }">
+            <div class="field-title">
+                <span><strong>Title</strong></span>
+            </div>
+            <div class="field-input">
+                <input type="text" required name="title" ng-model="title" class="form-control"/>
+            </div>
+        </div>
+        <div class="popover-field" ng-class="{ 'has-error has-feedback' : form.path.$invalid }">
+            <div class="field-title">
+                <span><strong>Url</strong></span>
+            </div>
+            <div class="field-input">
+                <div>
+                    <input type="url" required name="path" ng-model="path" class="form-control"/>
+                </div>
+                <div>
+                    <p class="tiny">
+                        <i>Make sure to include 'http://' at the start of your address!</i>
+                    </p>
+                </div>
+            </div>
+        </div>-->
+    </div>
+    <div class="popover-content popover-bottom">
+        <div class="btn" style="visibility: hidden">&nbsp;</div>
+        <div class="pull-right">
+            <button class="btn btn-sx-save" ng-click="$hide()"
+                    ng-disabled="form.$invalid">
+                Ok
+            </button>
+        </div>
+        <!--<div class="pull-right">
+            <button class="btn btn-sx-cancel btn-sx-right" ng-click="$hide()">Cancel</button>
+        </div>-->
+    </div>
+</div>

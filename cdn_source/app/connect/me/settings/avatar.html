@@ -1,0 +1,51 @@
+﻿<div>
+    <h2>Your current avatar:</h2>
+    <img ng-src="{{model.avatarUrl}}"/>
+</div>
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <h2>Avatar settings</h2>
+
+        <form name="uploadAvatarForm"
+              ng-submit="uploadAvatar(uploadAvatarForm)">
+            <input type="file" name="avatar-file" id="avatar-file" size="40"
+                   ng-file-select="updateFileInfo($files)"/>
+            <button ng-disabled="processing || files.length == 0"
+                    http-progress="saveMeSettingsAvatar"
+                    http-processing="processing"
+                    http-pending="Processing..."
+                    http-success="Succeeded!"
+                    http-error="Failed..."
+                    type="submit"
+                    class="btn btn-success">
+                <span>Upload &amp; Use Avatar</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="col-sm-12">
+        <h2>Clear/Remove Avatar:</h2>
+
+        <form name="removeAvatarForm"
+              ng-submit="clearAvatar()">
+            <button class="btn btn-success" ng-disabled="processing || !model.hasAvatar"
+                    http-progress="clearAvatar"
+                    http-processing="processing"
+                    http-pending="Processing..."
+                    http-success="Succeeded!"
+                    http-error="Failed..."
+                    type="submit">
+                <span>Clear avatar</span>
+            </button>
+
+            <div class="form-response bg-danger" ng-if="response && !response.success">
+                {{response.message}}<br/>
+                <div ng-repeat="(k, v) in response.errors">
+                    <span ng-repeat="msg in v">{{msg}}</span><br/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

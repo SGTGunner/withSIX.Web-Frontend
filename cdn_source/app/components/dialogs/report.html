@@ -1,0 +1,68 @@
+﻿<div class="modal-content">
+    <form name="reportForm"
+          ng-submit="sendReport()">
+        <header class="modal-header">
+            <h1>Report content</h1>
+        </header>
+
+        <section class="modal-body">
+            <div ng-if="!model.content">
+                <div class="tile">
+                    No content selected, please navigate to desired content and click the report button there.
+                </div>
+            </div>
+
+            <div ng-if="model.content && !sent">
+                <div class="content">
+                    Content
+                    <br/>
+                    <a ng-href="{{model.content}}" target="_blank">{{model.content}}</a>
+                </div>
+
+                <br/>
+
+                <fieldset ng-disabled="processing">
+
+                    <div class="form-group">
+                        <label for="body">Full Name</label>
+                        <br/>
+                        <input id="fullName" type="text" ng-model="model.fullName" required/>
+                    </div>
+
+                    <span>
+                        Please enter the reason why you are reporting this content for violating the withSIX Terms of Service
+                    </span>
+
+                    <div class="form-group">
+                        <input type="text" ng-model="model.title" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="body">Message</label>
+                        <br/>
+                        <textarea id="body" ng-model="model.body" required></textarea>
+                    </div>
+                </fieldset>
+            </div>
+            <div ng-if="sent">
+                <div class="tile">
+                    Thanks for your report, we have been notified about the issue and try to respond within a day.
+                </div>
+            </div>
+        </section>
+
+        <footer class="modal-footer">
+            <button class="btn btn-primary"
+                    type="submit"
+                    ng-disabled="processing || reportForm.$invalid"
+                    http-progress="sendReport"
+                    http-processing="processing"
+                    http-pending="Processing..."
+                    http-success="Succeeded!"
+                    http-single-use="t"
+                    http-error="Failed...">
+                submit
+            </button>
+        </footer>
+    </form>
+</div>

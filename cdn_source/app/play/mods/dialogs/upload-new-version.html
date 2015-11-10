@@ -1,0 +1,93 @@
+﻿<div class="modal-content">
+    <form name="form" class="easyForm">
+        <header class="modal-header">
+            <h1 ng-if="!uploadComplete"><span style="color: red">(BETA)</span> Upload New Version
+            </h1>
+        </header>
+
+        <section class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 no-horizontal-padding">
+                        <p>
+                            <strong>Current Version:</strong> {{model.cmod.modVersion}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 no-horizontal-padding">
+                        <label for="mod-version">Version: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.version}}" bs-tooltip>(?)</a></label>
+                        <p ng-class="{'has-error' : (form['mod-version'].$invalid || (this.$scope.model.cmod.modVersion != null && validateVersion(model.mod.version, model.cmod.modVersion) <= 0)) && form['mod-version'].$touched}">
+                            <input class="form-control" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+                                   type="text" name="mod-version"
+                                   id="mod-version"
+                                   placeholder="1.0.0.0"
+                                   ng-model="model.mod.version" ng-required="!model.mod.versionUnknown" ng-pattern="versionPattern" ng-disabled="model.mod.versionUnknown"/>
+                            <span class="tiny error-msg" ng-show="form['mod-version'].$invalid" style="color: red">Version incorrect</span>
+                            <span class="tiny error-msg" ng-show="!form['mod-version'].$invalid && this.$scope.model.cmod.modVersion != null && validateVersion(model.mod.version, model.cmod.modVersion) <= 0" style="color: red">{{inlineHints.badVersion}}</span>
+                        </p>
+                    </div>
+                    <div class="col-md-4 no-horizontal-padding">
+                        <p style="display: block; margin-bottom: 0">
+                            <br/>
+                        </p>
+                    </div>
+                    <div class="col-md-4 no-horizontal-padding">
+                        <p ng-class="{'has-error' : form['mod-branch'].$invalid && form['mod-branch'].$touched}">
+                            <label for="mod-branch">Mod Branch: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.branch}}" bs-tooltip>(?)</a></label>
+                            <select name="mod-branch" id="mod-branch"
+                                    ng-options="s.value as s.displayName for s in branches"
+                                    ng-model="model.mod.branch" class="form-control" required>
+                                <option style="display: none" value="">Choose Branch</option>
+                            </select>
+
+                            <span class="tiny error-msg" style="color: red">Field invalid</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 no-horizontal-padding">
+                        <label for="mod-download">Download Link: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.download}}" bs-tooltip>(?)</a></label>
+                        <p ng-class="{'has-error' : ((!model.downloadLinkAvailable || form['mod-download'].$invalid) && form['mod-download'].$touched) , 'field-invalid': form['mod-download'].$invalid}">
+                            <input class="form-control" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+                                   type="url" name="mod-download"
+                                   id="mod-download"
+                                   placeholder="http://"
+                                   ng-model="model.mod.download" required/>
+                            <span class="tiny error-msg" ng-show="!model.downloadLinkAvailable && (!form['mod-download'].$invalid && !checkingDownloadLink)" style="color: orange"
+                                  data-container='body' data-html="true" data-title="{{hints.downloadLinkUnavailable}}" bs-tooltip>{{inlineHints.downloadLinkUnavailable}}</span>
+                            <span class="tiny error-msg" ng-show="form['mod-download'].$invalid && !checkingDownloadLink" style="color: red">{{inlineHints.download}}</span>
+                            <span class="tiny error-msg custom-display" ng-show="checkingDownloadLink" style="color: green">{{inlineHints.checkingDownload}}</span>
+                            <span class="tiny error-msg custom-display" ng-show="!checkingDownloadLink && model.downloadLinkAvailable && !form['mod-download'].$invalid" style="color: green">{{inlineHints.downloadLinkAvailable}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 no-horizontal-padding">
+                        <p>
+                            Hey There! Make sure the download link you are providing is a real download, try to avoid posting forum links and such.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="modal-footer">
+            <button type="button"
+                    ng-click="cancel()"
+                    class="btn btn-cancel"
+                    data-dismiss="modal">
+                Cancel
+            </button>
+            <button type="button"
+                    ng-click="ok()"
+                    ng-disabled="model.processing || form.$invalid"
+                    class="btn btn-primary"
+                    http-pending="Processing..."
+                    http-processing="model.processing"
+                    http-progress="postNewModUpload">
+                Accept
+            </button>
+        </footer>
+    </form>
+</div>

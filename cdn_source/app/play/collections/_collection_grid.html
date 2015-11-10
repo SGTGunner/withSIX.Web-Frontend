@@ -1,0 +1,62 @@
+
+<div class="inner content-state-{{getItemStateClass(item)}} content-stateable" ng-class="{'content-stateable': w6.enableBasket, true: 'subscribed'}[subscribed[item.id]]" itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="img">
+    <a ng-href="{{::getItemUrl(item)}}" itemprop="url">
+      <span class="imageholder" itemprop="image" sx-back-img="{{getImage(item.avatar, item.avatarUpdatedAt)}}" />
+      <div class="stats details-overlay-reverse tiny" ng-hide="views.grid.overlays[$index]">
+        <div>
+          <span>{{item.modsCount}}</span>
+          <span class="withSIX-icon-Nav-Mod"></span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="info content-state-c-bgd-border">
+    <div class="title" itemprop="name">
+      <a ng-href="{{::getItemUrl(item)}}" itemprop="url">
+        <span>{{::item.name}}</span>
+      </a>
+    </div>
+    <div class="tiny">
+      <div class="pull-left" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <a ng-href="{{::url.getUserUrl(item.author)}}" rel="author">
+          <i>{{item.author.displayName}}</i>
+        </a>
+      </div>
+      <div class="pull-right">
+        <i>{{item.subscribersCount}} subscribers</i>
+      </div>
+    </div>
+  </div>
+
+  <div class="details-overlay" ng-hide="!views.grid.overlays[$index]">
+    <a ng-href="{{::getItemUrl(item)}}" itemprop="url">
+      <div class="bg"></div>
+      <div class="description small" itemprop="description">
+        <span>{{::getDescription(item) | htmlToPlaintext2}}</span>
+      </div>
+      <div class="microinfo tiny pull-right">
+        <div title="mods">
+          <span>{{item.modsCount}}</span>
+          <span class="withSIX-icon-Nav-Mod"></span>
+        </div>
+        <div title="{{item.size | bytes:2}} unpacked">{{item.sizePacked | bytes:2}}</div>
+        <br/>
+        <div title="subscribers">
+          <span>{{item.subscribersCount}}</span>
+          <span class="withSIX-icon-Synq"></span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="content-state-c-bgd details-overlay-footer row" ng-if="w6.enableBasket">
+    <button class="col-sm-6 details-overlay-footer-state" ng-click="directDownloadCollection(item);">
+      <span class="content-state-icon"></span>
+      <span class="content-state-text"></span>
+    </button>
+    <div ng-if="w6.enableBasket" class="col-sm-6 details-overlay-footer-localstate">
+      <span class="pull-right" style="display:none;">Installed {{::item.version && item.version[0] != 'v' ? 'v' + item.version : item.version}}</span>
+    </div>
+  </div>
+</div>

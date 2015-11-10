@@ -1,0 +1,10 @@
+﻿<p ng-if="model.friends.length == 0">No friends :(</p>
+
+<div class="grid-roster row user-tiles clearfix" ng-if="model.friends.length > 0">
+    <div class="col-sm-3" ng-repeat="friend in model.friends">
+        <a ng-href="{{::url.getUserSlugUrl(friend.slug)}}">
+            <img ng-src="{{::url.calculateAvatarUrl(friend)}}"/>
+            <strong>{{friend.displayName}}</strong>
+        </a>
+    </div>
+</div>

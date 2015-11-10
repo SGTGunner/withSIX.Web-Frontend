@@ -1,0 +1,8 @@
+<template>
+  <button command.bind="command" class.bind="cls" class="naked-button ${noProcessing ? 'no-processing' : ''}" show.bind="isVisible" title="${tooltip ? tooltip : ''}">
+    <template replaceable part="content">
+      <span class="icon ${icon}" if.bind="icon"></span>
+      <span class.bind="textCls">${name}</span>
+    </template>
+  </button>
+</template>

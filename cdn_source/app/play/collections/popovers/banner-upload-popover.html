@@ -1,0 +1,29 @@
+﻿<div class="popover">
+    <div class="arrow"></div>
+    <h3 class="popover-title" ng-bind="title" ng-show="title">Upload Image</h3>
+    <div class="popover-content">
+        <p>
+            <span class="btn btn-sx-blue"
+                  ng-disabled="uploadingCollectionImage"
+                  ng-file-select="onFileSelectGallery($files, $event);$close()"
+                  data-multiple="false">Select File...</span>
+        </p>
+        <hr/>
+        <p>
+            <form name="form" class="easyForm">
+                <label for="banner-link">Upload Image by Url:</label>
+                <p ng-class="{'has-error' : form['banner-link'].$invalid && form['banner-link'].$touched, 'field-invalid': form['banner-link'].$invalid}">
+                    <input class="form-control"
+                           type="url" name="banner-link"
+                           id="banner-link"
+                           placeholder="http://"
+                           ng-model="tempUrl"/>
+                    <span class="tiny error-msg" style="color: red">Must be a valid url</span>
+                </p>
+                <span class="btn btn-sx-blue"
+              ng-disabled="uploadingCollectionImage || form['banner-link'].$invalid"
+              ng-click="newRemoteLogoUploadRequest(tempUrl)">Upload Url</span>
+            </form>
+        </p>
+    </div>
+</div>

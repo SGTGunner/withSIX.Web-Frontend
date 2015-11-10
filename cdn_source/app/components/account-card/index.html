@@ -1,0 +1,17 @@
+﻿<div class="credits-account-card account-card sx-border-gray sx-sm-border">
+    <div class="account-info">
+        <span class="info">
+            <a class="imgholder" ng-href="{{account.profileUrl}}">
+                <img ng-src="{{account.getAvatarUrl(72)}}" />
+            </a>
+        </span>
+        <p>
+            <span class="info">
+                <span ng-if="account.isPremium" class="icon withSIX-icon-Badge-Sponsor no-tween" title="This is a proud premium user"></span>
+                <a class="account-name" ng-href="{{account.profileUrl}}">
+                    {{account.displayName}}
+                </a>
+            </span>
+        </p>
+    </div>
+</div>

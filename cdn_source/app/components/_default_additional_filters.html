@@ -1,0 +1,13 @@
+﻿<span class="filtertitle">Size:</span>
+<select ng-model="views.filterOptions.size"
+        ng-options="size.amount as size.name for size in views.filter.sizes"
+        class="form-control">
+    <option value="">any</option>
+</select>
+
+<span class="filtertitle">Released:</span>
+<select ng-model="views.filterOptions.timespan"
+        ng-options="timespan.hours as timespan.name for timespan in views.filter.timespans"
+        class="form-control">
+    <option value="">any time</option>
+</select>

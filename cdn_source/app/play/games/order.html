@@ -1,0 +1,15 @@
+﻿<div class="container-fluid">
+    <h2>Buy {{game.fullName}}</h2>
+
+    <article class="tile">
+        <div class="box">
+            <p>Follow the link to order {{game.fullName}}:</p>
+            <a ng-href="{{game.buyUrl}}" target="_blank">
+                <img ng-src="{{game.buyImageUrl}}"
+                     ng-if="game.buyImageUrl"
+                     alt="Order {{game.fullName}}"/>
+                <span ng-if="!game.buyImageUrl">Buy {{game.fullName}}</span>
+            </a>
+        </div>
+    </article>
+</div>

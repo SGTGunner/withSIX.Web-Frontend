@@ -1,0 +1,23 @@
+<section id="subheader-row">
+    <!-- Action Tabs -->
+    <div class="container-fluid">
+        <div class="row-tabbar">
+            <div class="tabbar">
+                <a ng-href="{{gameUrl}}" class="gamelogo">
+                    <img alt="Logo {{game.name}}"
+                         ng-src="{{::url.getAssetUrl('img/play.withSIX/games/' + game.slug + '/boxart.png')}}"/>
+                </a>
+
+                <div class="clearfix"
+                     ng-include="'/cdn_source/app/components/menu.html'">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="game-contents"
+     app-view-segment="1"></div>
+
+<!--<sx-basket ng-if="w6.enableBasket" id="play-basket" game="game"/>-->

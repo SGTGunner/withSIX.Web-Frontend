@@ -1,0 +1,18 @@
+<template show.bind="!hideWhenEmpty || isVisible">
+  <button ref="menuButton" class="btn btn-default iw-mTrigger dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="true"
+       title="${tooltip ? tooltip : ''}"> <!-- id="dropdownMenu1" data-toggle="dropdown" -->
+    <template replaceable part="header">
+      <span if.bind="icon" class="icon ${icon}"></span>
+      <span if.bind="header" class.bind="textCls">${header}</span>
+      <span class="caret"></span>
+    </template>
+  </button>
+  <ul ref="menu" class="iw-contextMenu iw-cm-menu au-dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li repeat.for="item of items" show.bind="item.isVisible">
+      <button class="text-button" class.bind="item.cls" command.bind="item.action" title="${item.tooltip ? item.tooltip : ''}">
+        <span if.bind="item.icon" class="icon ${item.icon}"></span>
+        <span class.bind="item.textCls" class="text">${item.name}</span>
+      </button>
+    </li>
+  </ul>
+</template>

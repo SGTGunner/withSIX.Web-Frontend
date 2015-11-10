@@ -1,0 +1,87 @@
+@import "_base";
+.card {
+  &:hover {
+    dropdown-menu {
+      display: block;
+    }
+  }
+}
+.collections-ng {
+  .game {
+    $width: 110px + 30px; // padding
+    width: $width;
+    margin-bottom: 40px;
+    &:hover {
+      .title a {
+        color: $colorSixBlue;
+      }
+    }
+    .img {
+      position: relative;
+      .imageholder {
+        display: block;
+        height: 156px;
+
+        /*@media (min-width: $flipWidth) {
+        height: $imgHeightXl;
+      }
+      @media (max-width: $flipWidthXs) {
+        height: $imgHeightXl;
+      }*/
+        //width: 110px;
+      }
+      background: white;
+      background-size: contain;
+    }
+    .info {
+      height: 0;
+
+      //padding: 12px;
+      //height: $infoHeight;
+      /*@media (min-width: $flipWidth) {
+      height: $infoHeightXl;
+    }
+    @media (max-width: $flipWidthXs) {
+      height: $infoHeightXl;
+    }*/
+      background: white;
+      overflow: hidden;
+      .title {
+        line-height: 1;
+        font-weight: $font-weight-bold;
+        @include limit-lines(2, 15px, 1);
+        span {
+          display: inline-block;
+          line-height: 1;
+        }
+      }
+      .subtitle {
+        line-height: 1;
+        .pull-left {
+          max-width: 45%;
+        }
+        @include limit-lines(1, $tinyFontSize, 1);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+    .bottom-bar {
+      height: 28px;
+      ul,
+      li,
+      button {
+        width: 100%;
+      }
+      button {
+        color: inherit;
+        font-size: 0.7em;
+        text-decoration: inherit;
+        height: 24px;
+        position: relative;
+        top: -2px;
+      }
+    }
+  }
+}

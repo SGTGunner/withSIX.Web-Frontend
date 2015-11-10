@@ -1,0 +1,20 @@
+<div class="blog container-fluid"
+     itemscope itemtype="http://schema.org/Blog">
+    <h1 class="pagetitle">
+        Archive: {{month | monthName}}, {{year}}
+    </h1>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div ng-include="'/cdn_source/app/main/blog/_postPreview.html'"
+                 ng-repeat="post in model"></div>
+
+            <div ng-include="'/cdn_source/app/components/ads/main-hz-large.html'"></div>
+            <!-- @PageHelpers.LeftRightButtons(Model.Posts) -->
+        </div>
+
+        <aside class="col-sm-4">
+            <div ng-include="'/cdn_source/app/main/blog/_side.html'"></div>
+        </aside>
+    </div>
+</div>

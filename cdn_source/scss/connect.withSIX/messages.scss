@@ -1,0 +1,188 @@
+/* List vieuw */
+
+.me-messages-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: block;
+    margin-bottom: 12px;
+    position: relative;
+
+    a {
+      background-color: $color0;
+      display: block;
+      position: relative;
+      padding-left: 88px;
+
+      @include min-height-lh(72px);
+
+      text-decoration: none;
+      color: $color3;
+      z-index: 1;
+
+      strong {
+        font-weight: $font-weight-base;
+      }
+
+      img {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      span.icon-comment {
+        padding-left: 12px;
+        color: $primarycolor;
+      }
+
+      span.date, time.timeago {
+        position: absolute;
+        display: block;
+
+        @include size(25%, 72px);
+
+        right: 60px;
+        top: 0;
+        opacity: 0.8;
+      }
+
+      span.messages {
+        position: absolute;
+        display: block;
+
+        @include size(25%, 72px);
+
+        right: 25%;
+        top: 0;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.messages-notes {
+  font-size: 0.8em;
+  padding-top: 24px;
+  display: block;
+  text-align: center;
+}
+
+.messages-conversation {
+  .date-line {
+    clear: both;
+    height: 24px;
+    line-height: 0px;
+    position: relative;
+    margin-bottom: 36px;
+
+    span {
+      display: block;
+
+      @include size-lh(110px, 24px);
+
+      background-color: $color1;
+      position: absolute;
+      left: 50%;
+      margin-left: -55px;
+      top: 0px;
+      text-align: center;
+    }
+
+    hr {
+      display: block;
+      overflow: hidden;
+      position: absolute;
+      margin: 0;
+      left: 0;
+      right: 0;
+      top: 12px;
+    }
+  }
+
+  div.col-sm-9,
+  article {
+    clear: both;
+    margin-bottom: 64px;
+    position: relative;
+
+    & > div {
+      padding-top: 1em;
+
+      p {
+        margin: 0;
+        padding-bottom: 1em;
+      }
+    }
+
+    &.you {
+      float: right;
+      margin-right: 0px;
+
+      & > div {
+        padding-left: 24px;
+        padding-right: 24px;
+        margin-right: 72px;
+        background-color: $color2;
+        color: $color4;
+      }
+
+      img.avatar {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+
+    &.partner {
+      & > div {
+        background-color: $color0;
+        padding-left: 24px;
+        padding-right: 24px;
+        margin-left: 72px;
+      }
+
+      img.avatar {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    footer {
+      padding-bottom: 24px;
+      opacity: 0.5;
+    }
+  }
+
+  .new-message {
+    background-color: $color1;
+    padding: 0px !important;
+
+    form {
+      padding: 12px;
+
+      button {
+        background-color: $color0;
+
+        &:hover {
+          background-color: $calltoaction;
+        }
+      }
+    }
+
+    form strong {
+      display: none;
+    }
+  }
+
+  .wmd-preview {
+    display: none;
+  }
+
+  #message:focus {
+    height: 160px;
+    min-height: 160px;
+  }
+}

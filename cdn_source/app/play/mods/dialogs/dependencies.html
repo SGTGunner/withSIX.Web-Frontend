@@ -1,0 +1,42 @@
+﻿<div class="modal-content signin">
+    <header class="modal-header">
+        <h1>Dependencies</h1>
+    </header>
+
+    <section class="modal-body">
+        <ul>
+            <li ng-repeat="dep in model.mod.dependencies">
+                <span>
+                    <button class="anchor bold" ng-click="removeDependency(dep)"
+                            type="button">
+                        <span class="withSIX-icon-X" style="color: red; font-size: 10px;"></span>
+                    </button>&nbsp;
+                </span>
+                {{dep.name}}
+            </li>
+            <li>
+                <button editable-tag-auto-complete="temporaryTag" inline on-tag-added="addDependency($data)"
+                        buttons="no" style="color: green;" tags="getCurrentDependencies()"
+                        source="getDependencies($query)" placeholder="add a dependency"
+                        add-from-autocomplete-only="true" display-property="text" class="anchor">
+                    <span class="withSIX-icon-Add" style="color: green; font-size: 10px;"></span> Add Dependency
+                </button>
+            </li>
+        </ul>
+    </section>
+
+    <footer class="modal-footer">
+        <button type="button"
+                class="btn btn-cancel"
+                ng-click="close()"
+                data-dismiss="modal">
+            Cancel
+        </button>
+        <button type="button"
+                ng-click="ok()"
+                ng-disabled="model.processing"
+                class="btn btn-primary">
+            Accept
+        </button>
+    </footer>
+</div>

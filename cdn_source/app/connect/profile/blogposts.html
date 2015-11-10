@@ -1,0 +1,13 @@
+﻿<div class="grid-roster row blog-tiles clearfix">
+    <p ng-if="model.entries.length == 0">This user hasn't post any blog items</p>
+    <div ng-if="model.entries.length > 0">
+        <ul class="blog-archive-list">
+            <li ng-repeat="post in model.entries" ng-class-odd="odd">
+                <a ng-href="{{::url.main}}/blog/{{post.slug}}">
+                    <span am-time-ago="post.created" title="{{post.created}}"></span>
+                    <em>{{post.title}}</em>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

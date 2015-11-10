@@ -1,0 +1,33 @@
+﻿<div ng-if="w6.renderAds" class="tile">
+    <div data-ng-dfp-ad-container>
+        <div class="add-container" style="display: block !important">
+            <div class="add" ng-dfp-ad="angular-ad1"></div>
+        </div>
+    </div>
+</div>
+
+<div class="tile-list box">
+    <h4>Recent Posts</h4>
+    <ul>
+        <li ng-repeat="post in recentPosts">
+            <a ng-href="{{blogUrl}}/{{post.slug}}">{{post.title}}</a>
+        </li>
+    </ul>
+</div>
+
+<div ng-if="w6.renderAds" class="tile">
+    <div data-ng-dfp-ad-container>
+        <div class="add-container" style="display: block !important">
+            <div class="add" ng-dfp-ad="angular-ad2"></div>
+        </div>
+    </div>
+</div>
+
+<div class="tile-list box">
+    <h4>Archive</h4>
+    <ul>
+        <li ng-repeat="month in postArchive">
+            <a ng-href="{{blogUrl}}/archive/{{month.year}}/{{month.month}}">{{month.month | monthName}} - {{month.year}}</a>
+        </li>
+    </ul>
+</div>

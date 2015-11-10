@@ -1,0 +1,41 @@
+﻿<div class="container-fluid">
+    <h2>Orders</h2>
+    <div class="tile">
+        <table>
+            <tr>
+                <td>Completed: {{model.totalCompleted | number}}</td>
+            </tr>
+            <tr>
+                <td>
+                    Incomplete: {{model.totalIncomplete | number}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Value: {{model.totalValue | number}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    OneMonth: {{model.oneMonth.length | number}}
+                    Recurring: {{model.oneMonthRecurring | number}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ThreeMonth: {{model.threeMonth.length | number}}
+                    Recurring: {{model.threeMonthRecurring | number}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    OneYear: {{model.oneYear.length | number}}
+                    Recurring: {{model.oneYearRecurring | number}}
+                </td>
+            </tr>
+            <tr>
+                <td>LifeTime: {{model.lifetime.length | number}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+/* Smaller screens */
+
+@media only screen and (max-width: 1023px) {
+ /*
+body {
+  font-size: 0.8em;
+  line-height: 1.5em;
+}
+     */
+  body .row-mainmenu .logo {
+    top: -8px;
+    left: 60%;
+
+    img {
+      @include size(auto, 80px);
+    }
+  }
+
+  .row-globalmenu .calltoaction {
+    margin-right: 20px;
+  }
+
+  .usermenu {
+    right: 20px !important;
+  }
+
+  #footer-row .threecol a {
+    strong {
+      display: none;
+    }
+  }
+}
+
+@media handheld, only screen and (max-width: 767px) {
+  body {
+    font-size: 16px;
+    -webkit-text-size-adjust: none;
+  }
+
+  #footer-row .col-sm-3 a {
+    strong {
+      display: inline;
+    }
+  }
+}

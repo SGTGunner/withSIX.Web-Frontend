@@ -1,0 +1,31 @@
+﻿<!-- USING separate divs because of isInvalid otherwise not working.. -->
+<div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(form.birthday) }"
+     ng-if="Modernizr.inputtypes.date">
+    <label for="birthday"
+           class="control-label">{{label}}</label>
+
+    <input type="date" class="form-control" ng-if="Modernizr.inputtypes.date"
+           id="birthday"
+           name="birthday"
+           ng-model="model.birthday" required/>
+
+    <p ng-show="form.birthday.$invalid && !form.birthday.$pristine" class="help-block">Enter a valid {{label}}.</p>
+</div>
+
+<div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(form.birthday) }"
+     ng-if="!Modernizr.inputtypes.date">
+    <label for="birthday"
+           class="control-label">{{label}}</label>
+    <input type="text" class="form-control"
+           name="birthday"
+           id="birthday"
+           data-autoclose="1"
+           data-max-date="today"
+           size="10"
+           bs-datepicker date-format="dd-MM-yyyy"
+           ng-model="model.birthday"
+           ng-blur="blurred()"
+           required/>
+
+    <p ng-show="form.birthday.$invalid && !form.birthday.$pristine" class="help-block">Enter a valid {{label}}.</p>
+</div>

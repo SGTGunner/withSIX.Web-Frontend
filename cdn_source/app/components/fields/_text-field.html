@@ -1,0 +1,12 @@
+﻿<div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(form.text) }">
+    <label for="text"
+           class="control-label">{{label}}</label>
+    <input type="text" name="text"
+           id="text"
+           ng-model="model.text"
+           placeholder="{{placeholder}}"
+           required
+           ng-blur="blurred()"
+           class="form-control"/>
+    <sx-validation-messages label="label" field="form.text"/>
+</div>

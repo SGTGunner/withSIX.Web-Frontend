@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="tile editable-full">
+
+        <form name="editableForm"
+              editable-form
+              onaftersave="saveChanges()"
+              onshow="startEditing()">
+            <fieldset ng-disabled="inProgress">
+                <div>Folder: {{mod.packageName}}</div>
+
+                <div ng-include="'/cdn_source/app/play/mods/_form.html'"></div>
+
+                <div class="buttons" ng-if="editing">
+                    <!-- button to show form -->
+                    <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+                        Edit
+                    </button>
+
+                    <!-- buttons to submit / cancel form -->
+                    <span ng-show="editableForm.$visible">
+                        <button type="submit" class="btn btn-success"
+                                ng-disabled="editableForm.$waiting || inProgress"
+                                http-progress="saveMod"
+                                http-processing="inProgress"
+                                http-success="succeeded"
+                                http-failed="failed..."
+                                http-pending="processing...">
+                            Save
+                        </button>
+
+                        <button type="button" class="btn btn-warning"
+                                ng-disabled="editableForm.$waiting || inProgress"
+                                sx-really-message="Are you sure you want to cancel?"
+                                sx-really-click="editableForm.$cancel();">
+                            Cancel
+                        </button>
+
+                        <button type="button" class="btn btn-danger"
+                                ng-if="w6.userInfo.isAdmin || w6.userInfo.isManager"
+                                ng-disabled="editableForm.$waiting || inProgress"
+                                sx-really-message="Are you sure you want to delete this mod?"
+                                sx-really-click="editableForm.$cancel(); deleteMod()">
+                            Delete
+                        </button>
+                    </span>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

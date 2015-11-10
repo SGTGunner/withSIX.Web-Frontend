@@ -1,0 +1,55 @@
+﻿<div class="container content-inner">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="tile">
+                <div class="form-message form-message-passed" ng-if="response.success">
+                    <p>Successfully registered</p>
+                    <p>Please find the activation email at {{model.email}}</p>
+                </div>
+
+                <form name="finalizeForm" ng-if="!response.success"
+                      sx-validate-on-submit="finalize()"
+                      sx-validate-on-blur>
+
+                    <h1>Please finalize your registration</h1>
+
+                    <sx-email-field model="model.email" check-already-exists="t"
+                                    login="openLoginDialog()"
+                                    forgotPassword="openForgotPasswordDialog()"></sx-email-field>
+                    <sx-username-field model="model.userName" check-already-exists="t"></sx-username-field>
+                    <sx-birthday-field model="model.birthday"></sx-birthday-field>
+                    <sx-accepted-field model="model.termsAccepted">
+                        I have read the
+                        <button class="anchor"
+                                type="button"
+                                ng-click="dispatch('OpenTermsDialog')">
+                            terms of service
+                        </button>
+                        and agree.
+                    </sx-accepted-field>
+
+                    <div class="form-group">
+                        <button class="btn"
+                                ng-disabled="processing"
+                                http-progress="finalize"
+                                http-processing="processing"
+                                http-pending="Registering..."
+                                http-success="Registered!"
+                                http-single-use="t"
+                                http-error="Failed...">
+                            <span class="icon icon-arrow-right"></span>
+                            Register
+                        </button>
+                    </div>
+
+                    <div class="form-response bg-danger" ng-if="response && !response.success">
+                        {{response.message}}<br/>
+                        <div ng-repeat="(k, v) in response.errors">
+                            <span ng-repeat="msg in v">{{msg}}</span><br/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿<article class="tile blog-tile clearfix sx-border-gray"
+         itemscope itemtype="http://schema.org/BlogPosting"
+         ng-init="postUrl = blogUrl + '/' + post.slug"
+         style="padding-bottom: 15px; padding-top: 15px;">
+
+    <h3 itemprop="name headline">
+        <a ng-href="{{postUrl}}">{{post.title}}</a>
+    </h3>
+
+    <!--<header>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a ng-href="{{post.author.profileUrl}}" rel="author">
+                <img ng-src="{{post.author.getAvatarUrl(48)}}" />
+            </a>
+            <em class="date">
+                Posted by
+                <a ng-href="{{post.author.profileUrl}}" rel="author">{{post.author.displayName}}</a>,
+            </em>
+        </span>
+        &nbsp;
+        <em>
+            <sx-time time="post.updated"></sx-time>
+        </em>
+
+        <a ng-href="{{postUrl}}#comments" class="comments">
+            <span ng-if="post.commentsCount == 1">1 comment</span>
+            <span ng-if="post.commentsCount > 0 && post.commentsCount != 1">{{post.commentsCount}} comments</span>
+            <span ng-if="post.commentsCount == 0">No comments yet</span>
+        </a>
+        <span class="pull-right" ng-if="likedPosts">{{model.likesCount}} likes</span>
+        <br/>
+    </header>-->
+
+    <div class="contentrender" ng-bind-html="post.content | unsafe" itemprop="articleBody"></div>
+
+    <!-- Read more btn -->
+    <footer style="background-color: rgb(221, 221, 221); margin-bottom: -15px; margin-left: -24px; margin-right: -24px; padding: 10px; padding-left: 25px; padding-right: 25px; position: relative;">
+        <a ng-href="{{postUrl}}" class="barebone">
+            Read More
+        </a>
+        <a ng-href="{{postUrl}}" class="barebone pull-right">
+            Comments (0)
+        </a>
+    </footer>
+</article>

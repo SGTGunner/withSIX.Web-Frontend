@@ -1,0 +1,28 @@
+<template>
+  <section class="au-animate container-fluid" id="my">
+    <div class="tabbar">
+      <span class="pull-left profile-img">
+        <a href="${w6.url.connectSsl}/register" if.bind="!w6.userInfo.id">
+          <img src="http://i.ytimg.com/vi/yaqe1qesQ8c/maxresdefault.jpg"></img>
+        </a>
+        <a href="${w6.url.connectSsl}/me" if.bind="w6.userInfo.id">
+          <img src="${w6.url.calculateAvatarUrl(w6.userInfo)}"></img>
+        </a>
+      </span>
+      <router-menu menu-cls="" router.bind="router"></menu>
+    </div>
+    <div>
+      <div if.bind="!w6.userInfo.id && !strangerBarHidden" class="tile stranger-danger">
+        <small>
+          Hi stranger! With an account you can save &amp; access your home from anywhere.
+          <span class="pull-right">
+            We recomment that you
+            <a href="${w6.url.connectSsl}/register">Create an account</a>
+            <button click.delegate="strangerBarHidden = true">x</button>
+          </span>
+        </small>
+      </div>
+      <router-view></router-view>
+    </div>
+  </section>
+</template>

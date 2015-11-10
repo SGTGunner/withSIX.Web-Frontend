@@ -1,0 +1,76 @@
+<template>
+  <div class="au-animate container-fluid" id="collection-edit">
+    <div class="row">
+      <section class="main col-sm-9">
+        <div class="content collections-ng">
+          <filters filters.ref="filteredComponent" search-input-placeholder.bind="searchInputPlaceholder" typeahead-options.bind="typeahead" items.bind="items" filters.bind="filters" search-fields.bind="searchFields" sort.bind="sort" view-types.bind="availableViewTypes"></filters>
+
+          <card-view if.bind="filteredComponent.selectedViewType == 0" items.bind="filteredComponent.filteredItems" view-path="connect/profile/content/" item-type.bind="itemType">
+            <template replace-part="prepend-items">
+              <div class="${cardCls}">
+                <div class="card new-dependency">
+                  <header>ADD Mods</header>
+                  <div class="add">
+                    <finder placeholder="search mod" show-button="true" text="" icon="withSIX-icon-Add" model.bind="$parent.addContentModel"></finder>
+                    <finder-results model.bind="$parent.addContentModel" text="" icon="withSIX-icon-Add"></finder-results>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </card-view>
+          <list-view if.bind="filteredComponent.selectedViewType == 1" items.bind="filteredComponent.filteredItems" view-path="connect/profile/content/" item-type.bind="itemType"></list-view>
+        </div>
+      </section>
+
+      <section class="right col-sm-3">
+        <div class="tile">
+          Author: You
+        </div>
+
+        <compose view="play/collections/_edit_panel.html"></compose>
+
+        <div class="tile sx-border-gray">
+          <div class="advanced">
+            <h2>Advanced</h2>
+            <section class="form-group">
+              <label for="preferred-client">Preferred Client</label>
+              <select name="preferred-client" id="preferred-client" class="form-control" value.bind="model.preferredClient">
+                <option repeat.for="client of clients" model.bind="client">${$parent.PreferredClient[client]}</option>
+              </select>
+            </section>
+            <section class="repositories form-group">
+              <label for="repository">
+                <h3>Repository (optional)</h3>
+              </label>
+              <div>
+                <div class="pull-right" show.bind="model.repositories && !changed">
+                  <button class="warn" command.bind="refreshRepo">
+                    <span class="icon withSIX-icon-Reload"></span>
+                  </button>
+                </div>
+                <div class="input-container">
+                  <input name="repository" id="repository" class="form-control" type="text" placeholder="http://url/to/server.yml" value.bind="model.repositories"></input>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </section>
+            <section class="servers">
+              <h3>Server (optional)</h3>
+              <template repeat.for="server of servers">
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <input class="form-control" id="address" placeholder="ip:port" name="address" type="text" value.bind="server.address"></input>
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Password (optional)</label>
+                  <input class="form-control" id="password" name="password" type="text" value.bind="server.password"></input>
+                </div>
+              </template>
+            </section>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>

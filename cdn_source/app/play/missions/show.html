@@ -1,0 +1,57 @@
+﻿<div itemscope itemtype="http://schema.org/CreativeWork" ng-class="{'editing': editConfig.isEditing}" class="not-editing">
+
+    <div sx-content-header>
+        <span name="content-title-name" class="editable-half">
+            <span ng-class="{'edit-border-blue edit-field': editConfig.canManage()}"
+                  sx-editable-text="model.name" buttons="no" can-edit="editConfig.isEditing && editConfig.canManage()"
+                  blur-saves>
+                {{model.name | characters:54 :true}}<span style="display: inline-flex; vertical-align: top"><span ng-if="editConfig.isEdited('name')" class="withSIX-icon-Alert" style="color: red; font-size: 20px;"></span></span>
+            </span>
+        </span>
+
+        <span name="content-type">
+            <a ng-href="{{header.contentRootUrl}}">
+                <span class="withSIX-icon-Nav-Mission"></span>
+                Mission
+            </a>
+        </span>
+
+        <div name="follow-info">
+            {{model.followersCount}} followers.
+            <span ng-if="w6.userInfo.id">
+                <button class="anchor" ng-click="toggleFollow()"
+                        type="button">
+                    <span class="icon withSIX-icon-Follow"></span>
+                    {{followedMissions[model.id] ? 'Unfollow' : 'Follow'}}
+                </button>
+            </span>
+            <button class="anchor"
+                    type="button"
+                    ng-click="openLoginDialog($event)"
+                    ng-if="!w6.userInfo.id">
+                <span class="icon withSIX-icon-Follow"></span>
+                Login to {{followedMissions[model.id] ? 'Unfollow' : 'Follow'}}
+            </button>
+        </div>
+
+        <div name="content-header-info">
+            <ul>
+                <li>
+                    <span class="main" itemprop="version" title="v{{model.latestVersion.version}}">v{{model.latestVersion.version}}</span> <span itemprop="dateModified">{{model.latestVersion.releasedOn | date:"dd MMM 'yy"}}</span></li>
+                <li title="{{model.latestVersion.size | size:'B'}} unpacked" ng-bind-html="model.latestVersion.sizePacked | sizeInfo:'B'"></li>
+                <li>
+                    <span class="main">{{model.followersCount}}</span> <span>followers</span></li>
+            </ul>
+        </div>
+
+        <div name="content-header-download">
+            <button ng-click="callToAction()" class="anchor calltoactionBase btn-block">
+                <span class="icon withSIX-icon-Download" title="Download"></span>
+                <span class="text">Download</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="mission-contents"
+         app-view-segment="2"></div>
+</div>

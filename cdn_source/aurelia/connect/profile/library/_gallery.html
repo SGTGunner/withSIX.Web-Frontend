@@ -1,0 +1,6 @@
+<template>
+  <filters filters.ref="filteredComponent" search-input-placeholder.bind="searchInputPlaceholder" typeahead-options.bind="typeahead" items.bind="items" filters.bind="filters" search-fields.bind="searchFields" sort.bind="sort" view-types.bind="availableViewTypes"></filters>
+
+  <card-view if.bind="filteredComponent.selectedViewType == 0" items.bind="filteredComponent.filteredItems" view-path="connect/profile/content/" item-type.bind="itemType"></card-view>
+  <list-view if.bind="filteredComponent.selectedViewType == 1" items.bind="filteredComponent.filteredItems" view-path="connect/profile/content/" item-type.bind="itemType"></list-view>
+</template>

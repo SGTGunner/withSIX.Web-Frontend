@@ -1,0 +1,12 @@
+<template>
+	<section class="au-animate">
+		<h2>${heading | usertitle}</h2>
+		<div>
+			<ul>
+				<li repeat.for="friend of friends">
+					${friend.displayName}
+				</li>
+			</ul>
+		</div>
+	</section>
+</template>

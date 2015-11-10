@@ -1,0 +1,106 @@
+<sx-info-page>
+    <div name="main-section" class="credits">
+        <article>
+            <div class="box">
+                <h3>Credits</h3>
+                <p>This mod just wouldn't be possible without these awesome people!</p>
+                <div class="row">
+                    <div class="col-md-4" collapse="!editConfig.isEditing">
+                        <button class="btn btn-primary" ng-click="addGroup();">New Group</button>
+                    </div>
+                </div>
+
+
+                <div id="{{item.id}}" class="row" ng-repeat="item in model.userGroups" collapse="!(!(item.hidden || (item.users.length == 0 && item.description)) || editConfig.isEditing)">
+                    <div class="col-md-12">
+                        <p class="group-header">
+                            <span id="{{item.id + '-title'}}" e-placeholder="Group Name" class="edit-border-blue edit-field"
+                      sx-editable-text="item.name" buttons="no" can-edit="editConfig.isEditing" blur-saves>{{item.name||'Group Name'}}</span>
+                            <span ng-if="editConfig.isEditing" data-title="Settings" bs-tooltip>
+                    <button class="btn btn-sx-manage-link"
+                            bs-popover data-animation="am-flip-x" data-placement="bottom-left" data-auto-close="1"
+                            data-template="/cdn_source/app/play/mods/popovers/manage-credits-popover.html">
+                        <strong><span class="withSIX-icon-Settings" style="font-size: 14px;"></span></strong>
+                    </button>
+                </span>
+                            <span ng-if="editConfig.isEditing">
+                    <button class="btn btn-sx-manage-link"
+                            bs-popover data-animation="am-flip-x" data-placement="bottom-left" data-auto-close="1"
+                            data-template="/cdn_source/app/play/mods/popovers/add-user-credits-popover.html">
+                        <strong>Add User</strong>
+                    </button>
+                </span>
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <div ng-if="item.description || editConfig.isEditing" class="editable-full" style="margin-top: -45px;">
+                            <div class="edit-border-blue edit-field-med contentrender"
+                                 sx-editable-text="item.description"
+                                 buttons="no" blur-saves can-edit="editConfig.isEditing">{{item.description||'No short description'}}</div>
+                        </div>
+                    </div>
+
+                    <div class="col deletable-card" ng-repeat="user in item.users">
+                        <sx-account-card account="user.account"></sx-account-card>
+                        <button class="btn delete-card" ng-click="user.entityAspect.setDeleted();"
+                                ng-if="editConfig.isEditing" data-title="Remove User" bs-tooltip>
+                            <span class="withSIX-icon-X" style="color: red; font-size: 14px; vertical-align: middle;"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!--<div ng-if="editConfig.isEditing">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="group-header">
+                                <span>Add Header...</span>
+                                <span collapse="!editConfig.isEditing">
+                                    <button class="btn btn-sx-manage-link">
+                                        <strong><span class="withSIX-icon-Settings" style="font-size: 14px;"></span></strong>
+                                    </button>
+                                </span>
+                                <span collapse="!editConfig.isEditing">
+                                    <button class="btn btn-sx-delete-link"
+                                            ng-click="item.entityAspect.setDeleted();">
+                                        <strong><span class="withSIX-icon-X" style="color: red; font-size: 14px;"></span></strong>
+                                    </button>
+                                </span>
+                                <span collapse="!editConfig.isEditing"
+                                      data-title="Undo Changes" bs-tooltip>
+                                    <button class="btn btn-sx-delete-link" ng-click="item.entityAspect.rejectChanges();">
+                                        <strong><span class="withSIX-icon-Reload" style="color: green; font-size: 14px;"></span></strong>
+                                    </button>
+                                </span>
+                                <span collapse="!editConfig.isEditing">
+                                    <span class="btn btn-sx-unsaved-link" style="background-color: gainsboro">
+                                        <strong style="color: red">Deleted</strong>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </article>
+    </div>
+
+    <div name="right">
+        <div ng-include="'/cdn_source/app/play/mods/_edit-side-pane.html'"></div>
+
+        <div ng-if="w6.renderAds" class="tile">
+            <div data-ng-dfp-ad-container>
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad1"></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="w6.renderAds" class="tile">
+            <div data-ng-dfp-ad-container>
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sx-info-page>

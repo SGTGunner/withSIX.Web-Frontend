@@ -1,0 +1,10 @@
+﻿<div class="container-fluid">
+    <div>
+        <a href="/">Home</a>
+        <span ng-if="model.page">
+            ->
+            <a ng-href="/{{model.page}}">{{model.title}}</a>
+        </span>
+    </div>
+    <div ng-bind-html="model.doc | pagedown" class="tile"></div>
+</div>

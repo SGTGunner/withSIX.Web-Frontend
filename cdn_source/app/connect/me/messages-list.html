@@ -1,0 +1,25 @@
+﻿<div ng-if="model.conversations.length > 0">
+    <ul class="me-messages-list">
+        <li ng-repeat="conversation in model.conversations">
+            <a ng-href="{{ 'me.messages.user' | routeSegmentUrl : { slug: conversation.partner.slug } }}">
+                <img ng-src="{{::url.calculateAvatarUrl(conversation.partner)}}"/>
+                <strong class="user">
+                    {{conversation.partner.displayName}}
+
+                    <span class="icon-comment" ng-if="conversation.unread > 0"></span>
+                </strong>
+
+                <span class="messages">
+                    {{conversation.totalMessages}}
+                    {{conversation.totalMessages == 1 ? 'message' : 'messages'}}
+                </span>
+
+                <sx-time time="conversation.lastMessage"></sx-time>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div ng-if="model.conversations.length == 0">
+    <span>No messages recieved, yet.</span>
+</div>

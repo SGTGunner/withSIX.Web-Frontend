@@ -1,0 +1,45 @@
+@import '_base';
+
+finder {
+  input {
+    width: 100%;
+    margin-right: 16px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  button.execute {
+    height: 30px;
+  }
+}
+finder-results {
+  display: block;
+  padding: 8px;
+  max-height: 300px;
+  width: 100%;
+  text-align: left;
+
+  //.results {
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  //}
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      button {
+        display: none;
+        vertical-align: center;
+      }
+      .included {
+        color: $colorSixGray; // TODO: or use opacity
+      }
+      &:hover {
+        button {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

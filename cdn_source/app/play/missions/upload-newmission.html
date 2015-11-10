@@ -1,0 +1,124 @@
+﻿<div class="container-fluid">
+
+    <h3>Upload a Mission</h3>
+
+    <div class="tile">
+        <div ng-if="response.success" class="form-message form-message-passed">
+            <p>Successfully uploaded</p>
+            <p>
+                Go to <a ng-href="{{::url.connect}}/me/content">your content page</a> to publish the mission
+            </p>
+        </div>
+
+        <div ng-if="!response.success">
+            <div ng-if="error">
+                <div class="form-message form-message-error">
+                    <p>{{error}}</p>
+                </div>
+            </div>
+
+            <div ng-if="existingMissions.length > 0">
+                <h2>What would you like to do?</h2>
+                <form id="w6-mission-upload-choice">
+                    <label style="padding-right: 10px;">
+                        <input type="radio" name="action" value="new"/> Upload a new mission
+                    </label>
+                    <label>
+                        <input type="radio" name="action" value="update"/> Update one of my missions
+                    </label>
+                </form>
+            </div>
+
+            <div id="w6-mission-upload-new" class="hidden">
+                <form name="newMissionForm"
+                      sx-validate-on-submit="submit(newMissionForm)"
+                      sx-validate-on-blur>
+
+                    <p>
+                        <label>Upload a new Mission</label>
+                    </p>
+
+                    <p>
+                        <i>
+                            Be sure to check out the
+                            <a ng-href="{{::url.main}}/getting-started-publishing">Getting Started guide</a>
+                        </i>
+                    </p>
+
+                    <div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(newMissionForm.mission_name) }">
+                        <label class="control-label" for="mission_name">Name :</label>
+                        <input class="form-control" type="text" name="mission_name" id="mission_name" ng-model="mission.name"
+                               size="50"/>
+
+                        <span class="legend">
+                            The name should be between 3-50 characters <br />
+                            The name can only contain alphanumeric characters (a-z, A-Z), underscore(_), numeric values (0-9) or spaces
+                        </span>
+                        <sx-validation-messages label="'name'" field="newMissionForm.mission_name"></sx-validation-messages>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(newMissionForm.mission_initial_version) }">
+                        <label class="control-label" for="mission_initial_version">.pbo file :</label> <br/>
+                        <input id="mission_initial_version" type="file" name="mission_initial_version"
+                               class="form-control"
+                               ng-model="mission_file"
+                               size="40" ng-file-select="updateFileInfo($files)"
+                               required valid-file/>
+                        <sx-validation-messages label="'file'" field="newMissionForm.mission_initial_version"></sx-validation-messages>
+                        <p>
+                            The max file size is 20MB
+                            <br/>
+                            Before uploading, please make sure you have no unpublished versions in the queue on
+                            <a ng-href="{{::url.connect}}/me/content">your content page</a>.
+                        </p>
+                    </div>
+
+                    <p>
+                        <button type="submit" class="btn"
+                                ng-disabled="processing"
+                                http-progress="uploadNewMission"
+                                http-processing="processing"
+                                http-pending="Processing..."
+                                http-success="Processed!"
+                                http-single-use="t"
+                                http-error="Failed...">
+                            <span class="icon icon-chevron-right"></span>
+                            <span>Upload</span>
+                        </button>
+                    </p>
+
+                    <div class="form-response bg-danger" ng-if="response && !response.success">
+                        {{response.message}}<br/>
+                        <div ng-repeat="(k, v) in response.errors">
+                            <span ng-repeat="msg in v">{{msg}}</span><br/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="w6-mission-upload-update" class="hidden">
+                <form enctype="multipart/form-data"
+                      name="updateMissionForm" ng-submit="submit(updateMissionForm)">
+                    <p>
+                        <label>Select a mission</label>
+                    </p>
+                    <p>
+                        <select name="mission" id="missionSelect">
+                            <option>---</option>
+                            <option ng-repeat="mission in existingMissions"
+                                    value="/{{routeParams.gameSlug}}/missions/{{toShortId(mission.id)}}/{{mission.slug}}/versions/new">
+                                {{mission.name}}
+                            </option>
+                        </select>
+                    </p>
+                    <p>After you select a mission you'll be redirected</p>
+
+                    <noscript>
+                        <p>This feature requires javascript</p>
+                    </noscript>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

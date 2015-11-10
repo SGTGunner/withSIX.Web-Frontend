@@ -1,0 +1,9 @@
+@import "global/variables.scss";
+@import "global/mixins.scss";
+@import "../app/admin/include.scss";
+
+.admin {
+  .tabbar {
+    background-color: #fff !important;
+  }
+}

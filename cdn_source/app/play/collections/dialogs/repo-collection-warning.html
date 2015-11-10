@@ -1,0 +1,24 @@
+﻿<div class="modal-content signin" ng-init="isArchived = model.archivedAt != null">
+    <header class="modal-header">
+        <h1>Collection contains Third Party Content</h1>
+    </header>
+
+    <section class="modal-body">
+        This collection contains content that is not hosted on the withSIX network.
+
+        <b>Availability</b> and <b>download speed</b> depends on the server host.
+
+        SIX Networks takes no responsibility for any content, private policies or practices of any third party servers.
+
+        If you encounter issues with privately hosted content, please contact the collection owner or the custom repository administrator
+    </section>
+
+    <footer class="modal-footer">
+        <button type="button"
+                ng-click="$close()"
+                class="btn btn-primary"
+                data-dismiss="modal">
+            Ok
+        </button>
+    </footer>
+</div>

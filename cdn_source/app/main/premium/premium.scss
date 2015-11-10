@@ -1,0 +1,348 @@
+#successful-checkout {
+  h1 {
+    text-align: center;
+    font-size: 42px;
+  }
+
+  font-size: 18px;
+}
+
+#go-premium {
+  #main-improvements {
+    @include make-sm-column(7);
+
+    @include make-lg-column(6);
+  }
+
+  #improvements {
+    @include make-sm-column(5);
+
+    @include make-lg-column(4);
+  }
+
+  #bulkoptions {
+    background-color: $colorSixBlue;
+    padding: 16px;
+
+    .text {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      color: white;
+
+      a {
+        color: white;
+      }
+    }
+  }
+
+  h1 {
+    font-size: 42px;
+    text-align: center;
+  }
+
+  .details {
+    section {
+      p {
+        margin: 0;
+      }
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-top: 32px;
+      margin-bottom: 32px;
+    }
+
+    .tile {
+      margin-bottom: 32px;
+
+      &.text {
+        font-size: 16px;
+        line-height: 20px;
+        margin-left: 136px;
+      }
+    }
+
+    .img {
+      @include squareImg(48px);
+
+      span {
+        color: white;
+      }
+    }
+
+    #what-is {
+      $size: 64px;
+      $textMarginFromImage: 32px;
+
+      .tile {
+        &.text {
+          margin-left: $size * 2 + $textMarginFromImage;
+        }
+      }
+
+      .img {
+        background-color: $colorSixBlue;
+
+        @include squareImg($size, 0.75);
+
+        span {
+          top: 0;
+        }
+      }
+    }
+
+    #ad-removal {
+      .img {
+        background-color: $colorSixOrange;
+      }
+    }
+
+    #faster-download {
+      .img {
+        background-color: $colorSixBlue;
+      }
+    }
+
+    #secure {
+      .img {
+        background-color: $colorSixGreen;
+      }
+    }
+
+    #improvements {
+      .tile {
+        margin-bottom: 32px;
+      }
+
+      .improvement {
+        h2 {
+          margin-bottom: 0px;
+        }
+      }
+
+      .text {
+        margin-left: 64px;
+      }
+
+      .img {
+        @include squareImg(24px);
+
+        span {
+          color: white;
+        }
+      }
+    }
+
+    #servers-improvement {
+      .img {
+        background-color: $colorSixBlue;
+      }
+    }
+
+    #features-improvement {
+      .img {
+        background-color: $colorSixOrange;
+      }
+    }
+
+    #games-improvement {
+      .img {
+        background-color: $colorSixGreen;
+      }
+    }
+
+    #support-improvement {
+      .img {
+        background-color: $colorSixSoftRed;
+      }
+    }
+
+    #experiences {
+      > div {
+        @include make-xs-column(6);
+
+        @include make-sm-column(3);
+
+        article {
+          display: inline-block;
+          margin-bottom: 16px;
+          background: white;
+          width: 100%;
+
+          //max-width: 188px;
+          .text {
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-bottom: 16px;
+          }
+
+          .img {
+            @include squareImg(64px);
+
+            width: 100%;
+
+            @media (min-width: $screen-md-min) {
+              @include squareImg(48px);
+
+              width: 100%;
+            }
+
+            @media (min-width: $screen-xl-min) {
+              @include squareImg(64px);
+
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #experience-gamer {
+    .img span {
+      color: $colorSixBlue;
+    }
+  }
+
+  #experience-mod {
+    .img span {
+      color: $colorSixGreen;
+    }
+  }
+
+  #experience-mission {
+    .img span {
+      color: $colorSixGreen;
+    }
+  }
+
+  #experience-community {
+    .img span {
+      color: $colorSixOrange;
+    }
+  }
+
+  #experience-server {
+    .img span {
+      color: $colorSixSoftRed;
+    }
+  }
+
+  #experience-blank {
+    .img span {
+      color: $colorSixSoftGray;
+    }
+  }
+
+  h2.group-header {
+    font-size: 20px;
+  }
+
+  .subscribe {
+    margin-top: 16px;
+    background-color: white;
+
+    h3 {
+      margin-top: 0;
+    }
+
+    table {
+      width: 100%;
+
+      tr {
+        td:last-child {
+          text-align: right;
+        }
+      }
+    }
+
+    .info {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .login {
+      .avatar {
+        margin-bottom: 8px;
+
+        img {
+          @include square(32px);
+        }
+      }
+
+      .logins {
+        input, > button, > a {
+          background-color: $colorSixSoftGray;
+          margin-left: 4px;
+          margin-bottom: 4px;
+        }
+
+        img {
+          @include square(20px);
+        }
+
+        input {
+          font-size: 13px;
+          width: 220px;
+        }
+      }
+
+      form {
+        display: inline-block;
+      }
+
+      .info {
+        .field {
+          background-color: $colorSixSoftGray;
+          height: 32px;
+          width: 300px;
+          margin-bottom: 8px;
+          padding-left: 8px;
+          padding-right: 8px;
+          line-height: 32px;
+        }
+      }
+    }
+
+    tr.vat, tr.fee {
+      font-weight: 200;
+    }
+
+    tr.total {
+      font-size: 22px;
+      font-weight: $font-weight-bold;
+    }
+
+    .tile {
+      background-color: #ebf0f5;
+      padding: 0;
+
+      .cntnr {
+        padding: 20px;
+      }
+
+      footer {
+        button {
+          padding: 8px;
+          text-align: center;
+          font-size: 24px;
+          background-color: #336699;
+          width: 100%;
+          color: white;
+          border: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,162 @@
+﻿<!--@using SN.withSIX.App.Infrastructure
+@using SN.withSIX.Presentation.App
+@model SN.withSIX.App.UseCases.Main.HomeViewModel
+
+@helper AdMainHzMedium(LayoutModel layoutModel)
+{
+if (!layoutModel.RenderAds)
+{
+    return;
+}
+
+<div class="adlinks hz">
+    $1$ main_hz_medium #1#
+    <ins class="adsbygoogle"
+         style="display: inline-block; height: 15px; width: 468px;"
+         data-ad-client="@AdConstants.AdsenseId"
+         data-ad-slot="9299854041">
+    </ins>
+    <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8">
+            $1$ Home Article #1#
+            <article class="tile home-box clearfix">
+                <div class="icon icon-browse"></div>
+                <div class="clearfix">
+                    <h2>Discover</h2>
+                    <p>Get the most out of your gaming experience by expanding your game with great fan made content for you to discover on our website - from missions to maps to full conversion modifications and more!</p>
+                    <a href="@LayoutModel.Urls.Main/getting-started" class="btn">
+                        <span class="icon icon-arrow-right"></span>
+                        Learn More
+                    </a>
+                </div>
+            </article>
+
+            @if (LayoutModel.RenderAds) {
+            <div class="tile">
+                @{ Html.RenderPartial("Global/Ads/_Leaderboard", new AdModel("header-add", AdConstants.Atf)); }
+            </div>
+            }
+
+            $1$ Home Article #1#
+            <article class="tile home-box clearfix">
+                <div class="icon icon-manage icon-alignright">
+
+                </div>
+                <div class="clearfix">
+                    <h2>Play</h2>
+                    <p>Use custom game content of your choice online with your friends or in single player faster and easier than ever. withSIX takes care of everything, so you can just have fun.</p>
+
+                    <a href="@LayoutModel.Urls.Play" class="btn">
+                        <span class="icon icon-arrow-right">
+
+                        </span>
+                        Learn More
+                    </a>
+
+                </div>
+            </article>
+
+            $1$ Home Article #1#
+            <article class="tile home-box clearfix">
+                <div class="icon icon-connect">
+
+                </div>
+                <div class="clearfix">
+                    <h2>
+                        Promote
+                    </h2>
+                    <p>Present your self-made content to the world by using our wide variety of options to promote, publish and share your creation in no time.</p>
+                    $1$<a href="#" class="btn">
+                        <span class="icon icon-arrow-right">
+
+                            </span>
+                        Learn More
+                    </a> #1#
+                </div>
+                @AdMainHzMedium(LayoutModel)
+            </article>
+
+            $1$ Latest Blog #1#6
+            <div class="latest-blog">
+                <em>Most recent update from <a href="@LayoutModel.Urls.Main/blog">our blog</a>:</em>
+                @if (Model.LatestPost != null) {
+                Html.RenderPartial("../Blog/_PostPreview", Model.LatestPost);
+                }
+            </div>
+        </div>
+
+        <aside class="col-sm-4">
+            @{ Html.RenderPartial("Global/Ads/_Rectangle", new AdModel("add-home1", AdConstants.Atf)); }
+
+            <div class="stats">
+                <h3>
+                    Already
+                    <strong>
+                        @Model.TotalDownloads.ToAprox()
+                    </strong>
+                    downloads and
+                    <strong>
+                        @Model.TotalAccounts.ToAprox()
+                    </strong>
+                    registered users.
+                </h3>
+
+                <p>Supporting:</p>
+                <a href="@LayoutModel.Urls.Play/more-games">
+                    <img src="@Url.VersionedAsset(" img/withSIX/home/gameicons.png")" width="372" height="121"
+                    class="img-responsive"
+                    alt="Supported games withSIX"/>
+                </a>
+
+                <br /><br />
+
+                <h4>
+                    with
+                    <strong>
+                        @Model.TotalCollections.ToAprox()
+                    </strong>
+                    collections,
+                    <strong>
+                        @Model.TotalMods.ToAprox()
+                    </strong>
+                    mods,
+                    <strong>
+                        @Model.TotalMissions.ToAprox()
+                    </strong>
+                    missions,
+                    and
+                    <strong>
+                        @Model.TotalServers.ToAprox()
+                    </strong>
+                    servers.
+                    <br />
+                    <strong>
+                        @Model.TotalSubscribers.ToAprox()
+                    </strong>
+                    subscribers and
+                    <strong>
+                        @Model.TotalFollowers.ToAprox()
+                    </strong>
+                    followers.
+                    @*
+                    and
+                    <strong>
+                        @Model.TotalLikes.ToAprox()
+                    </strong>
+                    likes
+                    *@
+                </h4>
+            </div>
+
+            @{ Html.RenderPartial("Global/Ads/_Rectangle", new AdModel("add-home2")); }
+
+        </aside>
+    </div>
+</div>-->

@@ -1,0 +1,26 @@
+﻿<div class="commentbox clearfix no-tween-out">
+    <a class="imgholder" ng-href="{{userInfo.profileUrl}}">
+        <img ng-src="{{selfAvatar}}" class="fixedava"/>
+    </a>
+
+    <form>
+
+        <div class="form-group">
+            <textarea class="form-control" name="replyText" ng-model="newComment.message"></textarea>
+        </div>
+
+        <button class="btn" type="submit"
+                ng-click="addCommentInternal(this)"
+                ng-disabled="newComment.message.length < 3">
+            <span class="icon icon-arrow-right"></span>
+            Add Reply
+        </button>
+
+        <button class="btn cancel" style="margin-right: 8px"
+                ng-click="cancelCommentInternal(this)">
+            <span class="icon icon-arrow-right"></span>
+            Cancel
+        </button>
+
+    </form>
+</div>

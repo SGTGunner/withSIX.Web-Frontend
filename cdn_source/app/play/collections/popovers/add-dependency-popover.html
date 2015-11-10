@@ -1,0 +1,16 @@
+﻿<div class="popover manage-link" style="min-width: 500px;">
+    <div class="arrow"></div>
+    <div class="popover-title">
+        <b>Add Mod</b>
+    </div>
+    <div class="popover-content">
+        <tags-input class="hide-tags"
+                    ng-model="temporaryTag" inline on-tag-added="addDependency($tag,$hide)"
+                    tags="getCurrentDependencies()"
+                    placeholder="add a dependency"
+                    add-from-autocomplete-only="true" display-property="text"
+                    replace-spaces-with-dashes="false" min-tags="0" allow-leftover-text="false" enable-editing-last-tag="false">
+            <auto-complete source="getDependencies($query)" min-length="0" debounce-delay="500" display-property="text"></auto-complete>
+        </tags-input>
+    </div>
+</div>

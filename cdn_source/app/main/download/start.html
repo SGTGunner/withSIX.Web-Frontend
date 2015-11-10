@@ -1,0 +1,42 @@
+<div class="container-fluid download download-start">
+    <section class="tile">
+        <h1 id="main-downloading-text" class="pagetitle">
+            Your download of the withSIX client will start
+            <span ng-if="!w6.userInfo.isPremium">
+                in
+                <span id="download-countdown">{{model.counter}}</span>
+                seconds...
+            </span>
+            <span ng-if="w6.userInfo.isPremium">now</span>
+        </h1>
+
+        <p class="problems">
+            If the download does not start, please click
+            <a ng-href="{{url.authSsl}}/api/downloads{{w6.enableBasket ? '/mini' : null}}/latest?type={{model.type}}" rel="nofollow">this direct link</a>
+            instead.
+        </p>
+
+        <p class="problems" style="margin-top: 0px;">
+            <a ng-href="{{url.main}}/{{w6.enableBasket ? 'update' : 'changelog'}}">Changelog</a>
+        </p>
+    </section>
+
+    <div class="row clearfix" ng-if="w6.renderAds">
+        <div class="col-sm-6">
+            <div class="add-container-out">
+                <div class="add-container">
+                    <div class="add add-download1" ng-dfp-ad="angular-ad1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="add-container-out">
+                <div class="add-container">
+                    <div class="add add-download2" ng-dfp-ad="angular-ad2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tile" ng-if="!w6.userInfo.isPremium" ng-include="'/cdn_source/app/main/_donate.html'"></div>
+</div>

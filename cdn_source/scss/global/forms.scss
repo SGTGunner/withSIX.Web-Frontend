@@ -1,0 +1,91 @@
+.form-response {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.form-message {
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+
+  a {
+    color: $color0;
+  }
+}
+
+.form-message-error {
+  background-color: $errorcolor;
+  color: $color0;
+}
+
+.form-message-passed {
+  background-color: $calltoaction;
+  color: $color0;
+
+  a, button {
+    color: $color0;
+  }
+}
+
+.input-container {
+  overflow: hidden;
+}
+
+.form-fieldset-on {
+  fieldset {
+    margin: 20px 0px;
+    border: 1px solid #cfcfcf;
+    padding: 10px;
+
+    legend {
+      padding-left: 6px;
+      padding-right: 6px;
+    }
+  }
+}
+
+label.long {
+  width: auto !important;
+}
+
+.editor {
+  position: relative;
+
+  span.charsleft {
+    position: absolute;
+    right: 0px;
+    bottom: -60px;
+
+    em {
+      font-style: normal;
+    }
+  }
+}
+
+.easyForm .ng-invalid.ng-dirty {
+  border-color: red;
+  outline-color: red;
+}
+
+/*
+
+.ng-valid.ng-dirty {
+  border-color: green;
+  outline-color: green;
+}
+*/
+
+.form-group {
+  button {
+    height: 38px;
+  }
+  label.switch {
+    display: block;
+    background-color: $colorSixBlue;
+    color: white;
+    padding: 8px;
+    span.icon {
+      line-height: inherit;
+    }
+  }
+}

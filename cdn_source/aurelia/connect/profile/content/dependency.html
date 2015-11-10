@@ -1,0 +1,20 @@
+<template>
+  <div class="inner">
+    <dropdown-menu class="basketable-dropdown pull-right" if.bind="topMenuActions && topMenuActions.length > 0" items.bind="topMenuActions"></dropdown-menu>
+    <!-- <action-bar class="pull-left basketable-action" items.bind="topActions"></action-bar> -->
+    <div class="imagecontent imageholder" back-img.bind="defaultBackUrl">
+      <div class="imageholder" back-img.bind="defaultAssetUrl">
+        <div class="imageholder" back-img.bind="model.image" style="height: 160px;">
+        </div>
+      </div>
+    </div>
+    <div class="info">
+      <div class="title" title.bind="model.dependency">${model.name || model.dependency}</div>
+      <div>
+        <span if.bind="isLocked">Locked to: ${model.constraint}</span>
+        <span if.bind="!isLocked">Latest</span>
+        <span if.bind="!model.isRequired">Optional</span>
+      </div>
+    </div>
+  </div>
+</template>

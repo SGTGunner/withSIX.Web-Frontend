@@ -1,0 +1,158 @@
+.blog-tile {
+  h1 {
+    color: $color5;
+    font-size: 32px;
+    line-height: 1.5em;
+    margin: 0;
+  }
+
+  h3 {
+    color: $color5;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    margin: 0;
+
+    a {
+      color: $color5;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        color: $primarycolor;
+      }
+    }
+  }
+
+  img {
+    @include img-responsive;
+  }
+
+  p {
+    margin-bottom: 24px;
+  }
+
+  header {
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+
+    @include height-lh(48px);
+
+    margin-top: 16px;
+    display: block;
+    margin-bottom: 16px;
+    position: relative;
+
+    a {
+      text-decoration: none;
+      color: $color3;
+      line-height: 0px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      img {
+        border: 0;
+        display: block;
+        float: left;
+      }
+    }
+
+    em.date {
+      padding-left: 16px;
+
+      a {}
+    }
+
+    a.comments {
+      display: block;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      line-height: 48px;
+    }
+  }
+}
+
+aside .tile-list {
+  margin-bottom: 64px;
+  margin-top: 64px;
+
+  h4 {
+    font-size: 1.5em;
+    margin: 0 0 16px;
+    line-height: normal;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      background-image: none;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 8px;
+
+      a {
+        display: block;
+        background-color: $color0;
+        line-height: 24px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 40px;
+        padding-right: 16px;
+        background-image: url(../img/withSIX/list_icon.png?v=#{$cacheBuster});
+        background-repeat: no-repeat;
+        background-position: 16px 16px;
+        text-decoration: none;
+        color: $color3;
+
+        &:hover {
+          color: $primarycolor;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.blog-controls {
+  @include height-lh(48px);
+
+  position: relative;
+
+  a.btn {
+    height: 48px;
+    position: absolute;
+    top: 0px;
+    padding-left: 54px;
+    padding-right: 32px;
+    text-decoration: none;
+    color: $color4;
+
+    @include basictransition;
+
+    &:hover {
+      background-color: $color0;
+
+      @include basictransition;
+    }
+
+    .icon {
+      position: absolute;
+      left: 24px;
+      top: 18px;
+    }
+  }
+
+  a.btn-left {
+    left: 0px;
+  }
+
+  a.btn-right {
+    right: 0px;
+  }
+}

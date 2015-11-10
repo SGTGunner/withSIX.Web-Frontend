@@ -1,0 +1,10 @@
+<template show.bind="!hideWhenEmpty || isVisible">
+  <ul class="my-menu horizontal">
+    <li repeat.for="item of items" show.bind="item.isVisible">
+      <button class="anchor" class.bind="item.cls" command.bind="item.action" title="${item.tooltip ? item.tooltip : ''}">
+        <span if.bind="item.icon" class="icon ${item.icon}"></span>
+        <span class.bind="item.textCls" class="text">${item.name}</span>
+      </button>
+    </li>
+  </ul>
+</template>

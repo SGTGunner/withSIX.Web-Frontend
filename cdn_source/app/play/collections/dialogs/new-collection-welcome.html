@@ -1,0 +1,46 @@
+
+<div class="modal-content">
+  <header class="modal-header">
+    <h1>Well done! This is your new {{model.model.game.name}} Collection</h1>
+  </header>
+  <section class="modal-body">
+    <div ng-if="model.repoLanding">
+      <p>
+        Your custom repository has been successfully imported into this new collection.
+      </p>
+
+      <p>
+        You can now:
+        <ul>
+          <li>Add and remove mods from this collection</li>
+          <li>Change the accessibility between, private, unlisted and listed</li>
+          <li>Edit all information, like Name, Tags, description and links.</li>
+        </ul>
+      </p>
+      <p>
+        Make your collection look nice by adding a nice image as banner, some descriptive tags and a description.
+      </p>
+    </div>
+    <div ng-if="!model.repoLanding">
+      <h2>About the Content</h2>
+      <p>Let’s get started. This is your content tab, here you can add, remove and modify all mods of your collection and much more.</p>
+      <h2>About the look</h2>
+      <p>Make your collection look good to subscribers. Go to the Info Tab and add a nice description, links and Tags.</p>
+    </div>
+  </section>
+  <footer class="modal-footer">
+    <div ng-if="model.repoLanding">
+      <button type="button" class="btn btn-cancel" ng-click="$close()" data-dismiss="modal">
+        Finish process
+      </button>
+      <button type="button" ng-click="edit()" ng-disabled="processing" class="btn btn-primary">
+        Edit page
+      </button>
+    </div>
+    <div ng-if="!model.repoLanding">
+      <button type="button" class="btn btn-primary" ng-click="$close()" data-dismiss="modal">
+        Continue
+      </button>
+    </div>
+  </footer>
+</div>

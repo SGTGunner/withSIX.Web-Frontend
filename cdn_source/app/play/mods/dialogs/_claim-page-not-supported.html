@@ -1,0 +1,31 @@
+﻿<div class="modal-header">
+    <h1>Content Claiming</h1>
+    <strong>Modification -&nbsp;</strong>{{model.name}}<br/>
+</div>
+
+<div class="modal-body">
+    <strong>We're sorry for the inconvenience!</strong><br/>
+    <span>
+        Unfortunately your modification
+        {{hasHomepageUrl ? 'links to an external site we don\'t' : 'has no external link to'}}
+        support content claiming from yet.
+    </span>
+    <br/><br/>
+    <span>
+        For unclaimed content we use links to external sites where the mod is hosted by the real author
+        to allow the author to use a token only they can place on their site to verify that the mod they are claiming is their own.
+    </span><br/><br/>
+    <strong>What you can do...</strong><br/>
+    <span>
+        Contact us through our support page and let us know that we
+        {{hasHomepageUrl ? 'don\'t support the website we link to for your mod.' : 'are missing a homepage link for your mod.'}}
+    </span>
+</div>
+
+<div class="modal-footer">
+    <button type="button"
+            ng-click="cancel()"
+            class="btn btn-primary">
+        Close
+    </button>
+</div>

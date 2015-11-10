@@ -1,0 +1,7 @@
+<template>
+  <div class="basket-body-items">
+    <template repeat.for="item of model.activeDirect.model.items">
+      <compose model.bind="{item: item, chain: $parent.model.activeDirect.chain, level: 0}" view-model="components/playlist-item"></compose>
+    </template>
+  </div>
+</template>

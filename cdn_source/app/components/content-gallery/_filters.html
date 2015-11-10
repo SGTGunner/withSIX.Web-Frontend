@@ -1,0 +1,33 @@
+﻿<form class="filters row"
+      ng-submit="views.clearFilters()">
+    <fieldset ng-disabled="!first">
+        <div class="search form-group has-feedback col-sm-6 col-md-5">
+            <span class="filtertitle pull-left">Filter by:</span>
+            <div title="Your tags will auto complete (tag:..  mod:..  user:..) after a single character using 'starts with' behavior.&#013;Until 3 characters, then 'contains' behavior will apply.&#013;The latter is also the case for non-tag keywords">
+                <tags-input ng-model="views.tags"
+                            allowed-tags-pattern="^((mod|user|tag):([\w@]+|&quot;[^&quot;]+&quot;))|([^:]+)$"
+                            replace-spaces-with-dashes="false"
+                            min-tags="0"
+                            enable-editing-last-tag="true"
+                            display-property="key">
+                    <auto-complete source="views.getPrefixes($query)"
+                                   min-length="0"
+                                   debounce-delay="500"
+                                   display-property="text">
+                    </auto-complete>
+                </tags-input>
+                <i class="withSIX-icon-Search form-control-feedback"></i>
+            </div>
+        </div>
+
+        <div class="filter-bar col-sm-6 col-md-7">
+            <div class="additional-filters"
+                 ng-include="views.additionalFilterTemplate"></div>
+            <button class="btn clear-filters pull-right"
+                    tyoe="submit"
+                    title="Clear">
+                <span class="withSIX-icon-Hexagon-X"></span>
+            </button>
+        </div>
+    </fieldset>
+</form>

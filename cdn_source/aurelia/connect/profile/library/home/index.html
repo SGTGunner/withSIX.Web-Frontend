@@ -1,0 +1,34 @@
+<template>
+	<section class="au-animate collections-ng" id="my-library-show-home">
+		<compose view="connect/profile/library/_header.html"></compose>
+
+		<button if.bind="hasApi" click.delegate="openGameSettings()">Settings</button>
+
+		<div class="tile" if.bind="!clientEnabled"><compose view="connect/profile/_get_client.html"></compose></div>
+
+		<div class="row" if.bind="clientEnabled">
+			<div class="col1">
+				<h3 class="row-header">Recently played</h3>
+				<card-view items.bind="recent" card-cls="collection col-md-12" view-path="connect/profile/content/"></card-view>
+			</div>
+
+			<div class="col2">
+				<dropdown-menu class="row-header-button c-blue pull-right new-style" items.bind="addContentMenu">
+					<template replace-part="header">
+						<span class="icon withSIX-icon-Add"></span>
+						Add content
+					</template>
+				</dropdown-menu>
+
+				<h3 class="row-header">New</h3>
+				<card-view items.bind="newContent" card-cls="collection col-md-12" view-path="connect/profile/content/"></card-view>
+			</div>
+
+			<div class="col3">
+				<button class="row-header-button c-orange pull-right" command.bind="updateAll">Update all</button>
+				<h3 class="row-header">Updates ${updates.length}</h3>
+				<card-view items.bind="updates" card-cls="collection col-md-12" view-path="connect/profile/content/"></card-view>
+			</div>
+		</div>
+	</section>
+</template>

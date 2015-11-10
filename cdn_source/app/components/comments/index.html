@@ -1,0 +1,25 @@
+<aside class="comments"
+       id="comments">
+    <a name="comments"></a>
+    <h4>
+        {{comments.length == 1 || comments.length == 0 ? (comments.length == 0 ? 'No comments yet' : '1 comment so far') : (comments.length + ' comments so far')}}
+    </h4>
+
+    <sx-comment ng-repeat="comment in (comments | commentfilter | orderBy: '+created')"
+                comment="comment"></sx-comment>
+
+    <h4 class="reply">Leave a reply </h4>
+
+    <div sx-multi-transclude="comments-info"></div>
+
+    <div ng-if="w6.userInfo.id">
+        <a name="commentbox"></a>
+        <div ng-include="'/cdn_source/app/components/comments/templates/replySection.html'"></div>
+    </div>
+
+    <div ng-if="!w6.userInfo.id">
+        <p>
+            You have to <button class="anchor" ng-click="openLoginDialog()">login</button>, before you can post a comment
+        </p>
+    </div>
+</aside>

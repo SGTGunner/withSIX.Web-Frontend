@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html six-ng-app="MyAppMain" ng-strict-di="true">
+
+<head>
+  <link rel="stylesheet" href="/cdn/css/lib.css">
+  <link rel="stylesheet" href="/cdn/css/main.css">
+  <link rel="stylesheet" href="/cdn/fonts/fonts.css">
+  <link rel="stylesheet" href="/cdn/css/app.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:500,300,300italic" />
+
+  <title ng-bind="pageInfo.title">withSIX</title>
+  <link rel="shortcut icon" ng-href="{{w6.versionedAsset('img/meta/favicon.ico')}}" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/" />
+
+  <meta name="fragment" content="!" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta name="author" lang="en" content="SIX Networks GmbH" />
+  <meta name="description" lang="en" sx-content="{{microdata ? microdata.description : 'withSIX' | htmlToPlaintext2}}" />
+  <meta name="keywords" lang="en" sx-content="{{microdata ? microdata.keywords : 'withSIX, games, modifications, mods, missions, collections, gaming, custom content, Play withSIX, connect withSIX, SIX Networks'}}" />
+
+  <meta name="twitter:site" content="@SixNetworks" />
+  <meta name="twitter:site:id" content="SixNetworks" />
+  <meta name="twitter:url" sx-content="{{microdata.currentPage || url.currentPage}}" />
+  <meta name="twitter:card" sx-content="{{microdata && microdata.image ? 'summary_large_image' : 'summary'}}" />
+  <meta name="twitter:title" sx-content="{{microdata.title}}" ng-if="microdata" />
+  <meta name="twitter:description" sx-content="{{microdata.description | htmlToPlaintext2}}" ng-if="microdata" />
+  <meta name="twitter:image:src" sx-content="{{microdata.image || defaultImage}}" ng-if="microdata" />
+
+  <meta property="og:site_name" content="withSIX" />
+  <meta property="og:image" sx-content="{{microdata && microdata.image ? microdata.image : defaultImage}}" />
+  <meta property="og:url" sx-content="{{microdata.currentPage || url.currentPage}}" />
+  <meta property="og:type" content="article" ng-if="microdata" />
+  <meta property="og:title" sx-content="{{microdata.title}}" ng-if="microdata" />
+  <meta property="og:description" sx-content="{{microdata.description | htmlToPlaintext2}}" ng-if="microdata" />
+
+  <!-- TODO: Import old heads -->
+  <!--
+    <link rel="apple-touch-icon" href="@Url.VersionedAsset("img/meta/apple-touch-icon.png")"/>
+    <link rel="apple-touch-icon" sizes="72x72"
+          href="@Url.VersionedAsset("img/meta/apple-touch-icon-57x57-precomposed.png")"/>
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="@Url.VersionedAsset("img/meta/apple-touch-icon-114x114-precomposed.png")"/>
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="@Url.VersionedAsset("img/meta/apple-touch-icon-144x144-precomposed.png")"/>
+
+    @if (LayoutModel.PreviousUrl != null) {
+        <link rel="prev" href="@(LayoutModel.Urls.CurrentSite)(@LayoutModel.PreviousUrl)"/>
+    }
+    @if (LayoutModel.NextUrl != null) {
+        <link rel="next" href="@(LayoutModel.Urls.CurrentSite)(@LayoutModel.NextUrl)"/>
+    }
+    -->
+
+  <!-- Google Analytics -->
+  <script>
+    //if (Environments.Environment == Environments.Production) {
+    window.google_analytics_uacct = 'UA-33540689-1';
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments);
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-33540689-1', 'withsix.com');
+    // TODO: Generate by JS?
+    /*
+    ga('set', 'dimension1', "@(LayoutModel.LoggedIn ? "yes" : "no")");
+    ga('set', 'dimension2', "@LayoutModel.Urls.CurrentPage.DnsSafeHost");
+    ga('set', 'dimension3', "@(LayoutModel.IsClient ? "yes" : "no")");
+    */
+    ga('require', 'linkid', 'linkid.js');
+    /* ga('send', 'pageview'); // handled by angular now */
+  </script>
+
+  <!-- Adsense -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Doubleclick -->
+  <script type="text/javascript">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+
+    window.googleDfpPreloaded = true;
+
+    (function() {
+      var gads = document.createElement("script");
+      gads.async = true;
+      gads.type = "text/javascript";
+      var useSSL = "https:" == document.location.protocol;
+      gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+      var node = document.getElementsByTagName("script")[0];
+      node.parentNode.insertBefore(gads, node);
+    })();
+  </script>
+
+  <script>
+    googletag.cmd.push(function() {
+      googletag.sbNgTags = googletag.sbNgTags || [];
+    });
+  </script>
+</head>
+
+<body ng-controller="MainAppController as vm" data-status="{{ status }}"
+  style="background-color: #262626; color: white;">
+  <div id="applicationHost">
+    <div class="container-fluid">
+      <center>
+      <div class="splash" id="splash">
+        <div class="message" id="splash-message">
+          <h1>withSIX</h1>
+          <h2><i>Because the game is just the beginning...</i></h2>
+          <img src="/cdn/img/loader.gif" />
+          <p><i>Trouble viewing this site? Please <a href="https://community.withsix.com">let us know here.</a></i></p>
+          <noscript>
+            <div class="container-fluid">
+              We apologize for the inconvenience, but you need to have JavaScript enabled to view this page
+              <br/>
+              <br/> Please visit our Feedback and
+              <br/>Support community over at:
+              <br/>
+              <a href="https://community.withsix.com" target="_blank">Get Satisfaction withSIX</a>
+            </div>
+          </noscript>
+        </div>
+        <script>
+          if (navigator && navigator.userAgent && navigator.userAgent.match(/Edge\/\d+/)) {
+            document.getElementById("splash-message").innerHTML += "<div><i>Microsoft Edge support is in progress, currently requires developer tools open (F12)</i></div>";
+          }
+        </script>
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </center>
+    </div>
+    <script src="cdn/aurelia/jspm_packages/system-polyfills.js"></script>
+    <script src="cdn/aurelia/jspm_packages/system.js"></script>
+    <script src="cdn/aurelia/config.js"></script>
+
+<!-- <script src="cdn/js/vendor/bower.min.js"></script> -->
+    <script src="cdn/js/vendor/bower.js"></script>
+    <script src="cdn/js/vendor/libs.min.js"></script>
+    <!-- <script src="cdn/js/misc.min.js"></script> -->
+    <script src="cdn/misc/dist/console.js"></script>
+    <script src="cdn/misc/dist/tk.js"></script>
+    <script src="cdn/misc/dist/tools.js"></script>
+    <script src="cdn/misc/dist/withsix.js"></script>
+
+    <script>
+      (function() {
+        window.prerenderReady = false;
+        if (window.location.host.includes("withsix.com")) {
+          Tk.setEnvironment(0);
+        } else if (window.location.host.includes("staging.withsix.net")) {
+          Tk.setEnvironment(1);
+        } else if (window.location.host.includes("localhost")) {
+          Tk.setEnvironment(2);
+        } else {
+          Tk.setEnvironment(3);
+        }
+      })();
+    </script>
+
+    //
+    <!-- Base libraries -->
+    <script src="cdn/app/dist/_base/controllers.js"></script>
+    <script src="cdn/app/dist/_base/commands.js"></script>
+    <script src="cdn/app/dist/_base/dtos.js"></script>
+
+    //
+    <!-- App main module -->
+    <script src="cdn/app/dist/app.js"></script>
+    <script src="cdn/app/dist/app-controller.js"></script>
+    <script src="cdn/app/dist/permissions.js"></script>
+
+    //
+    <!-- App components -->
+    <script src="cdn/app/dist/components/components.js"></script>
+    <script src="cdn/app/dist/components/entity-extends.js"></script>
+    <script src="cdn/app/dist/components/w6context.js"></script>
+    <script src="cdn/app/dist/components/back-img/back-img-directive.js"></script>
+    <script src="cdn/app/dist/components/bytes-filter/bytes-filter.js"></script>
+    <script src="cdn/app/dist/components/comments/directives/comment-directive.js"></script>
+    <script src="cdn/app/dist/components/account-card/account-card.js"></script>
+    <script src="cdn/app/dist/components/account-card/directives/account-card-directive.js"></script>
+    <script src="cdn/app/dist/components/dialogs/controllers.js"></script>
+    <script src="cdn/app/dist/components/dialogs/commands.js"></script>
+    <script src="cdn/app/dist/components/fields/fields.js"></script>
+    <script src="cdn/app/dist/components/filters.js"></script>
+    <script src="cdn/app/dist/components/directives.js"></script>
+    <script src="cdn/app/dist/components/content-gallery/content-gallery.js"></script>
+    <script src="cdn/app/dist/components/content-gallery/directives/content-gallery-directive.js"></script>
+    <script src="cdn/app/dist/components/really-click/really-click-directive.js"></script>
+    <script src="cdn/app/dist/components/pagedown/pagedown-directive.js"></script>
+    <script src="cdn/app/dist/components/debounce/debounce-factory.js"></script>
+    <script src="cdn/app/dist/components/loading-status/loading-status-interceptor.js"></script>
+    <script src="cdn/app/dist/components/logger/logger-service.js"></script>
+    <script src="cdn/app/dist/components/geo/geo-service.js"></script>
+    <script src="cdn/app/dist/components/signalr/signalr-service.js"></script>
+    <script src="cdn/app/dist/components/upload/upload-service.js"></script>
+    <script src="cdn/app/dist/components/mod-info/mod-info-service.js"></script>
+    <script src="cdn/app/dist/components/basket/basket-service.js"></script>
+
+    //
+    <!-- App sections -->
+    <script src="cdn/app/dist/main/main.js"></script>
+    <script src="cdn/app/dist/main/blog/commands.js"></script>
+    <script src="cdn/app/dist/main/blog/controllers.js"></script>
+    <script src="cdn/app/dist/main/changelog/controllers.js"></script>
+    <script src="cdn/app/dist/main/premium/commands.js"></script>
+    <script src="cdn/app/dist/main/premium/premium-controller.js"></script>
+    <script src="cdn/app/dist/auth/auth.js"></script>
+    <script src="cdn/app/dist/connect/connect.js"></script>
+    <script src="cdn/app/dist/connect/me/commands.js"></script>
+    <script src="cdn/app/dist/connect/me/me-controller.js"></script>
+    <script src="cdn/app/dist/connect/pages/commands.js"></script>
+    <script src="cdn/app/dist/connect/pages/controllers.js"></script>
+    <script src="cdn/app/dist/connect/profile/commands.js"></script>
+    <script src="cdn/app/dist/connect/profile/profile-controller.js"></script>
+    <script src="cdn/app/dist/connect/wall/commands.js"></script>
+    <script src="cdn/app/dist/connect/wall/wall-controller.js"></script>
+    <script src="cdn/app/dist/kb/kb.js"></script>
+    <script src="cdn/app/dist/play/play.js"></script>
+    <script src="cdn/app/dist/play/apps/commands.js"></script>
+    <script src="cdn/app/dist/play/apps/app-dataservice.js"></script>
+    <script src="cdn/app/dist/play/apps/app-controller.js"></script>
+    <script src="cdn/app/dist/play/apps/apps-controller.js"></script>
+    <script src="cdn/app/dist/play/collections/commands.js"></script>
+    <script src="cdn/app/dist/play/collections/collection-dataservice.js"></script>
+    <script src="cdn/app/dist/play/collections/collections-controller.js"></script>
+    <script src="cdn/app/dist/play/collections/collection-controller.js"></script>
+    <script src="cdn/app/dist/play/dashboard/commands.js"></script>
+    <script src="cdn/app/dist/play/dashboard/dashboard-controller.js"></script>
+    <script src="cdn/app/dist/play/games/commands.js"></script>
+    <script src="cdn/app/dist/play/games/controllers.js"></script>
+    <script src="cdn/app/dist/play/games/add-mod-dialog-controller.js"></script>
+    <script src="cdn/app/dist/play/mods/mod-dataservice.js"></script>
+    <script src="cdn/app/dist/play/mods/mods-controller.js"></script>
+    <script src="cdn/app/dist/play/mods/mod-controller.js"></script>
+    <script src="cdn/app/dist/play/mods/commands.js"></script>
+    <script src="cdn/app/dist/play/mods/claim-dialog-controller.js"></script>
+    <script src="cdn/app/dist/play/missions/commands.js"></script>
+    <script src="cdn/app/dist/play/missions/mission-dataservice.js"></script>
+    <script src="cdn/app/dist/play/missions/mission-controller.js"></script>
+    <script src="cdn/app/dist/play/missions/missions-controller.js"></script>
+    <script src="cdn/app/dist/play/missions/edit-mission-controller.js"></script>
+    <script src="cdn/app/dist/play/missions/publish-version-controller.js"></script>
+    <script src="cdn/app/dist/play/missions/upload-newmission-controller.js"></script>
+    <script src="cdn/app/dist/play/missions/upload-newversion-controller.js"></script>
+    <script src="cdn/app/dist/play/pages/commands.js"></script>
+    <script src="cdn/app/dist/play/servers/commands.js"></script>
+    <script src="cdn/app/dist/play/servers/server-dataservice.js"></script>
+    <script src="cdn/app/dist/play/servers/add-server-dialog-controller.js"></script>
+    <script src="cdn/app/dist/play/servers/servers-controller.js"></script>
+    <script src="cdn/app/dist/play/servers/server-controller.js"></script>
+    <script src="cdn/app/dist/play/servers/commands.js"></script>
+
+    <!-- <script src="cdn/js/app.min.js"></script> -->
+    <!-- <script src="cdn/aurelia/dist/aurelia.js"></script> -->
+    <!-- <script src="cdn/aurelia/dist/app-build.js"></script> -->
+
+    <script>
+        System.import('aurelia-bootstrapper')
+            .then(function(bs) { return System.import('main').then(function(main) { return bs.bootstrap(main.configure) }) })
+            .catch(Tk.Debug.error.bind(Tk.Debug));
+    </script>
+
+  </div>
+  <div id="header-add" class="container-fluid">
+    <div data-ng-dfp-ad-container ng-if="!w6.url.isRoot && w6.renderAds">
+    <div class="add-container add-container-header">
+      <div class="add-leaderboard" ng-dfp-ad="angular-ad-leader">
+      </div>
+    </div>
+    </div>
+  </div>
+  <div app-view-segment="0" id="content"></div>
+</body>
+
+</html>

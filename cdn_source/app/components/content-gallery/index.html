@@ -1,0 +1,32 @@
+﻿<div class="container-fluid">
+    <header>
+        <h1 class="pagetitle" ng-if="title || subtitle">
+            <span ng-if="subtitle"><b>{{subtitle}}</b></span>
+            {{title}}
+        </h1>
+
+        <!--
+        <div class="pull-right">
+            <button ng-click="switchView()">
+                to
+                <span ng-if="otherOptions.view == 'grid'">List</span>
+                <span ng-if="otherOptions.view != 'grid'">Grid</span>
+            </button>
+        </div>
+        -->
+    </header>
+</div>
+
+<section class="controls border">
+    <div class="container-fluid">
+        <div ng-include="filterTemplate"></div>
+    </div>
+</section>
+
+<section class="view container-fluid">
+    <div ng-include="otherOptions.view == 'grid' &&
+            getView() ||
+            getView()"></div>
+</section>
+
+<footer></footer>

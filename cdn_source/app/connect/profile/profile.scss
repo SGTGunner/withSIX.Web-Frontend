@@ -1,0 +1,130 @@
+.content-inner {
+  margin-top: 72px;
+}
+
+.profile {
+  .profile-summary {
+    position: relative;
+    padding: 0;
+    min-height: 156px;
+    padding-left: 200px;
+
+    h1 {
+      margin-top: 26px;
+    }
+
+    .right-box {
+      float: right;
+      margin-right: 48px;
+    }
+
+    .befriend {
+      padding-top: 35px;
+    }
+
+    .friends {
+      text-align: center;
+      padding-top: 26px;
+
+      em {
+        font-style: normal;
+        font-size: 2em;
+        display: block;
+        text-align: center;
+        line-height: normal;
+      }
+
+      span {
+        display: block;
+        text-align: center;
+      }
+    }
+
+    img.profile-image {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    p {
+      span {
+        padding-right: 6px;
+      }
+
+      & > span {
+        padding-right: 24px;
+      }
+    }
+  }
+}
+
+.blog-tiles,
+.comment-tiles,
+.que-tiles {
+  & > div {
+    padding-left: 72px;
+    position: relative;
+    min-height: 72px;
+  }
+
+  a {
+    display: block;
+    min-height: 72px;
+    position: static;
+
+    span.icon {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      @include square-lh(72px);
+
+      text-align: center;
+      background-color: $color2;
+
+      span {
+        color: $color4;
+      }
+
+      span.icon-spinner {
+        display: block !important;
+
+        @include height-lh(72px);
+      }
+    }
+
+    strong {
+      display: block;
+      padding-left: 20px;
+
+      &.content-name {
+        line-height: 30px;
+      }
+    }
+
+    span.filename {
+      font-size: 12px;
+      display: block;
+      padding-left: 20px;
+      line-height: normal;
+      padding-bottom: 5px;
+      margin-top: -5px;
+    }
+
+    span.date, time.timeago,
+    span.status {
+      padding-left: 20px;
+      display: block;
+      line-height: normal;
+    }
+  }
+}
+
+.blog-tiles > div {
+  padding-left: 0;
+
+  & > a {
+    padding-left: 72px;
+  }
+}

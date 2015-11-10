@@ -1,0 +1,36 @@
+﻿<div class="modal-content">
+    <form name="form" class="easyForm">
+        <header class="modal-header">
+            <h1>Update History</h1>
+        </header>
+
+        <section class="modal-body">
+            <div ng-repeat="update in model.updates| orderBy:'-created'" class="update-box">
+                <span><b>Version: </b>{{update.version}}</span><br/>
+                <span><b>Branch: </b>{{update.branch}}</span><br/>
+                <span><b>State: </b>{{update.currentState}}</span><br/>
+                <span><small><i>Created: <sx-time time="update.created"></sx-time>, last status change: <sx-time time="update.lastUpdate"></sx-time></i></small></span>
+                <hr/>
+            </div>
+        </section>
+
+        <footer class="modal-footer">
+            <button type="button"
+                    ng-click="cancel()"
+                    class="btn btn-cancel"
+                    data-dismiss="modal">
+                Close
+            </button>
+            <!--<button type="button"
+                        ng-click="ok()"
+                        ng-disabled="model.processing || form.$invalid"
+                        ng-if="!uploadComplete"
+                        class="btn btn-primary"
+                        http-pending="Processing..."
+                        http-processing="model.processing"
+                        http-progress="postNewModUpload">
+                Accept
+            </button>-->
+        </footer>
+    </form>
+</div>

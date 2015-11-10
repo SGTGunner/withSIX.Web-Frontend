@@ -1,0 +1,193 @@
+﻿<div class="edit-pane" ng-if="editConfig.canEdit() || editConfig.canManage()">
+    <div class="tile sx-border-gray">
+        <div>
+            <h3>
+                Edit Panel
+            </h3>
+        </div>
+        <p collapse="!(model.archivedAt && (editConfig.canManage() || editConfig.canEdit()))" style="color: red">
+            <strong>Mod Archived:&nbsp;</strong><sx-time time="model.archivedAt"></sx-time><br/>
+            <i>While archived a mod is not visible to the public.</i>
+        </p>
+        <div>
+            <p class="no-tween-out" collapse="!(!editConfig.isEditing && editConfig.canEdit())">
+                <i>Here you can enable edit mode for your mod to make all the changes!</i>
+            </p>
+            <p class="no-tween-out" collapse="!(!editConfig.isEditing && editConfig.canManage() && !editConfig.canEdit())">
+                <i>Here you can enable management mode for this mod!</i>
+            </p>
+        </div>
+        <div collapse="!editConfig.isEditing" class="no-tween-out">
+            <p>
+                <i>
+                    Click on the fields you want to edit to get started!
+                    If you need help don't hesitate to click the button below
+                </i>
+            </p>
+            <div style="margin-top: 24px">
+                <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                     collapse="!((editConfig.hasChangesProperty && !model.entityAspect.isBeingSaved) && !uploadingModImage)">
+                    <div class="col-lg-12">
+                        <button class="btn btn-sx-save sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%"
+                                ng-click="editConfig.saveChanges()">
+                            Save Changes
+                        </button>
+                    </div>
+                    <div class="col-lg-12" style="margin-top: 5px">
+                        <button class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%"
+                                ng-click="editConfig.discardChanges()">
+                            Cancel Changes
+                        </button>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                     collapse="!model.entityAspect.isBeingSaved">
+                    <div class="col-lg-12">
+                        <span class="btn btn-sx-editing-no-changes sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%">Saving Changes</span>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                     collapse="!uploadingModImage">
+                    <div class="col-lg-12">
+                        <span class="btn btn-sx-editing-no-changes sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%">Uploading Your Image</span>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                     collapse="!(!editConfig.hasChangesProperty && !model.entityAspect.isBeingSaved && !uploadingModImage)">
+                    <div class="col-lg-12">
+                        <span class="btn btn-sx-editing-no-changes sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%">No Changes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 24px"
+             collapse="!(editConfig.canEdit() || editConfig.canManage())">
+            <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                 collapse="!(!isUploading() && !editConfig.hasChangesProperty && !model.entityAspect.isBeingSaved && !uploadingModImage)">
+                <div class="col-lg-8">
+                    <button class="btn btn-sx-blue sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%"
+                            ng-click="openUploadVersionDialog()">
+                        Upload New Version
+                    </button>
+                </div>
+                <div class="col-lg-4">
+                    <button class="btn btn-sx-blue sx-border-gray sx-border-margin sx-sm-border text-center" style="background-color: #0396A6 !important; width: 100%;"
+                            ng-click="openVersionHistoryDialog()">
+                        History
+                    </button>
+                </div>
+            </div>
+            <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                 collapse="!(!isUploading() && (editConfig.hasChangesProperty && !model.entityAspect.isBeingSaved) && !uploadingModImage)">
+                <div class="col-lg-12">
+                    <span class="btn btn-sx-editing-no-changes sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%">Save to upload new version</span>
+                </div>
+            </div>
+            <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                 collapse="!(isUploading())">
+                <div class="col-lg-8">
+                    <span class="btn btn-sx-lightblue sx-border-gray sx-border-margin sx-sm-border text-center" style="cursor: default; width: 100%;">{{getUploadText()}}</span>
+                </div>
+                <div class="col-lg-4">
+                    <div collapse="confirmCancel || cancelling">
+                        <button class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%" ng-disabled="!canCancel(getCurrentChange())"
+                                ng-click="cancelUpload()">
+                            Cancel
+                        </button>
+                    </div>
+                    <div collapse="(!confirmCancel || cancelling)">
+                        <button class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center" style="background-color: #D31920 !important; width: 100%;" ng-disabled="!canCancel(getCurrentChange())"
+                                ng-click="cancelUpload()">
+                            Confirm Cancel
+                        </button>
+                    </div>
+                    <div collapse="!cancelling">
+                        <span class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center" style="background-color: #D31920 !important; cursor: default; width: 100%;">
+                            Working...
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                 collapse="!(isUploading())" ng-if="editConfig.canManage()">
+                <div class="col-lg-8" ng-if="!requiresApproval(getCurrentChange())">
+                    &nbsp;
+                </div>
+                <div class="col-lg-4" ng-if="requiresApproval(getCurrentChange())">
+                    <div collapse="approving">
+                        <button class="btn btn-sx-save sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%"
+                                ng-click="approveUpload(getCurrentChange())">
+                            Approve
+                        </button>
+                    </div>
+                    <div collapse="!approving">
+                        <span class="btn btn-sx-save sx-border-gray sx-border-margin sx-sm-border text-center disabled" style="width: 100%">
+                            Working...
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4" ng-if="requiresApproval(getCurrentChange())">
+                    <div collapse="approving">
+                        <button class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%"
+                                ng-click="denyUpload(getCurrentChange())">
+                            Deny
+                        </button>
+                    </div>
+                    <div collapse="!approving">
+                        <span class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center disabled" style="width: 100%">
+                            Working...
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div collapse="confirmAbandon || abandoning">
+                        <button class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center" style="background-color: #777 !important; width: 100%;"
+                                ng-click="cancelUpload(true)">
+                            Abandon
+                        </button>
+                    </div>
+                    <div collapse="(!confirmAbandon || abandoning)">
+                        <button class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center" style="background-color: #D31920 !important; width: 100%;"
+                                ng-click="cancelUpload(true)">
+                            Confirm Abandon
+                        </button>
+                    </div>
+                    <div collapse="!abandoning">
+                        <span class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center" style="background-color: #D31920 !important; cursor: default; width: 100%;">
+                            Working...
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="edit-pane-buttons">
+        <div class="no-shadow left-fix pull-left pane-left">
+            <div class="no-shadow left-fix pull-left">
+                <div class="left-fix pull-left sx-border-gray no-shadow-right no-shadow-top no-shadow-bottom placeholder placeholder-border">&nbsp;</div>
+            </div>
+            <div class="no-shadow left-fix pull-left">
+                <button id="helpButton" class="btn btn-sx-help sx-border-gray sx-border-margin sx-sm-border" data-container='body' data-title="Display Help Hints" bs-tooltip ng-click="showHelp()">
+                    <strong>?</strong>
+                </button>
+            </div>
+            <div class="no-shadow left-fix pull-left">
+                <button id="openEditorButton" ng-if="!editConfig.isEditing" class="btn btn-sx-open-editor btn-sx-left sx-border-gray sx-border-margin sx-sm-border no-tween-out" data-container='body' data-title="Edit your content!" bs-tooltip
+                        ng-click="editConfig.enableEditing()">
+                    <strong>Open Editor</strong>
+                </button>
+                <button ng-if="editConfig.isEditing" class="btn btn-sx-close-editor btn-sx-left sx-border-gray sx-border-margin sx-sm-border no-tween-out" data-container='body' data-title="Finish Editing" bs-tooltip
+                        ng-click="editConfig.closeEditing()"
+                        ng-disabled="editConfig.hasChangesProperty || model.entityAspect.isBeingSaved || uploadingModImage">
+                    <strong>Close Editor</strong>
+                </button>
+            </div>
+            <span class="top-fix btn bold sx-border-gray no-shadow-top placeholder">&nbsp;</span>
+        </div>
+        <span class="top-fix btn bold sx-border-gray no-shadow-top placeholder">&nbsp;</span>
+        <div class="top-fix pull-right pane-right no-shadow">
+            <span class="top-fix btn bold sx-border-gray no-shadow-top placeholder">&nbsp;</span>
+            <span sx-edit-menu></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(postForm.title, postForm) }">
+            <label for="title" class="control-label">Title</label>
+            <input type="text"
+                   name="title"
+                   id="title"
+                   ng-model="model.title"
+                   required
+                   ng-blur="blurred('title', postForm)"
+                   class="form-control"/>
+            <sx-validation-messages label="'Title'" field="postForm.title"/>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <fieldset ng-disabled="model.isPublished">
+            <sx-datetime-field model="model.created"
+                               ng-disabled="model.isPublished"
+                               label="Created"></sx-datetime-field>
+            <button type="button" ng-click="updateDate()">NOW</button>
+        </fieldset>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="form-group">
+            <div>
+                <label for="isTeam">
+                    <input type="checkbox"
+                           name="isTeam" id="isTeam"
+                           ng-model="model.isTeam"/>
+                    Team Post
+                </label>
+            </div>
+            <div>
+                <label for="isPublished">
+                    <input type="checkbox" name="isPublished" id="isPublished"
+                           ng-model="model.isPublished"/>
+                    Published
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(postForm.summary, postForm) }">
+        <label for="summary" class="control-label">Summary</label>
+        <textarea ng-model="model.summary"
+                  name="summary" id="summary"
+                  redactor="{buttonSource: true}"
+                  class="form-control"
+                  ng-blur="blurred('summary', postForm)"
+                  required></textarea>
+    </div>
+</div>
+
+<div>
+    <div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(postForm.content, postForm) }">
+        <label for="content" class="control-label">Content</label>
+        <textarea ng-model="model.content"
+                  name="content" id="content"
+                  redactor="{buttonSource: true}"
+                  ng-blur="blurred('content', postForm)"
+                  class="form-control"
+                  required></textarea>
+    </div>
+</div>

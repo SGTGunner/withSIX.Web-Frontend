@@ -1,0 +1,10 @@
+<template>
+	<ul class.bind="menuCls">
+		<li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} ${row.settings.cls}">
+			<a href.bind="row.href">
+				<span if.bind="row.settings.icon" class="icon ${row.settings.icon}"></span>
+				<span class.bind="row.settings.textCls" class="text">${row.title}</span>
+			</a>
+		</li>
+	</ul>
+</template>

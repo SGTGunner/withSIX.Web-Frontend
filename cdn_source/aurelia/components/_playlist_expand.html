@@ -1,0 +1,12 @@
+<template>
+  <compose view="components/_playlist_items.html" show.bind="isExpanded"></compose>
+  <finder-results model.bind="findModel" text="" icon="withSIX-icon-Arrow-Left-Open"></finder-results>
+  <!-- <div class="results" show.bind="findCollection">
+    <div>Total results: ${listCollections.length}</div>
+    <ul>
+      <li repeat.for="c of listCollections">
+        <button click.delegate="$parent.typeaheadOptions.select(c)">${$parent.typeaheadOptions.display(c)}</button>
+      </li>
+    </ul>
+  </div> -->
+</template>

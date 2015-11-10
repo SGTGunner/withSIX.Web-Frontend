@@ -1,0 +1,106 @@
+.list-roster {
+  a {
+    display: block;
+    margin-bottom: 8px;
+    background-color: $color0;
+    height: 64px;
+    position: relative;
+    text-decoration: none;
+    color: $color3;
+  }
+
+  header {
+    position: relative;
+    height: 40px;
+    margin-bottom: 8px;
+    background-color: $color2;
+  }
+
+  header a {
+    display: block;
+    position: absolute;
+
+    @include height-lh(40px);
+
+    text-align: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    background: none;
+  }
+
+  a span.col3,
+  a span.col4,
+  a span.col5,
+  a strong.col6 {
+    padding-top: 8px;
+    display: block;
+  }
+
+  .add-container {
+    background-color: $color0;
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    padding-top: 16px;
+  }
+
+  .col1 {
+    display: block;
+    position: absolute;
+    width: 15%;
+    left: 0;
+    top: 0;
+  }
+
+  .col2 {
+    display: block;
+    position: absolute;
+    width: 40%;
+    left: 15%;
+    top: 0;
+
+    strong {
+      padding-top: 8px;
+      display: block;
+    }
+
+    em {
+      display: block;
+    }
+  }
+
+  .col3 {
+    display: block;
+    position: absolute;
+    width: 10%;
+    left: 55%;
+    top: 0;
+    text-align: center;
+  }
+
+  .col4 {
+    display: block;
+    position: absolute;
+    width: 15%;
+    left: 65%;
+    top: 0;
+    text-align: center;
+  }
+
+  .col5 {
+    display: block;
+    position: absolute;
+    width: 10%;
+    left: 80%;
+    top: 0;
+    text-align: center;
+  }
+
+  .col6 {
+    display: block;
+    position: absolute;
+    width: 10%;
+    left: 90%;
+    top: 0;
+    text-align: center;
+  }
+}

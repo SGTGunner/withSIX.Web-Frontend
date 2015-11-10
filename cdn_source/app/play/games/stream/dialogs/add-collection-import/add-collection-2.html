@@ -1,0 +1,62 @@
+﻿<form name="form" class="easyForm" sx-validate-on-submit="ok()"
+      sx-validate-on-blur>
+    <div class="modal-header" style="padding-bottom: 0">
+        <h1 style="margin-bottom: 1px">
+            Import an <strong style="text-transform: uppercase">{{gameName}}</strong> Collection
+        </h1>
+        <span style="font-style: italic;">{{quote}}</span>
+    </div>
+
+    <div class="modal-body" style="padding-top: 0">
+        <div class="container-fluid"
+             style="padding-left: 0; padding-right: 0">
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <label for="repo-link">Repositoy yaml link:</label>
+                    <p ng-class="{'has-error' : form['repo-link'].$invalid && form['repo-link'].$touched, 'field-invalid': form['repo-link'].$invalid}">
+                        <input class="form-control" required
+                               type="url" name="repo-link"
+                               id="repo-link"
+                               placeholder="http://"
+                               ng-model="model.uri"/>
+                        <span class="tiny error-msg" style="color: red">{{inlineHints.repoLink}}</span>
+                    </p>
+                </div>
+                <div class="col-md-12 no-horizontal-padding">
+                    <p>
+                        To learn more about how to create a custom Repository URL click <a href="http://withsix.readthedocs.org/en/latest/client/custom_repositories/" target="_blank">click here</a>.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <sx-accepted-field model="model.acceptToS" name="acceptToS">
+                        I accept the
+                        <button class="anchor"
+                                type="button"
+                                ng-click="openTerms()">
+                            Terms and Conditions
+                        </button>
+                        and agree.
+                    </sx-accepted-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button"
+                ng-click="cancel()"
+                class="btn btn-cancel">
+            Cancel
+        </button>
+        <button type="submit"
+                class="btn btn-primary"
+                ng-disabled="model.processing"
+                http-pending="Processing..."
+                http-processing="model.processing"
+                http-progress="postNewCollection">
+            Next
+        </button>
+    </div>
+</form>

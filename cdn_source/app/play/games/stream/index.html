@@ -1,0 +1,209 @@
+<div class="play-stream">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="header">
+          <div class="dropdown publish-buttons tiny">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span class="icon withSIX-icon-Add"></span>
+              Add content
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li>
+                <a href="#" ng-click="openAddCollectionDialog()">CREATE <b>COLLECTION</b></a>
+              </li>
+              <li>
+                <a href="#" ng-click="openAddModDialog()">ADD <b>MOD</b></a>
+              </li>
+              <li><a href="{{::gameUrl}}/missions/new">PUBLISH <b>MISSIONS</b></a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown stream-buttons">
+            <h2 class="stream-title">Stream</h2>
+            &nbsp;
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+              {{model.current}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="{{::gameUrl}}/{{::streamPath}}/all">All</a>
+              </li>
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="{{::gameUrl}}/{{::streamPath}}/content">Content</a>
+              </li>
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="{{::gameUrl}}/{{::streamPath}}/mods">Mods</a>
+              </li>
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="{{::gameUrl}}/{{::streamPath}}/missions">Missions</a>
+              </li>
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="{{::gameUrl}}/{{::streamPath}}/collections">Collections</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content tile-list">
+          <ul ng-init="total = model.contentItems.length; adItem = 3">
+            <li ng-if="model.contentItems.length > 0" ng-init="item = model.contentItems[0]" ng-include="'/cdn_source/app/play/games/stream/_content.html'"></li>
+
+            <li ng-if="w6.renderAds">
+              <div class="tile">
+                <div class="add-container">
+                  <div class="add" ng-dfp-ad="angular-ad1"></div>
+                </div>
+                &nbsp;
+                <div ng-include="'/cdn_source/app/components/ads/play-vt-xlarge.html'"></div>
+              </div>
+            </li>
+
+            <li ng-repeat="item in model.contentItems.slice(1)" ng-include="'/cdn_source/app/play/games/stream/_content.html'">
+            </li>
+
+            <!-- @if (LayoutModel.RenderAds && item.i == (adItem - 1) || (total < adItem && item.i == total - 1)) {
+            <li>
+                <div class="tile">
+                    @{ Html.RenderPartial("Global/Ads/_Rectangle_Large", new AdModel("stream-add1") { Inline = true }); }
+                    &nbsp;
+                    @AdHelpers.AdMainVtXLarge(LayoutModel)
+                </div>
+            </li>
+            }
+            -->
+
+            <li ng-if="w6.renderAds && total == 0">
+              <div class="tile">
+                <!-- @{ Html.RenderPartial("Global/Ads/_Rectangle_Large", new AdModel("stream-add1") { Inline = true }); } -->
+                &nbsp;
+                <!-- @AdHelpers.AdMainVtXLarge(LayoutModel) -->
+              </div>
+            </li>
+          </ul>
+
+          <a ng-href="{{::gameUrl}}/mods">All mods</a> |
+          <a ng-href="{{::gameUrl}}/missions">All missions</a> |
+          <a ng-href="{{::gameUrl}}/collections">All collections</a>
+        </div>
+
+      </div>
+
+      <div class="col-sm-6">
+        <!--
+    <div class="did-you-know">
+        <h3>Did you know?</h3>
+
+        <img src="@LayoutModel.Urls.GetCdnUrl(" img/>play.withSIX/placeholders/384x216.gif")" alt="Did you know" />
+    </div>
+    @{ Html.RenderPartial("Global/Ads/_Rectangle_Large", new AdModel("stream-add3")); }
+
+    -->
+
+        <div class="blog">
+          <div class="header">
+            <span class="share-buttons">
+              <!--  disabled because it pushes the last button out of view. <a class="tiny">FOLLOW <b>US</b></a> -->
+              <a class="tiny">FOLLOW <b>US</b></a>
+              <a href="https://twitter.com/SixNetworks" rel="external" class="icon twitter" target="_blank">
+                <span class="icon withSIX-icon-Social-Twitter"></span>
+              </a>
+              <a href="https://www.facebook.com/withSIX" rel="external" class="icon facebook" target="_blank">
+                <span class="icon withSIX-icon-Social-Facebook"></span>
+              </a>
+            </span>
+            <h2 class="stream-title">withSIX blog</h2>
+          </div>
+
+          <div class="posts tile-list" itemscope itemtype="http://schema.org/Blog">
+            <ul>
+              <li class="post full" ng-init="item = model.postItems[0]" itemscope itemtype="http://schema.org/BlogPosting" ng-if="model.postItems.length > 0">
+                <div class="top cntnr">
+                  <h2 class="title" title="{{item.title}}" itemprop="name headline">
+                    <a ng-href="{{::url.main}}/blog/{{item.slug}}">{{item.title}}</a>
+                  </h2>
+                  <div>
+                    <span class="author-info" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                      <a ng-href="{{::url.getUserUrl(item.author)}}" rel="author">
+                        <img ng-src="{{::url.calculateAvatarUrl(item.author, 48)}}" /> {{item.author.displayName}}
+                      </a>
+                    </span>
+                    <span class="pull-right">
+                      <span ng-if="environment > 0">{{item.likesCount}} likes</span>
+                      <sx-time-ago class="created" time="item.created"></sx-time-ago>
+                    </span>
+                  </div>
+                  <hr/>
+                  <div class="summary contentrender" ng-bind-html="::item.summary" itemprop="articleBody"></div>
+                </div>
+                <div class="bottom cntnr">
+                  <a class="comments small" ng-href="{{::url.main}}/blog/{{item.slug}}#comments">{{item.commentsCount}} comments</a>
+                  <a class="readon" ng-href="{{::url.main}}/blog/{{item.slug}}">
+                    <span class="icon withSIX-icon-Arrow-Right-Big"></span>&nbsp;Read on</a>
+                </div>
+              </li>
+
+
+              <li ng-if="w6.renderAds">
+                <div class="tile">
+                  <div class="add-container">
+                    <div class="add" ng-dfp-ad="angular-ad2"></div>
+                  </div>
+                  &nbsp;
+                  <div ng-include="'/cdn_source/app/components/ads/play-vt-large.html'"></div>
+                </div>
+              </li>
+
+              <li class="post line" ng-repeat="item in model.postItems.slice(1)" itemscope itemtype="http://schema.org/BlogPosting">
+                <div>
+                  <span class="title pull-left" itemprop="name headline">
+                    <a title="{{item.title}}" ng-href="{{::url.main}}/blog/{{item.slug}}">{{item.title}}</a>
+                  </span>
+                  <span class="pull-right">
+                    <sx-time-ago class="created small" time="item.created"></sx-time-ago>
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <a href="{{::url.main}}/blog">All posts</a>
+
+          <div class="archive">
+            <h3>Archive</h3>
+
+            <ul>
+              <li class="month line" ng-repeat="pm in model.postMonths">
+                <a href="{{::url.main}}/blog/archive/{{::pm.year}}/{{::pm.month}}">{{::pm.month | monthName}} - {{::pm.year}}</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="wall" ng-if="model.wallPostItems && model.wallPostItems.length > 0">
+          <h2 class="stream-title">Wall</h2>
+
+          <ul>
+            <li ng-repeat="post in model.wallPostItems" ng-init="contentUrl = [url.url + '/p/', post.gameSlug, post.contentType.toLowerCase() + 's', toShortId(post.contentId), post.contentSlug].join('/')">
+              <article class="tile">
+                <header>
+                  <h3>
+                    <a ng-href="{{::contentUrl}}/posts/{{post.slug}}">{{post.title}}</a>
+                  </h3>
+                  <span>in {{::post.contentType}}: <a ng-href="{{::contentUrl}}">{{::post.contentName}}</a></span>
+                  <span class="pull-right tiny">
+                    by <a ng-href="{{::url.connect}}/u/{{post.author.slug}}">{{post.author.displayName}}</a>,
+                    <sx-time time="post.created"></sx-time>
+                  </span>
+                </header>
+                <div>{{post.summary}}</div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

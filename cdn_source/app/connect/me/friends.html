@@ -1,0 +1,57 @@
+﻿<div ng-if="model.friendRequests.length > 0">
+    <h2>Your friend requests:</h2>
+    <div class="grid-roster row user-tiles clearfix">
+        <div class="col-sm-6" ng-repeat="friendRequest in model.friendRequests">
+            <div class="friendrequest">
+                <a ng-href="{{::url.getUserSlugUrl(friendRequest.sender.slug)}}">
+                    <img ng-src="{{::url.calculateAvatarUrl(friendRequest.sender)}}"/>
+                </a>
+
+                {{friendRequest.sender.displayName}}
+
+
+                <sx-time time="friendRequest.receivedAt"></sx-time>
+
+                <form name="acceptFriendshipRequestForm"
+                      ng-submit="accept(friendRequest)">
+                    <button type="submit"
+                            http-single-use="t"
+                            http-progress="acceptFriendRequest"
+                            http-processing="processing"
+                            http-pending="Processing..."
+                            http-success="Succeeded!"
+                            http-error="Failed...">
+                        <span class="icon icon-ok"></span>
+                        <span>Accept</span>
+                    </button>
+                </form>
+
+                <form ng-submit="deny(friendRequest)">
+                    <button type="submit"
+                            http-single-use="t"
+                            http-progress="denyFriendRequest"
+                            http-processing="processing"
+                            http-pending="Processing..."
+                            http-success="Succeeded!"
+                            http-error="Failed...">
+                        <span class="icon icon-remove"></span>
+                        <span>Deny</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Your friends</h2>
+
+<p ng-if="model.friends.length == 0">Sorry, you don't have any friends yet :(</p>
+
+<div class="grid-roster row user-tiles clearfix" ng-if="model.friends.length > 0">
+    <div class="col-sm-3" ng-repeat="friend in model.friends">
+        <a ng-href="{{::url.getUserSlugUrl(friend.slug)}}">
+            <img ng-src="{{::url.calculateAvatarUrl(friend)}}"/>
+            <strong>{{friend.displayName}}</strong>
+        </a>
+    </div>
+</div>

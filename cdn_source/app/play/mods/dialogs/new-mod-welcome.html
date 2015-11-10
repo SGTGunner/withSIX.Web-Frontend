@@ -1,0 +1,36 @@
+﻿<div class="modal-content">
+    <header class="modal-header">
+        <h1>Congratulations</h1>
+    </header>
+    <section class="modal-body">
+        <div>
+            <p>
+                Your mod "{{model.name}}" is now being processed and the button will show the progress. Once completed and reviewed by us, we will contact you by mail and inform you that the mod is available for download.
+            </p>
+            <br/>
+            <p>
+                While we are working on your files, why don't you prepare your new mod page?
+            </p>
+            <p>
+                You can add a nice image as banner, choose from a variety of tags to help users find your mod in the right categories and most importantly write a good description using our powerful HTML editor.
+            </p>
+            <p>
+                Feel free to explore and customize your page as much as you desire!
+            </p>
+        </div>
+    </section>
+    <footer class="modal-footer">
+        <button type="button"
+                class="btn btn-cancel"
+                ng-click="$close()"
+                data-dismiss="modal">
+            Finish process
+        </button>
+        <button type="button"
+                ng-click="edit()"
+                ng-disabled="processing"
+                class="btn btn-primary">
+            Edit page
+        </button>
+    </footer>
+</div>

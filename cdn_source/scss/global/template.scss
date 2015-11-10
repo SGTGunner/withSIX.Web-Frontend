@@ -1,0 +1,1303 @@
+$headerHeight: 64px;
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+
+/* Overrides */
+h1 {
+  font-size: 2em;
+  font-weight: $font-weight-base;
+}
+h2 {
+  font-size: 1.5em;
+  font-weight: $font-weight-base;
+}
+h3 {
+  font-size: 1.17em;
+  font-weight: $font-weight-base;
+}
+h4 {
+  font-size: 1em;
+  font-weight: $font-weight-base;
+}
+h5 {
+  font-size: 0.83em;
+  font-weight: $font-weight-base;
+}
+h6 {
+  font-size: 0.67em;
+  font-weight: $font-weight-base;
+}
+b,
+strong {
+  font-weight: $font-weight-bold;
+}
+label {
+  font-weight: $font-weight-base;
+}
+.btn {
+  font-weight: $font-weight-base;
+  &.btn-legacy {
+    padding: 0;
+  }
+}
+
+ai-dialog-overlay {
+  background: gray;
+  &.active {
+    opacity: 0.7 !important; // grr, we include this css later than the original css.. TODO: how to override?
+  }
+}
+
+ai-dialog {
+  background: white;
+}
+
+.container-fluid {
+  max-width: $maxWidth;
+  padding-left: 30px;
+  padding-right: 30px;
+  @media (max-width: 797px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+.tiny {
+  font-size: 75%;
+}
+
+dropdown-menu {
+  &.hide-until-open {
+    display: none;
+    &.open {
+      display: block;
+    }
+  }
+}
+
+// Fix for modal jumping content: https://github.com/twbs/bootstrap/issues/9855
+.modal {
+  overflow-y: auto;
+}
+.modal-open {
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+/* Custom */
+.imageholder {
+  @include standard-bg;
+}
+.cntnr {
+  padding: 8px;
+}
+html,
+button,
+input,
+select,
+textarea {
+  color: $color3;
+}
+$font-family: Ubuntu, Verdana, Geneva, sans-serif;
+body {
+  background-color: $color1;
+  font-family: $font-family;
+  font-weight: $font-weight-base;
+}
+ ::-moz-selection,
+::selection {
+  background: $primarycolor;
+  color: $color2;
+  text-shadow: none;
+}
+address {
+  display: block;
+  font-style: normal;
+}
+a {
+  text-decoration: underline;
+  &:hover {
+    color: #000;
+  }
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+img {
+  vertical-align: middle;
+}
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+textarea {
+  resize: vertical;
+}
+
+/* Chrome Frame */
+.chromeframe {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+.tabbar {
+  .icon,
+  [class^="withSIX-icon-"],
+  [class*=" withSIX-icon-"] {
+    @include icon-size(20px);
+  }
+  .share-buttons .icon {
+    @include icon-size(24px);
+  }
+}
+.redactor-editor {
+  font-family: $font-family;
+}
+
+/* BASE */
+button.anchor {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: $colorSixBlue;
+  outline: none;
+  text-decoration: underline;
+  &::-moz-focus-inner {
+    border: 0;
+  }
+  &:hover {
+    color: $colorSixGray;
+  }
+}
+button.anchor[disabled="disabled"] {
+  color: $colorSixGray;
+}
+button.bold,
+a.bold {
+  font-weight: bold;
+}
+button.barebone,
+a.barebone {
+  text-decoration: none;
+}
+@mixin callToAction {
+  text-decoration: none;
+  color: $color0 !important;
+}
+a.calltoactionBase,
+button.calltoactionBase {
+  @include callToAction;
+}
+a.calltoaction,
+button.calltoaction {
+  &:not(.maindownload) {
+    display: block;
+    float: right;
+    right: 0;
+    @include callToAction;
+    top: $headerHeight;
+    @include height-lh(32px);
+    background-color: $calltoaction;
+    font-size: 0.8em;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-left: 8px;
+    .icon {
+      margin-right: 4px;
+    }
+    &:active {
+      line-height: 34px;
+    }
+    &.blue {
+      background-color: $colorSixBlue;
+    }
+  }
+}
+
+button {
+  &.active {
+    &:after {
+      content: ' (processing..)';
+    }
+    &.no-processing {
+      &:after {
+        content: '';
+      }
+    }
+  }
+}
+
+/* Gobal menu */
+.row-globalmenu {
+  position: relative;
+  z-index: 4;
+  background-color: rgba($colorSixMediumGray, 0.3);
+  .row {
+    position: relative;
+    overflow: visible;
+    opacity: 1;
+    filter:alpha(opacity = 100);
+
+    /* For IE8 and earlier */
+  }
+  div.logo {
+    line-height: $headerHeight;
+    display: inline-block;
+    float: left;
+    min-width: 72px;
+    a {
+      display: block;
+      @include square(100%);
+      text-decoration: none;
+      color: white;
+
+      //border-bottom: 4px white solid;
+      &:hover {
+        text-decoration: none;
+        background-color: transparent;
+        &:not(.active) {
+          background: rgba(black, 0.6);
+        }
+      }
+      &.active {
+        color: $colorSixBlue;
+        background: white;
+
+        //border-bottom: 4px $colorSixBlue solid;
+      }
+    }
+  }
+  img.logo {
+    margin-bottom: 4px;
+
+    // Somehow not centering properly otherwise :S
+    height: 40px;
+    text-align: left;
+    left: 0;
+  }
+  nav {
+    float: left;
+    position: relative;
+    ul.menu {
+      margin: 0;
+      padding-left: 12px;
+      & > li {
+        display: inline-block;
+        list-style-type: none;
+        height: $headerHeight;
+        min-width: 72px;
+        margin-right: 8px;
+        a {
+          display: block;
+          @include square(100%);
+          text-decoration: none;
+          color: white;
+          border-bottom: 4px white solid;
+          span.menu-icon {
+            padding-top: 8px;
+            display: block;
+            font-size: 24px;
+          }
+          &:hover {
+            text-decoration: none;
+            background-color: transparent;
+            &:not(.active) {
+              background: rgba(black, 0.6);
+            }
+          }
+          &.active {
+            color: $colorSixBlue;
+            background: white;
+            border-bottom: 4px $colorSixBlue solid;
+          }
+        }
+      }
+    }
+    .submenu {
+      margin: 0;
+      padding: 0;
+      height: 0;
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      top: 38px;
+      & > li {
+        height: 40px;
+        float: left;
+        clear: both;
+        position: relative;
+        left: -150px;
+        transition: left 0.3s ease-out 0s;
+        background-color: $color0;
+        a {
+          text-decoration: none;
+          font-size: 13px;
+          display: block;
+          color: #9d9d9d;
+          padding-left: 6px;
+          @include height-lh(40px);
+          padding-right: 16px;
+          font-size: 16px;
+          color: $color4;
+          .icon {
+            font-size: 12px;
+            padding-right: 8px;
+            background: transparent;
+          }
+          &:hover {
+            background-color: $color1;
+          }
+        }
+        &.active a {
+          background-image: url("../img/mini_logo.png?v=#{$cacheBuster}");
+          background-repeat: no-repeat;
+          background-position: 6px 16px;
+        }
+        a:active {
+          padding-top: 2px;
+        }
+      }
+    }
+    .icon-chevron-down {
+      padding-left: 8px;
+      padding-right: 8px;
+      font-size: 0.8em;
+      color: $color3;
+      line-height: 40px;
+      margin-top: -4px;
+      float: left;
+      display: block;
+      margin-left: 0;
+      margin-right: 8px;
+      em,
+      a {
+        font-family: Ubuntu, Verdana, Geneva, sans-serif;
+        font-weight: $font-weight-base;
+        font-size: 16px;
+        font-style: normal;
+        padding-left: 6px;
+        padding-right: 6px;
+        color: $color3;
+        text-decoration: none;
+      }
+    }
+
+    /*& > strong
+    	{
+    		background-image:url(../img/globalmenulogo.png?v=#{$cacheBuster});
+    		background-position: 0 center;
+    		background-repeat:no-repeat;
+    		line-height: 26px;
+    		padding-left: 42px;
+    		display:inline-block;
+
+    	} */
+    &:hover {
+      span.icon {
+        background-color: $color0;
+      }
+      .submenu {
+        @include square(200px);
+        transition: height 1s;
+        li {
+          left: 0;
+        }
+      }
+    }
+  }
+  div.usermenu {
+    right: 0;
+    top: 0;
+
+    //@include height-lh($headerHeight);
+    display: inline;
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        float: right;
+        list-style: none;
+        a,
+        button {
+          @include size-lh(72px, 32px);
+          margin-top: 16px;
+          background-color: $color3;
+          display: block;
+          margin-left: 16px;
+          text-align: center;
+          color: $color0;
+          text-decoration: none;
+          font-size: 14px;
+          @include basictransition;
+          &:hover {
+            background-color: $attentioncolor;
+            @include basictransition;
+          }
+          &:active {
+            line-height: 36px;
+          }
+        }
+      }
+    }
+  }
+  div.notifications {
+    @include height-lh($headerHeight);
+    a {
+      padding-left: 24px;
+      text-decoration: none;
+      color: $color0;
+      float: right;
+      margin-left: 8px;
+      &:hover {
+        color: $color5;
+      }
+    }
+  }
+  div.signedin {
+    padding-left: 64px;
+    text-align: right;
+    @include height-lh($headerHeight);
+    min-width: 160px;
+    span.premium {
+      color: gold;
+    }
+    .usermenu-signedin {
+      @include box-shadow(0 2px 2px 2px rgba(60, 60, 60, 0.25));
+      a,
+      button {
+        color: $color3;
+      }
+    }
+    a,
+    button {
+      text-decoration: none;
+      color: $color0;
+      &:hover {
+        color: $color5;
+      }
+    }
+    img.avatar {
+      $statusWidth: 4px;
+      background-color: $color0;
+      @include size($rowHeight * 2 + $statusWidth, $rowHeight * 2);
+      border-left: $statusWidth solid $colorSixGreen;
+      margin-right: 4px;
+      @include basictransition;
+      &:hover {
+        background-color: $primarycolor;
+        @include basictransition;
+        .icon-chevron-down {
+          color: $color0;
+        }
+      }
+      .icon-chevron-down {
+        display: block !important;
+        @include size-lh(11px, $rowHeight * 2);
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+      }
+      img {
+        display: block;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include size($rowHeight * 2, $rowHeight * 2);
+        line-height: 0;
+      }
+    }
+    div.usermenu-signedin {
+      background-color: $color0;
+      line-height: 24px;
+      .top {
+        background-color: $color3;
+        color: $color0;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        span,
+        em {
+          display: block;
+        }
+        em {
+          color: $color2;
+        }
+      }
+      .ctn {
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          li {
+            a,
+            button {
+              text-align: left;
+              @include height-lh(40px);
+              padding-left: 16px;
+              padding-right: 16px;
+              display: block;
+              &:hover {
+                background-color: $color1;
+              }
+            }
+            button {
+              @include size-lh(100%, 40px);
+              text-align: left;
+              background-color: $color0;
+              transition: none;
+              &:hover {
+                background-color: $color1;
+                color: $color3;
+                transition: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#header-row {
+  $desiredHeight: 240px;
+  background-color: $color4;
+  background-image: url("../img/withSIX/header.jpg?v=#{$cacheBuster}");
+  background-size: cover;
+  text-align: center;
+  min-height: $desiredHeight;
+  color: white;
+  @include strike($color2);
+  .slogan {
+    padding-top: $headerSloganOffset;
+    padding-bottom: $headerSloganOffset;
+    h1 {
+      font-size: 2.5em;
+      line-height: normal;
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      padding-top: 8px;
+    }
+  }
+  .overlay {
+    background-color: rgba(black, 0.3);
+    height: 100%;
+    min-height: $desiredHeight;
+  }
+  .row {
+    overflow: visible;
+  }
+  .header-buttons {
+
+    //@include height-lh($headerHeight);
+    a {
+      margin-top: 16px;
+    }
+  }
+  .add-container {
+    padding-bottom: 12px;
+    margin-left: auto;
+    margin-right: 0;
+    max-width: $adLeaderboardWidthHuge;
+  }
+}
+#subheader-row {
+  h1.pagetitle {
+    font-size: 2em;
+    margin-bottom: 24px;
+  }
+  .row-tabbar {
+    overflow: visible;
+
+    //padding-bottom: 24px;
+  }
+  .tabbar {
+    margin-top: -32px;
+  }
+  &.content {
+    background-color: $colorSixLightGray;
+  }
+}
+.tabbar {
+  @include tabbar;
+  margin-top: -32px;
+  margin-bottom: 32px;
+}
+.chromeless {
+  #header-row {
+    $desiredHeight: 160px;
+    min-height: $desiredHeight;
+    .overlay {
+      min-height: $desiredHeight;
+    }
+    .add-container {
+      padding-top: 32px;
+    }
+  }
+}
+.no-adds {
+  #header-row {
+    $desiredHeight: 128px;
+    min-height: $desiredHeight;
+    .overlay {
+      min-height: $desiredHeight;
+    }
+  }
+}
+.connect.no-adds,
+.play.no-adds {
+  #header-row {
+    $desiredHeight: 64px;
+    min-height: $desiredHeight;
+    .overlay {
+      min-height: $desiredHeight;
+    }
+  }
+}
+#subheader-row {
+  .tabbar {
+    margin-bottom: 48px;
+  }
+}
+#root-content-row {
+
+  //background-color: $color1;
+  .tabbar {
+    span.gopremium {
+      color: gold;
+    }
+  }
+  p.content-notice {
+    margin: 16px;
+    margin-bottom: 24px;
+  }
+}
+
+/* Basic Tile */
+.tile {
+  background-color: $color0;
+  padding: 24px;
+  margin-bottom: 24px;
+  a.btn {
+    @include height-lh(48px);
+    background-color: $color1;
+    display: block;
+    float: left;
+    padding-left: 54px;
+    position: relative;
+    padding-right: 24px;
+    padding-top: 0;
+    text-decoration: none;
+    color: $color3;
+    @include basictransition;
+    &:hover {
+      text-decoration: none;
+      color: $color5;
+      @include basictransition;
+    }
+    &:active {
+      line-height: 52px;
+    }
+    .icon {
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      line-height: 48px;
+    }
+  }
+}
+
+/* Sidebar */
+aside {
+  color: $color3;
+  ul {
+    margin: 24px 0;
+    padding: 0;
+    list-style: none;
+    li {
+      list-style: none;
+      background-image: url("../img/withSIX/list_icon.png?v=#{$cacheBuster}");
+      background-repeat: no-repeat;
+      background-position: 0 center;
+      padding-left: 24px;
+    }
+  }
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  margin-top: 48px;
+  a {
+    color: $color4;
+    text-decoration: none;
+    padding-left: 4px;
+    padding-right: 4px;
+    &:hover {
+      text-decoration: underline;
+      color: $color5;
+    }
+  }
+  span {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+.breadcrumbs-top {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  position: relative;
+  a,
+  em {
+    opacity: 0.5;
+  }
+}
+.tile h1.pagetitle {
+  font-size: 1.5em;
+}
+h1.pagetitle {
+  color: $color3;
+  font-size: 2.5em;
+  margin: 0;
+  margin-bottom: 56px;
+  vertical-align: middle;
+  a {
+    text-decoration: none;
+    color: $color3;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+span.sideline {
+  font-size: 14px;
+  line-height: 20px;
+  padding-left: 8px;
+  opacity: 0.75;
+}
+.box {
+  margin-bottom: 56px;
+  h3 {
+    color: $color3;
+    font-size: 1.5em;
+    line-height: normal;
+    opacity: 0.7;
+  }
+  h4 {
+    font-size: 1.25em;
+  }
+}
+table {
+  border-collapse: collapse;
+  border: 0;
+  tr {
+    &.even-row {
+      background-color: #ebebeb;
+    }
+    td {
+      padding-right: 24px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+  }
+}
+.outline-box {
+  margin-top: 48px;
+  background-color: $color2;
+  line-height: 56px;
+  & > div {
+    position: relative;
+    text-align: center;
+    font-size: 1.25em;
+    color: $color3;
+    font-weight: $font-weight-bold;
+    [class^="icon-"],
+    [class*=" icon-"] {
+      color: $color3;
+      opacity: 0.5;
+      font-weight: normal;
+      padding-right: 8px;
+    }
+  }
+  .title {
+    font-size: 11px;
+    display: block;
+    font-weight: normal;
+    position: absolute;
+    top: -24px;
+    line-height: normal;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: $color3;
+    opacity: 0.75;
+  }
+}
+.calltoaction {
+  color: $calltoaction;
+}
+body aside .tile-external-list {
+  list-style: none;
+  ul {
+    li {
+      a {
+        background-image: none;
+        padding-left: 16px;
+        .icon-arrow-right {
+          padding-right: 8px;
+        }
+      }
+    }
+  }
+}
+.tile-image-list {
+  list-style: none;
+  li {
+    background-color: $color0;
+    margin-bottom: 8px;
+    position: relative;
+    min-height: 72px;
+    padding: 0;
+    a {
+      text-decoration: none;
+      color: $color3;
+      display: block;
+      padding-top: 24px;
+      padding-left: 88px;
+      padding-right: 8px;
+      img {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      em {
+        display: block;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+a.back {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: $color0;
+  padding: 16px 8px;
+  @include basictransition;
+  &:hover {
+    opacity: 1 !important;
+    @include basictransition;
+    text-decoration: none;
+  }
+}
+
+// Workaround for embedded div to load xsl
+.strike {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.strike > span {
+  position: relative;
+  display: inline-block;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.strike > span:before,
+.strike > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  @include size(9999px, 1px);
+}
+.strike > span:before {
+  right: 100%;
+}
+.strike > span:after {
+  left: 100%;
+}
+.markdownrender,
+.contentrender {
+  overflow: hidden;
+  img {
+    @include img-responsive;
+  }
+  a {
+    word-break: break-word;
+  }
+}
+.icon-spinner {
+  animation: spin 3s infinite;
+  animation-duration: 3s;
+  animation-name: spin;
+  animation-iteration-count: infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(290deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.preview-header {
+  background-color: $colorSixSoftRed;
+  color: white;
+  text-align: center;
+  vertical-align: center;
+  line-height: 32px;
+  height: 32px;
+  a {
+    color: white;
+  }
+}
+.form-message-passed {
+  background-color: $calltoaction;
+  color: $color0;
+  a,
+  button {
+    color: $color0;
+  }
+}
+button.flag,
+a.flag {
+  text-decoration: none;
+  color: $colorSixSoftRed;
+  font-size: 16px;
+}
+#loading-bar .bar {
+  background-color: $colorSixBlue;
+}
+div.pre-content {
+  pre {
+    white-space: pre-wrap;
+
+    /* css-3 */
+    white-space: -moz-pre-wrap;
+
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+
+    /* Opera 7 */
+    word-wrap: break-word;
+
+    /* Internet Explorer 5.5+ */
+  }
+}
+.datepicker.dropdown-menu {
+  font-size: 12px;
+  width: 600px;
+  button {
+    outline: none;
+    border: 0;
+  }
+  tbody {
+    height: 180px;
+  }
+  tbody button {
+    padding: 4px;
+  }
+  &.datepicker-mode-1,
+  &.datepicker-mode-2 {
+    tbody button {
+      height: 65px;
+    }
+  }
+}
+ul.my-menu {
+  list-style: none;
+  display: inline-block;
+  li {
+    list-style: none;
+  }
+}
+select.my-select {
+  background: none;
+  border: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+select.horizontal {
+  padding: auto 0;
+  option {
+    display: inline-block;
+  }
+}
+ul.horizontal {
+  padding-left: 0;
+  li {
+    display: inline-block;
+  }
+}
+[app-view-segment].ng-leave {
+  animation: none !important;
+}
+
+/*
+  We're using CSS transitions for when
+  the enter and move events are triggered
+  for the element that has the .repeated-item
+  class
+*/
+.ng-enter, .ng-move {
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  opacity: 0;
+}
+
+/*
+ The ng-enter-active and ng-move-active
+ are where the transition destination properties
+ are set so that the animation knows what to
+ animate.
+*/
+
+.ng-enter.ng-enter-active,
+.ng-move.ng-move-active {
+  opacity: 1;
+}
+
+/*
+  We're using CSS keyframe animations for when
+  the leave event is triggered for the element
+  that has the  class
+*/
+.ng-leave {
+  -webkit-animation: 0.5s my_animation;
+  -moz-animation: 0.5s my_animation;
+  -o-animation: 0.5s my_animation;
+  animation: 0.5s my_animation;
+}
+
+@keyframes my_animation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/*
+  Unfortunately each browser vendor requires
+  its own definition of keyframe animation code...
+*/
+@-webkit-keyframes my_animation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes my_animation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes my_animation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+
+@keyframes increase-size {
+  from { height: 0px; }
+  to { height: 200px; }
+}
+@-webkit-keyframes increase-size{
+  from { height: 0px; }
+  to { height: 200px; }
+}
+.animated-item.au-enter-active {
+  -webkit-animation:0.2s increase-size;
+  animation:0.2s increase-size;
+}
+@keyframes decrease-size {
+  from { height: 200px; }
+  to { height: 0px; }
+}
+@-webkit-keyframes decrease-size{
+  from { height: 200px; }
+  to { height: 0px; }
+}
+.animated-item.au-leave-active {
+  -webkit-animation:0.2s decrease-size;
+  animation:0.2s decrease-size;
+}
+@keyframes show-animation {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-webkit-keyframes show-animation{
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes hide-animation {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-webkit-keyframes hide-animation{
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+button {
+  &.naked-button {
+    background-color: $colorSixMediumGray;
+    box-shadow: none;
+    border: 0;
+    color: white;
+  }
+  &.text-button {
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    // &:hover {
+    //   color: $colorSixDarkGray;
+    // }
+    &:disabled {
+      cursor: default;
+      opacity: 0.45;
+      // cancel the hover
+      // color: inherit;
+    }
+  }
+  &.prominent {
+    padding: 8px;
+  }
+  &.ok {
+    padding: 8px;
+    @include color-button($colorSixGreen);
+  }
+  &.cancel {
+    padding: 8px;
+    @include color-button($colorSixSoftRed);
+  }
+
+  &.warn {
+    padding: 8px;
+    @include color-button(orange);
+  }
+}
+
+.hidden {
+  opacity: 0;
+}
+.hidden-remove {
+  -webkit-animation:0.2s show-animation;
+  animation:0.2s show-animation;
+}
+.addMoreWidth {
+  width: 40px;
+}
+#delayedElement.au-enter-active {
+  -webkit-animation:0.2s show-animation;
+  animation:0.2s show-animation;
+  -webkit-animation-delay: 3s;
+  animation-delay: 3s;
+}
+@keyframes add-more-width-animation {
+  from { width: 20px; }
+  to { width: 40px; }
+}
+@-webkit-keyframes add-more-width-animation{
+  from { width: 20px; }
+  to { width: 40px; }
+}
+@keyframes reduce-width-animation {
+  from { width: 40px; }
+  to { width: 20px; }
+}
+@-webkit-keyframes reduce-width-animation{
+  from { width: 40px; }
+  to { width: 20px; }
+}
+.addMoreWidth-add {
+  -webkit-animation:0.2s add-more-width-animation;
+  animation:0.2s add-more-width-animation;
+}
+.nonAnimatedWidth {
+  width: 100px;
+}
+.stagger.au-enter {
+  opacity: 0!important;
+}
+.stagger.au-leave {
+  opacity: 1!important;
+}
+.stagger.au-enter-active {
+  -webkit-animation:1.5s show-animation;
+  animation:1.5s show-animation;
+}
+.stagger.au-leave-active {
+  -webkit-animation:1.5s hide-animation;
+  animation:1.5s hide-animation;
+}
+.stagger.au-left {
+  opacity: 0!important;
+}
+.stagger-enter-only.au-enter {
+  opacity: 0!important;
+}
+.stagger-enter-only.au-enter-active {
+  -webkit-animation:1.0s show-animation;
+  animation:1.0s show-animation;
+}
+.stagger-leave-only.au-leave {
+  opacity: 1!important;
+}
+.stagger-leave-only.au-leave-active {
+  -webkit-animation:1.0s hide-animation;
+  animation:1.0s hide-animation;
+}
+.stagger-leave-only.au-left {
+  opacity: 0!important;
+}
+ul.au-stagger {
+  // 200ms will be applied between each successive enter operation
+  -webkit-animation-delay:100ms;
+  animation-delay:100ms;
+}

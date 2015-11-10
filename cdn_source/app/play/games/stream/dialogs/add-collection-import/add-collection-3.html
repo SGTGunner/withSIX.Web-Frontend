@@ -1,0 +1,31 @@
+﻿<form name="form" class="easyForm" sx-validate-on-submit="ok()"
+      sx-validate-on-blur>
+    <div class="modal-header" style="padding-bottom: 0">
+        <h1 style="margin-bottom: 1px">
+            Import an <strong style="text-transform: uppercase">{{gameName}}</strong> Collection
+        </h1>
+        <span style="font-style: italic;">{{quote}}</span>
+    </div>
+
+    <div class="modal-body" style="padding-top: 0">
+        <div class="container-fluid"
+             style="padding-left: 0; padding-right: 0">
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <h2>Links to Collections found on the server.</h2>
+                    <p ng-repeat="item in importResult">
+                        <a target="_blank" ng-href="item">{{item}}</a><br />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button"
+                ng-click="cancel()"
+                class="btn btn-cancel">
+            Close
+        </button>
+    </div>
+</form>

@@ -1,0 +1,193 @@
+﻿<form name="form" class="easyForm" sx-validate-on-submit="ok()"
+      sx-validate-on-blur>
+    <div class="modal-header">
+        <h1 style="margin-bottom: 1px"><span style="color: red">(BETA)</span> Add <strong style="text-transform: uppercase">{{gameName}}</strong> Mod
+        </h1>
+        <i>Share new content in a few simple steps with the entire community!</i>
+    </div>
+
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <label for="mod-name">Mod Name: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-html="true" data-title="{{hints.name}}" bs-tooltip>(?)</a></label>
+                    <p ng-class="{'has-error' : form['mod-name'].$invalid && form['mod-name'].$touched, 'field-invalid': form['mod-name'].$invalid}">
+                        <input class="form-control"
+                               type="text" name="mod-name"
+                               id="mod-name"
+                               ng-model="model.mod.name" required/>
+                        <span class="tiny error-msg" style="color: red">{{inlineHints.name}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 no-horizontal-padding">
+                    <label for="modFolder">
+                        Folder:
+                        <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.packageName}}" bs-tooltip>(?)</a>
+                        <span ng-show="checkingPackageName" style="color: green">Checking...</span>
+                    </label>
+                    <p ng-class="{'has-error' : form.modFolder.$touched && ((!model.packageNameAvailable && (!form.modFolder.$invalid && !checkingPackageName)) || (form.modFolder.$invalid && !checkingPackageName)), 'field-invalid': form['modFolder'].$invalid}">
+                        <input type="text" name="modFolder" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+                               id="modFolder"
+                               class="form-control"
+                               placeholder="@FolderName"
+                               ng-model="model.mod.packageName" required ng-pattern="folderPattern"/>
+                        <span class="tiny error-msg" ng-show="!model.packageNameAvailable && (!form.modFolder.$invalid && !checkingPackageName)" style="color: red"
+                              data-container='body' data-html="true" data-title="{{hints.packageNameUnavailable}}" bs-tooltip>{{inlineHints.packageNameUnavailable}}</span>
+                        <span class="tiny error-msg" ng-show="form.modFolder.$invalid && model.mod.packageName.startsWith('@')" style="color: red">{{inlineHints.packageName}}</span>
+                        <span class="tiny error-msg" ng-show="form.modFolder.$invalid && !model.mod.packageName.startsWith('@') && !model.mod.packageName.trim().length == 0" style="color: red">{{inlineHints.packageNameMissingPrefix}}</span>
+                        <span class="tiny error-msg" ng-show="form.modFolder.$invalid && !model.mod.packageName.startsWith('@') && model.mod.packageName.trim().length == 0" style="color: red">{{inlineHints.packageNameEmpty}}</span>
+                    </p>
+                </div>
+                <div class="col-md-8 no-horizontal-padding">
+                    <label for="mod-author">Author: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.author}}" bs-tooltip>(?)</a></label>
+                    <p ng-class="{'has-error' : form['mod-author'].$invalid && form['mod-author'].$touched}">
+                        <input class="form-control"
+                               type="text" name="mod-author"
+                               id="mod-author"
+                               ng-model="model.mod.author" disabled="disabled"/>
+                        <span class="tiny error-msg" style="color: red">{{inlineHints.author}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 no-horizontal-padding">
+                    <label for="mod-version">Version: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.version}}" bs-tooltip>(?)</a></label>
+                    <p ng-class="{'has-error' : form['mod-version'].$invalid && form['mod-version'].$touched, 'field-invalid': form['mod-version'].$invalid}">
+                        <input class="form-control"
+                               type="text" name="mod-version"
+                               id="mod-version"
+                               placeholder="0.0.0.0"
+                               ng-model="model.mod.version" ng-required="!model.mod.versionUnknown" ng-pattern="versionPattern" ng-disabled="model.mod.versionUnknown"/>
+                        <span class="tiny error-msg" style="color: red">{{inlineHints.version}}</span>
+                    </p>
+                </div>
+                <!--<div class="col-md-4 no-horizontal-padding">
+                    <p style="display: block; margin-bottom: 0">
+                        <br/>
+                    </p>
+                    <div class="checkbox-container">
+                        <div class="squaredTwo ckInner">
+                            <input type="checkbox" name="mod-version-unknown"
+                                   id="mod-version-unknown"
+                                   ng-model="model.mod.versionUnknown"/>
+                            <label for="mod-version-unknown"></label>
+                        </div>
+                        <label class="text-label" for="mod-version-unknown">I Don't know</label>
+                    </div>
+                </div>-->
+                <div class="col-md-4 no-horizontal-padding">
+                    <p ng-class="{'has-error' : form['mod-branch'].$invalid && form['mod-branch'].$touched, 'field-invalid': form['mod-branch'].$invalid}">
+                        <label for="mod-branch">Mod Branch: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.branch}}" bs-tooltip>(?)</a></label>
+                        <select name="mod-branch" id="mod-branch"
+                                ng-options="s.value as s.displayName for s in branches"
+                                ng-model="model.mod.branch" class="form-control" required>
+                            <option style="display: none" value="">Choose Branch</option>
+                        </select>
+                        <span class="tiny error-msg" style="color: red">{{inlineHints.branch}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <label for="mod-dependencies">Dependencies: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.dependencies}}" bs-tooltip>(?)</a></label>
+                    <p>
+                        <tags-input ng-model="model.mod.dependencies" inline on-tag-added="addDependency($tag)"
+                                    name="mod-dependencies" class="form-control tags-input"
+                                    placeholder="add a dependency"
+                                    add-from-autocomplete-only="true" display-property="text"
+                                    replace-spaces-with-dashes="false" min-tags="0" allow-leftover-text="false" enable-editing-last-tag="false">
+                            <auto-complete source="getDependencies($query)" min-length="0" debounce-delay="500" display-property="text"></auto-complete>
+                        </tags-input>
+                        <!--<span class="tiny error-msg" style="color:red">Error text</span>-->
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 no-horizontal-padding">
+                    <label for="mod-download">Download Link: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.download}}" bs-tooltip>(?)</a></label>
+                    <p ng-class="{'has-error' : ((!model.downloadLinkAvailable || form['mod-download'].$invalid) && form['mod-download'].$touched) , 'field-invalid': form['mod-download'].$invalid}">
+                        <input class="form-control" ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+                               type="url" name="mod-download"
+                               id="mod-download"
+                               placeholder="http://"
+                               ng-model="model.mod.download" required/>
+                        <span class="tiny error-msg" ng-show="!model.downloadLinkAvailable && (!form['mod-download'].$invalid && !checkingDownloadLink)" style="color: orange"
+                              data-container='body' data-html="true" data-title="{{hints.downloadLinkUnavailable}}" bs-tooltip>{{inlineHints.downloadLinkUnavailable}}</span>
+                        <span class="tiny error-msg" ng-show="form['mod-download'].$invalid && !checkingDownloadLink" style="color: red">{{inlineHints.download}}</span>
+                        <span class="tiny error-msg custom-display" ng-show="checkingDownloadLink" style="color: green">{{inlineHints.checkingDownload}}</span>
+                        <span class="tiny error-msg custom-display" ng-show="!checkingDownloadLink && model.downloadLinkAvailable && !form['mod-download'].$invalid" style="color: green">{{inlineHints.downloadLinkAvailable}}</span>
+                    </p>
+                </div>
+                <div class="col-md-6 no-horizontal-padding">
+                    <label for="mod-link">Forum Page/Homepage Link: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.homepage}}" bs-tooltip>(?)</a></label>
+                    <p ng-class="{'has-error' : form['mod-link'].$invalid && form['mod-link'].$touched, 'field-invalid': form['mod-link'].$invalid}">
+                        <input class="form-control"
+                               type="url" name="mod-link"
+                               id="mod-link"
+                               placeholder="http://"
+                               ng-model="model.mod.homepage"/>
+                        <span class="tiny error-msg" style="color: red">{{inlineHints.homepage}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <label for="mod-comments">Extra Comments: <a class="hint-link" tabindex="-1" href="#" data-container='body' data-html="true" data-title="{{hints.comments}}" bs-tooltip>(?)</a></label>
+                    <p>
+                        <textarea class="form-control"
+                                  name="mod-comments"
+                                  id="mod-comments"
+                                  placeholder="Anything special we should know about?"
+                                  ng-model="model.mod.comments"></textarea>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <sx-accepted-field model="model.amAuthor" name="amAuthor">
+                        I hereby confirm that I am the sole author or authorized by my co-authors to grant this Licence as their agent on their behalf.
+                    </sx-accepted-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <sx-accepted-field model="model.acceptToS" name="acceptToS">
+                        I accept the
+                        <button class="anchor"
+                                type="button"
+                                ng-click="openTerms()">
+                            Terms and Conditions
+                        </button>
+                        and agree.
+                    </sx-accepted-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <p>
+                        <b>Important:</b><br/>
+                        Learn how to do modpacks and dependencies in <a href="http://withsix.readthedocs.org/en/latest/general/get_started_publishing/#publishing-mods">our knowledge base</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button"
+                ng-click="cancel()"
+                class="btn btn-cancel">
+            Cancel
+        </button>
+        <button type="submit"
+                class="btn btn-primary"
+                ng-disabled="model.processing"
+                http-pending="Processing..."
+                http-processing="model.processing"
+                http-progress="postNewMod">
+            Next
+        </button>
+    </div>
+</form>

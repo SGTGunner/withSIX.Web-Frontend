@@ -1,0 +1,39 @@
+<template class="play-basket-table basket basket-state-${activeDirectStateClass}">
+  <div class="container-fluid">
+    <div class="left-side pull-left">
+      <div class="logo pull-left">
+        <div class="play-footer-icon statusbar-state-${getStatusState()}">
+          <a href="/me">
+            <span class="icon withSIX-icon-Logo-Sync"></span>
+          </a>
+          <!--<img class="logo" src="${::w6.url.cdn}/img/sync-logo.png" alt="logo"/>-->
+        </div>
+      </div>
+
+      <div class="selector pull-left">
+        <div class="content" show.bind="game.id && model.activeDirect">
+          <compose view="components/_select_content.html"></compose>
+        </div>
+        <div class="expand au-animate">
+          <compose view="components/_select_expand.html"></compose>
+        </div>
+        <!-- <div class="basket-client-speedfooter basket-content-progess-background" if.bind="showDownloadSpeed">
+          <p class="pull-right">
+            ${gameInfo.clientInfo.status.progress | progress}% @ ${gameInfo.clientInfo.status.speed | size:'B'}/s
+          </p>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="right-side pull-right">
+      <div class="playlist pull-right" show.bind="game.id">
+        <div class="content">
+          <compose view="components/_playlist_content.html"></compose>
+        </div>
+        <div class="expand au-animate">
+          <compose view="components/_playlist_expand.html"></compose>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

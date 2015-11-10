@@ -1,0 +1,87 @@
+<div class="collections-ng container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+            <header>
+                <h1 class="pagetitle" ng-if="title || subtitle">
+                    <span ng-if="subtitle"><b>{{subtitle}}</b></span>
+                    {{title}}
+                </h1>
+            </header>
+
+            <section class="controls border">
+                <div ng-include="views.filterTemplate"></div>
+            </section>
+
+            <section class="view">
+                <div ng-include="views.otherOptions.view == 'grid' &&
+                    views.getView() ||
+                    views.getView()"></div>
+            </section>
+
+            <footer></footer>
+        </div>
+
+        <div name="right" class="tags col-sm-3"><!---->
+            <div ng-include="'/cdn_source/app/play/collections/_edit-side-pane.html'"></div>
+            <div class="link-list">
+                <ul ng-if="editConfig.isEditing && environment != 0" ng-class="{'edit-border-gray edit-field-large': editConfig.isEditing}" class="dependencies">
+                    <li ng-if="model.latestVersion.dependencies.length == 0 && editConfig.isEditing">
+                        <span>
+                            <strong>No Mods</strong>
+                        </span>
+                    </li>
+                    <li ng-repeat="item in model.latestVersion.dependencies" class="no-tween-out"
+                        style="padding-left: 0">
+                        <sx-edit-list-item ng-if="editConfig.isEditing">
+                            <div name="list-text">
+                                <a ng-href="{{::url.play + '/' + 'gameSlug' + '/mods/' + toShortId(item.id) + '/' + 'slug'}}" class="barebone bold">{{::item.dependency}}</a>
+                            </div>
+                            <div name="list-options">
+                                <button class="btn btn-sx-manage-link"
+                                             bs-popover
+                                             data-template="/cdn_source/app/play/collections/popovers/manage-link-popover.html"
+                                             data-animation="am-flip-x" data-placement="bottom-left">
+                                    <strong><span class="withSIX-icon-Settings" style="font-size: 14px;"></span></strong>
+                                </button>
+                            </div>
+                        </sx-edit-list-item>
+                        <div ng-if="!editConfig.isEditing">
+                            <div name="list-text">
+                                <a ng-href="{{::url.play + '/' + 'gameSlug' + '/mods/' + toShortId(item.id) + '/' + 'slug'}}" class="barebone bold">{{::item.dependency}}</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!--<li ng-repeat="item in model.entityAspect.entityManager.getChanges('ModDependency') | deletedfilter: model"
+                        class="no-tween-out"
+                        style="padding-left: 0">
+                        <sx-edit-list-item-no-modify>
+                            <div name="list-text">
+                                <button rel="external" class="anchor bold" target="_blank">{{::item.dependency}}</button>
+                            </div>
+                        </sx-edit-list-item-no-modify>
+                    </li>-->
+                </ul>
+
+                <div ng-if="environment != 0" collapse="!(editConfig.isEditing)" class="add-link-section no-top-shadow">
+                    <span class="btn bold add-link edit-border-gray" style="font-size: 16px; visibility: hidden !important;">&nbsp;</span>
+                    <button id="addModDependency"
+                            class="btn bold add-link edit-border-gray pull-right"
+                            bs-popover data-auto-close="1"
+                            data-template="/cdn_source/app/play/mods/popovers/add-dependency-popover.html"
+                            data-animation="am-flip-x" data-placement="bottom-right">
+                        <span class="withSIX-icon-Add" style="color: green; font-size: 14px;"></span>&nbsp;&nbsp;Add Mod
+                    </button>
+                </div>
+            </div>
+            <!--<div class="tag-bar">
+                <span class="tags">
+                    <span ng-repeat="tag in contentTags">
+                        <a class="tag"
+                           ng-click="addTag(tag)">{{tag}}</a>
+                    </span>
+                </span>
+            </div>-->
+        </div>
+    </div>
+</div>

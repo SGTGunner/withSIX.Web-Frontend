@@ -1,0 +1,93 @@
+<div class="container-fluid" id="update-page">
+    <h1 class="pagetitle"><b>Sync withSIX</b> Updates</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="tile" ng-if="w6.renderAds">
+                <div data-ng-dfp-ad-container>
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="tile client-info" style="height:220px">
+                <div>
+                    <div class="pull-right">
+                        <div><a class="btn" href="https://trello.com/b/EQeUdFGd/withsix-report-issues" target="_blank" style="margin-top: 40px;padding-left: 24px;">REPORT <b>ISSUES</b></a>
+                        </div>
+                        <div><a class="btn" href="https://community.withsix.com/category/4/comments-feedback" target="_blank" style="margin-top: 15px;padding-left: 24px;">GIVE <b>FEEDBACK</b></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span ng-if="isClientConnected && miniClient">
+                            <h2>Update to the latest version of Sync withSIX now</h2>
+                            <br />
+                            <small>Your current version: {{miniClient.version}}</small>
+                        </span>
+                        <span ng-if="!isClientConnected">No client detected</span>
+                    </div>
+                </div>
+
+                <div ng-if="w6.isFirefox && !isClientConnected">
+                  <h2>Firefox Security Exception</h2>
+                  <p>
+                    In order to use Sync with Firefox you need to accept the Firefox Security Exception
+                    <a target="_blank" href="https://127.0.0.66:9666">click here</a> to allow SYNC to connect to Firefox and then just refresh this page.
+                  </p>
+                </div>
+
+                <!-- TODO: Progress reporting? -->
+            </section>
+
+            <div ng-if="isClientConnected && miniClient">
+                <button class="btn updatebtn" ng-click="updateClient()" style="text-align: center"
+                        ng-class="{'noclient': !isClientConnected, 'updateavailable': isClientConnected && miniClient.newVersionAvailable}"
+                        ng-disabled="processing || !miniClient.newVersionAvailable || !isClientConnected"
+                        http-progress="client.performUpdate"
+                        http-processing="processing"
+                        http-pending="Updating..."
+                        http-success="Update Completed"
+                        http-error="Failed...">
+                    <span class="no-tween-out" ng-if="!isClientConnected">No Client detected</span>
+                    <span class="no-tween-out" ng-if="isClientConnected && !miniClient.newVersionAvailable">Your client is uptodate!</span>
+                    <span class="no-tween-out" ng-if="isClientConnected && miniClient.newVersionAvailable">Update Sync withSIX to {{miniClient.newVersionAvailable}}</span>
+                </button>
+            </div>
+
+            <section class="blog">
+                <div class="header">
+                    <span class="share-buttons pull-right">
+                        <!--  disabled because it pushes the last button out of view. <a class="tiny">FOLLOW <b>US</b></a> -->
+                        <a class="tiny">FOLLOW <b>US</b></a>
+                        <a href="https://twitter.com/SixNetworks" rel="external" class="icon twitter"
+                           target="_blank">
+                            <span class="icon withSIX-icon-Social-Twitter"></span>
+                        </a>
+                        <a href="https://www.facebook.com/withSIX" rel="external" class="icon facebook"
+                           target="_blank">
+                            <span class="icon withSIX-icon-Social-Facebook"></span>
+                        </a>
+                    </span>
+                    <h2 class="stream-title">withSIX blog</h2>
+
+                    <div ng-include="'/cdn_source/app/main/blog/_postPreview.html'"
+                         ng-repeat="post in model.blogPosts | limitTo:4"></div>
+                </div>
+            </section>
+        </div>
+
+        <section class="col-md-6 changelog">
+            <div>
+                <h2>Changelogs</h2>
+                <div ng-bind-html="changelog| pagedown"
+                     class="tile entries"></div>
+            </div>
+            <div data-ng-dfp-ad-container ng-if="w6.renderAds">
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad2"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

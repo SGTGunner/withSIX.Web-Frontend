@@ -1,0 +1,47 @@
+<template>
+  <div class="container-fluid">
+    <div class="row">
+    <div name="main col-sm-9">
+      <section class="au-animate collections-ng">
+        <h2>${model.name}</h2>
+
+        <div class="add">
+          <input type="text" value.bind="addContentInput"
+                 typeahead="substring-matcher.bind: typeaheadOptions.substringMatcher; display.bind: typeaheadOptions.display; selected.bind: typeaheadOptions.select"></input>
+          <button click.delegate="add()">add</button>
+        </div>
+        <button click.trigger="save()" disabled.bind="!changed">Save changes</button>
+
+        <div class="content">
+          <h2>Content</h2>
+          <compose view="connect/profile/library/_gallery.html"></compose>
+        </div>
+
+        <div class="advanced">
+          <h2>Advanced</h2>
+          <div class="repositories">
+            <h3>Repository</h3>
+            <input type="text" value.bind="model.repositories"></input>
+          </div>
+          <div class="servers">
+            <h3>Server</h3>
+            <div class="form-group">
+              <label for="address">Address:</label>
+              <input id="address" placeholder="ip:port" name="address" type="text" value.bind="model.server.address"></input>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input id="password" name="password" type="text" value.bind="model.server.password"></input>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+    <div name="right col-sm-3">
+      Edit panel TODO
+    </div>
+  </div>
+</div>
+</template>

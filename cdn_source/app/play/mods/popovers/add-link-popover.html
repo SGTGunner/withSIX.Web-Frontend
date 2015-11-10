@@ -1,0 +1,48 @@
+﻿<div class="popover manage-link">
+    <form name="form">
+        <div class="arrow"></div>
+        <div class="popover-title">
+            <b>Add New Link</b>
+        </div>
+        <div class="popover-content">
+
+            <div class="popover-field" ng-class="{ 'has-error has-feedback' : form.title.$invalid }">
+                <div class="field-title">
+                    <span><strong>Title</strong></span>
+                </div>
+                <div class="field-input">
+                    <input required type="text" ng-model="newLink.title" name="title" class="form-control"/>
+                </div>
+            </div>
+            <div class="popover-field" ng-class="{ 'has-error has-feedback' : form.path.$invalid }">
+                <div class="field-title">
+                    <span><strong>Url</strong></span>
+                </div>
+                <div class="field-input">
+                    <div>
+                        <input required type="url" ng-model="newLink.path" name="path" class="form-control"/>
+                    </div>
+                    <div>
+                        <p class="tiny">
+                            <i>Make sure to include 'http://' at the start of your address!</i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="popover-content popover-bottom">
+            <div class="btn" style="visibility: hidden">&nbsp;</div>
+            <div class="pull-right">
+                <button class="btn btn-sx-save"
+                        ng-click="addLink(); $hide()"
+                        ng-disabled="form.$invalid">
+                    Accept
+                </button>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-sx-cancel btn-sx-right" ng-click="$hide()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

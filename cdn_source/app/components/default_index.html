@@ -1,0 +1,53 @@
+<div class="collections-ng" ng-class="{true: 'move'}[showCollectionBasket && w6.enableBasket]">
+    <div ng-if="showCollectionBasket && w6.enableBasket"
+         class="collection-basket tile" ng-include="'/cdn_source/app/play/mods/_collection.html'">
+    </div>
+
+    <div class="main-content">
+        <section>
+            <div class="container-fluid">
+                <header>
+                    <div class="pull-right" ng-if="publishEnabled">
+                        <a ng-href="{{currentUrl}}/new">Upload new</a>
+                    </div>
+                    <div class="pull-right play-stream" ng-if="modUpload">
+                        <span class="publish-buttons tiny">
+                            <a href="#" ng-click="openAddModDialog()">ADD <b>MOD</b></a>
+                        </span>
+                    </div>
+                    <div class="pull-right play-stream" ng-if="collectionUpload">
+                        <span class="publish-buttons tiny">
+                            <a href="#" ng-click="openAddCollectionDialog()">CREATE <b>COLLECTION</b></a>
+                        </span>
+                    </div>
+
+                    <!--
+                    <div class="pull-right">
+                        <button ng-click="views.switchView()">
+                            to
+                            <span ng-if="views.otherOptions.view == 'grid'">List</span>
+                            <span ng-if="views.otherOptions.view != 'grid'">Grid</span>
+                        </button>
+                    </div>
+                    -->
+                    <h1 class="pagetitle" ng-if="title || subtitle">
+                        <span ng-if="subtitle"><b>{{subtitle}}</b></span>
+                        {{title}}
+                    </h1>
+                </header>
+
+                <section class="controls border">
+                    <div ng-include="views.filterTemplate"></div>
+                </section>
+            </div>
+        </section>
+
+        <section class="view container-fluid">
+            <div ng-include="views.otherOptions.view == 'grid' &&
+                views.getView() ||
+                views.getView()"></div>
+        </section>
+
+        <footer></footer>
+    </div>
+</div>

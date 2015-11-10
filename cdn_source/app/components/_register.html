@@ -1,0 +1,99 @@
+﻿<div class="tile" ng-if="response.success">
+    <p>Successfully registered</p>
+    <p>Please find the activation email at {{model.email}}</p>
+</div>
+
+<div class="row" ng-if="!response.success">
+    <div class="col-sm-6">
+        <!--<section class="tile">
+            <h2>Social Features &amp; much more</h2>
+            <p>
+                By signing up here you will be able to use our buddy-list and see when and where your friends are playing.
+            </p>
+            <p>
+                In the future we will provide you with chats, and many more features. Sign up now and make sure not to miss the awsomeness!
+            </p>
+        </section>-->
+
+        <section class="tile">
+            <h2>Custom user profile, friends and much more</h2>
+            <p>
+                By signing up here you will be able to use our social features and get the ability as mission/mod author to promote and release your work on our platform.
+            </p>
+            <ul>
+                <li>Create your own buddy-list</li>
+                <li>See if and where your friends are playing</li>
+                <li>Join up with them easily</li>
+                <li>Form groups/teams</li>
+                <li>Get access to our chat network (direct and group)</li>
+                <li>Release your own missions/mods on the website</li>
+                <li>Customize your content's promotional pages</li>
+                <li>Even more soon</li>
+            </ul>
+        </section>
+    </div>
+
+    <div class="col-sm-6">
+        <section class="tile">
+            <h2>Register withSIX</h2>
+
+            <form name="registerForm"
+                  sx-validate-on-submit="register()"
+                  sx-validate-on-blur>
+                <fieldset title="Register Details">
+                    <sx-email-field model="model.email" check-already-exists="t"
+                                    login="openLoginDialog()"
+                                    forgot-password="openForgotPasswordDialog()"></sx-email-field>
+                    <sx-username-field model="model.userName" check-already-exists="t"></sx-username-field>
+                    <sx-birthday-field model="model.birthday"></sx-birthday-field>
+                    <sx-password-field model="model.password"
+                                       not-equals="[model.email, model.userName, model.displayName]"
+                                       confirm-model="model.confirmPassword"></sx-password-field>
+                    <sx-accepted-field model="model.termsAccepted">
+                        I have read the
+                        <button class="anchor"
+                                type="button"
+                                ng-click="dispatch('OpenTermsDialog')">
+                            terms of service
+                        </button>
+                        and agree.
+                    </sx-accepted-field>
+
+                    <p>
+                        <button class="btn"
+                                ng-disabled="processing"
+                                type="submit"
+                                http-progress="register"
+                                http-processing="processing"
+                                http-pending="Registering..."
+                                http-success="Registered!"
+                                http-single-use="t"
+                                http-error="Failed...">
+                            <span class="icon icon-arrow-right"></span>
+                            Register
+                        </button>
+                    </p>
+                </fieldset>
+
+                <div class="form-response bg-danger" ng-if="response && !response.success">
+                    {{response.message}}<br/>
+                    <div ng-repeat="(k, v) in response.errors">
+                        <span ng-repeat="msg in v">{{msg}}</span><br/>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="tile">
+            <h3>Already have a withSIX account?</h3>
+            <p class="clearfix">
+                <button ng-click="openLoginDialog()"
+                        type="button"
+                        class="btn">
+                    <span class="icon icon-arrow-right"></span>
+                    Login with your withSIX account
+                </button>
+            </p>
+        </section>
+    </div>
+</div>

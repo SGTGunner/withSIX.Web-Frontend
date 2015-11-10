@@ -1,0 +1,38 @@
+﻿<div class="container-fluid">
+    <h2>Content</h2>
+    <div class="tile">
+        <ul>
+            <li ng-repeat="game in model.games">
+                <h2>{{game.name}}</h2>
+
+                <div>
+                    <h3>Mods</h3>
+                    Total: {{game.totalMods}}
+                    Claimed: {{game.totalClaimedMods}}
+                    Authors: {{game.totalModAuthors}}
+                    AuthorComments: {{game.totalModAuthorComments}}
+                    TotalComments: {{game.totalModComments}}
+                </div>
+
+                <div>
+                    <h3>Missions</h3>
+                    Total: {{game.totalMissions}}
+                    Authors: {{game.totalMissionAuthors}}
+                    AuthorComments: {{game.totalMissionAuthorComments}}
+                    TotalComments: {{game.totalMissionComments}}
+                </div>
+
+                <div>
+                    <h3>Collections</h3>
+                    Total: {{game.totalCollections}}
+                    Public: {{game.totalPublicCollections}}
+                    Unlisted: {{game.totalUnlistedCollections}}
+                    Private: {{game.totalPrivateCollections}}
+                    Authors: {{game.totalCollectionAuthors}}
+                    AuthorComments: {{game.totalCollectionAuthorComments}}
+                    TotalComments: {{game.totalCollectionComments}}
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

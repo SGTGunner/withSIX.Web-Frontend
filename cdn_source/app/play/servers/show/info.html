@@ -1,0 +1,71 @@
+﻿<div class="container-fluid server">
+
+    <div class="tile">
+        <div class="pull-right">
+            <div>{{server.followersCount}} followers</div>
+            <div>Updated: <span class="time" am-time-ago="server.updatedAt"></span></div>
+            <div>
+                <a class="btn" ng-href="pws://?server={{server.ipAddress}}:{{server.port}}">Join</a>
+            </div>
+        </div>
+
+        <h3>{{server.gameState}} {{server.missionName}} on {{server.islandName}} [{{server.gameMode}}] on {{server.difficulty}} difficulty.</h3>
+
+        <i class="tiny">battleye: {{server.battlEye}}, signatures: {{server.verifySignatures}}. Address: {{server.ipAddress}}:{{server.port}} ({{server.queryPort}})</i>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="tile">
+                <h2>
+                    <span class="f32"><span class="flag {{ server.country.toLowerCase() }}"
+                                            title="{{server.country}}"></span></span>
+                    {{server.country}},
+                    <span title="only available with client">{{ server.ping || '-' }}ms</span>, ~{{distance | number:1}}km
+                </h2>
+                <map ng-if="serverLocation && userLocation"
+                     style="display: block; height: 300px">
+                    <marker position="current"/>
+                </map>
+                <i>{{serverLocation.lat}} / {{serverLocation.lon}}</i>
+            </div>
+
+            <div class="tile">
+                <h2>Comments</h2>
+
+                <div class="comments">
+                    <div class="comment">
+
+                    </div>
+                </div>
+
+                <div class="comment-reply">
+                    <textarea></textarea>
+                    <button>Reply</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="tile">
+                <h2>{{server.numPlayers}} / {{server.maxPlayers}} Players</h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Score</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="player in server.players">
+                        <td>{{player.name}}</td>
+                        <td>{{player.score}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

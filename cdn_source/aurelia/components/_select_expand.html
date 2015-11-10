@@ -1,0 +1,4 @@
+<template>
+  <compose view="components/_select_dependencies.html" if.bind="model.activeDirect && model.activeDirect.model.basketType == 1"></compose>
+  <compose view="components/_get_client.html" show.bind="!hideInstallMessage"></compose>
+</template>

@@ -1,0 +1,28 @@
+<template>
+  <ai-dialog class="ai-dialog">
+    <ai-dialog-header>
+      <h2>${model.dependency}</h2>
+    </ai-dialog-header>
+
+    <ai-dialog-body>
+      <div class="form-control">
+        <label for="version-constraint">Version:</label>
+        <span class="icon withSIX-icon-Lock" show.bind="versionSelected"></span>
+        <select value.bind="constraint" disabled.bind="versions.length < 1">
+          <option repeat.for="v of versions">${v}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="is-optional">
+          <input name="is-optional" id="is-optional" checked.bind="isOptional" type="checkbox"></input>
+          Optional
+        </label>
+      </div>
+    </ai-dialog-body>
+
+    <ai-dialog-footer>
+      <button class="cancel" click.trigger="controller.cancel()">Cancel</button>
+      <button class="ok" command.bind="save">Save</button>
+    </ai-dialog-footer>
+  </ai-dialog>
+</template>

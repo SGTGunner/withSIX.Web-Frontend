@@ -1,0 +1,42 @@
+<template>
+  <ai-dialog class="ai-dialog">
+    <ai-dialog-header>
+      <h1>Create <b>${gameName}</b> Collection</h1>
+    </ai-dialog-header>
+
+    <ai-dialog-body>
+      <form role="form" validate.bind="validation">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" class="form-control" value.bind="model.name" placeholder="unique name"></input>
+        </div>
+
+        <div class="form-group">
+          <label class="switch" for="repositoryUrl" click.delegate="showRepository = true">
+            Add Repository (optional)
+            <span class="pull-right icon withSIX-icon-Add"></span>
+          </label>
+          <div show.bind="showRepository">
+            <input type="text" name="repositoryUrl" class="form-control" id="repositoryUrl" required value.bind="model.repositoryUrl" placeholder="http://url/to/server.yml"></input>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="switch" for="serverAddress" click.delegate="showServerAddress = true">
+            Add Server (optional)
+            <span class="pull-right icon withSIX-icon-Add"></span>
+          </label>
+          <div show.bind="showServerAddress">
+            <div><input type="text" name="serverAddress" class="form-control" id="serverAddress" value.bind="model.serverAddress" required placeholder="ip:port"></input></div>
+            <div><input type="text" name="serverPassword" class="form-control" id="serverPassword" value.bind="model.serverPassword" placeholder="password (optional)"></input></div>
+          </div>
+        </div>
+      </form>
+    </ai-dialog-body>
+
+    <ai-dialog-footer>
+      <button class="cancel" command.bind="cancel">Cancel</button>
+      <button class="ok" command.bind="save">Create</button>
+    </ai-dialog-footer>
+  </ai-dialog>
+</template>

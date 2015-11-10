@@ -1,0 +1,38 @@
+<template>
+  <div class="basket-client-footer">
+    <div class="pull-left basket-client-footer-icon">
+      <span class="icon withSIX-icon-Logo-Sync pull-left"></span>
+      <div class="pull-left basket-client-footer-text">
+        <p class="basket-client-footer-text-title">
+          <b>Sync&nbsp;</b> client
+        </p>
+        <p class="basket-client-footer-text-subtitle">easy, fast &amp; smart content installer</p>
+      </div>
+    </div>
+
+    <div class="pull-right basket-client-footer-button">
+      <button if.bind="hideInstallMessageButton" class="basket-client-footer-button-close" click.delegate="forceHideInstallMessage();">
+        <span>X</span>
+      </button>
+
+      <a href="${w6.url.main}/download?basket=1&redirect=${w6.url.redirectUrl}">
+        <span class="button-inner">
+          <p class="basket-client-footer-button-title">DOWNLOAD</p>
+          <p class="basket-client-footer-button-subtitle">TO GET STARTED</p>
+        </span>
+      </a>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div if.bind="w6.isFirefox">
+      <tiny>
+        <h2>Firefox Security Exception</h2>
+        <p>
+          In order to use Sync with Firefox you need to accept the Firefox Security Exception
+          <a target="_blank" href="https://127.0.0.66:9666">click here</a> to allow SYNC to connect to Firefox and then just refresh this page.
+        </p>
+      </tiny>
+    </div>
+  </div>
+</template>

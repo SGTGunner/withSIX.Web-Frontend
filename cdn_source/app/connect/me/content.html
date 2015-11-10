@@ -1,0 +1,49 @@
+<div ng-if="model.queuedMissions.length > 0">
+    <h3>Queued content</h3>
+
+    <p>The following files are being processed:</p>
+    <div class="grid-roster row que-tiles clearfix">
+        <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="mission in model.queuedMissions">
+            <a>
+                <span class="icon">
+                    <span class="icon-spinner"></span>
+                </span>
+                <strong class="content-name">
+                    {{mission.parentMission.game.name}}:
+                    {{mission.parentMission.name}}
+                </strong>
+                <span class="filename">filename: {{mission.fileName}} <br /></span>
+                <span class="status">We're processing your mission, check back in about 10 seconds..</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div ng-if="model.unpublishedMissions.length > 0">
+    <h3>Ready for publishing</h3>
+    <p>The following files are ready to be published:</p>
+
+    <div class="grid-roster row que-tiles clearfix">
+        <div class="col-sm-6" ng-repeat="missionVersion in model.unpublishedMissions">
+            <a ng-href="{{::url.play}}/{{missionVersion.mission.game.slug}}/missions/{{toShortId(missionVersion.mission.id)}}/{{missionVersion.mission.slug}}/versions/{{missionVersion.versionSlug}}/publish">
+                <span class="icon">
+                    <span class="icon-fighter-jet"></span>
+                </span>
+                <strong>
+                    {{missionVersion.mission.game.name}}:
+                    {{missionVersion.mission.name}}
+                    (suggested v{{missionVersion.version}})
+                </strong>
+                <span class="status">Start publishing!</span>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<h3>Published content</h3>
+
+<div class="tabbar"
+     ng-include="'/cdn_source/app/components/menu.html'"></div>
+
+<div app-view-segment="2"></div>

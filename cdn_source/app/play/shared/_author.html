@@ -1,0 +1,8 @@
+﻿<div ng-init="realAuthor = author && author.slug != 'withSIX-o-bot'"
+     itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <a ng-href="{{::url.connect}}/u/{{author.slug}}"
+       ng-if="realAuthor" rel="author" itemprop="name">
+        <i>{{::author.displayName}}</i>
+    </a>
+    <i ng-if="!realAuthor">{{::authorText}}</i>
+</div>

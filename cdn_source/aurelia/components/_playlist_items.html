@@ -1,0 +1,69 @@
+<template>
+  <div class="play-footer-playlist basket basket-state-${activeStateClass}">
+    <div class="basket-body">
+      <div class="basket-body-title">
+        <dropdown-menu class="pull-right" items.bind="playlistMenuItems">
+          <template replace-part="header">
+            <span class="icon withSIX-icon-Share-Dots-V"></span>
+          </template>
+        </dropdown-menu>
+
+        <div class="pull-right basket-header-omnibutton basket-state-colored ${creatingBasket ? 'no-top' : null}">
+          <button class="naked-button basket-state-colored" click.trigger="model.makeActiveSelected(); $event.stopPropagation()" disabled.bind="locked">
+            <span class="icon basket-state-icon"></span>
+            <span class="basket-state-text"></span>
+          </button>
+        </div>
+
+        <div class="pull-right basket-header-title-count">${model.active.model.items.length} Mods</div>
+
+        <div class="pull-left">
+          <command-button model.bind="saveBasket" class="save-button" no-processing="true"></command-button>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+
+      <!-- <div style="display:none" class="playlist-group">
+        <button class="playlist-group-button">
+          <span class="playlist-group-title">Updates Available</span>
+          <span class="playlist-group-title-right">1 mod
+            <span class="icon withSIX-icon-Arrow-Down-Open"></span>
+          </span>
+        </button>
+        <template repeat.for="item of model.active.model.items">
+          <compose model.bind="item" view-model="components/playlist-item"></compose>
+        </template>
+        <div class="playlist-group-bottom">&nbsp;</div>
+      </div> -->
+
+      <div class="basket-body-items">
+        <template repeat.for="item of model.active.model.items">
+          <compose model.bind="{item: item, chain: $parent.model.active.chain, level: 0}" view-model="components/playlist-item"></compose>
+        </template>
+
+        <div class="basket-content basket-content-empty" show.bind="model.active.model.items.length == 0">
+          <div class="basket-content-empty-table">
+            <div class="pull-left basket-content-empty-icon">
+              <div>
+                <span class="icon withSIX-icon-Add"></span>
+              </div>
+            </div>
+
+            <div class="pull-left basket-content-empty-text">
+              <button class="text-button" click.delegate="launchGame()">
+                Launch ${game.name || game.slug}
+                <img src.bind="game.logo" />
+              </button>
+              <p class="basket-content-empty-text-title">
+                ADD CONTENT TO&nbsp;<b>PLAYLIST</b>
+              </p>
+
+              <p class="basket-content-empty-text-subtitle">Quickly collect mods to download and play</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

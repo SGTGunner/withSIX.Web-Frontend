@@ -1,0 +1,102 @@
+﻿<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.Core.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.min.js"></script>
+-->
+
+<div class="modal-header">
+    <h1>Content Claiming - Step 2</h1>
+    <strong>Modification -&nbsp;</strong>{{model.name}}<br/>
+    <strong>Claim Provider -&nbsp;</strong>
+    <span ng-if="formatProvider == 'BIForums'">Bohemia Interactive Forums</span>
+    <span ng-if="formatProvider == 'DevWithSix'">Develop withSix (Formerly dev-heaven)</span>
+    <span ng-if="formatProvider == 'GtaForums'">GTA Forums</span>
+</div>
+
+<div class="modal-body">
+    <div ng-if="formatProvider == 'BIForums'">
+        <strong>Instructions</strong><br/>
+        <ol>
+            <li>
+                Copy the Token code from below.<br/>
+                <div class="input-group">
+                    <form class="form-inline">
+                        <input class="form-control" value="{{claimToken}}"/>
+                        <span class="input-group-btn">
+                            <button class="btn" type="button" clip-copy="claimToken">Copy</button>
+                        </span>
+                    </form>
+                </div>
+            </li>
+            <li>
+                Click below to open your BI Topic, edit the first post and add your claim token to your post.<br/>
+                <a ng-href="{{ctModel.editUrl}}" target="_blank">{{ctModel.editUrl}}</a>
+            </li>
+            <li>Click Verify below to continue!</li>
+        </ol>
+    </div>
+    <div ng-if="formatProvider == 'DevWithSix'">
+        <strong>Instructions</strong><br/>
+        <ol>
+            <li>
+                Copy the Token code from below.<br/>
+                <div class="input-group">
+                    <form class="form-inline">
+                        <input class="form-control" value="{{claimToken}}"/>
+                        <span class="input-group-btn">
+                            <button class="btn" type="button" clip-copy="claimToken">Copy</button>
+                        </span>
+                    </form>
+                </div>
+            </li>
+            <li>
+                Click below to open your project and paste your claim token anywhere inside the description.<br/>
+                <a ng-href="{{ctModel.editUrl}}" target="_blank">{{ctModel.editUrl}}</a>
+            </li>
+            <li>Click Verify below to continue!</li>
+        </ol>
+
+    </div>
+    <div ng-if="formatProvider == 'GtaForums'">
+        <strong>Instructions</strong><br />
+        <ol>
+            <li>
+                Copy the Token code from below.<br />
+                <div class="input-group">
+                    <form class="form-inline">
+                        <input class="form-control" value="{{claimToken}}" />
+                        <span class="input-group-btn">
+                            <button class="btn" type="button" clip-copy="claimToken">Copy</button>
+                        </span>
+                    </form>
+                </div>
+            </li>
+            <li>
+                Click below to open your GTA Forums Topic, edit the first post and add your claim token to your post.<br />
+                <a ng-href="{{ctModel.editUrl}}" target="_blank">{{ctModel.editUrl}}</a>
+            </li>
+            <li>Click Verify below to continue!</li>
+        </ol>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <i ng-if="error">{{error}}&nbsp;</i>
+    <!-- edit... -->
+    <button type="button"
+            ng-click="cancel()"
+            class="btn btn-cancel"
+            data-dismiss="modal">
+        Cancel
+    </button>
+    <button type="button"
+            ng-click="verifyToken()"
+            ng-disabled="model.processing2"
+            http-single-use="t"
+            http-processing="model.processing2"
+            http-progress="verifyToken"
+            http-pending="Processing..."
+            http-success="Processed!"
+            http-error="Failed..."
+            class="btn btn-primary">
+        Verify Token
+    </button>
+</div>

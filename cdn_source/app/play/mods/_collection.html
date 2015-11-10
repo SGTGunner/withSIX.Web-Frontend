@@ -1,0 +1,21 @@
+﻿<header>
+    <input type="text"
+           placeholder="find collection"/>
+
+    <span>{{activeCollection.name}}</span>
+
+    <button>Save</button>
+</header>
+
+<section>
+    <ul>
+        <li ng-repeat="item in activeCollection.items">
+            {{::item.name}} ({{item.packageName}})
+        </li>
+    </ul>
+</section>
+
+<footer>
+    <button type="button"
+            ng-click="toggleCollectionBasket()">Toggle</button>
+</footer>

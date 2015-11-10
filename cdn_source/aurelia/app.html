@@ -1,0 +1,296 @@
+<template>
+
+  <div class="${w6.url.site} ${w6.url.site == 'main' && w6.url.isRoot ? 'home' : null} ${w6.chromeless ? 'chromeless' : null} ${w6.renderAds ? null : 'no-adds'}">
+    <div class="preview-header" if.bind="w6.url.environment != 0">
+      This is a preview page, please visit the production site at <a href="http://withsix.com">withSIX.com</a>
+    </div>
+
+    <a name="top"></a>
+
+    <header id="header-row" css="${w6.headerImage}">
+      <div class="overlay">
+
+        <section class="row-globalmenu" if.bind="!w6.chromeless">
+          <div class="container-fluid">
+            <div class="clearfix">
+              <div class="logo">
+                <a href="${w6.url.main}/" class="${w6.url.selectedSite == 0 ? 'active' : null}">
+                  <img src="${w6.versionedImage('logo/logo_solid_blue.svg')}" class="logo" alt="withSIX Home" />
+                </a>
+              </div>
+
+              <nav>
+                <ul class="menu">
+                  <li>
+                    <a href="${w6.url.play}" class="${w6.url.selectedSite == 1 ? 'active' : null}">
+                      <span class="menu-icon withSIX-icon-Joystick"></span>
+                      Play
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="/me" class="${w6.url.selectedSite == 2 ? 'active' : null}">
+                      <span class="menu-icon withSIX-icon-Users-Group"></span>
+                      Connect
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" id="search-btn" click.delegate="w6.openSearch($event)">
+                      <span class="menu-icon withSIX-icon-Search"></span>
+                      Search
+                    </a>
+                  </li>
+
+                </ul>
+              </nav>
+
+              <div if.bind="w6.userInfo.id">
+                <!-- Notifications -->
+                <div class="notifications pull-right">
+                  <a href="/me">
+                    <span class="withSIX-icon-Settings"></span>
+                  </a>
+
+                  <a href="/me/messages">
+                    <span class="withSIX-icon-Chat-Message"></span>
+                  </a>
+
+                  <a href="/me/friends">
+                    <span class="withSIX-icon-Users-Friends"></span>
+                  </a>
+                </div>
+
+                <!-- SignedIn -->
+                <div class="signedin pull-right">
+
+                  <span class="welcome">
+
+                    <a href="/me/settings/premium" if.bind="w6.userInfo.isPremium">
+                      <span class="icon withSIX-icon-Badge-Sponsor premium" title="You are a premium user, congrats!"></span>
+                    </a>
+
+                    <a rel="nofollow" class="btn" id="btn-usermenu">
+                      <img src="${w6.userInfo.getAvatarUrl(48)}" alt="${w6.userInfo.displayName}" /> ${w6.userInfo.displayName}
+
+                      <span class="withSIX-icon-Arrow-Down-Dir"></span>
+                    </a>
+
+                  </span>
+
+                  <div id="usermenu" class="usermenu-signedin hidden">
+                    <div class="ctn">
+                      <compose view="components/usermenu.html"></compose>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--
+                      User is not logedin, Show User Menu
+                      -->
+              <div class="usermenu" if.bind="!w6.userInfo.id">
+                <compose view="components/usermenu.html"></compose>
+              </div>
+
+              <div class="header-buttons pull-right">
+                <a if.bind="!w6.isClient" href="${w6.url.main}/download" class="calltoaction clientdownload">
+                  <span class="icon withSIX-icon-Download"></span>
+                  Get the
+                  <strong>Client</strong>
+                </a>
+
+                <a href="/gopremium" class="calltoaction blue" if.bind="!w6.userInfo.isPremium">
+                  <span class="icon withSIX-icon-Badge-Sponsor"></span>
+                  Go
+                  <strong>Premium</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div id="header-add-place"></div>
+
+        <div class="container-fluid" if.bind="showSlogan">
+          <div id="slogan" class="slogan">
+            <h1>${w6.slogan}...</h1>
+            <p>${w6.subSlogan}</p>
+            <a href="${w6.url.main}/download" class="calltoaction maindownload">
+                    Install Play <strong>withSIX</strong>
+                    <em>Windows only, 40MB</em>
+                    <span class="iconbg">
+                            <em class="icon withSIX-icon-Download">&nbsp;</em>
+                        </span>
+
+                    <!-- Hover menu -->
+                    <span class="requirements">
+                      <span class="title">Requirements</span>
+                      Windows Vista/7/8
+                      <br />
+                      .NET 4.5 Framework
+                      <br />
+                      512 MB RAM
+                      <br />
+                      1 GHz Processor
+                      <br />
+                      50 MB HDD space
+                      <br />
+                      Internet connection
+                      <br />
+                  </span>
+                </a>
+          </div>
+        </div>
+
+        <!-- @RenderSection("header") -->
+      </div>
+    </header>
+
+    <section id="root-content-row" class="${w6.url.isRoot ? 'root' : null}">
+      <!-- ${w6.contentRowClasses()} -->
+      <!--<nav-bar router.bind="router"></nav-bar> -->
+
+      <div class="page-host">
+        <router-view></router-view>
+      </div>
+    </section>
+
+    <section id="bottom-breadcrumbs-row" class="container-fluid">
+      <div class="breadcrumbs">
+        <a href="${w6.url.main}/" class="withSIX-icon-Home">&nbsp;</a>
+
+        <span repeat.for="crumb of breadcrumbs">
+          <span class="icon-double-angle-right"></span>
+
+          <span if.bind="!crumb.path">${crumb.title}</span>
+          <a if.bind="crumb.path" href="${crumb.path}">${crumb.title}</a>
+        </span>
+      </div>
+
+      <div if.bind="w6.renderAds">
+        <br/>
+        <center>
+          <ad-links height="15" width="728" slot="${w6.url.site == 'play' ? w6.ads.slots.play.hz_large : w6.ads.slots.main.hz_large}"></ad-links>
+        </center>
+      </div>
+    </section>
+
+    <footer id="footer-row">
+      <span class="footer-icon"></span>
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-sm-3">
+            <a if.bind="!w6.chromeless" class="btn btn-legacy clientdownload" href="${w6.url.main}/download">
+              <span class="icon withSIX-icon-Download"></span>
+              Download the
+              <strong>Client</strong>
+            </a>
+            <p>
+              Copyright 2013-2015
+              <a href="http://www.sixnetworks.net/">SIXNetworks</a>
+              <br/>
+              <!-- <a href="${w6.url.main}/sitemap">Sitemap</a> | -->
+              <a href="${w6.url.main}/legal">Legal</a>
+            </p>
+          </div>
+
+          <div class="col-sm-2">
+            <h5>
+              <a href="${w6.url.main}/">
+                        withSIX
+                    </a>
+            </h5>
+            <ul>
+              <li>
+                <a href="${w6.url.main}/">Home</a>
+              </li>
+              <li>
+                <a href="${w6.url.main}/getting-started">Getting Started</a>
+              </li>
+              <li if.bind="!w6.userInfo.isPremium">
+                <a href="/gopremium">
+                  <span class="premium">
+                    <span class="icon withSIX-icon-Badge-Sponsor"></span> Go Premium</span>
+                </a>
+              </li>
+              <li>
+                <a href="${w6.url.main}/download" class="clientdownload">Download</a>
+              </li>
+              <li>
+                <a href="${w6.url.main}/blog">Our Blog</a>
+              </li>
+              <li>
+                <a href="${w6.url.main}/community">Community</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-sm-2">
+            <h5>
+              <a href="${w6.url.play}">
+                        play.withSIX
+                    </a>
+            </h5>
+            <ul>
+              <li>
+                <a href="${w6.url.play}/arma-2">ARMA-II</a>
+              </li>
+
+              <li>
+                <a href="${w6.url.play}/arma-3">ARMA-III</a>
+              </li>
+
+              <li>
+                <a href="${w6.url.play}/carrier-command">Carrier Command</a>
+              </li>
+
+              <li>
+                <a href="${w6.url.play}/iron-front">Iron Front</a>
+              </li>
+
+              <li>
+                <a href="${w6.url.play}/take-on-helicopters">Take on helicopters</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-sm-2">
+            <h5>
+              <a href="/me">connect.withSIX</a>
+            </h5>
+            <compose view="components/usermenu.html"></compose>
+          </div>
+
+          <div class="col-sm-2">
+            <h5>create.withSIX</h5>
+            <span>Coming soon</span>
+          </div>
+
+          <div class="col-sm-1">
+            <a href="#top" id="btn-scroll-to-top">
+              <span class="icon icon-chevron-up"></span>
+            </a>
+            <a href="https://twitter.com/SixNetworks" rel="external" target="_blank">
+              <span class="icon icon-twitter"></span>
+            </a>
+            <a href="https://www.facebook.com/withSIX" rel="external" target="_blank">
+              <span class="icon icon-facebook"></span>
+            </a>
+            <a href="https://plus.google.com/u/1/b/104785560298357015306/104785560298357015306" target="_blank">
+              <img src="http://icons.iconarchive.com/icons/martz90/circle/32/google-plus-icon.png" />
+            </a>
+            <a href="https://discord.gg/0bwZUsFgeVjtMgxa" rel="external" target="_blank">
+              <img src="https://lh3.googleusercontent.com/jgHA50UkErljsRAu97XzZYrRcg3eAE0qTHdpxqCWfcd2dn9x1eDkblhVoXVWfxTTJTsF=w32" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <require from='components/client-bar'></require>
+    <client-bar if.bind="w6.enableBasket"></client-bar>
+    <script>${activateNg()}</script>
+  </div>
+</template>

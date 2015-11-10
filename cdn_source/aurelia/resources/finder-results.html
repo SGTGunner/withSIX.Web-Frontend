@@ -1,0 +1,20 @@
+<template show.bind="model.searchItem">
+  <div class="finder-results">
+    <button class="pull-right naked-button" click.delegate="close()">
+      <span class="icon withSIX-icon-Window-Close"></span>
+    </button>
+    <div if.bind="showTotalResults">${model.results.length} results</div>
+    <div class="clearfix"></div>
+    <div class="results">
+      <ul>
+        <li class="result" repeat.for="c of model.results">
+          <button class="pull-right naked-button execute" click.delegate="$parent.execute(c)" if.bind="$parent.model.execute" show.bind="!c.selected">
+            <span class="icon ${$parent.icon}" if.bind="$parent.icon"></span>
+            <span class.bind="$parent.textCls" if.bind="$parent.text">${$parent.text}</span>
+          </button>
+          <div class="input-container ${c.selected ? 'included' : ''}" click.delegate="$parent.select(c)">${$parent.model.display(c)}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>

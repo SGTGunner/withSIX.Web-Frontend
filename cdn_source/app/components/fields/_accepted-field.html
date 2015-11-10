@@ -1,0 +1,13 @@
+﻿<div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid() }">
+    <label class="normal control-label"
+           for="{{getFieldName()}}">
+        <input type="checkbox"
+               name="{{getFieldName()}}" id="{{getFieldName()}}"
+               ng-model="model.accepted"
+               required
+               ng-blur="blurred()"/>
+        <span ng-transclude></span>
+    </label>
+    <p ng-show="getField().$invalid && (form.sxFormSubmitted || !getField().$pristine)"
+       class="help-block">Please confirm.</p>
+</div>

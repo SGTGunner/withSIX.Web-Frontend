@@ -1,0 +1,360 @@
+.signin {
+  font-size: 12px;
+
+  h2 {
+    margin: 0;
+    margin-bottom: 32px;
+    margin-top: 16px;
+    font-size: 1.5em;
+  }
+
+  h1 {
+    font-weight: 300;
+    font-size: 32px;
+  }
+
+  h4 {
+    font-weight: 300;
+    font-size: 16px;
+  }
+
+  header {
+    margin-bottom: 8px;
+    text-align: center;
+
+    h1, h2, h3 {
+      margin: 0;
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      color: $colorSixBlue;
+    }
+  }
+
+  input {
+    background: $colorSixSoftGray;
+    border-color: transparent;
+  }
+
+  button[type=submit] {
+    font-size: 16px;
+  }
+
+  .forgot-username {
+    position: absolute;
+    margin-top: 6px;
+    font-size: 16px;
+    right: 52px;
+
+    &:hover {
+      span:before {
+        content: "Forgot your username";
+      }
+    }
+  }
+
+  .forgot-password {
+    position: absolute;
+    margin-top: 6px;
+    font-size: 16px;
+    right: 52px;
+
+    &:hover {
+      span:before {
+        content: "Forgot your password";
+      }
+    }
+  }
+
+  sx-password-field {
+    width: 100%;
+  }
+
+  .externalProviders {
+    ul {
+      text-align: center;
+      max-width: 4 * (48px + 10px);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  button.socialSignIn, a.socialSignIn {
+    width: 48px;
+    border: none;
+    text-align: left;
+
+    @include height-lh(48px);
+
+    position: relative;
+    text-decoration: none;
+    background: none;
+    color: $color3;
+
+    @include basictransition;
+
+    padding: 0;
+
+    .icon {
+      background-image: url(../img/connect.withSIX/SignIn/socialIcons.png?v=#{$cacheBuster});
+      display: block;
+      height: 40px;
+      top: 4px;
+      left: 4px;
+    }
+
+    &:hover {
+      @include basictransition;
+    }
+  }
+
+  button.socialSignIn-facebook, a.socialSignIn.Facebook {
+    .icon {
+      width: 40px;
+      background-position: right -5px;
+    }
+
+    &:hover {
+      background-color: #99ccff;
+      color: $color5;
+    }
+  }
+
+  button.socialSignIn-twitter, a.socialSignIn.Twitter {
+    .icon {
+      width: 40px;
+      background-position: right -85px;
+    }
+
+    &:hover {
+      background-color: #b4d7d8;
+      color: $color5;
+    }
+  }
+
+  button.socialSignIn-google, a.socialSignIn.Google {
+    .icon {
+      width: 40px;
+      background-position: right -165px;
+    }
+
+    &:hover {
+      background-color: #bbb;
+      color: $color5;
+    }
+  }
+
+  button.socialSignIn-steam, a.socialSignIn.Steam {
+    .icon {
+      width: 40px;
+      background-position: right -245px;
+    }
+
+    &:hover {
+      background-color: #99cc33;
+      color: $color5;
+    }
+  }
+
+  button.socialSignIn-microsoft, a.socialSignIn.Microsoft {
+    .icon {
+      width: 40px;
+      background-position: right -325px;
+    }
+
+    &:hover {
+      background-color: $colorSixSoftRed;
+      color: $color5;
+    }
+  }
+
+  button.socialSignIn-github, a.socialSignIn.GitHub {
+    .icon {
+      width: 40px;
+      background-position: right -405px;
+    }
+
+    &:hover {
+      background-color: #bbb;
+      color: $color5;
+    }
+  }
+
+  button.socialSignIn-reddit, a.socialSignIn.Reddit {
+    .icon {
+      width: 40px;
+      background-position: right -485px;
+    }
+
+    &:hover {
+      background-color: #bbb;
+      color: $color5;
+    }
+  }
+
+  button.socialSignIn-twitch, a.socialSignIn.Twitch {
+    .icon {
+      width: 40px;
+      background-position: right -565px;
+    }
+
+    &:hover {
+      background-color: #bbb;
+      color: $color5;
+    }
+  }
+
+  button.socialSignIn-battlenet, a.socialSignIn.battlenet {
+    .icon {
+      width: 40px;
+      background-position: right -645px;
+    }
+
+    &:hover {
+      background-color: #bbb;
+      color: $color5;
+    }
+  }
+
+  button.socialSignIn-OpenIdConnect, a.socialSignIn.OpenIdConnect {
+    .icon {
+      width: 40px;
+      background-image: url(../img/logo.png?v=#{$cacheBuster});
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  button.socialSignIn-more-options {
+    text-align: center;
+    padding-left: 0px;
+    margin-top: 32px;
+
+    @include height-lh(40px);
+
+    &:hover {
+      background-color: $color4;
+      color: $color1;
+    }
+  }
+
+  .small-btn {
+    background-color: $color1;
+    text-decoration: none;
+    color: $color3;
+
+    @include height-lh(32px);
+
+    font-size: 0.9em;
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: block;
+
+    @include basictransition;
+
+    &:hover {
+      color: $color5;
+      background-color: $color2;
+    }
+  }
+
+  .newaccount {
+    padding-left: 110px;
+
+    h4 {
+      color: $color4;
+      margin: 0;
+      margin-top: 16px;
+    }
+  }
+
+  a.forgot {
+    text-decoration: none;
+    color: $color3;
+    font-size: 0.9em;
+
+    &:hover {
+      text-decoration: underline;
+      color: $color4;
+    }
+  }
+
+  .tile a.btn:hover {
+    background-color: $calltoaction;
+    color: #fff;
+  }
+}
+
+#login {
+  header {
+    margin-bottom: 24px;
+  }
+}
+
+.signin-modal {
+  .modal-dialog {
+    width: 400px;
+
+    .tile {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+
+  button.forgot-password {
+    right: 36px;
+  }
+}
+
+#chromeless-login {
+  margin: 20px;
+  font-size: 0.9em;
+
+  .col-sm-6 {
+    float: none;
+    margin-right: 0;
+  }
+
+  .register {
+    display: none;
+  }
+
+  .socialSignIn {
+    width: 30%;
+    margin-right: 3%;
+    float: left;
+    padding-left: 0;
+    padding-right: 0;
+
+    .txt {
+      display: none;
+    }
+
+    .icon {
+      left: 50%;
+      margin-left: -20px;
+    }
+  }
+
+  .socialSignIn-steam .icon {
+    margin-left: -34px;
+  }
+
+  p {
+    clear: both;
+  }
+
+  .forgot-password {
+    display: none;
+  }
+
+  input {
+    position: static;
+  }
+
+  form fieldset p button[type="submit"] {
+    margin-left: 0;
+  }
+}

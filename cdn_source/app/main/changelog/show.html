@@ -1,0 +1,36 @@
+﻿<div id="changelog" class="container-fluid">
+    <h1>Changelog</h1>
+    <div class="row">
+        <div class="col-sm-8">
+            <div ng-bind-html="changelog | pagedown"
+                 class="entries"></div>
+
+            <button type="button"
+                    ng-click="toggleOlderChangelogs()">
+                {{changelogOldShown ? 'Hide' : 'Show'}} older Changelogs
+            </button>
+
+            <div ng-bind-html="changelogOld | pagedown"
+                 ng-if="changelogOldShown"
+                 class="entries"></div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="add-container-out" ng-if="w6.renderAds">
+              <div class="add-container">
+                  <div class="add add-changelog1" ng-dfp-ad="angular-ad1"></div>
+              </div>
+          </div>
+
+          <br />
+          <br />
+          <br />
+
+          <div class="add-container-out" ng-if="w6.renderAds">
+              <div class="add-container">
+                  <div class="add add-changelog2" ng-dfp-ad="angular-ad2"></div>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>

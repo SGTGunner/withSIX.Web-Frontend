@@ -1,0 +1,82 @@
+﻿<h2>Your personal settings</h2>
+
+<form class="form-fieldset-on"
+      sx-validate-on-submit="save(personalSettingsForm)"
+      sx-validate-on-blur
+      name="personalSettingsForm">
+
+    <fieldset ng-disabled="processing">
+        <legend>Displayname</legend>
+
+        <sx-display-name-field model="model.displayName"></sx-display-name-field>
+    </fieldset>
+
+    <fieldset ng-disabled="processing">
+        <legend>Name</legend>
+
+        <p>
+            <label class="long">
+                <input type="checkbox"
+                       ng-model="model.showFirstName">
+                </input>
+                &nbsp;Show first name publicly
+            </label>
+        </p>
+
+        <label for="first-name">First name:</label>
+        <p>
+            <input class="form-control"
+                   type="text" name="first-name"
+                   id="first-name"
+                   ng-model="model.firstName"/>
+        </p>
+
+        <p>
+            <label class="long">
+                <input type="checkbox"
+                       ng-model="model.showLastName">
+                </input>
+                &nbsp;Show last name publicly
+            </label>
+        </p>
+
+        <label for="last-name">Last name:</label>
+        <p>
+            <input class="form-control"
+                   type="text" name="last-name"
+                   id="last-name"
+                   ng-model="model.lastName"/>
+        </p>
+    </fieldset>
+
+
+    <fieldset ng-disabled="processing">
+        <legend>Birthday</legend>
+        <p>
+            <label class="long">
+                <input type="checkbox" ng-model="model.showBirthday"/>
+                &nbsp;Show birthday publicly
+            </label>
+        </p>
+
+        <sx-birthday-field model="model.birthday"></sx-birthday-field>
+    </fieldset>
+
+    <button type="submit"
+            class="btn btn-success"
+            ng-disabled="!personalSettingsForm.$dirty || processing"
+            http-progress="saveMeSettingsPersonal"
+            http-processing="processing"
+            http-pending="Processing..."
+            http-success="Succeeded!"
+            http-error="Failed...">
+        Save
+    </button>
+
+    <div class="form-response bg-danger" ng-if="response && !response.success">
+        {{response.message}}<br/>
+        <div ng-repeat="(k, v) in response.errors">
+            <span ng-repeat="msg in v">{{msg}}</span><br/>
+        </div>
+    </div>
+</form>

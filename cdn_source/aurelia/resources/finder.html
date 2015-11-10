@@ -1,0 +1,11 @@
+<template>
+  <span class="pull-right" if.bind="showTotalResults">${model.results.length} results</span>
+  <button class="pull-right naked-button execute" show.bind="shouldShowButton" click.delegate="model.execute()" disabled.bind="!model.searchItem">
+    <span class="icon ${icon}" if.bind="icon"></span>
+    <span class.bind="textCls" if.bind="text">${text}</span>
+  </button>
+  <div class="input-container">
+    <input type="text" class="finder" placeholder.bind="placeholder" value.bind="model.searchItem"></input>
+  </div>
+  <div class="clearfix"></div>
+</template>

@@ -1,0 +1,155 @@
+#footer-row {
+  margin-top: 32px;
+  padding-top: 64px;
+  padding-bottom: 32px;
+  background-color: $color4;
+  overflow: visible;
+  position: relative;
+  font-size: 0.82em;
+
+  span.premium {
+    color: gold;
+  }
+
+  .footer-icon {
+    background-image: url(../img/withSIX/footer_icon.jpg?v=#{$cacheBuster});
+
+    @include size(66px, 58px);
+
+    display: block;
+    margin-left: -33px;
+    left: 50%;
+    top: -30px;
+    position: absolute;
+  }
+
+  .col-sm-3 {
+    p {
+      text-align: center;
+      font-size: 0.9em;
+      color: #676868;
+
+      a, button {
+        color: #676868;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .btn {
+      @include height-lh(56px);
+
+      display: block;
+      background: rgb(75, 75, 75);
+      background: rgba(118, 119, 119, 0.24);
+      color: $color2;
+      text-decoration: none;
+      padding-left: 45px;
+      position: relative;
+      font-size: 16px;
+
+      @include basictransition;
+
+      &:hover {
+        background: rgb(88, 88, 88);
+        background: rgba(118, 119, 119, 0.48);
+
+        @include basictransition;
+      }
+
+      .icon {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        line-height: 56px;
+        left: 20px;
+      }
+    }
+  }
+
+  .col-sm-2 {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      padding-top: 8px;
+      padding-bottom: 32px;
+    }
+
+    a, button {
+      color: $color2;
+      text-decoration: none;
+
+      @include basictransition;
+
+      text-transform: capitalize;
+
+      &:hover {
+        color: $color0;
+        text-decoration: underline;
+
+        @include basictransition;
+      }
+    }
+
+    button {
+      padding: 0;
+      margin: 0;
+      background: transparent;
+      color: $color2;
+      height: auto;
+      line-height: 24px;
+      text-transform: capitalize;
+
+      &:hover {
+        text-decoration: underline;
+        color: $color1;
+        background: transparent;
+      }
+    }
+  }
+
+  .col-sm-1 a {
+    display: block;
+    color: $color3;
+    text-decoration: none;
+    font-size: 14px;
+
+    @include height-lh(40px);
+
+    text-align: center;
+    margin-bottom: 20px;
+    max-width: 40px;
+    background: rgb(75, 75, 75);
+    background: rgba(118, 119, 119, 0.24);
+
+    @include basictransition;
+
+    &:hover {
+      background: rgb(88, 88, 88);
+      background: rgba(118, 119, 119, 0.48);
+
+      @include basictransition;
+
+      color: $color5;
+    }
+  }
+
+  h5,
+  h5 a {
+    margin: 0;
+    padding: 0;
+    color: $color3;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+    border-bottom: 1px solid $color3;
+  }
+
+  .col-sm-2 h5 a {
+    border: 0px;
+    text-transform: none;
+  }
+}

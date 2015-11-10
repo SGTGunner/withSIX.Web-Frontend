@@ -1,0 +1,253 @@
+﻿<div class="container-fluid">
+<div class="row">
+<div class="hidden-sm col-md-1 col-xl-2">&nbsp;</div>
+<div class="col-sm-12 col-md-10 col-xl-8">
+<h1>
+    <b>Subscribe now</b>
+</h1>
+
+<div class="login">
+    <h2>Account info</h2>
+
+    <div ng-if="w6.userInfo.id">
+        <div ng-if="model.emailConfirmed">
+            <div class="avatar">
+                <img ng-src="{{::url.calculateAvatarUrl(w6.userInfo)}}"/>
+                &nbsp;
+                {{model.displayName}}
+                &nbsp;
+                <span class="f32">
+                    <span class="flag {{ model.countryCode.toLowerCase() }}"
+                          title="{{model.countryCode}}"></span>
+                </span>
+                &nbsp;
+                <form ng-submit="logout()">
+                    <i>This isn't me</i>
+                    <button type="submit" class="anchor">
+                        <span>(logout)</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="info clearfix">
+                <div class="field email">
+                    <i>{{model.email}}</i>
+                </div>
+            </div>
+        </div>
+        <div ng-if="!model.emailConfirmed">
+            Please <a ng-href="{{url.connectSsl + '/me/settings/credentials'}}"> first confirm your email address</a>.
+        </div>
+    </div>
+
+    <div class="logins" ng-if="!w6.userInfo.id">
+        <button class="btn"
+                type="button"
+                ng-click="openLoginDialog()">
+            Login&nbsp;
+            <img ng-src="{{::url.cdn}}/img/connect.withSIX/SignIn/64-six.png"/>
+        </button>
+
+        <!-- <a ng-href="{{::url.connect+'/login/facebook?ReturnUrl=' + location.absUrl()}}"
+                class="btn">
+            <img ng-src="{{::url.cdn}}/img/connect.withSIX/SignIn/64-fb.png"/>
+        </a>
+        <a ng-href="{{::url.connect+'/login/google?ReturnUrl=' + location.absUrl()}}"
+           class="btn">
+            <img ng-src="{{::url.cdn}}/img/connect.withSIX/SignIn/64-ggl.png"/>
+        </a>
+        <a ng-href="{{::url.connect+'/login/steam?ReturnUrl=' + location.absUrl()}}"
+           class="btn">
+            <img ng-src="{{::url.cdn}}/img/connect.withSIX/SignIn/64-stm.png"/>
+        </a>-->
+
+        <form class="form-inline"
+              name="premiumRegisterForm"
+              ng-submit="register()">
+            <div class="input-group">
+                <input type="email" placeholder="or just enter your email address..."
+                       ng-model="model.email"
+                       class="form-control"/>
+                <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit"
+                                        ng-disabled="premiumRegisterForm.$invalid"
+                                        ng-show="model.email">
+                                    Register
+                                </button>
+                            </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row subscribe">
+    <div ng-if="model.existingOrder && !model.overwrite"
+         class="tile">
+        It appears you already have <a ng-href="{{::url.main}}/orders/{{model.existingOrder.id}}/checkout">an open order</a>,
+        please complete it or <button class="anchor" ng-click="switchOverwrite()">click here</button> to create a new one.
+    </div>
+
+    <div ng-if="w6.userInfo.isPremium" class="tile">
+        You are already a premium user. Find your <a ng-href="{{::url.connectSsl}}/me/settings/premium">Premium settings</a> for more info.
+    </div>
+
+    <form name="premiumForm"
+          ng-if="(!model.existingOrder || model.overwrite)"
+          ng-submit="completeOrder()">
+
+        <fieldset ng-disabled="model.processing">
+            <div class="col-sm-6 col-lg-7">
+                <div class="info">
+                    <div class="products">
+                        <h3>Duration of the subscription</h3>
+                        <div ng-repeat="product in model.products">
+                            <label>
+                                <input name="product"
+                                       id="product"
+                                       type="radio"
+                                       ng-model="model.selectedProduct"
+                                       ng-value="product"
+                                       value="product.name"/>
+                                {{product.name}}
+                                <span ng-if="product.unitAmount != null">
+                                                ({{getPerMonth(product) | accounting:'EUR'}} / month)
+                                                <span class="tiny">
+                                                    <i>
+                                                        {{product.pricing.total | accounting:'EUR'}}
+                                                        {{getBilled(product)}}
+                                                    </i>
+                                                </span>
+                                            </span>
+                                <span ng-if="product.unitAmount == null">{{product.pricing.total | accounting:'EUR'}}</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <br/>
+
+                    <div class="renewal-type" ng-if="model.selectedProduct.unitAmount != null">
+                        <h3>Renewal Type</h3>
+                        <div>
+                            <label>
+                                <input name="autoRenewOff"
+                                       id="autoRenewOff"
+                                       type="radio"
+                                       ng-model="model.autoRenew"
+                                       ng-value="false"/>
+                                Manual One time payment
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input name="autoRenewOn"
+                                       id="autoRenewOn"
+                                       type="radio"
+                                       ng-model="model.autoRenew"
+                                       ng-value="true"/>
+                                Auto Recurring payment
+                            </label>
+                        </div>
+
+                        <div class="tile"
+                             ng-if="model.countryCode == 'DE' && (model.autoRenew && model.selectedProduct.unitAmount != null)">
+                            <p>
+                                <i>
+                                    It looks like you might be located in Germany,
+                                    please note that recurring payments are currently not supported by PayPal in <b>Germany</b>.<br/>
+                                    We are looking into alternatives. Apologies for the inconvenience!
+                                </i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-5">
+                <div class="tile">
+                    <div class="cntnr">
+                        <header>
+                            <h3>Review</h3>
+                        </header>
+
+                        <section>
+                            <table>
+                                <tr class="items">
+                                    <td>
+                                        <b>Subscription {{model.selectedProduct.name}}</b>
+                                    </td>
+                                    <td class="">1x {{model.selectedProduct.pricing.price | accounting:'EUR'}}</td>
+                                </tr>
+
+                                <tr ng-if="model.selectedProduct.unitAmount != null">
+                                    <td>
+                                        <i>{{model.autoRenew ? 'recurring payment' : 'subscription'}}</i>
+                                    </td>
+                                    <td>
+                                        <i>{{model.autoRenew ? 'Renews' : 'Ends'}} {{getRenewal().calendar()}}</i>
+                                    </td>
+                                </tr>
+
+                                <tr class="subtotal">
+                                    <td>Subtotal</td>
+                                    <td>{{model.selectedProduct.pricing.price | accounting:'EUR'}}<br/></td>
+                                </tr>
+
+                                <tr class="vat"
+                                    title="The VAT is calculated depending on your country of origin. Outside the EU: 19%, within the EU: Different per country">
+                                    <td>VAT ({{model.countryCode}}) {{model.selectedProduct.taxPart.toFixed(0)}}%</td> <!-- Should be with 2 accuracy instead? -->
+                                    <td>{{model.selectedProduct.pricing.tax | accounting:'EUR'}}</td>
+                                </tr>
+
+                                <tr class="fee"
+                                    ng-if="model.fee > 0.0">
+                                    <td>Fee (Paypal)</td>
+                                    <td>{{model.fee | accounting:'EUR'}}</td>
+                                </tr>
+
+                                <tr class="total">
+                                    <td>TOTAL</td>
+                                    <td>{{model.total | accounting:'EUR'}}</td>
+                                </tr>
+                            </table>
+
+                            <div>
+                                <label>
+                                    <input type="checkbox"
+                                           ng-model="model.termsAccepted"/>
+                                    I agree with the <button class="anchor"
+                                                             type="button"
+                                                             ng-click="openPremiumTermsDialog()">
+                                        terms of service for premium
+                                    </button>
+                                    and <button class="anchor"
+                                                type="button"
+                                                ng-click="openTermsDialog()">
+                                        privacy policy
+                                    </button> by purchasing this subscription.
+                                </label>
+                            </div>
+                        </section>
+                    </div>
+                    <footer>
+                        <button type="submit"
+                                ng-disabled="!model.termsAccepted || model.processing || !w6.userInfo.id || !model.emailConfirmed"
+                                http-single-use="t"
+                                http-processing="model.processing"
+                                http-progress="createPremiumOrder"
+                                http-pending="Processing..."
+                                http-success="Redirecting to PayPal..."
+                                http-error="Failed...">
+                            Pay now with
+                            <img ng-src="{{::url.cdn}}/img/withSIX/paypallogo.png"/>
+                        </button>
+                    </footer>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+</div>
+<div class="hidden-sm col-md-1 col-xl-2">&nbsp;</div>
+</div>
+</div>

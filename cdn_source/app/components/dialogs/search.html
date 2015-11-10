@@ -1,0 +1,89 @@
+﻿<div class="container">
+    <div class="modal-header">
+
+        <span class="close">
+            <button type="button" class="close" aria-hidden="true" data-dismiss="modal"
+                    ng-click="$close()">close <span class="icon withSIX-icon-Square-X"></span></button>
+        </span>
+
+        <h1>Search {{title}} <span id="search-loader" style="display: none;"><i class="icon-spin withSIX-icon-Synq"></i></span></h1>
+    </div>
+
+    <div class="modal-body">
+
+        <form name="searchForm" ng-submit="search()">
+            <fieldset>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="input-group" ng-class="{ 'has-error' : searchForm.search.$invalid && !searchForm.search.$pristine }">
+                            <input type="text" name="search" id="search"
+                                   class="form-control" placeholder="Search text..."
+                                   ng-model="model.q"
+                                   ng-minlength="3" ng-maxlength="100"/>
+                            <sx-validation-messages field="searchForm.search" label="'Search'"></sx-validation-messages>
+
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary"
+                                        type="submit"
+                                        http-progress="search"
+                                        http-processing="processing"
+                                        http-pending="Searching..."
+                                        http-error="Failed...">
+                                    <span class="withSIX-icon-Search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <select multiple
+                                    ng-multiple="true"
+                                    ng-model="model.types"
+                                    ng-options="c for c in contentTypes"
+                                    class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="search-results" ng-if="results.length > 0">
+                    <h2>Results for {{model.resultQ}}</h2>
+
+                    <div class="row">
+
+                        <div class="col-sm-4 search-results" ng-repeat="result in results"
+                             ng-init="type = contentType[result.key.itemType] + 's'">
+                            <div class="pull-right tiny">{{result.value.length}} results</div>
+                            <div class="pull-left">{{type}}</div>
+                            <div class="clearfix"></div>
+
+                            <hr/>
+
+                            <span ng-if="result.value.length == 0">None</span>
+                            <ul ng-if="result.value.length > 0">
+                                <li ng-repeat="v in result.value">
+                                    <a ng-click="$close()" ng-href="{{::url.play}}/{{v.gameSlug}}/{{type.toLowerCase()}}/{{v.slug}}" title="{{v.name}} by {{v.author}}">
+                                        <b>{{v.name}}</b>
+                                    </a>
+                                    <a ng-click="$close()" ng-href="{{::url.play}}/{{v.gameSlug}}">for {{v.game}}</a>
+                                </li>
+                            </ul>
+
+                            <hr/>
+
+                            <div>
+                                <button class="anchor"
+                                        type="button"
+                                        ng-click="searchOneType(result.key.itemType)">
+                                    <span class="withSIX-icon-Arrow-Right-Big pull-left"></span>
+                                    <span class="pull-right">view all results in <b>{{type}}</b></span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿<div class="controls">
+    <form class="pull-right sort-bar"
+          ng-submit="reverseSort()">
+        <fieldset ng-disabled="!first">
+            <span class="page-info">Displaying <b>{{paging.startItem}} - {{paging.endItem}}</b> of {{paging.totalServerItems}} total</span>
+
+            <select ng-model="sortOptions.fields[0]"
+                    ng-options="s.field as 'Sort by ' + s.name for s in sort"></select>
+            <button type="submit"
+                    title="switch to {{sortOptions.directions[0] == 'asc' ? 'descending' : 'ascending' }}"
+                    class="btn direction-switch">
+                <span class="withSIX-icon-Arrow-Up-Dir"
+                      ng-if="sortOptions.directions[0] == 'asc'"></span>
+                <span class="withSIX-icon-Arrow-Down-Dir"
+                      ng-if="sortOptions.directions[0] == 'desc'"></span>
+            </button>
+        </fieldset>
+    </form>
+    <div class="clearfix"></div>
+</div>
+
+<div class="imageGridStyle row"
+     infinite-scroll="addMoreItems()"
+     infinite-scroll-distance="1">
+
+    <div ng-if="w6.renderAds && $index == ads[0]"
+         ng-class="views.grid.itemClass" class="collection repeated-item" data-ng-dfp-ad-container>
+        <div class="add-container-out">
+            <div class="add-container">
+                <div class="add grid-add" ng-dfp-ad="angular-ad1"></div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="w6.renderAds && $index == ads[1]"
+         ng-class="views.grid.itemClass" class="collection repeated-item" data-ng-dfp-ad-container>
+        <div class="add-container-out">
+            <div class="add-container">
+                <div class="add grid-add" ng-dfp-ad="angular-ad2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-repeat="item in items"
+         class="collection repeated-item"
+         ng-class="gridItemClass"
+         ng-mouseenter="grid.overlays[$index] = true"
+         ng-mouseleave="grid.overlays[$index] = false">
+        <div ng-include="gridItemTemplate"></div>
+    </div>
+</div>
+
+<div>
+    <button class="anchor" ng-click="addMoreItems()"
+            ng-show="!loading && grid.curPage < totalPages">Load more</button>
+    <span ng-show="loading">Loading...</span>
+    <span us-spinner="{top: 25, left: 0}"
+          spinner-key="fetch-spinner"
+          style="float: right; position: relative;"></span>
+</div>

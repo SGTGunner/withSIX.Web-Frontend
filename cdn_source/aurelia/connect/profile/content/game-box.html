@@ -1,0 +1,16 @@
+<template>
+  <div class="inner content-stateable content-state-uptodate">
+      <div class="img">
+          <a href="/me/library/${model.slug}">
+              <span class="imageholder" back-img.bind="image"></span>
+          </a>
+      </div>
+      <div class="info content-state-c-bgd-border">
+      </div>
+
+      <div class="bottom-bar details-overlay-footer row content-state-c-bgd">
+        <action-bar items.bind="bottomActions"></action-bar>
+        <dropdown-menu class="pull-right" if.bind="bottomMenuActions && bottomMenuActions.length > 0" items.bind="bottomMenuActions"></dropdown-menu>
+      </div>
+  </div>
+</template>

@@ -1,0 +1,75 @@
+﻿<div class="modal-header" style="padding-bottom: 0">
+    <h1 style="margin-bottom: 1px">
+        <span style="color: red">(BETA)</span> Add <strong style="text-transform: uppercase">{{gameName}}</strong> Mod
+    </h1>
+    <span style="font-style: italic;">{{quote}}</span>
+</div>
+
+<div class="modal-body" style="padding-top: 0">
+    <div class="container-fluid"
+         style="padding-left: 0; padding-right: 0">
+        <div class="row">
+            <div class="col-md-6" style="margin-top: 15px">
+                <div style="background-color: lightgray; padding-top: 12px">
+                    <div style="margin: 0 12px 12px 12px">
+                        <strong style="font-size: x-large">AUTHORS</strong>
+                        <p>
+                            Here to add your addon or mod to withSIX? Eternal glory is just one click away!<br/><br/>
+                        </p>
+                    </div>
+                    <button type="button"
+                            ng-click="ok_author()"
+                            style="width: 100%"
+                            ng-if="w6.userInfo.hasPermission('mods', 'create')"
+                            class="btn btn-primary">
+                        Add your content
+                    </button>
+                    <button type="button"
+                            ng-click="openLoginDialog($event)"
+                            style="width: 100%"
+                            ng-if="!w6.userInfo.id"
+                            class="btn btn-primary">
+                        Login to Add Content
+                    </button>
+                    <button type="button"
+                            style="width: 100%"
+                            ng-if="w6.userInfo.id && !w6.userInfo.hasPermission('mods', 'create')"
+                            disabled=""
+                            class="btn btn-primary">
+                        Not Authorized
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6" style="margin-top: 15px">
+                <div style="background-color: lightgray; padding-top: 12px">
+                    <div style="margin: 0 12px 12px 12px">
+                        <strong style="font-size: x-large">REPORTERS</strong>
+                        <p>
+                            Here to share a new awesome mod or an update you found? Help us keep our network up-to-date!
+                        </p>
+                    </div>
+                    <button type="button" ng-if="w6.userInfo.hasPermission('mods', 'create_report')"
+                            ng-click="ok_user()"
+                            style="width: 100%"
+                            class="btn btn-primary">
+                        Report new content
+                    </button>
+                    <a href="https://community.withsix.com/category/4/comments-feedback" ng-if="!w6.userInfo.hasPermission('mods', 'create_report')"
+                       target="blank"
+                       style="width: 100%"
+                       class="btn btn-primary">
+                        Report new content
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button"
+            ng-click="cancel()"
+            class="btn btn-cancel">
+        Cancel
+    </button>
+</div>

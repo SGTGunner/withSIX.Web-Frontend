@@ -1,0 +1,170 @@
+.download-start {
+  .tile {
+    a.btn {
+      float: none;
+      display: inline-block;
+      margin-right: 12px;
+    }
+  }
+}
+
+.download {
+  p.problems {
+    font-size: 0.9em;
+    padding-bottom: 0px;
+  }
+
+  h1.pagetitle {
+    margin-bottom: 12px;
+  }
+
+  .add-container {
+    padding-bottom: 16px;
+  }
+
+  .right-pane {
+    h2 {
+      margin-top: 0;
+    }
+
+    .buttons {
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      display: inline-block;
+      width: 50%;
+    }
+  }
+
+  .donations {
+    .btn-primary {
+      background-color: #146bff;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .buttons {
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      display: inline-block;
+      width: 50%;
+    }
+  }
+
+  .tile {}
+
+  .calltoaction.maindownload {
+    background-color: #146bff;
+
+    @include center-block;
+
+    @include size(358px, 80px);
+
+    padding-right: 32px;
+    padding-left: 96px;
+
+    //margin-top: 54px;
+    color: $color0;
+    position: relative;
+    text-align: left;
+    font-size: 22px;
+    padding-top: 16px;
+    line-height: 26px;
+    text-decoration: none;
+    overflow: hidden;
+
+    em {
+      display: block;
+      font-size: 15px;
+      font-style: normal;
+      opacity: 0.5;
+      background-repeat: no-repeat;
+      background-position: 0 center;
+      background-image: url(../img/withSIX/windowslogo.png?v=#{$cacheBuster});
+      padding-left: 24px;
+    }
+
+    &:hover {
+      overflow: visible;
+
+      em {
+        opacity: 0.8;
+      }
+
+      .iconbg .icon {
+        opacity: 1;
+      }
+
+      span.requirements {
+        opacity: 1;
+        top: 100px;
+
+        /*@include basictransition; */
+      }
+    }
+
+    &:active {
+      padding-top: 18px;
+      height: 62px;
+    }
+
+    .iconbg {
+      //background-image: url(../img/withSIX/hexacon.png?v=#{$cacheBuster});
+      @include size-lh(57px, 49px);
+
+      display: block;
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      text-align: center;
+
+      em.icon {
+        font-size: 48px;
+
+        //color: $calltoaction;
+        padding-left: 0px;
+        background-image: none;
+        opacity: 0.8;
+        line-height: 49px;
+      }
+    }
+
+    span.requirements {
+      background-color: $color3;
+      position: absolute;
+      top: 100px;
+      width: 220px;
+      left: 50%;
+      margin-left: -126px;
+      color: $color1;
+      padding: 16px;
+      display: block;
+      font-size: 14px;
+      opacity: 0;
+      z-index: 100;
+
+      /*@include basictransition; */
+      &:after {
+        content: "";
+        position: absolute;
+
+        @include square(0);
+
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent transparent $color3 transparent;
+        top: -20px;
+        left: 50%;
+        margin-left: -10px;
+      }
+
+      span.title {
+        font-weight: $font-weight-bold;
+        display: block;
+      }
+    }
+  }
+}

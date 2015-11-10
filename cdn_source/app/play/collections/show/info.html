@@ -1,0 +1,86 @@
+<sx-info-page>
+    <div name="main">
+        <div class="tile">
+            <section>
+
+                <article>
+                    <div class="box">
+                        <h3>
+                            <span id="collectionDescription">Description</span></h3>
+
+                        <div class="editable-full">
+                            <span ng-if="editConfig.isEdited('descriptionFull')" class="withSIX-icon-Alert pull-right" style="color: red; font-size: 20px;"></span>
+                            <div editable-html="model.descriptionFull" e-form="descriptionEditor"
+                                 can-edit="editConfig.isEditing" blur-saves buttons="no"
+                                 class="edit-border-blue edit-field-large contentrender"
+                                 sx-compile="model.descriptionFull"
+                                 blur-elem="ignore" style="min-height: 50px"></div>
+                        </div>
+
+                        <br/><br/>
+
+                        <div ng-if="editConfig.isEditing" class="editable-full">
+                            <h3>Short description</h3>
+                            <span ng-if="editConfig.isEdited('description')" class="withSIX-icon-Alert pull-right" style="color: red; font-size: 20px;"></span>
+                            <div class="edit-border-blue edit-field-med contentrender"
+                                 sx-editable-textarea="model.description"
+                                 e-rows="5" e-cols="40"
+                                 buttons="no" blur-saves can-edit="editConfig.isEditing">{{model.description||'No short description'}}</div>
+                        </div>
+                    </div>
+
+                    <div ng-include="'/cdn_source/app/components/ads/play-hz-medium.html'"></div>
+
+                    <div>
+                        <sx-comments ng-if="model.comments"
+                                     comments="model.comments"
+                                     can-manage="editConfig.canManage() || editConfig.canEdit()"
+                                     add-comment="addComment(comment)"
+                                     delete-comment="deleteComment(comment)"
+                                     save-comment="saveComment(comment)"
+                                     report-comment="reportComment(comment)"
+                                     like-comment="likeComment(comment)"
+                                     unlike-comment="unlikeComment(comment)"
+                                     like-states="commentLikeStates">
+                            <div name="comments-info">
+                                <br/><br/>
+                            </div>
+                        </sx-comments>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </div>
+    <div name="right">
+        <div ng-include="'/cdn_source/app/play/collections/_edit-side-pane.html'"></div>
+        <div ng-if="w6.renderAds" class="tile">
+            <div data-ng-dfp-ad-container ng-if="w6.renderAds">
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad1"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tile">
+            <div>
+                <strong>Author</strong>
+                <em>
+                    <span ng-if="model.author.slug != 'withSIX-o-bot'"
+                          itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <a class="bold-link" ng-href="{{model.author.profileUrl}}" rel="author">{{model.author.displayName}}</a>
+                    </span>
+                    <span ng-if="model.author.slug == 'withSIX-o-bot'"
+                          itemprop="author" itemscope itemtype="http://schema.org/Person">{{model.authorText}}</span>
+                </em><br/>
+            </div>
+        </div>
+
+        <div ng-if="w6.renderAds" class="tile">
+            <div data-ng-dfp-ad-container>
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sx-info-page>

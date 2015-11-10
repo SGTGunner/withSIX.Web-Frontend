@@ -1,0 +1,42 @@
+<template>
+<div id="successful-checkout">
+    <div class="container-fluid content-inner">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <h1>
+                    Thank you for subscribing.<br/>
+                    <b>Enjoy your new premium experience!</b>
+                </h1>
+                <br/>
+
+                <i>
+                    A confirmation of your subscription has been sent to your e-mail adress, if you didn’t receive it check your
+                    spam folder or click here:
+                </i>
+
+                <form action="/orders/${orderId}/resend" method="POST">
+                    <button class="anchor" type="submit">Resend confirmation e-mail</button>
+                </form>
+
+                <br/>
+
+                <p>
+                    <i>
+                        To check the status of your subscription go to your Profile page and open the <a href="${w6.url.connectSsl}/me/settings/premium">Premium settings tab.</a><br/>
+                        You can manually renew and stop the auto-renewal of your subscription from there
+                    </i>
+                </p>
+            </div>
+            <div class="col-sm-8"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var client = new W6Client(window.six_client);
+    if (client.clientFound) {
+        client.refreshLogin();
+    }
+</script>
+</template>

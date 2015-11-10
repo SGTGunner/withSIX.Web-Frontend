@@ -1,0 +1,15 @@
+﻿<div class="container-fluid">
+    <div class="tile">
+        <sx-comments ng-if="model.comments"
+                     comments="model.comments"
+                     can-manage="editConfig.canManage() || editConfig.canEdit()"
+                     add-comment="addComment(comment)"
+                     delete-comment="deleteComment(comment)"
+                     save-comment="saveComment(comment)"
+                     report-comment="reportComment(comment)"
+                     like-comment="likeComment(comment)"
+                     unlike-comment="unlikeComment(comment)"
+                     like-states="commentLikeStates">
+        </sx-comments>
+    </div>
+</div>

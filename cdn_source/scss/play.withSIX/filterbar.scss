@@ -1,0 +1,62 @@
+/* Filterbar */
+
+.filterbar {
+  position: relative;
+  margin-bottom: 16px;
+  min-height: 40px;
+
+  a.btn-right {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: 40px;
+    text-decoration: none;
+    color: $color3;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .icon {
+      padding-right: 8px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 0;
+      margin: 0;
+      float: left;
+      margin-right: 16px;
+
+      a {
+        display: block;
+        line-height: 40px;
+        padding-left: 8px;
+        padding-right: 8px;
+        text-decoration: none;
+        color: $color3;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &.active {
+        a {
+          background-color: $color0;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

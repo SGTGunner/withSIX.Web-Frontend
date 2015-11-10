@@ -1,0 +1,37 @@
+@import "_base";
+#collection-edit {
+  .card {
+    .imageholder {
+      height: 144px;
+    }
+    .info {
+      height: 80px;
+    }
+  }
+  .new-dependency {
+    height: 224px;
+    background-color: white;
+    padding: 8px;
+    finder-results {
+      border: 1px solid #ccc;
+      max-height: 150px;
+    }
+    finder-results,
+    finder {
+      button.execute {
+
+        // TODO: Make a frigging color button style etc
+        background-color: $colorSixGreen;
+      }
+    }
+  }
+  .edit-pane {
+    button {
+      padding: 8px;
+    }
+  }
+  .button-bar {
+    margin-top: -24px;
+    padding-bottom: 24px;
+  }
+}

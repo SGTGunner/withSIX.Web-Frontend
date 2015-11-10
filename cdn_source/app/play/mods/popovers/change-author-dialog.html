@@ -1,0 +1,58 @@
+﻿<div class="popover manage-link set-account-popover">
+    <div class="arrow"></div>
+    <div class="popover-title">
+        <b>Change Author</b>
+    </div>
+    <div class="popover-content">
+        <div>
+            <strong>Current Author</strong><br/>
+            <sx-account-card account="model.author"></sx-account-card>
+            <div ng-if="false" class="account-card">
+                <div class="account-info">
+                    <p>
+                        <span>
+                            <span class="info">
+                                <span ng-if="model.author.isPremium" class="icon withSIX-icon-Badge-Sponsor no-tween"
+                                      title="This is a proud premium user"></span>
+                                <a class="account-name" ng-href="{{model.author.profileUrl}}"
+                                   rel="author">
+                                    {{model.author.displayName}}
+                                </a>
+                            </span>
+                            <a class="imgholder" ng-href="{{model.author.profileUrl}}">
+                                <img ng-src="{{model.author.getAvatarUrl(72)}}" />
+                            </a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <span>
+                <!--typeahead-on-select='onSelect($item, $model, $label)'-->
+                <strong>Change To: </strong><br/>
+                <input type="text" ng-model="newAuthor" ng-model-options="{ debounce: 250 }" placeholder="Select an Author"
+                       bs-options="author as author.displayName for author in getAuthor($viewValue)"
+                       class="form-control" typeahead-editable="false"
+                       bs-typeahead data-min-length="0" data-label="displayName">
+            </span>
+        </div>
+        <div collapse="changeAuthorCheck(this)">
+            <strong>Selected Author</strong><br/>
+            <sx-account-card account="newAuthor"></sx-account-card>
+        </div>
+    </div>
+    <div class="popover-content popover-bottom">
+        <div class="btn" style="visibility: hidden">&nbsp;</div>
+        <div class="pull-right">
+            <button class="btn btn-sx-save"
+                    ng-disabled="changeAuthorCheck(this)"
+                    ng-click="setAuthor(newAuthor); newAuthor = undefined; $hide()">
+                Accept
+            </button>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-sx-cancel btn-sx-right" ng-click="newAuthor = undefined; $hide()">Cancel</button>
+        </div>
+    </div>
+</div>

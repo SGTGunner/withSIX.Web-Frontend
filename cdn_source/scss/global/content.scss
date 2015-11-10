@@ -1,0 +1,126 @@
+﻿$content-states: (".content-state-uptodate", $colorSixGreen, $color0, "", "LAUNCH", ""), (".content-state-updateavailable", $colorSixOrange, $color0, "", "UPDATE", ""), (".content-state-notinstalled", $colorSixMediumGray, $color0, "", "INSTALL", ""), (".content-state-install", $colorSixBlue, $color0, "", "INSTALL", ""), (".content-state-installing", $colorSixMediumGray, $color0, "", "INSTALLING", ""), (".content-state-updating", $colorSixOrange, $color0, "", "UPDATING", ""), (".content-state-syncing", $colorSixMediumGray, $color0, "", "SYNCING", ""), (".content-state-no-client", $colorSixMediumGray, $color0, "", "NO CLIENT", ""), (".content-state-uptodate-busy", $colorSixGreen, $color0, "", "Busy", ""), (".content-state-updateavailable-busy", $colorSixOrange, $color0, "", "Busy", ""), (".content-state-notinstalled-busy", $colorSixMediumGray, $color0, "", "Busy", ""), (".content-state-install-busy", $colorSixBlue, $color0, "", "Busy", ""), (".content-state-installing-busy", $colorSixMediumGray, $color0, "", "Busy", ""), (".content-state-updating-busy", $colorSixOrange, $color0, "", "Busy", ""), (".content-state-syncing-busy", $colorSixMediumGray, $color0, "", "Busy", ""), (".content-state-busy", $colorSixMediumGray, $color0, "", "BUSY", "");
+
+@mixin extend-content-states {
+  @each $selector, $primary-color, $secondary-color, $icon, $text in $content-states {
+    &#{$selector} {
+      @content;
+    }
+  }
+}
+
+@mixin extend-content-state-colors($colorKey, $primary: true, $attributes...) {
+  @each $selector, $primary-color, $secondary-color, $icon, $text in $content-states {
+    &#{$selector} {
+      $color: $secondary-color;
+
+      @if $primary {
+        $color: $primary-color;
+      }
+      @else {
+        $color: $secondary-color;
+      }
+
+      &.content-state-c-#{$colorKey}, .content-state-c-#{$colorKey} {
+        @each $attr in $attributes {
+          #{$attr}: $color;
+
+          @include transition(#{$attr} 0.5s ease);
+        }
+      }
+
+      @content;
+    }
+  }
+}
+
+@mixin color-creator($selector, $primary-color, $secondary-color) {
+  &[class^="#{$selector}-c-"], &[class*=" #{$selector}-c-"], [class^="#{$selector}-c-"], [class*=" #{$selector}-c-"] {
+    @include transition(background-color 0.5s ease);
+
+    @include transition(color 0.5s ease);
+  }
+
+  &#{$selector}-c-bgd, #{$selector}-c-bgd {
+    background-color: $primary-color !important;
+    color: $secondary-color !important;
+  }
+
+  &#{$selector}-c-bgd-border, #{$selector}-c-bgd-border {
+    border-color: $primary-color !important;
+  }
+
+  &#{$selector}-c-bgd-drkb button, #{$selector}-c-bgd-drkb button {
+    background-color: darken($primary-color, 10%);
+    color: $secondary-color;
+  }
+
+  &#{$selector}-c-bgp, #{$selector}-c-bgp {
+    background-color: $primary-color !important;
+  }
+
+  &#{$selector}-c-bgs, #{$selector}-c-bgs {
+    background-color: $secondary-color !important;
+  }
+
+  &#{$selector}-c-fgd, #{$selector}-c-fgd {
+    color: $primary-color !important;
+  }
+
+  &#{$selector}-c-fgp, #{$selector}-c-fgp {
+    color: $primary-color !important;
+  }
+
+  &#{$selector}-c-fgs, #{$selector}-c-fgs {
+    color: $secondary-color !important;
+  }
+}
+
+@mixin progress-class-creator($progress-container, $progress-bar, $progress-text) {
+  &[class^="#{progress-container}"], &[class*=" #{progress-container}"], [class^="#{progress-container}"], [class*=" #{progress-container}"] {
+    #{$progress-bar} {
+      @include transition(ease 0.1s ease);
+    }
+  }
+
+  @for $i from 0 through 100 {
+    &#{$progress-container}#{$i} {
+      #{$progress-bar} {
+        width: percentage($i / 100);
+      }
+
+      #{$progress-text}:before {
+        content: "#{$i}%";
+      }
+    }
+  }
+}
+
+@mixin content-state-inner($state-primary-color, $state-secondary-color, $state-icon, $state-text, $state-icon-alt, $state-progress-primary-color: $colorSixBlue, $state-progress-secondary-color: $color0, $state-progress-icon: "") {
+  @include color-creator(".content-state", $state-primary-color, $state-secondary-color);
+
+  .content-state-text:before {
+    content: $state-text;
+  }
+
+  .content-state-icon {
+    @include withSIX-icon($state-icon);
+  }
+
+  .content-state-icon-alt {
+    @include withSIX-icon($state-icon-alt);
+  }
+
+  &[class^="content-progress-"], &[class*=" content-progress-"] {
+    @include color-creator(".content-state-progress", $state-progress-primary-color, $state-progress-secondary-color);
+
+    .content-state-progress-icon {
+      @include withSIX-icon($state-progress-icon);
+    }
+  }
+}
+
+@mixin has-progress-container {
+  &[class^="content-progress-"], &[class*=" content-progress-"], [class^="content-progress-"], [class*=" content-progress-"] {
+    @content;
+  }
+}

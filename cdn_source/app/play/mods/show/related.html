@@ -1,0 +1,37 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>{{model.dependents.length}} Mods depending on this mod</h2>
+            <div class="tile">
+                <div data-ng-dfp-ad-container ng-if="w6.renderAds">
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad1"></div>
+                    </div>
+                </div>
+
+                <ul>
+                    <li ng-repeat="item in model.dependents | orderBy: '+name'">
+                        <a ng-href="{{::url.play + '/' + item.gameSlug + '/mods/' + toShortId(item.id) + '/' + item.slug}}" class="barebone bold">{{::item.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <h2>{{model.collections.length}} Collections with this mod</h2>
+            <div class="tile">
+                <div data-ng-dfp-ad-container ng-if="w6.renderAds">
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad2"></div>
+                    </div>
+                </div>
+
+                <ul>
+                    <li ng-repeat="c in model.collections | orderBy: '+name'">
+                        <a ng-href="{{::url.play + '/' + c.gameSlug + '/collections/' + toShortId(c.id) + '/' + c.slug}}" class="barebone bold">{{::c.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<article id="comment-{{comment.id}}"
+         class="comment"
+         ng-class="'level-' + level">
+    <div>
+        <div ng-if="comment.id > -1" class="no-tween">
+            <div class="no-tween" ng-if="!canManage" sx-late-template template="'/cdn_source/app/components/comments/templates/regularComment.html'"></div>
+            <div class="no-tween" ng-if="canManage" sx-late-template template="'/cdn_source/app/components/comments/templates/managerComment.html'"></div>
+        </div>
+        <div class="no-tween" ng-if="comment.id < 0">
+            <div class="no-tween wordwrap" sx-late-template template="'/cdn_source/app/components/comments/templates/unsavedComment.html'"></div>
+        </div>
+    </div>
+    <div ng-if="!edit.showComments && comment.replies.length != 0">
+        <button ng-click="edit.showComments = true" class="anchor tiny bold no-tween-out">Show Comment Replies ({{comment.getChildCount()}})</button>
+    </div>
+    <div ng-if="edit.showComments || comment.replies.length == 0">
+        <sx-comment ng-repeat="comment in comment.replies | orderBy: '+created'"
+                    comment="comment"></sx-comment>
+    </div>
+</article>

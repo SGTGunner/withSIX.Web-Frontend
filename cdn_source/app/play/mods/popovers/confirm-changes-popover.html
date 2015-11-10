@@ -1,0 +1,21 @@
+﻿<div class="popover">
+    <div class="arrow"></div>
+    <div class="popover-title">
+        <b>Are you sure?</b>
+    </div>
+    <div class="popover-content">
+        <span>
+            Once your changes are saved everyone will get to see it!
+            <span style="color: red">If you've edited your dependencies make sure you triple check before saving!</span>
+        </span>
+    </div>
+    <div class="popover-content popover-bottom">
+        <div class="btn" style="visibility: hidden">&nbsp;</div>
+        <div class="pull-right">
+            <button class="btn btn-sx-save" ng-click="editConfig.saveChanges();$hide();">Accept</button>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-sx-cancel btn-sx-right" ng-click="$hide()">Maybe Later</button>
+        </div>
+    </div>
+</div>

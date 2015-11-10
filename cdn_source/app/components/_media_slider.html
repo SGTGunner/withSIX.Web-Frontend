@@ -1,0 +1,25 @@
+﻿<div class="mediaslider" id="mediaslider">
+    <a href="javascript:;" class="btn btn-left">
+        <span class="icon icon-chevron-left"></span>
+    </a>
+    <ul class="clearfix">
+        <li ng-style="{width: mi.type == 'YoutubeImage' ? '133px' : '160px' };" ng-repeat="mi in model.mediaItems">
+            <a ng-href="http://www.youtube-nocookie.com/embed/{{mi.path}}"
+               target="_blank"
+               style="position: relative;"
+               ng-if="mi.type == 'YoutubeImage'">
+                <span class="playicon">
+                    <span class="icon-play-circle"></span>
+                </span>
+                <img ng-src="http://img.youtube.com/vi/{{mi.path}}/1.jpg" alt="" height="100"/>
+            </a>
+            <a class="popgroup" ng-href="{{::url.getUsercontentUrl(mi.path + '/' + w6.imageSizes.missionOriginalFileName)}}"
+               ng-if="mi.type == 'Image' ">
+                <img ng-src="{{::url.getUsercontentUrl(mi.path + '/' + w6.imageSizes.missionThumb.w + 'x' + w6.imageSizes.missionThumb.h + '.jpg')}}" alt=""/>
+            </a>
+        </li>
+    </ul>
+    <a href="javascript:;" class="btn btn-right">
+        <span class="icon icon-chevron-right"></span>
+    </a>
+</div>

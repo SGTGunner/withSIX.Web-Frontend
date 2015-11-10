@@ -1,0 +1,1176 @@
+@import 'global/content';
+
+.collections-ng,
+sx-content-gallery {
+  $height: 48px;
+  .move > .main-content {
+    margin-left: 220px;
+  }
+  .controls {
+    line-height: $height;
+    &.border {
+      border-bottom: 1px solid $colorSixLightGray;
+      border-top: 1px solid $colorSixLightGray;
+    }
+    .form-group {
+
+      //display: inline-block;
+      margin-bottom: 0;
+    }
+    .filters {
+      min-height: $height + 2px;
+      .search {
+        height: $height;
+
+        //width: 33%;
+      }
+      input,
+      select {
+        margin: 0 16px 0 0;
+        width: 120px;
+      }
+    }
+    button {
+      background: transparent;
+    }
+    select {
+      height: $height;
+      display: inline-block;
+      width: inherit;
+    }
+    .sort-bar {
+      select {
+        padding: 8px;
+      }
+    }
+    .search {
+      i {
+        margin-right: 8px;
+      }
+    }
+    .page-info {
+      margin-right: 16px;
+    }
+    select {
+      border: none;
+    }
+    tags-input {
+      .host {
+        margin: 0;
+      }
+      input {
+        height: $height;
+        line-height: $height;
+      }
+      ul.tag-list {
+        li {
+          height: 32px;
+          line-height: 32px;
+          margin: 0;
+          margin-top: 8px;
+        }
+      }
+      .tags {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        line-height: $height;
+        min-height: $height;
+        margin-bottom: -18px;
+
+        // wtf
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+        padding-right: 26px;
+        .tag-item {
+          background: $colorSixLightBlue;
+          border-radius: 0;
+          border: 0;
+          margin-left: 8px;
+          font-family: $font-family-base;
+        }
+        .input {
+          font-family: $font-family-base;
+        }
+        .suggestion-item {
+          font-family: $font-family-base;
+          em {
+            font-family: $font-family-base;
+          }
+        }
+        .remove-button {
+          color: #fff;
+          text-decoration: none;
+          font-family: $font-family-base;
+        }
+      }
+    }
+    button {
+      height: $height;
+    }
+    .filtertitle {
+      font-weight: $font-weight-medium;
+      margin-right: 8px;
+      vertical-align: top;
+    }
+    .pagination {
+      margin: 0;
+      height: $height;
+    }
+    .form-control-feedback {
+      top: 0;
+      right: 0;
+      font-size: 24px;
+      font-weight: 200;
+      width: $height;
+      height: $height;
+      line-height: $height;
+    }
+    input[type=search] {
+      display: inline;
+    }
+    hr {
+      margin: 0;
+    }
+  }
+  .gridStyle {
+    border: 1px solid rgb(212, 212, 212);
+    height: 480px;
+    img {
+      height: 48px;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  .controls {
+    margin-bottom: 24px;
+  }
+  .imageGridStyle {
+    $infoHeight: 76px;
+    $infoHeightXl: 96px;
+    $imgHeight: 144px;
+    $imgHeightXl: 204px;
+    $cardHeight: $imgHeight + $infoHeight;
+    $cardHeightXl: $imgHeightXl + $infoHeightXl;
+    .content-stateable:hover {
+      .details-overlay-footer {
+        opacity: 1;
+      }
+    }
+    .content-state-c-bgd-border {
+      border-bottom-width: 4px;
+      border-bottom-style: solid;
+    }
+    .content-basketable {
+      .content-basketable-button {
+        z-index: 2;
+        margin-top: -$cardHeight;
+        @media (min-width: $flipWidth) {
+          margin-top: -$cardHeightXl;
+        }
+        @media (max-width: $flipWidthXs) {
+          margin-top: -$cardHeightXl;
+        }
+        &.margin-fix {
+          margin-top: 0px; // pff
+        }
+      }
+    }
+    .details-overlay-footer {
+      @include transition(opacity 0.1s ease);
+      opacity: 0;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: -28px;
+      position: relative;
+      .details-overlay-footer-state {
+        padding-left: 25px;
+        background-color: inherit;
+        border: none;
+        color: inherit;
+        text-align: inherit;
+        .content-state-icon {
+          padding-right: 5px;
+        }
+      }
+      .details-overlay-footer-message {
+        a {
+          font-style: italic;
+        }
+      }
+      .details-overlay-footer-localstate {
+        padding-right: 25px;
+        text-align: right;
+      }
+    }
+
+    /*.mod-grid-add-to-basket {
+            float: right;
+            right: 30px;
+            position: relative;
+            border: none;
+            color: white;
+            background-color: $colorSixDarkGray;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            z-index: 2;
+
+
+        margin-top: -$cardHeight;
+        @media (min-width: $flipWidth) {
+          margin-top: -$cardHeightXl;
+        }
+        @media (max-width: $flipWidthXs) {
+          margin-top: -$cardHeightXl;
+        }
+
+            .icon {
+                font-size: 14px;
+            }
+
+            &:hover {
+                .add-to-basket-text {
+                    padding-left: 5px;
+                    font-size: 13px;
+
+                    &:before {
+                        content: "ADD TO PLAYLIST";
+                    }
+                }
+            }
+          }*/
+    .add-container-out {
+      cursor: default;
+      background: white;
+      height: $cardHeight + 4px;
+      @media (min-width: $flipWidth) {
+        height: $cardHeightXl + 4px;
+      }
+      @media (max-width: $flipWidthXs) {
+        height: $cardHeightXl + 4px;
+      }
+    }
+    .add-container {
+      .add {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    &.row {
+      // margin-left: -20px;
+      // margin-right: -20px;
+      // .collection {
+      //   padding-left: 20px;
+      //   padding-right: 20px;
+      // }
+      div.img,
+      .details-overlay {
+        cursor: pointer;
+      }
+    }
+    .collection {
+      margin-bottom: 20px;
+      .inner {
+
+        //border-bottom: 4px solid white;
+        /*&:hover {
+          border-bottom-color: $colorSixLightGray;
+        }
+        &.subscribed, &.followed {
+          &:hover {
+            border-bottom-color: $colorSixBlue;
+          }
+        }*/
+      }
+      &:hover {
+        .title a {
+          color: $colorSixBlue;
+        }
+      }
+      .img {
+        position: relative;
+        .imageholder {
+          display: block;
+          height: $imgHeight;
+          @media (min-width: $flipWidth) {
+            height: $imgHeightXl;
+          }
+          @media (max-width: $flipWidthXs) {
+            height: $imgHeightXl;
+          }
+          width: 100%;
+        }
+        background: white;
+        background-size: contain;
+      }
+      .info {
+        padding: 12px;
+        height: $infoHeight;
+        @media (min-width: $flipWidth) {
+          height: $infoHeightXl;
+        }
+        @media (max-width: $flipWidthXs) {
+          height: $infoHeightXl;
+        }
+        background: white;
+        overflow: hidden;
+        .title {
+          line-height: 1;
+          font-weight: $font-weight-bold;
+          @include limit-lines(2, 15px, 1);
+          span {
+            display: inline-block;
+            line-height: 1;
+          }
+        }
+        .subtitle {
+          line-height: 1;
+          .pull-left {
+            max-width: 45%;
+          }
+          @include limit-lines(1, $tinyFontSize, 1);
+        }
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+      }
+      .stats {
+        $height: 28px;
+
+        //height: $height;
+        line-height: $height;
+        width: $height * 2;
+        color: white;
+        text-align: right;
+        padding-right: 12px;
+        background-color: $colorSixBlue;
+        right: 15px;
+        top: 50%;
+        margin-top: -($height / 2);
+        position: absolute;
+        span {
+          top: 50%;
+        }
+      }
+      .details-overlay {
+        a {
+          color: white;
+        }
+        background-color: rgba(20, 107, 255, 0.8);
+        color: white;
+        padding-right: 4px;
+        overflow: hidden;
+        margin-top: -$cardHeight;
+        height: $cardHeight - $infoHeight;
+        @media (min-width: $flipWidth) {
+          margin-top: -$cardHeightXl;
+          height: $cardHeightXl - $infoHeightXl;
+        }
+        @media (max-width: $flipWidthXs) {
+          margin-top: -$cardHeightXl;
+          height: $cardHeightXl - $infoHeightXl;
+        }
+        display: block;
+        z-index: 1;
+        position: relative;
+        float: left;
+        width: 100%;
+        $margin: 16px;
+        .microinfo {
+          text-align: right;
+          margin: $margin;
+          margin-left: 0;
+          line-height: 1;
+          position: absolute;
+          top: 50%;
+          right: 0;
+          margin-top: -(54px / 2);
+          div {
+            margin-bottom: 4px;
+          }
+        }
+        .description {
+          height: $imgHeight - $margin * 2;
+          line-height: $imgHeight - $margin * 2;
+          @media (min-width: $flipWidth) {
+            height: $imgHeightXl - $margin * 2;
+            line-height: $imgHeightXl - $margin * 2;
+          }
+          @media (max-width: $flipWidthXs) {
+            height: $imgHeightXl - $margin * 2;
+            line-height: $imgHeightXl - $margin * 2;
+          }
+          margin: $margin;
+          margin-right: 80px;
+          span {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+            width: 100%;
+            @include limit-lines(8, $smallFontSize, 1);
+          }
+        }
+        .tags {
+          @include limit-lines(4, $tinyFontSize);
+          text-align: right;
+          margin-right: -16px;
+        }
+        a.tag {
+          text-decoration: none;
+          color: black;
+          $tagBaseColor: $colorSixSoftGray;
+          border-right: 2px solid $colorSixBlue;
+          background-color: $tagBaseColor;
+          padding-left: 4px;
+          padding-right: 4px;
+          display: block;
+          max-width: 80px;
+          @include text-overflow;
+          &:nth-child(2) {
+            background-color: lighten($tagBaseColor, 2.5);
+          }
+          &:nth-child(3) {
+            background-color: lighten($tagBaseColor, 5);
+          }
+          &:nth-child(4) {
+            background-color: lighten($tagBaseColor, 7.5);
+          }
+        }
+      }
+    }
+  }
+  .collection-basket {
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 360px;
+    height: 100%;
+    width: 250px;
+    overflow: hidden;
+    z-index: 10;
+  }
+}
+.collections-ng.library,
+.collections-ng#my-library-show-home,
+#my-library card-view,
+#my-games {
+    .collection {
+        margin-bottom: 1px;
+    }
+  button.row-header-button {
+
+    //color: white;
+    //background-color: blue;
+    font-size: 0.7em;
+    text-decoration: inherit;
+    height: 27px;
+
+    //position: relative;
+    top: -3px;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    //margin-top: 24px;
+    &.c-blue {
+      background-color: $colorSixBlue;
+      color: white;
+    }
+    &.c-orange {
+      background-color: $colorSixOrange;
+      color: white;
+    }
+  }
+  dropdown-menu.row-header-button {
+    .dropdown-toggle {
+
+      //color: white;
+      //background-color: blue;
+      font-size: 0.7em;
+      text-decoration: inherit;
+      height: 27px;
+
+      //position: relative;
+      top: -3px;
+      border: none;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    &.c-blue .dropdown-toggle {
+      background-color: $colorSixBlue;
+      color: white;
+    }
+    &.c-orange .dropdown-toggle {
+      background-color: $colorSixOrange;
+      color: white;
+    }
+  }
+  .col1 {
+    @include make-md-column(5);
+  }
+  .col2 {
+    @include make-md-column(3.5);
+  }
+  .col3 {
+    @include make-md-column(3.5);
+  }
+  .content-stateable {
+    @include extend-content-state-colors("bgd-border", true, border-bottom-color);
+  }
+  .card {
+    &.horizontal {
+      div.img {
+        float: left;
+        width: 170px;
+        .imageholder {
+          height: 92px;
+        }
+      }
+      .info {
+        height: 92px;
+      }
+      action-bar.basketable-action button {
+        left: 0;
+      }
+      .basketable-dropdown button.dropdown-toggle {
+        right: 0;
+      }
+    }
+  }
+  h3.row-header {
+    margin-bottom: 18px;
+    font-size: 1.5em;
+    font-weight: 300;
+  }
+  .collection {
+    .bottom-bar {
+      height: 28px;
+
+      /*ul, li, button {
+          width: 100%;
+      }*/
+      .my-menu button {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      button.dropdown-toggle,
+      .my-menu button {
+        color: inherit;
+        font-size: 0.7em;
+        text-decoration: inherit;
+        height: 27px;
+        position: relative;
+        top: -3px;
+        border: none;
+      }
+      dropdown-menu {
+        padding-left: 4px;
+      }
+    }
+  }
+}
+.card.content-basketable {
+  .basketable-dropdown.dropdown {
+    .dropdown-toggle {
+      padding-top: 4px;
+      padding-bottom: 8px;
+      .caret {
+        @include withSIX-icon("\e68b");
+        height: initial;
+        width: initial;
+        border: none;
+      }
+    }
+  }
+}
+.dropdown-toggle.share-caret {
+  .caret {
+    @include withSIX-icon("\e68b");
+    height: initial;
+    width: initial;
+    border: none;
+  }
+}
+#my-library {
+  select {
+    border: 0;
+  }
+}
+.library-menu {
+  & > .well {
+    background-color: initial;
+    border: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding: 0;
+    & > li {
+      & > a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border-left: 48px solid $colorSixLightGray;
+        text-decoration: none;
+        background-color: $colorSixBlue;
+        &:hover {
+          background-color: $colorSixBlue;
+        }
+        & > .icon {
+          margin-left: -51px;
+          float: left;
+          margin-top: 1px;
+          font-size: 24px;
+          color: $colorSixBlue;
+        }
+      }
+      &:not(.active) {
+        & > a {
+          background-color: white;
+          color: $colorSixMediumGray;
+          &:hover {
+
+            //background-color: $colorSixBlue;
+            //color: white;
+            & > .icon {
+              color: $colorSixBlue;
+            }
+          }
+          & > .icon {
+            color: $colorSixMediumGray;
+          }
+        }
+      }
+      margin-bottom: 16px;
+    }
+  }
+}
+.page-title {
+  font-size: 2.5em;
+  margin-top: 0;
+}
+.stranger-danger {
+  background-color: $colorSixBlue;
+  color: white;
+  padding: 10px 16px;
+  a,
+  button {
+
+    //color: white;
+    //background-color: blue;
+    //font-size: 0.7em;
+    text-decoration: inherit;
+    height: 27px;
+    position: relative;
+    top: 1px;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    //margin-top: 24px;
+    margin-left: 10px;
+    background-color: white;
+    color: $colorSixBlue;
+  }
+  a {
+    padding-top: 5px;
+    padding-bottom: 6px;
+  }
+  button {
+    height: 21px;
+    padding: 4px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+.show-filter {
+  .show-title {
+    float: left;
+    margin-top: 11px;
+  }
+  font-weight: bold;
+  .checkbox-container {
+    float: left;
+    width: 20%;
+    .squaredTwo {
+      background-color: white;
+    }
+  }
+  .show-boxes {
+    width: 60%;
+  }
+}
+.filter-sort {
+  padding: 12px;
+}
+.filter-order {
+  width: 53px;
+  padding: 14px;
+  background-color: white;
+  margin-right: 5px;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.grid-select {
+  position: relative;
+  float: right;
+  height: 46px;
+  margin-bottom: 10px;
+}
+select.grid-type {
+  option {
+
+    //height: 40px;
+    width: 46px;
+    padding: 14px;
+    background-color: white;
+    margin-right: 5px;
+    &:checked {
+      padding: 11px;
+      border: 3px solid white;
+      background-color: darken(white, 5%);
+    }
+  }
+  & :last-child {
+    margin-right: 0;
+  }
+}
+.form-control.search-control {
+  width: initial;
+  display: initial;
+  border: none;
+  padding: 20.5px 19px;
+  margin-right: 7px;
+}
+.collections-ng#my-games {
+  .content-stateable .bottom-bar {
+    margin-top: -4px;
+  }
+  .imageGridStyle .collection .info {
+    height: initial;
+  }
+  span.bg-hover {
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    opacity: 0;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    background-position: center;
+  }
+      .basketable-dropdown {
+        opacity: 0;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+      }
+  .logo {
+    height: 141px;
+    line-height: 141px;
+    display: block;
+    text-align: center;
+    z-index: 4;
+    position: relative;
+  }
+  .content-stateable:hover {
+      .basketable-dropdown {
+        opacity: 1;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+      }
+  }
+  .content-stateable:hover span.bg-hover {
+    opacity: 1;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+}
+dropdown-menu.new-style {
+  ul.dropdown-menu {
+    & > li {
+      border-bottom: 1px solid lightgray;
+    }
+    & > li:last-child {
+      border-bottom: none;
+    }
+    & > li > button {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      color: $colorSixMediumGray !important;
+      background-color: white !important;
+      text-decoration: none;
+      padding-left: 10px;
+      width: 100%;
+      text-align: left;
+      & > text {
+        padding-left: 10px;
+      }
+    }
+  }
+}
+.card.new-item {
+  background-color: $colorSixBlue;
+  padding-top: 24px;
+  height: 224px;
+  @media (min-width: $flipWidth) {
+    padding-top: 60px;
+    height: 304px;
+  }
+  @media (max-width: $flipWidthXs) {
+    padding-top: 60px;
+    height: 304px;
+  }
+  div.button {
+    color: white;
+    text-align: center;
+  }
+  .new-icon {
+    font-size: 5em;
+  }
+  .new-title {
+    font-size: 2em;
+  }
+  a,
+  button {
+    color: $colorSixBlue;
+    background-color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+//@include config($debug, $staging){
+.content-stateable {
+  @each $selector, $primary-color, $secondary-color, $icon, $text, $altIcon in $content-states {
+    &#{$selector} {
+      @include content-state-inner($primary-color, $secondary-color, $icon, $text, $altIcon);
+    }
+  }
+
+  @include progress-class-creator(".content-progress-", ".content-state-progress-width", ".content-state-progress-text");
+}
+
+//}
+
+@mixin colored-section($color, $secColor: white) {
+  border-bottom-color: $color;
+
+  .content-state-color {
+    background-color: $color;
+    color: $secColor;
+
+    a {
+      color: $secColor;
+      text-decoration: underline;
+    }
+  }
+
+  .content-state-font-color {
+    color: $color;
+  }
+}
+
+.content-basketable {
+    @include extend-content-state-colors("bgd-border", true, "border-bottom-color");
+}
+.content-card {
+  $contentHeight: 154px;
+  $contentHeightXl: 188px;
+
+  height: $contentHeight;
+
+  @media (min-width: $flipWidth) {
+    height: $contentHeightXl;
+  }
+
+  @media (max-width: $flipWidthXs) {
+    height: $contentHeightXl;
+  }
+
+  margin-bottom: 16px;
+
+  $updateColor: $colorSixOrange;
+  $newColor: $colorSixBlue;
+
+  .title {
+    font-weight: $font-weight-bold;
+    line-height: 1;
+  }
+
+  $updateSectionHeight: 18px;
+  $cardHeight: 106px;
+  $updateBorderHeight: 4px;
+
+  .details-overlay {
+    margin-top: -$cardHeight;
+    padding-right: 4px;
+    overflow: hidden;
+    height: $cardHeight;
+    display: block;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 10px 4px 4px 0px;
+
+    .description {
+      font-weight: 400;
+
+      @include limit-lines(4, $tinyFontSize);
+    }
+
+    .tags {
+      @include limit-lines-static(4, $tinyFontSize);
+    }
+
+    a.tag {
+      color: inherit;
+
+      $tagBaseColor: $colorSixSoftGray;
+
+      border-left: 2px solid $colorSixBlue;
+      background-color: $tagBaseColor;
+      padding-left: 4px;
+      display: block;
+
+      @include text-overflow;
+
+      &:nth-child(2) {
+        background-color: lighten($tagBaseColor, 2.5);
+      }
+
+      &:nth-child(3) {
+        background-color: lighten($tagBaseColor, 5);
+      }
+
+      &:nth-child(4) {
+        background-color: lighten($tagBaseColor, 7.5);
+      }
+    }
+
+    /*&.update {
+        @include colored-section($updateColor, white);
+    }
+    &.new {
+        @include colored-section($newColor, white);
+    }*/
+
+    .details-overlay-footer {
+      padding-top: 3px;
+      padding-bottom: 3px;
+
+      .details-overlay-footer-state {
+        padding-left: 25px;
+        background-color: inherit;
+        border: none;
+        color: inherit;
+        text-align: inherit;
+
+        .content-state-icon {
+          padding-right: 5px;
+        }
+      }
+
+      .details-overlay-footer-message {
+        a {
+          font-style: italic;
+        }
+      }
+
+      .details-overlay-footer-localstate {
+        padding-right: 25px;
+        text-align: right;
+      }
+    }
+  }
+
+  .details-overlay-shadow {
+    position: relative;
+    width: 100%;
+    margin-top: -($cardHeight + 8px);
+    height: 8px;
+    float: left;
+
+    @include filter-gradient(black, #330000, vertical);
+
+    // IE6-9
+    @include background-image(linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%));
+  }
+
+  @include extend-content-state-colors("bgd-border", true, "border-bottom-color");
+
+  div.content {
+    height: $contentHeight;
+
+    @media (min-width: $flipWidth) {
+      height: $contentHeightXl;
+    }
+
+    @media (max-width: $flipWidthXs) {
+      height: $contentHeightXl;
+    }
+
+    background-color: white;
+    border-bottom: $updateBorderHeight solid $colorSixGray;
+
+    /*&.update {
+      @include colored-section($updateColor, white);
+
+      border-bottom-color: $updateColor;
+    }
+    &.new {
+      @include colored-section($newColor, white);
+
+      border-bottom-color: $newColor;
+    }*/
+    .icon {
+      font-size: $font-size-base;
+    }
+  }
+
+  span.release-state {
+    color: $colorSixGray;
+
+    &.update {
+      border-right-color: $updateColor;
+      color: $updateColor;
+    }
+
+    &.new {
+      border-right-color: $newColor;
+      color: $newColor;
+    }
+  }
+
+  span.imagecontent {
+    @include size(50%, $contentHeight - $updateBorderHeight);
+
+    @media (min-width: $flipWidth) {
+      @include size(50%, $contentHeightXl - $updateBorderHeight);
+    }
+
+    @media (max-width: $flipWidthXs) {
+      @include size(50%, $contentHeightXl - $updateBorderHeight);
+    }
+
+    float: left;
+
+    .imageholder {
+      display: block;
+      height: $contentHeight - $updateBorderHeight;
+
+      @media (min-width: $flipWidth) {
+        height: $contentHeightXl - $updateBorderHeight;
+      }
+
+      @media (max-width: $flipWidthXs) {
+        height: $contentHeightXl - $updateBorderHeight;
+      }
+    }
+  }
+
+  div.info {
+    float: right;
+    position: relative;
+
+    @include size(50%, $contentHeight);
+
+    @media (min-width: $flipWidth) {
+      @include size(50%, $contentHeightXl);
+    }
+
+    @media (max-width: $flipWidthXs) {
+      @include size(50%, $contentHeightXl);
+    }
+
+    div.container {
+      padding-top: 8px;
+      padding-bottom: 8px;
+
+      &:after {
+        @include clearfix;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $colorSixMediumGray;
+    }
+
+    div.title {
+      @include limit-lines(2, $font-size-base, 1);
+    }
+
+    div.subtitle {
+      margin-top: 8px;
+      font-size: $tinyFontSize;
+      line-height: 1;
+
+      @include limit-lines(1, $tinyFontSize, 1);
+
+      &:after {
+        @include clearfix;
+      }
+    }
+
+    span.author {
+      font-style: italic;
+
+      @include text-overflow;
+
+      float: left;
+      width: 50%;
+    }
+
+    span.followers {
+      font-style: italic;
+
+      @include text-overflow;
+
+      float: left;
+      width: 50%;
+    }
+
+    time.timeago {
+      float: right;
+    }
+
+    div.bottom {
+      font-size: $tinyFontSize;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+
+  &:hover {
+    .title a {
+      color: $colorSixBlue;
+    }
+  }
+}
+
+div[range-slider] {
+  width: 150px;
+  display: inline-block;
+}
+
+.additional-filters {
+  display: inline-block;
+}

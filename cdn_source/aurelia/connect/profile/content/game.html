@@ -1,0 +1,25 @@
+<template>
+  <div class="inner content-stateable content-state-uptodate">
+      <div class="img">
+          <a href="/me/library/${model.slug}">
+              <span class="logo"><img itemprop="image" src="${image}"></span>
+              <span class="bg-hover" style="background-image: url(https://play.local.withsix.net/cdn/img/play.withSIX/games/Arma-2/headers/header.png?v=70);"></span>
+          </a>
+      </div>
+      <div class="info content-state-c-bgd-border">
+        <div class="stats pull-right">
+          <span><span class="icon withSIX-icon-Nav-Collection"></span> ${model.collectionsCount}</span>
+          <span><span class="icon withSIX-icon-Nav-Mod"></span> ${model.modsCount}</span>
+          <span><span class="icon withSIX-icon-Nav-Mission"></span> ${model.missionsCount}</span>
+        </div>
+        <div class="title">
+            <a href="/me/library/${model.slug}">${model.name}</a>
+        </div>
+      </div>
+
+      <div class="bottom-bar details-overlay-footer row content-state-c-bgd content-state-c-bgd-drkb">
+        <action-bar items.bind="bottomActions"></action-bar>
+        <dropdown-menu class="pull-right new-style" if.bind="bottomMenuActions && bottomMenuActions.length > 0" items.bind="bottomMenuActions"></dropdown-menu>
+      </div>
+  </div>
+</template>

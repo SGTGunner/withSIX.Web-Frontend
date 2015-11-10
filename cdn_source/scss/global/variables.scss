@@ -1,0 +1,85 @@
+// TODO: CDN Urls for fonts, and scss images etc...
+$cacheBuster: 70;
+
+@import "env.scss";
+
+@mixin conditional($allowed...) {
+  @each $i in $allowed {
+    @if $i == $configuration {
+      @content;
+    }
+  }
+}
+
+@mixin config($allowed...) {
+  @include conditional($allowed...) {
+    @content;
+  }
+}
+
+/* Colors */
+
+$colorSixBlue: #146bff;
+$colorSixLightBlue: #dbe6fe;
+$colorSixGray: #777777;
+$colorSixDarkGray: #1c1c1c;
+$colorSixMediumGray: #3c3c3c;
+$colorSixLightGray: #d5d5d5;
+$colorSixSoftGray: #f0f0f0;
+$colorSixGreen: #31bd1d;
+$colorSixOrange: #ffaa14;
+$colorSixSoftRed: #ed1c24;
+
+/* Action colors */
+$primarycolor: $colorSixBlue;
+$calltoaction: $colorSixGreen;
+
+// was rgb(50, 190, 30);
+$attentioncolor: $colorSixOrange;
+$errorcolor: $colorSixSoftRed;
+
+/* Supporting colors  */
+$color0: white;
+$color1: $colorSixSoftGray;
+$color2: $colorSixLightGray;
+$color3: $colorSixGray;
+$color4: $colorSixMediumGray;
+$color5: $colorSixDarkGray;
+
+$twitterColor: #00aced;
+$facebookColor: #3b5998;
+$codeColor: black;
+
+$tinyFontSize: 12px;
+$smallFontSize: 14px;
+$tabbarHeight: 48px;
+$headerSloganOffset: 64px;
+
+$rowHeight: 16px;
+$adLeaderboardWidth: 728px;
+$adLeaderboardWidthHuge: 970px;
+$tabbarBorderBottom: 2px;
+
+$maxWidth: 1600px;
+$flipWidth: 1440px;
+$flipWidthXs: 768x;
+
+/* Overrides */
+
+$border-radius-base: 0;
+$font-size-base: 16px;
+$line-height-base: 1.5;
+$font-family-base: "Ubuntu, Verdana, Geneva, sans-serif";
+$font-weight-base: 300;
+$link-color: $colorSixBlue;
+$btn-default-color: $colorSixMediumGray;
+$navbar-default-link-hover-color: $colorSixMediumGray;
+$navbar-inverse-toggle-hover-bg: $colorSixMediumGray;
+$navbar-inverse-toggle-border-color: $colorSixMediumGray;
+$list-group-link-heading-color: $colorSixMediumGray;
+$kbd-bg: $colorSixMediumGray;
+
+/* Font weights */
+$font-weight-medium: 400;
+$font-weight-bold: 500;
+

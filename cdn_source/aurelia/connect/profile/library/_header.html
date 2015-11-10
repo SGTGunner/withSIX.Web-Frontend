@@ -1,0 +1,13 @@
+<template>
+  <h2 class="page-title">
+      <b>${'' | usertitle}</b>
+      <select value.bind="selectedGame" click.delegate="router.navigate('${w6.url.play}/${selectedGame.slug}')">
+          <option repeat.for="game of $parent.games" model.bind="game">${game.slug.replace("-", " ")}</option>
+      </select>
+      ${heading}
+      <a href="${w6.url.play}/${selectedGame.slug}">G</a>
+      <span if.bind="heading != 'Home' && heading != 'Library'">-> 
+        <a href="${w6.url.play}/${selectedGame.slug}/${heading.toLowerCase()}">Browse</a>
+      </span>
+  </h2>
+</template>

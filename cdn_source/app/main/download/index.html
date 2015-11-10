@@ -1,0 +1,158 @@
+<div class="download" id="download-page">
+    <div class="container-fluid">
+        <h1>Download {{w6.enableBasket ? "Sync" : "Play"}} <b>withSIX</b></h1>
+        <div class="row">
+            <div class="col-sm-7">
+                <section class="pitch" ng-if="w6.enableBasket">
+                    <!--<div class="img" id="sync-logo">
+                        <span class="icon withSIX-icon-Logo-Sync"></span>
+                    </div>-->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Zo7OaSF_QG8" frameborder="0" allowfullscreen style="
+                        margin: 20px; margin: 0 auto; display: block;"></iframe>
+
+                    <br />
+
+                    <div id="smart">
+                        <div class="img pull-left">
+                            <span class="icon withSIX-icon-Tools"></span>
+                        </div>
+                        <div class="tile text">
+                            <h2>Light, fast and smart</h2>
+                            This mini client is built to handle downloads and complex,
+                            game specific installations. Using delta patching technology it saves bandwidth and is easy on CPU and memory.
+                        </div>
+                    </div>
+
+                    <div id="sync">
+                        <div class="img pull-left">
+                            <span class="icon withSIX-icon-Nav-Server"></span>
+                        </div>
+                        <div class="tile text">
+                            <h2>Stay in Sync</h2>
+                            All content specific information are synced in real time. You can check the status of any mod, local or online and interact with it via the client and on the website.
+                        </div>
+                    </div>
+
+                    <div id="play">
+                        <div class="img pull-left">
+                            <span class="icon withSIX-icon-Joystick"></span>
+                        </div>
+                        <div class="tile text">
+                            <h2>Click and play</h2>
+                            No matter if on withSIX.com or the client interface,
+                            downloads, updates and launching of any mod or
+                            collection is just a click away. The choice is yours!
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tile">
+                    <article>
+                        <h1 class="pagetitle" id="downloading-text">Download the {{model.client}} client</h1>
+
+                        <div class="add-container-out" ng-if="w6.renderAds">
+                            <div class="add-container">
+                                <div class="add add-download1" ng-dfp-ad="angular-ad1"></div>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 40px; margin-bottom: 20px;">
+                            <a ng-href="{{url.main}}/download/start?type=0{{model.basket}}{{model.redir}}" rel="nofollow" class="calltoaction maindownload">
+                                Download {{w6.enableBasket ? null : "Play"}}
+                                <strong>{{model.client}}</strong>
+                                <em>Windows only, {{w6.enableBasket ? 20 : 40}}MB</em>
+                                <span class="iconbg">
+                                    <em ng-if="w6.enableBasket" class="icon withSIX-icon-Logo-Sync"></em>
+                                    <em ng-if="!w6.enableBasket" class="icon withSIX-icon-Download"></em>
+                                </span>
+
+                                <span class="requirements" ng-include="'/cdn_source/app/main/_requirements.html'"></span>
+                            </a>
+                            <center ng-if="!w6.enableBasket">
+                                or try the
+                                <a ng-href="{{url.main}}/download/start?type=1{{model.basket}}{{model.redir}}" rel="nofollow">BETA version</a>
+                            </center>
+                        </p>
+
+                        <div class="changelog" style="text-align: center;">
+                            <a ng-href="{{url.main}}/{{w6.enableBasket ? 'update' : 'changelog'}}">Changelog</a>
+                        </div>
+
+                        <!--
+                        <center>
+                            @AdHelpers.AdMainVtXLarge(LayoutModel)
+                        </center>
+                        -->
+
+                    </article>
+                </section>
+            </div>
+
+            <div class="col-sm-5">
+                <p>
+                    <a ng-href="{{url.main}}/download/start?type=0{{model.basket}}{{model.redir}}" rel="nofollow" class="calltoaction maindownload">
+                        Download {{w6.enableBasket ? null : "Play"}}
+                        <strong>{{model.client}}</strong>
+                        <em>Windows only, {{w6.enableBasket ? 20 : 40}}MB</em>
+                        <span class="iconbg">
+                            <em ng-if="w6.enableBasket" class="icon withSIX-icon-Logo-Sync"></em>
+                            <em ng-if="!w6.enableBasket" class="icon withSIX-icon-Download"></em>
+                        </span>
+
+                        <span class="requirements" ng-include="'/cdn_source/app/main/_requirements.html'"></span>
+                    </a>
+                    <center ng-if="!w6.enableBasket">
+                        or try the
+                        <a ng-href="{{url.main}}/download/start?type=1{{model.basket}}{{model.redir}}" rel="nofollow">BETA version</a>
+                    </center>
+                    <center ng-if="w6.enableBasket">
+                      <i>Looking for the legacy 'Play withSIX' client? <a href="{{url.main}}/download/start?type=0&amp;basket=0{{model.redir}}">click here!</a></i>
+                    </center>
+                </p>
+                <h1>more than just a downloader</h1>
+
+                <section class="pitch">
+                    <div class="tile right-pane" ng-if="!w6.userInfo.isPremium">
+                        <h2>Get Premium</h2>
+                        <p>
+                            This mini client is built to handle downloads and complex,
+                            game specific installations. Using delta patching technology it saves bandwidth and is easy on CPU and memory.
+                        </p>
+                        <a class="calltoaction" style="float: none;margin-right: initial;display: inline-block;
+                                                            font-size: 16px;padding: 6px 12px;height: inherit;
+                                                            background-color: #146bff;"
+                                href="gopremium">
+                            Learn more about Premium!
+                        </a>
+                    </div>
+                    <div class="tile">
+                        <div ng-include="'/cdn_source/app/main/_donate.html'"></div>
+                    </div>
+                    <div class="tile" ng-if="!w6.userInfo.isPremium">
+                        <div class="add-container-out" ng-if="w6.renderAds">
+                            <div class="add-container">
+                                <div class="add add-download2" ng-dfp-ad="angular-ad2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="tile right-pane">
+                        <h2>Appreciate the Applciation or Services?</h2>
+                        All content specific information are synced in real time. You can check the status of any mod, local or online and interact with it via the client and on the website.
+                    </div>-->
+
+                    <!--<div id="play">
+                        <div class="img pull-left">
+                            <span class="icon withSIX-icon-Joystick"></span>
+                        </div>
+                        <div class="tile text">
+                            <h2>Click and play</h2>
+                            No matter if on withSIX.com or the client interface,
+                            downloads, updates and launching of any mod or
+                            collection is just a click away. The choice is yours!
+                        </div>
+                    </div>-->
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

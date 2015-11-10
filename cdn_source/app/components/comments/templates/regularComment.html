@@ -1,0 +1,102 @@
+<div ng-if="!comment.archivedAt">
+    <div class="comment-body">
+        <div class="tiny">
+            <span class="pull-right" ng-if="likeStates">
+                {{comment.likesCount == 0 || isNaN(comment.likesCount) || comment.likesCount == null ? 'No likes' : (comment.likesCount == 1 ? '1 like' : comment.likesCount + ' like this')}}
+            </span>
+        </div>
+        <footer>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span ng-if="comment.author.isPremium" class="icon withSIX-icon-Badge-Sponsor no-tween"
+                      title="This is a proud premium user"></span>
+                <a class="comment-author" ng-href="{{comment.author.profileUrl}}"
+                   rel="author">
+                    {{comment.author.displayName}}
+                </a>
+                <a class="imgholder" ng-href="{{comment.author.profileUrl}}">
+                    <img ng-src="{{userAvatar}}" />
+                </a>
+            </span>
+        </footer>
+
+        <div class="comment-message"
+             sx-editable-text="comment.message"
+             can-edit="false" editing="edit.editing"
+             onaftersave="saveComment({ comment: comment })"
+             no-blur>
+            {{comment.message}}
+        </div>
+
+        <div class="actions tiny">
+            <div>
+
+                <div ng-if="!w6.userInfo.id">
+                    <span ng-if="!w6.userInfo.id">&nbsp;</span>
+                    <button class="anchor" style="color: red" ng-click="reportComment({comment: comment})" ng-if="false">
+                        Report
+                    </button>
+                    <span class="pull-right">
+                        <span ng-if="!comment.lastEditedAt">
+                            <a class="comment-time" ng-href="{{::url.currentPage}}#comment-{{comment.id}}"><sx-time time="comment.created"></sx-time></a>
+                        </span>
+                        <span ng-if="comment.lastEditedAt">
+                            <a class="comment-time" ng-href="{{::url.currentPage}}#comment-{{comment.id}}" title="Edited"><sx-time time="comment.lastEditedAt"></sx-time><strong>*</strong></a>
+                        </span>
+                        <span ng-if="comment.entityAspect.isBeingSaved" class="no-tween-out">
+                            <b>&nbsp;-&nbsp; Saving...</b>
+                        </span>
+                        <span ng-if="!comment.entityAspect.isBeingSaved && comment.entityAspect.entityState.isAdded()" class="no-tween-out">
+                            <b>&nbsp;-&nbsp; Save Failed (<button class="anchor" ng-click="comment.entityAspect.entityManager.saveChanges(comment)">Retry?</button>)</b>
+                        </span>
+                    </span>
+                </div>
+                <div ng-if="w6.userInfo.id">
+                    <span ng-if="!w6.userInfo.id">&nbsp;</span>
+                    <button class="anchor bar-action"
+                            ng-click="likeComment({ comment: comment })"
+                            ng-if="w6.userInfo.id && likeStates && !likeStates[comment.id]">
+                        Like
+                    </button>
+                    <button class="anchor bar-action"
+                            ng-click="unlikeComment({ comment: comment })"
+                            ng-if="w6.userInfo.id && likeStates && likeStates[comment.id]">
+                        Unlike
+                    </button>
+                    <button class="anchor" ng-click="newComment.open = true">
+                        Reply
+                    </button>
+                    <button class="anchor" ng-click="editComment(comment, edit)" ng-if="canEdit">
+                        Edit
+                    </button>
+                    <button class="anchor" style="color: red" ng-click="reportComment({comment: comment})" ng-if="false">
+                        Report
+                    </button>
+                    <span class="pull-right">
+                        <span ng-if="!comment.lastEditedAt">
+                            <a class="comment-time" ng-href="{{::url.currentPage}}#comment-{{comment.id}}"><sx-time time="comment.created"></sx-time></a>
+                        </span>
+                        <span ng-if="comment.lastEditedAt">
+                            <a class="comment-time" ng-href="{{::url.currentPage}}#comment-{{comment.id}}" title="Edited"><sx-time time="comment.lastEditedAt"></sx-time><strong>*</strong></a>
+                        </span>
+                        <span ng-if="comment.entityAspect.isBeingSaved" class="no-tween-out">
+                            <b>&nbsp;-&nbsp; Saving...</b>
+                        </span>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <hr/>
+    </div>
+    <div ng-if="newComment.open"
+         ng-include="'/cdn_source/app/components/comments/templates/replySection.html'"></div>
+</div>
+<div ng-if="comment.archivedAt" class="comment-body">
+    <footer style="padding-bottom: 8px">
+        <span class="tiny">
+            Comment Deleted
+        </span>
+    </footer>
+    <hr/>
+</div>

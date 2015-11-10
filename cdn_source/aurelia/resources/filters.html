@@ -1,0 +1,46 @@
+<template>
+  <div>
+    <div>
+      <input if.bind="typeaheadOptions" typeahead="substring-matcher.bind: typeaheadOptions.substringMatcher; display.bind: typeaheadOptions.display; selected.bind: typeaheadSelect" class="form-control search-control" type="text" value.bind="searchInput" placeholder.bind="searchInputPlaceholder"></input>
+      <input if.bind="!typeaheadOptions" class="form-control search-control" type="text" value.bind="searchInput" placeholder.bind="searchInputPlaceholder"></input>
+      <div class="pull-right">
+        <span show.bind="filteredItems.length != items.length">${filteredItems.length} /</span>
+        ${items.length} total
+        <span if.bind="sort.length > 0">
+          <select class="filter-sort" id="select-sort" name="select-sort" value.bind="sortOrder">
+            <option repeat.for="item of sort" model.bind="item">Sort by ${item.title || item.name.toUpperCaseFirst()}</option>
+          </select>
+          <button class="filter-order" click.delegate="toggleDirection()">${sortOrder.direction == 1 ? 'Desc' : 'Asc'}</button>
+        </span>
+
+        <div class="views grid-select" if.bind="viewTypes.length > 0">
+          <!-- <ul class="my-menu horizontal">
+            <li repeat.for="item of viewTypes" class="${$parent.selectedViewType == item ? 'active' : null}">
+              <button click.trigger="$parent.selectedViewType = item" disabled.bind="$parent.selectedViewType == item">
+                ${$parent.viewTypeEnum[item]}
+              </button>
+            </li>
+          </ul> -->
+          <select size="2" class="my-select horizontal grid-type" value.bind="selectedViewType">
+            <option model.bind="item" repeat.for="item of viewTypes" class="${$parent.getIconForViewType(item)} icon"></option>
+          </select>
+        </div>
+      </div>
+
+      <div class="show-filter" if.bind="filters && filters.length > 0">
+        <span class="show-title">Show:</span>
+          <div class="show-boxes">
+              <div class="checkbox-container" repeat.for='filter of filters'>
+                  <div class="squaredTwo ckInner">
+                      <input type="checkbox" name="mod-version-unknown"
+                             id="chk${filter.name}" model.bind="filter" checked.bind="$parent.enabledFilters" />
+                      <label for="chk${filter.name}"></label>
+                  </div>
+                  <label class="text-label" for="chk${filter.name}">${filter.name}</label>
+              </div>
+          </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</template>

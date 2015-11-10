@@ -1,0 +1,199 @@
+﻿<div class="container-fluid">
+
+    <h3>Edit: {{model.name}}</h3>
+
+    <div class="form-message form-message-passed" ng-if="response.success">
+        <p>Successfully saved</p>
+        <p>
+            <button class="anchor" ng-click="reloadPage()">Continue Editing</button>
+        </p>
+        <p>
+            <a ng-href="{{::url.play}}/{{model.gameSlug}}/missions/{{toShortId(model.id)}}/{{model.slug}}">View Mission</a>
+        </p>
+    </div>
+
+    <div ng-if="!response.success">
+        <form name="editMissionForm" ng-submit="editMissionForm.$valid && submit(editMissionForm)">
+
+            <h3>Tags</h3>
+            <div class="tile">
+                <p>
+                    Tags (optional, min 3, max 32 chars per tag, 1000 total, split by space, e.g: SomeTag AnotherTag)
+                    <br/>
+                    Allowed characters: alphabetic<br/>
+                    <input type="text"
+                           name="tags"
+                           maxlength="1000"
+                           ng-model="model.tags"/>
+                </p>
+            </div>
+
+            <h3>Full description</h3>
+            <div class="tile">
+                <textarea id="descriptionFull" name="descriptionFull"
+                          ng-model="model.descriptionFull"
+                          redactor></textarea>
+
+            </div>
+
+            <h3>Mission Features ({{model.features.length}})</h3>
+
+            <div class="tile">
+                <div class="actions">
+                    <a href="javascript:;" ng-click="addFeature()">
+                        <span class="icon-plus"></span>
+                        Add feature
+                    </a>
+                </div>
+                <fieldset class="clearfix" ng-disabled="processing">
+
+                    <div ng-repeat="feature in model.features" class="col-sm-5">
+                        <div class="feature-container">
+                            <button class="btn"
+                                    sx-really-message="do you really want to remove this feature?"
+                                    sx-really-click="removeFeature(feature)">
+                                <span class="icon icon-remove"></span>
+                                Remove feature
+                            </button>
+
+                            <p>
+                                <label>title</label>
+                                <br/>
+                                <input type="text"
+                                       name="highlight-titles"
+                                       maxlength="80"
+                                       ng-required
+                                       ng-model="feature.name"/>
+                            </p>
+                            <p>
+                                <label>description</label>
+                                <br/>
+                                <textarea name="highlight-descriptions"
+                                          ng-required
+                                          maxlength="4096"
+                                          ng-model="feature.content"></textarea>
+                            </p>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="actions">
+                    <a href="javascript:;" ng-click="addFeature()">
+                        <span class="icon-plus"></span>
+                        Add feature
+                    </a>
+                </div>
+            </div>
+
+            <h3>Images ({{model.images.length}})</h3>
+            <div class="tile">
+                <div class="mediaslider" id="mediaslider">
+                    <a href="javascript:;" class="btn btn-left">
+                        <span class="icon icon-chevron-left"></span>
+                    </a>
+
+                    <ul class="clearfix">
+                        <li ng-repeat="image in model.images">
+                            <div>
+                                <img ng-src="{{::url.contentCdn}}/{{image.path}}/' + w6.imageSizes.missionThumb.w + 'x' + w6.imageSizes.missionThumb.h + '.jpg"
+                                     alt=""/>
+
+                                <label>
+                                    <input name="media-featured"
+                                           ng-model="model.featuredMediaId"
+                                           value="{{image.id}}"
+                                           type="radio"/>
+                                    Featured
+                                </label>
+                                <label>
+                                    <input type="checkbox"
+                                           name="media-deletes"
+                                           ng-model="image.shouldDelete"/>
+                                    Delete
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="javascript:;" class="btn btn-right">
+                        <span class="icon icon-chevron-right"></span>
+                    </a>
+                </div>
+
+                <br/>
+                <h3>Add Images</h3>
+                <div>
+                    <input type="file" name="files" limit="10"
+                           multiple="multiple" accept="image/*"
+                           ng-file-select="updateFileInfo($files)"/>
+                </div>
+            </div>
+
+            <h3>YouTube videos ({{model.videos.length}})</h3>
+            <div class="tile">
+                <div class="actions">
+                    <a href="javascript:;" ng-click="addVideo()">
+                        <span class="icon-plus"></span>
+                        Add new video
+                    </a>
+                </div>
+
+                <fieldset ng-disabled="processing">
+
+                    <p ng-repeat="video in model.videos">
+                        <label>
+                            <span class="icon-youtube"></span>
+                            &nbsp;YouTube ID:
+                        </label>
+                        <input type="text" name="youtube-ids"
+                               ng-model="video.path"
+                               ng-required/>
+                        <span class="delete-me">
+                            <input class="delete" type="checkbox" name="youtube-deletes"
+                                   value="video.id" ng-click="removeVideo(video)" />
+                            <span>Remove Video</span>
+                        </span>
+                    </p>
+
+                </fieldset>
+
+
+                <p class="help">
+                    <strong>How do you find the YouTube ID?</strong>
+                    <br/>
+                    The ID is in the URL. It's everything that comes after: ?v= and before an "&amp;"-sign. So the ID of http://www.youtube.com/watch?v=OoLk8aK6Yx8 is OoLk8aK6Yx8
+                </p>
+
+                <div class="actions">
+                    <a href="javascript:;" ng-click="addVideo()">
+                        <span class="icon-plus"></span>
+                        Add new video
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="tile">
+                <button type="submit"
+                        ng-disabled="editMissionForm.$invalid || processing"
+                        http-progress="editMission"
+                        http-processing="processing"
+                        http-pending="Processing..."
+                        http-success="Processed!"
+                        http-single-use="t"
+                        http-error="Failed...">
+                    <span class="icon icon-chevron-right"></span>
+                    Save Mission
+                </button>
+            </div>
+
+            <div class="form-response bg-danger" ng-if="response && !response.success">
+                {{response.message}}<br/>
+                <div ng-repeat="(k, v) in response.errors">
+                    <span ng-repeat="msg in v">{{msg}}</span><br/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

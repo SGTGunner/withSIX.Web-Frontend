@@ -1,0 +1,165 @@
+.grid-roster {
+  .add-container {
+    background-color: $color0;
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+    padding-top: 16px;
+    margin-top: 0px;
+    clear: both;
+  }
+
+  a {
+    display: block;
+    background-color: $color0;
+    margin-bottom: 32px;
+    line-height: 40px;
+    text-decoration: none;
+    color: $color3;
+    position: relative;
+
+    &.col-sm-4 {}
+
+    &.col-sm-6 {}
+
+    .imageholder {
+      overflow: hidden;
+      display: block;
+      height: 151px;
+      background-color: $color0;
+    }
+
+    span.title {
+      display: block;
+      padding-left: 20px;
+      padding-right: 56px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 40px;
+
+      strong {
+        font-weight: $font-weight-base;
+      }
+    }
+
+    strong.rating {
+      position: absolute;
+
+      @include size(56px, 40px);
+
+      text-align: center;
+      display: block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    span.logo {
+      z-index: 4;
+      position: relative;
+    }
+
+    span.bg-hover {
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      display: block;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      opacity: 0;
+
+      @include basictransition;
+
+      background-position: center;
+    }
+
+    span.hover {
+      position: absolute;
+      top: 0;
+      display: block;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      background: $color3;
+      z-index: 3;
+      opacity: 0;
+      color: $color0;
+      padding: 20px;
+      overflow: hidden;
+      background-size: cover;
+
+      @include basictransition;
+
+      & > span {
+        display: block;
+        line-height: 24px;
+        padding-bottom: 0;
+        margin-bottom: 0px;
+
+        em {
+          font-style: normal;
+        }
+      }
+    }
+
+    &:hover span.bg-hover,
+    &:hover span.hover {
+      opacity: 1;
+
+      @include basictransition;
+    }
+  }
+}
+
+.user-tiles {
+  a {
+    position: relative;
+
+    @include min-height-lh(72px);
+
+    img {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      display: block;
+    }
+
+    strong {
+      padding-left: 88px;
+      font-weight: $font-weight-base;
+    }
+  }
+}
+
+.game-grid a {
+  $imgHeight: 141px;
+  $height: 40px + $imgHeight;
+  $imgHeightXl: 188px;
+  $heightXl: 40px + $imgHeightXl;
+
+  height: $height;
+
+  .logo {
+    @include height-lh($imgHeight);
+
+    display: block;
+    text-align: center;
+  }
+
+  @media (min-width: $flipWidth) {
+    height: $heightXl;
+
+    .logo {
+      @include height-lh($imgHeightXl);
+    }
+  }
+
+  @media (max-width: $flipWidthXs) {
+    height: $heightXl;
+
+    .logo {
+      @include height-lh($imgHeightXl);
+    }
+  }
+}

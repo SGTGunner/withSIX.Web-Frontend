@@ -1,0 +1,27 @@
+<template>
+  <div class="play-footer-playlist basket basket-state-${activeStateClass} basket-header">
+    <div class="pull-left">
+      <div class="pull-left basket-header-icon">
+        <span class="icon withSIX-icon-Content-Play-Media"></span>
+      </div>
+      <div class="pull-left basket-header-title">
+        <span class="pull-left playlist-title">Playlist</span>
+        <!-- <input class="pull-left"
+          typeahead="substring-matcher.bind: typeaheadOptions.substringMatcher; display.bind: typeaheadOptions.display; selected.bind: typeaheadOptions.select">
+        </input> -->
+        <!-- <input type="text" class="pull-left find-collection" value.bind="findCollection"></input> -->
+        <finder placeholder="search collection" model.bind="findModel" show-button="true" icon="withSIX-icon-Search" text=""></finder>
+        <!-- <span class="icon withSIX-icon-Add"></span> -->
+      </div>
+    </div>
+
+    <div class="pull-right">
+      <div class="pull-right basket-header-contextbutton ${creatingBasket ? 'no-top' : null}">
+        <button class="icon ${isExpanded ? 'withSIX-icon-Arrow-Down-Dir' : 'withSIX-icon-Arrow-Up-Dir'}" click.delegate="toggleExpansion(); $event.stopPropagation()"></button>
+      </div>
+    </div>
+    <!-- <div class="basket-headerline basket-state-colored">
+      <div class="basket-headerline-title">&nbsp;</div>
+    </div> -->
+  </div>
+</template>

@@ -1,0 +1,37 @@
+<template>
+	<section class="au-animate collections-ng library" id="my-home">
+		<h2 class="page-title">${heading | usertitle}</h2>
+
+		<div class="tile" if.bind="!clientEnabled"><compose view="connect/profile/_get_client.html"></compose></div>
+
+		<div class="row">
+			<div class="col-md-4" if.bind="clientEnabled">
+				<h3 class="row-header">Recently played</h3>
+				<card-view items.bind="recent" card-cls="col-sm-6 col-md-12 collection" view-path="connect/profile/content/"></card-view>
+			</div>
+
+			<div class="col-md-8">
+				<h3 class="row-header">Your games</h3>
+				<card-view items.bind="games" card-cls="col-sm-6 col-md-2 game" view-path="connect/profile/content/" item-type="game-box" class="games">
+					<template replace-part="additional-items">
+						<div class="col-sm-6 col-md-2 game">
+							<div class="card img"><a href="/me/library"><span class="imageholder au-target" back-img.bind="image" au-target-id="186" style="background-image: url(http://i.imgur.com/JkMOiIw.png);"></span></a></div>
+						</div>
+					</template>
+				</card-view>
+
+				<div class="row subcontent-row" if.bind="clientEnabled">
+					<div class="col-sm-6">
+						<h3 class="row-header">New installs</h3>
+						<card-view items.bind="newContent" card-cls="col-md-12 collection horizontal" view-path="connect/profile/content/"></card-view>
+					</div>
+					<div class="col-sm-6">
+						<button class="pull-right row-header-button c-orange" command.bind="updateAll">Update all</button>
+						<h3 class="row-header">Updates available ${updates.length}</h3>
+						<card-view items.bind="updates" card-cls="col-md-12 collection horizontal" view-path="connect/profile/content/"></card-view>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</template>

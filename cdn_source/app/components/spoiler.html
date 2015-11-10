@@ -1,0 +1,5 @@
+﻿<button type="button"
+        ng-click="toggle()">
+    {{shown ? 'Hide' : 'Show'}} spoiler
+</button>
+<ng-transclude ng-if="shown"></ng-transclude>

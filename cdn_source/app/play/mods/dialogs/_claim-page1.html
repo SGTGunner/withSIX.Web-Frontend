@@ -1,0 +1,43 @@
+﻿<div class="modal-header">
+    <h1>Content Claiming - {{!processing ? 'Start' : 'Retrieving your token'}}</h1>
+    <strong>Modification -&nbsp;</strong>{{model.name}}<br/>
+    <span ng-if="processing"><strong>Claim Provider -&nbsp;</strong>Finding your provider</span>
+</div>
+
+<div class="modal-body">
+    <div>
+        <strong>Important Information</strong><br/>
+        <em>Before you get going there is some important information that you need to know!</em><br/>
+        <ul>
+            <li>WithSix will never ask for your username or password to claim your content</li>
+            <li>Once the claim process is finished you can remove the claim token from your page</li>
+        </ul>
+        <hr/>
+        <strong>Terms and Conditions</strong>
+        <ul>
+            <li>By claiming the mod you confirm being the author of the Mod and retain the rights of the mod</li>
+        </ul>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <!-- edit... -->
+    <button type="button"
+            ng-click="cancel()"
+            class="btn btn-cancel"
+            data-dismiss="modal">
+        Cancel
+    </button>
+    <button type="button"
+            ng-click="ok()"
+            ng-disabled="model.processing"
+            http-single-use="t"
+            http-processing="model.processing"
+            http-progress="getClaim"
+            http-pending="Processing..."
+            http-success="Processed!"
+            http-error="Failed..."
+            class="btn btn-primary">
+        Start
+    </button>
+</div>

@@ -1,0 +1,168 @@
+{
+  "main": {
+    "/": { "type": "aurelia" },
+    "/errors/500": { },
+    "/errors/404": { },
+    "/errors/401": { },
+    "/errors/402": { },
+    "/errors/403": { },
+
+    "/getting-started": {
+      "type": "static",
+      "redirectTo": "http://withsix.readthedocs.org/en/latest/general/get_started"
+    },
+    "/getting-started-publishing": {
+      "type": "static",
+      "redirectTo": "http://withsix.readthedocs.org/en/latest/general/get_started_publishing"
+    },
+    "/legal": { "type": "aurelia" },
+    "/community": {
+      "type": "static",
+      "redirectTo": "https://community.withsix.com"
+    },
+    "/support": {
+      "type": "static",
+      "redirectTo": "https://community.withsix.com"
+    },
+    "/orders/:orderId/:action?": { "type": "aurelia", "ssl": 1, "auth": true },
+    "/orders/:orderId/:action/:subaction": { "type": "aurelia", "ssl": 1, "auth": true },
+
+    "/changelog/:nolayout?": { },
+    "/gopremium": { "ssl": 1 },
+    "/download": { },
+    "/download/start": { },
+    "/blog": { },
+    "/update": { },
+    "/blog/team": { },
+    "/blog/archive/:year/:month": { },
+    "/blog/team/archive/:year/:month": { },
+    "/blog/:slug": { }
+  },
+  "connect": {
+    "/errors/500": { },
+    "/errors/404": { },
+    "/errors/401": { },
+    "/errors/402": { },
+    "/errors/403": { },
+    "/login": {
+      "ssl": 1
+    },
+    "/login/verify": {
+      "ssl": 1
+    },
+    "/login/verify/:activationCode": {
+      "ssl": 1
+    },
+    "/login/forgot-password": {
+      "ssl": 1
+    },
+    "/login/forgot-username": {
+      "ssl": 1
+    },
+    "/login/forgot-password/reset/:resetCode": {
+      "ssl": 1
+    },
+    "/me": { "type": "aurelia" },
+    "/me/library": { "type": "aurelia" },
+    "/me/library/:gameSlug": { "type": "aurelia" },
+    "/me/library/:gameSlug/collections": { "type": "aurelia" },
+    "/me/library/:gameSlug/collections/:collectionId/:collectionSlug?": { "type": "aurelia" },
+    "/me/library/:gameSlug/mods": { "type": "aurelia" },
+    "/me/library/:gameSlug/missions": { "type": "aurelia" },
+    "/me/settings": {
+      "ssl": 1, "auth": true
+    },
+    "/me/settings/personal": {
+      "ssl": 1, "auth": true
+    },
+    "/me/settings/avatar": {
+      "ssl": 1, "auth": true
+    },
+    "/me/settings/credentials": {
+      "ssl": 1, "auth": true
+    },
+    "/me/settings/premium": {
+      "ssl": 1, "auth": true
+    },
+    "/me/blog": {
+      "ssl": 1, "auth": true
+    },
+    "/me/blog/create": {
+      "ssl": 1, "auth": true
+    },
+    "/me/blog/:slug": {
+      "ssl": 1, "auth": true
+    },
+    "/me/content": { },
+    "/me/content/mods": { },
+    "/me/content/missions": { },
+    "/me/content/collections": { },
+    "/me/content/servers": { },
+    "/me/content/apps": { },
+    "/me/friends": { },
+    "/me/offers": { },
+    "/me/messages": {
+      "ssl": 1, "auth": true
+    },
+    "/me/messages/:slug": {
+      "ssl": 1, "auth": true
+    },
+    "/u/:userSlug": { },
+    "/u/:userSlug/blogposts": { },
+    "/u/:userSlug/content": { },
+    "/u/:userSlug/content/mods": { },
+    "/u/:userSlug/content/missions": { },
+    "/u/:userSlug/content/collections": { },
+    "/u/:userSlug/content/servers": { },
+    "/u/:userSlug/content/apps": { },
+    "/u/:userSlug/friends": { },
+    "/u/:userSlug/messages": { }
+  },
+  "play": {
+    "/": { },
+    "/errors/500": { },
+    "/errors/404": { },
+    "/errors/401": { },
+    "/errors/402": { },
+    "/errors/403": {},
+
+    "/:gameSlug": {},
+    "/:gameSlug/library": {},
+    "/:gameSlug/library/home": {},
+    "/:gameSlug/library/mods": {},
+    "/:gameSlug/library/collections": {},
+    "/:gameSlug/order": {},
+    "/:gameSlug/stream/personal/:streamType?": {},
+    "/:gameSlug/stream/:streamType?": {},
+    "/:gameSlug/mods": {},
+    "/:gameSlug/mods/category/:category": {},
+    "/:gameSlug/mods/category/:category/page/:page": {},
+    "/:gameSlug/mods/:modId/:modSlug?/edit": {},
+    "/:gameSlug/mods/:modId/:modSlug?/download": {},
+    "/:gameSlug/mods/:modId/:modSlug?/related": {},
+    "/:gameSlug/mods/:modId/:modSlug?/credits": {},
+    "/:gameSlug/mods/:modId/:modSlug?/readme": {},
+    "/:gameSlug/mods/:modId/:modSlug?/license": {},
+    "/:gameSlug/mods/:modId/:modSlug?/changelog": {},
+    "/:gameSlug/mods/:modId/:modSlug?/settings": {},
+    "/:gameSlug/mods/:modId/:modSlug?/blog": {},
+    "/:gameSlug/mods/:modId/:modSlug?": {},
+    "/:gameSlug/missions": {},
+    "/:gameSlug/missions/new": {},
+    "/:gameSlug/missions/:missionId/:missionSlug?/edit": {},
+    "/:gameSlug/missions/:missionId/:missionSlug?/versions/new": {},
+    "/:gameSlug/missions/:missionId/:missionSlug?/versions/:versionSlug/publish": {},
+    "/:gameSlug/missions/:missionId/:missionSlug?/download": {},
+    "/:gameSlug/missions/:missionId/:missionSlug?": {},
+    "/:gameSlug/collections": {},
+    "/:gameSlug/collections/:collectionId/:collectionSlug?/content": {},
+    "/:gameSlug/collections/:collectionId/:collectionSlug?/comments": {},
+    "/:gameSlug/collections/:collectionId/:collectionSlug?/related": {},
+    "/:gameSlug/collections/:collectionId/:collectionSlug?/edit": {"type": "static"},
+    "/:gameSlug/collections/:collectionId/:collectionSlug?": {},
+    "/:gameSlug/servers": {},
+    "/:gameSlug/servers/:serverId/:serverSlug?": {},
+    "/:gameSlug/apps": {},
+    "/:gameSlug/apps/:appId/:appSlug?": {}
+  }
+}

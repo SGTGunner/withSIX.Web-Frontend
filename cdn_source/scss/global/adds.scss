@@ -1,0 +1,54 @@
+.add-container {
+  text-align: center;
+  font-size: 11px;
+  color: $color2;
+
+  //padding-bottom: 32px;
+  &.inline {
+    display: inline-block;
+  }
+
+  a {
+    height: auto !important;
+  }
+
+  .add-leaderboard {
+    max-width: $adLeaderboardWidth;
+
+    @include center-block;
+
+    line-height: 0px !important;
+  }
+
+  .add-large-rectangle {
+    max-width: 336px;
+
+    @include center-block;
+
+    line-height: 0px !important;
+  }
+
+  .add-skyscraper {
+    max-width: 300px;
+
+    @include center-block;
+
+    line-height: 0px !important;
+  }
+}
+
+.add-container-header {
+  margin-top: 16px;
+
+  .add-leaderboard {
+    max-width: $adLeaderboardWidthHuge;
+  }
+}
+
+.adlinks {
+  overflow: hidden;
+
+  &.vt {
+    display: inline-block;
+  }
+}

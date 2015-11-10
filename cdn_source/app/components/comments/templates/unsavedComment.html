@@ -1,0 +1,22 @@
+﻿<div class="comment-body">
+    <footer>
+        <span>
+            <span ng-if="w6.userInfo.isPremium" class="icon withSIX-icon-Badge-Sponsor no-tween"
+                  title="This is a proud premium user"></span>
+            <a class="comment-author" ng-href="{{userInfo.profileUrl}}">{{userInfo.displayName}}</a>
+            <a class="imgholder" ng-href="{{userInfo.profileUrl}}">
+                <img ng-src="{{selfAvatar}}" />
+            </a>
+        </span>
+        <div class="tiny">
+            <b>Saving...</b>
+        </div>
+    </footer>
+
+    <div>{{comment.message}}</div>
+
+    <div class="actions tiny">
+        &nbsp;
+    </div>
+    <hr/>
+</div>

@@ -1,0 +1,24 @@
+﻿<div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(form.email) }">
+    <label for="email" ng-if="showLabel"
+           class="control-label">{{label}}</label>
+    <input type="email" name="email"
+           id="email"
+           ng-model="model.email"
+           placeholder="{{placeholder}}"
+           required
+           ng-blur="blurred()"
+           class="form-control"/>
+    <sx-validation-messages label="label" field="form.email">
+        <p ng-if="form.email.$error.sxExists">
+            <button class="anchor"
+                    type="button"
+                    ng-click="login(model.email)">login</button>
+            or
+            <button class="anchor"
+                    type="button"
+                    ng-click="forgotPassword(model.email)">
+                forgot password
+            </button>?
+        </p>
+    </sx-validation-messages>
+</div>

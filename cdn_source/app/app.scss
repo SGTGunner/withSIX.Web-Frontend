@@ -1,0 +1,721 @@
+.alternating-table tr:nth-child(even) {
+  background: #ebebeb;
+}
+
+/* Use `none 0s` to disable keyframe animations */
+div[no-tween].ng-scope.ng-animate {
+  -webkit-animation: none 0s !important;
+  animation: none 0s !important;
+}
+
+div[app-view-segment="1"].ng-scope.ng-animate {
+  -webkit-animation: none 0s !important;
+  animation: none 0s !important;
+}
+
+div[app-view-segment="2"].ng-scope.ng-animate {
+  -webkit-animation: none 0s !important;
+  animation: none 0s !important;
+}
+
+.no-tween {
+  -webkit-animation: none 0s !important;
+  animation: none 0s !important;
+}
+
+.no-tween-out.ng-leave {
+  -webkit-animation: none 0s !important;
+  animation: none 0s !important;
+}
+
+.no-tween-in.ng-leave {
+  -webkit-animation: none 0s !important;
+  animation: none 0s !important;
+}
+
+.editable-wrap {
+  .wmd-panel {
+    .wmd-input {
+      background-color: initial;
+    }
+  }
+
+  .pagedown-preview {
+    white-space: normal !important;
+  }
+
+  .wmd-preview {
+    background-color: ghostwhite !important;
+  }
+}
+
+.hide-tags {
+  .tag-item {
+    display: none !important;
+  }
+
+  min-width: 200px !important;
+
+  .tags {
+    margin: 0 0 0 0 !important;
+  }
+}
+
+.no-horizontal-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.no-horizontal-margin {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.wordwrap {
+  white-space: pre-wrap;
+
+  /* CSS3 */
+  white-space: -moz-pre-wrap;
+
+  /* Firefox */
+  white-space: -pre-wrap;
+
+  /* Opera <7 */
+  white-space: -o-pre-wrap;
+
+  /* Opera 7 */
+  word-wrap: break-word;
+
+  /* IE */
+}
+
+.modal.modal-center {
+  width: 100%;
+  position: fixed;
+  margin: 0px auto;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1050;
+
+  .modal_wrapper {
+    display: table;
+    overflow: auto;
+    overflow-y: scroll;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    margin: 0px auto;
+
+    .modal-dialog {
+      margin-top: 0px;
+      display: table-cell;
+      vertical-align: middle;
+      margin: 0px 20px;
+    }
+  }
+}
+
+.tooltip .tooltip-inner {
+  border-radius: 4px !important;
+}
+
+.processing-button {
+  background-color: #428bca !important;
+  opacity: 0.6;
+}
+
+/*.add-mod-dialog{
+    .modal-body {
+        .form-control::-webkit-input-placeholder { color: rgb(119, 119, 119); }
+        .form-control:-moz-placeholder { color: rgb(119, 119, 119); }
+        .form-control::-moz-placeholder { color: rgb(119, 119, 119); }
+        .form-control:-ms-input-placeholder { color: rgb(119, 119, 119); }
+    }
+}*/
+
+.form-control::-webkit-input-placeholder {
+  color: #afafaf;
+}
+
+.form-control:-moz-placeholder {
+  color: #afafaf;
+}
+
+.form-control::-moz-placeholder {
+  color: #afafaf;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #afafaf;
+}
+
+.tags.form-control {}
+
+.tags-input.form-control {
+  padding: 4px 12px;
+  padding-left: 7px;
+  height: 100%;
+
+  .tags {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    box-shadow: none;
+
+    .input {
+      margin: 0;
+    }
+
+    .tag-item {
+      width: 99%;
+      height: inherit;
+      background: #428bca;
+      border-color: #357ebd;
+      color: #fff;
+      text-align: center;
+      vertical-align: middle;
+
+      .remove-button {
+        float: right;
+      }
+    }
+  }
+
+  .host {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.hint-link {
+  text-decoration: none;
+}
+
+p.has-error {
+  .error-msg {
+    display: block;
+  }
+}
+
+.ng-submitted.ng-invalid {
+  .field-invalid {
+    .error-msg {
+      display: block;
+    }
+  }
+}
+
+.error-msg {
+  margin-bottom: -18px;
+}
+
+.error-msg:not(.custom-display) {
+  display: none;
+}
+
+/* $activeColor: #c0392b; //red */
+$activeColor: #27ae60;
+
+//green
+$darkenColor: darken($activeColor, 20%);
+
+/* $background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/13460/dark_wall.png'); */
+$background: #3498db;
+
+/* .slideOne */
+.slideOne {
+  width: 50px;
+  height: 10px;
+  background: #333;
+  margin: 20px auto;
+  position: relative;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+
+  label {
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    cursor: pointer;
+    background: #fcfff4;
+    background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 50px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label {
+      left: 37px;
+    }
+  }
+}
+
+/* end .slideOne */
+
+/* .slideTwo */
+.slideTwo {
+  width: 80px;
+  height: 30px;
+  background: #333;
+  margin: 20px auto;
+  position: relative;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    height: 2px;
+    width: 52px;
+    background: #111;
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+  }
+
+  label {
+    display: block;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    position: absolute;
+    top: 4px;
+    z-index: 1;
+    left: 4px;
+    background: #fcfff4;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+
+    &:after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: #333;
+      border-radius: 50px;
+      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 1), 0px 1px 0px rgba(255, 255, 255, 0.9);
+    }
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label {
+      left: 54px;
+
+      &:after {
+        background: $activeColor;
+
+        /*activeColor*/
+      }
+    }
+  }
+}
+
+/* end .slideTwo */
+
+/* .slideThree */
+.slideThree {
+  width: 80px;
+  height: 26px;
+  background: #333;
+  margin: 20px auto;
+  position: relative;
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+
+  &:after {
+    content: 'OFF';
+    color: #000;
+    position: absolute;
+    right: 10px;
+    z-index: 0;
+    font: 12px/26px Arial, sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
+  }
+
+  &:before {
+    content: 'ON';
+    color: $activeColor;
+    position: absolute;
+    left: 10px;
+    z-index: 0;
+    font: 12px/26px Arial, sans-serif;
+    font-weight: bold;
+  }
+
+  label {
+    display: block;
+    width: 34px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 1;
+    background: #fcfff4;
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label {
+      left: 43px;
+    }
+  }
+}
+
+/* end .slideThree */
+
+/* .roundedOne */
+.roundedOne {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin: 20px auto;
+  background: #fcfff4;
+  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    background: linear-gradient(top, #222 0%, #45484d 100%);
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+
+    &:after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      background: $activeColor;
+      background: linear-gradient(top, $activeColor 0%, $darkenColor 100%);
+      opacity: 0;
+      border-radius: 50px;
+      box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+
+/* end .roundedOne */
+
+/* .roundedTwo */
+.roundedTwo {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin: 20px auto;
+  background: #fcfff4;
+  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+
+  label {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    cursor: pointer;
+    background: linear-gradient(top, #222 0%, #45484d 100%);
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+
+    &:after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      position: absolute;
+      top: 5px;
+      left: 4px;
+      border: 3px solid #fcfff4;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+
+/* end .roundedTwo */
+
+/* .squaredOne */
+.squaredOne {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin: 20px auto;
+  background: #fcfff4;
+  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+
+  label {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    cursor: pointer;
+    background: linear-gradient(top, #222 0%, #45484d 100%);
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+
+    &:after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      background: $activeColor;
+      background: linear-gradient(top, $activeColor 0%, $darkenColor 100%);
+      box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+    }
+
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+
+/* end .squaredOne */
+
+.checkbox-container {
+  width: 100%;
+  height: 38px;
+  margin-top: 5px;
+
+  .ckInner {
+    float: left !important;
+  }
+
+  .text-label {
+    margin-top: 6px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
+
+.collapsing-width {
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: width 0.35s ease;
+  -moz-transition: width 0.35s ease;
+  -o-transition: width 0.35s ease;
+  transition: width 0.35s ease;
+}
+
+/* .squaredTwo */
+.squaredTwo {
+  width: 23px;
+  height: 23px;
+  position: relative;
+
+  //margin: 20px auto;
+  margin-left: 10px;
+  margin-top: 7px;
+  border: 1px solid #ccc;
+
+  //background: #fcfff4;
+  //background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
+  //inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+
+    //background: linear-gradient(top, #222 0%, #45484d 100%);
+    //box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+    &:after {
+      content: '';
+      width: 11px;
+      height: 7px;
+      position: absolute;
+      top: 2px;
+      left: 1.2px;
+      border: 3px solid $colorSixBlue;
+
+      //3px solid #fcfff4;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+
+/* end .squaredTwo */
+
+/* .squaredThree */
+.squaredThree {
+  width: 20px;
+  position: relative;
+  margin: 20px auto;
+
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(top, #222 0%, #45484d 100%);
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.4);
+
+    &:after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      border: 3px solid #fcfff4;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+
+/* end .squaredThree */
+
+/* .squaredFour */
+.squaredFour {
+  width: 20px;
+  position: relative;
+  margin: 20px auto;
+
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fcfff4;
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+
+    &:after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      border: 3px solid #333;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+
+    &:hover::after {
+      opacity: 0.5;
+    }
+  }
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+
+/* end .squaredFour */

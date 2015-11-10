@@ -1,0 +1,59 @@
+<template>
+<div class="inner content-basketable content-state-${itemStateClass} content-stateable ${isInBasket ? 'in-basket' : null}">
+    <div class="content-state-c-bgd-border">
+        <div class="img">
+            <action-bar class="pull-left basketable-action" items.bind="topActions"></action-bar>
+            <dropdown-menu class="basketable-dropdown new-style hide-until-open" if.bind="topMenuActions && topMenuActions.length > 0"  items.bind="topMenuActions"></dropdown-menu>
+            <a href="${w6.url.play}/${path}" if.bind="path">
+              <span class="imagecontent imageholder" back-img.bind="defaultBackUrl">
+                <span class="imageholder" back-img.bind="defaultAssetUrl">
+                  <span class="imageholder" back-img.bind="image"></span>
+                </span>
+              </span>
+            </a>
+            <span if.bind="!path" class="imageholder" back-img.bind="image"></span>
+        </div>
+        <div class="info">
+            <div class="tiny">
+                <div class="pull-right">
+                    <time-ago if-bind="time" time.bind="time"></time-ago>
+                </div>
+                <div>
+                    <span>${gameName} <span class="${icon} icon"></span> ${model.type}</span>
+                </div>
+            </div>
+
+                <div class="title">
+                  <span if.bind="scopeIcon" class="icon ${scopeIcon}"></span>
+                    <a if.bind="path" href="${w6.url.play}/${path}">${model.name}</a>
+                    <span if.bind="!path">${model.name}</span>
+                </div>
+                <div class="tiny">
+                    <div class="pull-left">
+                        <span class="small">v${versionInfo}</span>
+                    </div>
+                    <div class="pull-right">
+                        <a if.bind="model.authorSlug" href="${w6.url.connectSsl}/u/${model.authorSlug}">${model.author}</a>
+                        <span if.bind="!model.authorSlug">${model.author}</span>
+                    </div>
+                    <!-- <div class="pull-right"><i>{{item.stat.install}} installs</i></div> -->
+                </div>
+            </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="bottom-bar content-state-c-bgd content-state-c-bgd-drkb details-overlay-footer row">
+      <!--
+      <button class="col-sm-6 details-overlay-footer-state" ng-click="directDownload(item);">
+          <span class="content-state-icon"></span><span class="content-state-text"></span>
+      </button>
+      <div ng-if="w6.enableBasket" class="col-sm-6 details-overlay-footer-localstate">
+          <span class="pull-right" style="display:none;">Installed {{::item.version && item.version[0] != 'v' ? 'v' + item.version : item.version}}</span>
+      </div>
+     -->
+      <action-bar class="pull-left" items.bind="bottomActions"></action-bar>
+      <dropdown-menu class="pull-left new-style share-caret hide-until-open" if.bind="bottomMenuActions && bottomMenuActions.length > 0" items.bind="bottomMenuActions"></dropdown-menu>
+    </div>
+</div>
+</template>

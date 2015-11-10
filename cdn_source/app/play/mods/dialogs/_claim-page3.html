@@ -1,0 +1,18 @@
+﻿<div class="modal-header">
+    <h1>Content Claiming - Finished!</h1>
+    <strong>Modification -&nbsp;</strong>{{model.name}}
+</div>
+
+<div class="modal-body">
+    <strong>Congratulations!</strong><br/>
+    <span>You have successfully claimed your content! You can adjust your mod page or update your mod yourself now.</span><br/>
+    <em>Don't forget to remove your claim token from your topic: <a ng-href="{{model.homepageUrl}}" target="_blank">here</a></em>
+</div>
+
+<div class="modal-footer">
+    <button type="button"
+            ng-click="reload()"
+            class="btn btn-primary">
+        Finished
+    </button>
+</div>

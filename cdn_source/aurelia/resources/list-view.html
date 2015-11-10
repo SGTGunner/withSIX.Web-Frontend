@@ -1,0 +1,10 @@
+<template>
+  <ul>
+    <template repeat.for="item of items">
+      <li>
+        <compose class="content-basketable"
+               model.bind="item" view-model="${$parent.viewPath}${item.type || $parent.itemType}"></compose>
+      </li>
+    </template>
+  </ul>
+</template>

@@ -1,0 +1,277 @@
+aside table {
+  width: 100%;
+
+  tr,
+  tr td {
+    vertical-align: top;
+  }
+}
+
+.edit-content-btn {
+  float: right;
+  margin-left: 20px;
+
+  @include height-lh(40px);
+
+  background-color: #fff;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  .icon {
+    margin-right: 10px;
+  }
+
+  &:hover .icon {
+    text-decoration: none;
+  }
+}
+
+.misson-features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    position: relative;
+
+    & > div {
+      padding-left: 40px;
+      padding-right: 8px;
+    }
+
+    &:before {
+      content: "\e601";
+      font-family: icons-withSIX;
+      font-weight: normal;
+      font-style: normal;
+      text-decoration: inherit;
+      -webkit-font-smoothing: antialiased;
+
+      /* sprites.less reset */
+      display: inline;
+
+      @include square(auto);
+
+      line-height: normal;
+      vertical-align: baseline;
+      background-image: none;
+      background-position: 0% 0%;
+      background-repeat: repeat;
+      margin-top: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: $primarycolor;
+      font-size: 24px;
+    }
+  }
+}
+
+/* dote stars */
+
+.stars {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 28px;
+
+  @include size(150px, 28px);
+
+  p {
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  & > div {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+    height: 28px;
+    cursor: col-resize;
+  }
+
+  & > .bg {
+    width: 150px;
+  }
+
+  .stretch {
+    width: 999999px;
+  }
+}
+
+.download-stars {
+  height: 72px;
+  position: relative;
+  margin-top: 32px;
+
+  .download {
+    a, button {
+      background-color: $calltoaction;
+
+      @include height-lh(72px);
+
+      display: block;
+      color: $color0;
+      text-decoration: none;
+      text-align: center;
+      font-weight: $font-weight-bold;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      .icon {
+        padding-right: 8px;
+      }
+    }
+  }
+}
+
+aside span.requires {
+  display: block;
+  text-align: center;
+  font-size: 0.8em;
+  padding-top: 6px;
+}
+
+/***************************************
+
+Edit Mission
+
+***************************************/
+
+#w6-mission-features {
+  .new {
+    background-color: #FFC;
+
+    @include basictransition;
+  }
+}
+
+form .tile > .actions {
+  background-color: $color4;
+
+  @include min-height-lh(40px);
+
+  margin-left: -24px;
+  padding-left: 24px;
+  margin-right: -24px;
+  padding-right: 24px;
+
+  a {
+    display: block;
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: $color0;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.mediaslider {
+  label {
+    display: block;
+    padding-top: 6px;
+    text-align: center;
+
+    input {
+      margin-right: 4px;
+    }
+  }
+}
+
+#w6-mission-youtube {
+  p {
+    input[type=text] {
+      margin-left: 10px;
+    }
+
+    span.delete-me {
+      position: absolute;
+      top: 9px;
+      left: 400px;
+      display: block;
+      white-space: nowrap;
+      opacity: 0.5;
+
+      @include basictransition;
+    }
+
+    &:hover span.delete-me {
+      opacity: 1;
+
+      @include basictransition;
+    }
+  }
+}
+
+.footer-message {
+  p {
+    text-align: center;
+  }
+}
+
+#mediaslider a {
+  position: relative;
+}
+
+#mediaslider a {
+  text-align: center;
+
+  .playicon {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: -20px;
+
+    @include height-lh(40px);
+
+    font-size: 40px;
+    color: $color3;
+    text-align: center;
+  }
+}
+
+#mediaslider a:hover .playicon {
+  color: $color5;
+}
+
+form fieldset .feature-container p {
+  margin: 0;
+}
+
+form fieldset .feature-container p input[type="text"] {
+  position: static;
+}
+
+.feature-container {
+  position: relative;
+  padding: 10px;
+  padding-bottom: 60px;
+  margin: 10px;
+
+  a.btn {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 99;
+    display: none;
+  }
+
+  &:hover a.btn {
+    display: block;
+  }
+
+  textarea:focus {
+    min-height: 160px;
+  }
+}

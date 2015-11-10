@@ -1,0 +1,142 @@
+﻿<div itemscope itemtype="http://schema.org/CreativeWork" ng-class="{'content-stateable': w6.enableBasket, 'editing': editConfig.isEditing}" class="not-editing  content-state-{{getItemStateClass(model)}}">
+    <div sx-content-header>
+        <span name="content-title-name" class="editable-half">
+            <span ng-class="{'edit-border-blue edit-field': editConfig.canManage()}"
+                  sx-editable-text="model.name" buttons="no" can-edit="editConfig.isEditing && editConfig.canManage()" blur-saves>
+                {{model.name | characters:54 :true}}<span style="display: inline-flex; vertical-align: top"><span ng-if="editConfig.isEdited('name')" class="withSIX-icon-Alert" style="color: red; font-size: 20px;"></span></span>
+            </span>
+        </span>
+
+        <span name="content-type">
+            <a ng-href="{{header.contentRootUrl}}">
+                <span class="withSIX-icon-Folder"></span>
+                Collection
+            </a>
+            (<span ng-class="{'edit-border-blue edit-field': editConfig.canManage()}"
+                    can-edit="editConfig.isEditing && editConfig.canManage()" blur-saves buttons="no"
+                    sx-editable-select="model.scope" e-ng-options="s.text as s.text for s in $parent.scopes">{{model.scope}}</span>)
+        </span>
+
+        <span name="content-tags">
+            <span style="display: inline-flex; vertical-align: middle"><span ng-if="editConfig.isEdited('tags')" class="withSIX-icon-Alert" style="color: red; font-size: 20px;"></span></span>
+            <span ng-repeat="tag in header.tags" class="tag" style="margin-left: 4px" itemprop="keywords">
+                <a ng-href="{{header.contentRootUrl}}/category/{{sluggifyEntityName(tag)}}">{{tag}}</a>
+                <span ng-if="editConfig.isEditing">
+                    &nbsp;
+                    <a href="#" ng-click="removeTag(tag)">
+                        <span class="withSIX-icon-X" style="color: red; font-size: 10px;"></span>
+                    </a>
+                </span>
+            </span>
+            <span ng-if="header.tags.length != 0">&nbsp;&nbsp;</span>
+            <span ng-if="header.tags.length == 0" style="color: gray; font-style: italic">No Tags&nbsp;&nbsp;</span>
+            <!--
+                source="getCategories($query)"
+            -->
+            <a id="addCollectionTag"
+               ng-if="editConfig.isEditing" href="#"
+               editable-tag-auto-complete="temporaryTag" inline on-tag-added="addTag($data)"
+               buttons="no" style="color: green;" tags="getCurrentTags()"
+            placeholder="add a category"
+               add-from-autocomplete-only="false" display-property="key"
+               can-edit="editConfig.isEditing"
+               min-length="0"
+               load-on-focus="true"
+               load-on-empty="true"
+               max-results-to-show="32">
+                <span class="withSIX-icon-Add" style="color: green; font-size: 10px;"></span>
+            </a>
+        </span>
+
+        <div name="content-header-logo">
+            <div ngf-drop2="" ngf-drag-over-class="{accept:'drag-over', reject:'dragover-err', delay:100}" ngf-change="fileDropped($files, $event, $rejectedFiles)" ngf-accept="accept($file, $event)"
+                 data-multiple="false">
+                <!-- ngf-accept="image/*"-->
+                <div itemprop="image"
+                     class="imageholder"
+                     ng-style="{'background-image': ('url('+ header.getAvatar(w6.imageSizes.smallRectangle.w, w6.imageSizes.smallRectangle.h) +')'), position: 'relative'}">
+                    <div class="edit-border-blue edit-field" style="height: 100%">
+                        <div class="row edit-section"
+                             ng-if="editConfig.isEditing">
+                            <div class="col-md-4">
+                                &nbsp;
+                                <span class="sx-edit-button-left-orange hovering bold sx-uploading-image"
+                                      ng-show="uploadingCollectionImage"
+                                      data-container='body' data-title="We are currently processing your logo" bs-tooltip>Processing</span>
+                            </div>
+                            <div class="col-md-4 col-md-offset-4">
+                                &nbsp;
+                                <span class="withSIX-icon-Edit-Field sx-edit-button-blue"
+                                      ng-disabled="uploadingCollectionImage"
+                                      id="uploadBanner"
+                                      ng-click="showUploadBanner()"
+                                      data-container='body' data-title="Click me to upload a new banner" bs-tooltip></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div name="content-header-info">
+            <ul>
+                <li>
+                    <span class="main" itemprop="version" title="v{{model.latestVersion.version}}">v{{model.latestVersion.version}}</span> <span itemprop="dateModified">{{model.latestVersion.releasedOn | date:"dd MMM 'yy"}}</span></li>
+                <li title="{{model.latestVersion.size | size:'B'}} unpacked" ng-bind-html="model.latestVersion.sizePacked | sizeInfo:'B'"></li>
+                <li>
+                    <span class="main">{{model.subscribersCount}}</span> <span>subscribers</span></li>
+            </ul>
+        </div>
+        <div name="content-header-download-outer">
+            <div ng-if="useSync" class="action download content-state-c-bgd">
+                <!--
+                <button class="content-basketable-button" ng-click="addToBasket(model); $event.stopPropagation()"
+                        type="button">
+                            <span class="content-basketable-icon"></span><span class="content-basketable-text"></span>
+                        </button>
+        -->
+                <button class="anchor btn-block calltoactionBase"
+                        type="button"
+                        ng-click="tryDirectDownloadCollection(); $event.stopPropagation()"
+                        ng-disabled="processing || (clientInfo.globalLock || clientInfo.gameLock)"
+                        http-progress="content.installCollection"
+                        http-processing="processing"
+                        http-pending="Installing..."
+                        http-success="Installed!"
+                        http-error="Failed...">
+                    <span class="icon content-state-icon" title="Download"></span>
+                    <span class="text"><span class="content-state-text"></span></span>
+                </button>
+            </div>
+            <div ng-if="!useSync">
+                <div ng-if="!w6.userInfo.id" class="action download">
+                    <button ng-click="openLoginDialog($event)" class="anchor calltoactionBase btn-block">
+                        <span class="icon withSIX-icon-Follow" title="Login to Subscribe"></span>
+                        <span class="text">Login to Subscribe</span>
+                    </button>
+                </div>
+                <div ng-if="w6.userInfo.id && w6.userInfo.id == model.author.id" class="action download processing-button">
+                    <button disabled class="anchor calltoactionBase btn-block">
+                        <span class="icon withSIX-icon-Synq-Follow" title="You are the author"></span>
+                        <span class="text">You are the author</span>
+                    </button>
+                </div>
+                <div ng-if="w6.userInfo.id && w6.userInfo.id != model.author.id" class="action download">
+                    <button class="anchor btn-block calltoactionBase" ng-click="toggleSubscribe()" ng-disabled="!subscribedCollections[model.id]"
+                            type="button" collapse="!subscribedCollections[model.id]">
+                        <span class="icon withSIX-icon-Follow" title="Unsubscribe"></span>
+                        <span class="text">Unsubscribe</span>
+                    </button>
+                    <button class="anchor btn-block calltoactionBase" ng-click="toggleSubscribe()" ng-disabled="subscribedCollections[model.id]"
+                            type="button" collapse="subscribedCollections[model.id]">
+                        <span class="icon withSIX-icon-Follow" title="Subscribe"></span>
+                        <span class="text">Subscribe</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="collection-contents"
+         app-view-segment="2"></div>
+</div>

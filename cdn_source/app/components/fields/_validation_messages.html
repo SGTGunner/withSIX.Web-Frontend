@@ -1,0 +1,11 @@
+﻿<div ng-show="(!form.sxValidateOnlyOnSubmit || form.sxFormSubmitted) || (form.sxValidateOnBlur && field.sxBlurred)">
+    <p ng-show="field.$error.minlength" class="help-block">{{label | uppercaseFirst}} is too short.</p>
+    <p ng-show="field.$error.maxlength" class="help-block">{{label | uppercaseFirst}} is too long.</p>
+    <p ng-show="field.$error.notContains" class="help-block">{{label | uppercaseFirst}} contains not allowed keywords.</p>
+    <p ng-show="field.$error.notEquals" class="help-block">{{label | uppercaseFirst}} equals not allowed keywords.</p>
+    <p ng-show="field.$error.passwordVerify" class="help-block">Please confirm password.</p>
+    <p ng-show="showGeneralError(field)"
+       class="help-block">Enter a valid {{label | lowercaseFirst}}.</p>
+    <p ng-show="field.$error.sxExists" class="help-block">{{label | uppercaseFirst}} already exists.</p>
+    <div ng-transclude></div>
+</div>

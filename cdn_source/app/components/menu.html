@@ -1,0 +1,18 @@
+﻿<ul>
+    <li ng-repeat="item in menuItems"
+        class="{{item.cls}}"
+        ng-class="{active: (item.fullSegment | routeSegmentStartsWith)}">
+        <a ng-href="{{ item.url }}" ng-if="item.url">
+            <span class="{{item.cls}}">
+                <span ng-if="item.icon" class="icon {{item.icon}}"></span>
+                {{item.header}}
+            </span>
+        </a>
+        <a ng-href="{{ item.segment | routeSegmentUrl }}" ng-if="!item.url">
+            <span class="{{item.cls}}">
+                <span ng-if="item.icon" class="icon {{item.icon}}"></span>
+                {{item.header}}
+            </span>
+        </a>
+    </li>
+</ul>

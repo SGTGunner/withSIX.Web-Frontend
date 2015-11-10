@@ -1,0 +1,47 @@
+<div class="container-fluid content-inner">
+    <h1 class="pagetitle">Discover fan-made content for these games</h1>
+    <center>
+        <div ng-include="'/cdn_source/app/components/ads/play-hz-large.html'"></div>
+    </center>
+
+    <div class="row grid-roster clearfix game-grid">
+
+        <div ng-repeat="game in model"
+             itemscope itemtype="http://schema.org/Product"
+             class="col-sm-6 col-md-4 col-xl-3">
+            <a ng-href="{{::url.play}}/{{game.slug}}">
+                <span class="logo">
+                    <img alt="Logo {{game.name}}" itemprop="image"
+                         ng-src="{{::url.getAssetUrl('img/play.withSIX/games/' + game.slug + '/logo-overview.png')}}" />
+                </span>
+                <span class="title" itemprop="name">
+                    <strong>{{game.name}}</strong>
+                </span>
+                <span class="bg-hover" ng-style="{'background-image': 'url('+ url.getAssetUrl('img/play.withSIX/games/' + game.slug + '/headers/header.png') + ')' }"></span>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="row" ng-if="w6.renderAds">
+        <div class="col-sm-6">
+            <div class="tile">
+                <div data-ng-dfp-ad-container>
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="tile">
+                <div data-ng-dfp-ad-container>
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

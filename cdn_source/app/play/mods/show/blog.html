@@ -1,0 +1,86 @@
+<sx-info-page>
+    <div name="main-box" style="min-height: 700px;">
+        <div ng-if="model.entityModule.wall == null || model.entityModule.wall.entityAspect.entityState.isAdded()">
+            <p>
+                <i>Currently you do not have a wall enabled, click to enable your wall!</i>
+            </p>
+            <button class="btn btn-sx-create-blog-post" style="width: 100%"
+                    collapse="model.entityModule.wall != null"
+                    ng-click="createBlogSection();">
+                Enable Wall
+            </button>
+            <span class="btn btn-sx-editing-no-changes" style="width: 100%"
+                  collapse="!model.entityModule.wall.entityAspect.entityState.isAdded()">
+                Creating your wall
+            </span>
+        </div>
+        <div ng-if="model.entityModule.wall != null && model.entityModule.wall.entityAspect.entityState.isAdded()">
+
+        </div>
+        <div ng-if="model.entityModule.wall != null && !model.entityModule.wall.entityAspect.entityState.isAdded()">
+            <div style="margin-bottom: 20px; max-height: 200px; overflow-y: visible; position: relative; z-index: 10;">
+                <div>
+                    <button collapse="createBlogPost" class="btn btn-sx-create-blog-post" style="width: 100%"
+                            ng-click="createBlogPost = true;">
+                        <!---->
+                        Create Blog Post
+                    </button>
+                </div>
+                <div collapse="!createBlogPost" class="tile sx-border-gray" style="background-color: white">
+                    <h1>New Blog Post</h1>
+                    <form name="postForm"
+                          sx-validate-on-submit="createBlogPost = false;save(postForm);"
+                          sx-validate-on-blur>
+                        <fieldset ng-disabled="processing">
+                            <div ng-include="'/cdn_source/app/play/mods/_blogForm.html'"></div>
+
+                            <div>
+                                <span style="visibility: hidden" class="btn btn-sx-save">&nbsp;</span>
+                                <button class="btn btn-sx-save pull-right"
+                                        type="submit"
+                                        http-progress="createBlogPost"
+                                        http-processing="processing"
+                                        http-pending="Processing..."
+                                        http-success="Succeeded!"
+                                        http-error="Failed..."
+                                        ng-disabled="processing || !postForm.$dirty">
+                                    Create Blog Post
+                                </button>
+                                <button class="btn btn-sx-create-blog-post pull-right"
+                                        ng-click="createBlogPost = false; postForm.$setPristine();">
+                                    Cancel
+                                </button>
+                            </div>
+
+                            <div class="has-error has-feedback"
+                                 ng-if="postForm.$invalid">
+                                <i>Please correct the highlighted errors first</i>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div ng-include="'/cdn_source/app/play/mods/_postPreview.html'"
+                 ng-repeat="post in model.entityModule.wall.posts"></div>
+        </div>
+    </div>
+    <div name="right">
+        <div ng-include="'/cdn_source/app/play/mods/_edit-side-pane.html'"></div>
+
+        <div ng-if="w6.renderAds" class="tile">
+            <div data-ng-dfp-ad-container>
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad1"></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="w6.renderAds" class="tile">
+            <div data-ng-dfp-ad-container>
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sx-info-page>

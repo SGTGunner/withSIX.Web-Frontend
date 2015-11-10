@@ -1,0 +1,189 @@
+<template>
+  <div class="container-fluid">
+    <div class="tabbar">
+        <menu items.bind="menuItems"></menu>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-sm-8">
+              <!-- Home Article -->
+              <article class="tile home-box clearfix">
+                  <div class="icon icon-browse"></div>
+                  <div class="clearfix">
+                      <h2>Discover</h2>
+                      <p>Get the most out of your gaming experience by expanding your game with great fan made content for you to discover on our website - from missions to maps to full conversion modifications and more!</p>
+                      <a href="${w6.url.main}/getting-started" class="btn">
+                          <span class="icon icon-arrow-right"></span>
+                          Learn More
+                      </a>
+                  </div>
+              </article>
+
+              <!--
+              <div class="tile" if.bind="w6.renderAds">
+                <div data-ng-dfp-ad-container>
+                  <div class="add-container">
+                      <div class="add add-leaderboard" ng-dfp-ad="angular-ad-leader"></div>
+                  </div>
+                </div>
+              </div>
+              -->
+
+              <!-- Home Article -->
+              <article class="tile home-box clearfix">
+                  <div class="icon icon-manage icon-alignright">
+
+                  </div>
+                  <div class="clearfix">
+                      <h2>Play</h2>
+                      <p>Use custom game content of your choice online with your friends or in single player faster and easier than ever. withSIX takes care of everything, so you can just have fun.</p>
+
+                      <a href="${w6.url.play}" class="btn">
+                          <span class="icon icon-arrow-right">
+
+                          </span>
+                          Learn More
+                      </a>
+
+                  </div>
+              </article>
+
+              <!-- Home Article -->
+              <article class="tile home-box clearfix">
+                  <div class="icon icon-connect">
+
+                  </div>
+                  <div class="clearfix">
+                      <h2>
+                          Promote
+                      </h2>
+                      <p>Present your self-made content to the world by using our wide variety of options to promote, publish and share your creation in no time.</p>
+                      <!--<a href="#" class="btn">
+                          <span class="icon icon-arrow-right">
+
+                              </span>
+                          Learn More
+                      </a> -->
+                  </div>
+                  <div if.bind="w6.renderAds">
+                    <ad-links height="15" width="528" slot="${w6.ads.slots.main.hz_medium}"></ad-links>
+                  </div>
+              </article>
+
+              <!-- Latest Blog -->
+              <div class="latest-blog">
+                  <em>Most recent update from <a href="${w6.url.main}/blog">our blog</a>:</em>
+                  <div if.bind="latestPost">
+                    <article class="tile blog-tile clearfix"
+                             itemscope itemtype="http://schema.org/BlogPosting">
+
+                        <h3 itemprop="name headline">
+                            <a href="/blog/${latestPost.slug}">${latestPost.isTeam ? '[Team] ' : ''}${latestPost.title}</a>
+                        </h3>
+                        <h4 if.bind="!latestPost.isPublished">
+                            <i>Not published yet!</i>
+                        </h4>
+
+                        <header>
+                            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                <a href="${latestPost.author.profileUrl}" rel="author">
+                                    <img src="${w6.url.calculateAvatarUrl(latestPost.author, 48)}" />
+                                </a>
+                                <em class="date">
+                                    Posted by
+                                    <a href="${w6.url.connectSsl}/u/${latestPost.author.slug}" rel="author">${latestPost.author.displayName}</a>,
+                                </em>
+                            </span>
+                            &nbsp;
+                            <em>
+                                <!-- <sx-time time="latestPost.updated"></sx-time> -->
+                                ${latestPost.updated}
+                            </em>
+
+                            <a href="/blog/${latestPost.slug}#comments" class="comments">
+                                <span if.bind="latestPost.commentsCount == 1">1 comment</span>
+                                <span if.bind="latestPost.commentsCount > 0 && latestPost.commentsCount != 1">${latestPost.commentsCount} comments</span>
+                                <span if.bind="latestPost.commentsCount == 0">No comments yet</span>
+                            </a>
+                            <span class="pull-right" if.bind="likedPosts">${latestPost.likesCount} likes</span>
+                            <br/>
+                        </header>
+
+                        <div class="contentrender" innerHtml.bind="latestPost.summary" itemprop="articleBody"></div>
+
+                        <!-- Read more btn -->
+                        <footer>
+                            <a href="/blog/${latestPost.slug}" class="btn">
+                                Read On
+                                <span class="icon  icon-arrow-right"></span>
+                            </a>
+                        </footer>
+                    </article>
+                  </div>
+              </div>
+          </div>
+
+          <aside class="col-sm-4">
+              <div if.bind="w6.renderAds">
+                <div data-ng-dfp-ad-container>
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad1"></div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="stats">
+                  <h3>
+                      Already
+                      <strong>${totalDownloads}</strong>
+                      downloads and
+                      <strong>${totalAccounts}</strong>
+                      registered users.
+                  </h3>
+
+                  <p>Supporting:</p>
+                  <a href="${w6.url.play}/more-games">
+                      <img src="${w6.versionedAsset('img/withSIX/home/gameicons.png')}" width="372" height="121"
+                           class="img-responsive"
+                           alt="Supported games withSIX"/>
+                  </a>
+
+                  <br/><br/>
+
+                  <h4>
+                      with
+                      <strong>${totalCollections}</strong>
+                      collections,
+                      <strong>${totalMods}</strong>
+                      mods,
+                      <strong>${totalMissions}</strong>
+                      missions,
+                      and
+                      <strong>${totalServers}</strong>
+                      servers.
+                      <br/>
+                      <strong>${totalSubscribers}</strong>
+                      subscribers and
+                      <strong>${totalFollowers}</strong>
+                      followers.
+                      <!--
+                          and
+                          <strong>${totalLikes}</strong>
+                          likes
+                      -->
+                  </h4>
+              </div>
+
+              <div if.bind="w6.renderAds">
+                <div data-ng-dfp-ad-container>
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad2"></div>
+                    </div>
+                </div>
+              </div>
+          </aside>
+      </div>
+  </div>
+</template>

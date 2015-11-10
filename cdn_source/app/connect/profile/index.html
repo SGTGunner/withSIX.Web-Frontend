@@ -1,0 +1,86 @@
+<div class="container-fluid content-inner profile clearfix"
+     itemscope itemtype="http://schema.org/CreativeWork">
+
+    <!-- Profile Summary -->
+    <article class="tile profile-summary clearfix">
+        <img ng-src="{{::url.calculateAvatarUrl(model, 148)}}" class="profile-image" itemprop="image"/>
+
+        <div ng-if="w6.userInfo.id && !model.isLoggedInUser && !model.incomingFriendRequestOpen && !model.outgoingFriendRequestOpen">
+            <div class="befriend right-box">
+                <form ng-submit="removeFriend()"
+                      ng-if="model.isFriend">
+                    <button class="btn" type="submit">
+                        <span class="icon icon-remove"></span>
+                        <span>Unfriend</span>
+                    </button>
+                </form>
+                <form ng-if="!model.isFriend"
+                      ng-submit="addFriend()">
+                    <button class="btn" type="submit">
+                        <span class="icon icon-user"></span>
+                        <span>Add friend</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div ng-if="model.isLoggedInUser">
+            <div class="befriend right-box">
+                <a ng-href="{{ 'me.settings' | routeSegmentUrl }}" class="btn">
+                    <span class="icon icon-edit"></span>
+                    <span>Edit my profile</span>
+                </a>
+            </div>
+        </div>
+
+        <div ng-if="model.incomingFriendRequestOpen">
+            <div class="befriend right-box">
+                <a ng-href="{{ 'me.friends' | routeSegmentUrl }}" class="btn">
+                    <span class="icon icon-ok"></span>
+                    <span>Approve as friend</span>
+                </a>
+            </div>
+        </div>
+
+        <div ng-if="model.outgoingFriendRequestOpen">
+            <div class="befriend right-box">
+                <span>You've sent {{model.displayName}}<br /> a friend request</span>
+            </div>
+        </div>
+
+        <div class="friends right-box">
+            <em>{{model.friendsCount == 0 ? 'no' : model.friendsCount}}</em>
+            <span>{{model.friendsCount == 1 ? 'friend' : 'friends'}}</span>
+        </div>
+
+        <h1>
+            <span ng-class="{premium: model.isPremium}" itemprop="additionalName">
+                <span title="{{model.userName}}">{{model.displayName}}</span>
+                <span ng-if="model.isPremium"
+                      class="icon withSIX-icon-Badge-Sponsor"
+                      title="This is a proud premium user"></span>
+            </span>
+        </h1>
+
+        <!-- Personal info -->
+        <p>
+            <span class="name" itemprop="name">
+                <span class="icon icon-{{model.gender}}" ng-if="model.gender" itemprop="gender"></span>
+                <!-- TODO: Split itemprop="familyName" and itemprop="givenName" -->
+                {{model.fullName}}
+            </span>
+
+            <span class="date" ng-if="model.birthday">
+                <span class="icon icon-calendar"></span>
+                <sx-time time="model.birthday" itemprop="birthday"></sx-time>
+            </span>
+        </p>
+    </article>
+
+    <div class="tabbar"
+         ng-include="'/cdn_source/app/components/menu.html'">
+    </div>
+
+    <div id="profile-contents"
+         app-view-segment="1"></div>
+</div>

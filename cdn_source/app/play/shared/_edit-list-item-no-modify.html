@@ -1,0 +1,21 @@
+﻿<span style="float: left" sx-multi-transclude="list-text">
+
+</span>
+<span style="float: left" collapse="!editConfig.isEditing" ng-if="!item.entityAspect.entityState.isDeleted()">
+    <button class="btn btn-sx-delete-link"
+            ng-click="item.entityAspect.setDeleted();">
+        <strong><span class="withSIX-icon-X" style="color: red; font-size: 14px;"></span></strong>
+    </button>
+</span>
+<span style="float: left" collapse="!editConfig.isEditing" ng-if="item.entityAspect.entityState.isDeleted()"
+      data-title="Undo Changes" bs-tooltip>
+    <button class="btn btn-sx-delete-link" ng-click="item.entityAspect.rejectChanges();">
+        <strong><span class="withSIX-icon-Reload" style="color: green; font-size: 14px;"></span></strong>
+    </button>
+</span>
+<span style="float: left" collapse="!editConfig.isEditing" ng-if="item.entityAspect.entityState.isDeleted()">
+    <span class="btn btn-sx-unsaved-link" style="background-color: gainsboro">
+        <strong style="color: red">Deleted</strong>
+    </span>
+</span>
+<span style="font-size: 14px;">&nbsp;</span>

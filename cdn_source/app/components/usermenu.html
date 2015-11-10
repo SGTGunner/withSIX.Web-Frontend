@@ -1,0 +1,47 @@
+<div ng-if="w6.userInfo.id">
+    <!-- Notifications -->
+    <div class="notifications pull-right">
+        <a ng-href="{{::url.connectSsl}}/me">
+            <span class="withSIX-icon-Settings"></span></a>
+
+        <a ng-href="{{::url.connectSsl}}/me/messages">
+            <span class="withSIX-icon-Chat-Message"></span></a>
+
+        <a ng-href="{{::url.connectSsl}}/me/friends">
+            <span class="withSIX-icon-Users-Friends"></span></a>
+    </div>
+
+    <!-- SignedIn -->
+    <div class="signedin pull-right">
+
+        <span class="welcome">
+
+            <a ng-href="{{::url.connectSsl}}/me/settings/premium" ng-if="w6.userInfo.isPremium">
+                <span class="icon withSIX-icon-Badge-Sponsor premium"
+                      title="You are a premium user, congrats!"></span>
+            </a>
+
+            <a rel="nofollow" class="btn" id="btn-usermenu">
+                <img ng-src="{{userInfo.getAvatarUrl(48)}}" alt="{{userInfo.displayName}}" />
+
+                {{userInfo.displayName}}
+
+                <span class="withSIX-icon-Arrow-Down-Dir"></span>
+            </a>
+
+        </span>
+
+        <div id="usermenu" class="usermenu-signedin hidden">
+            <div class="ctn">
+                <ul ng-include="'/cdn_source/app/components/usermenu-entries.html'"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+User is not logedin, Show User Menu
+-->
+<div class="usermenu" ng-if="!w6.userInfo.id">
+    <ul ng-include="'/cdn_source/app/components/usermenu-notloggedin.html'"></ul>
+</div>

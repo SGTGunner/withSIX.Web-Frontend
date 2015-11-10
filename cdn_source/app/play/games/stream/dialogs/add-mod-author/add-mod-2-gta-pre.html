@@ -1,0 +1,42 @@
+﻿<form name="form" class="easyForm" sx-validate-on-submit="ok()"
+      sx-validate-on-blur>
+    <div class="modal-header">
+        <h1 style="margin-bottom: 1px">
+            <span style="color: red">(BETA)</span> Add <strong style="text-transform: uppercase">{{gameName}}</strong> Mod
+        </h1>
+        <i>Share new content in a few simple steps with the entire community!</i>
+    </div>
+
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 no-horizontal-padding">
+                    <h2>Before we get started...</h2>
+                    <p>In order to quickly process RPF based mods, please make sure that the files are structured correctly.</p>
+                    <p>All files have to be placed in the in the original RPF folder structure!</p>
+                    <p>
+                        Example:<br/>
+
+                        update\update.rpf\common\data...<br/>
+                        X64a.rpf...<br/>
+                        ...
+                    </p>
+                    <p>Our system leverages folder tree to inject the files into the right position within the RPF archives.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button"
+                ng-click="cancel()"
+                class="btn btn-cancel">
+            Cancel
+        </button>
+        <button type="submit"
+                class="btn btn-primary"
+                ng-click="ok_author()">
+            Next
+        </button>
+    </div>
+</form>

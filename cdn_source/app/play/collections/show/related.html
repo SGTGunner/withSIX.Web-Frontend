@@ -1,0 +1,38 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="tile">
+                <div class="box" ng-if="model.forkedCollection">
+                    <strong>Forked From: </strong><a ng-href="{{::url.play}}/{{model.forkedCollection.game.slug}}/collections/{{toShortId(model.forkedCollection.id)}}">{{model.forkedCollection.name}}</a>
+                </div>
+                <div class="box" ng-if="model.forkedCollections.length != 0">
+                    <strong>Forked Collections: </strong><br/>
+                    <ul>
+                        <li ng-repeat="collection in model.forkedCollections">
+                            <a ng-href="{{::url.play}}/{{collection.game.slug}}/collections/{{toShortId(collection.id)}}">{{collection.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="box" ng-if="model.forkedCollection == null && model.forkedCollections.length == 0">
+                    <strong>No related content</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div data-ng-dfp-ad-container ng-if="w6.renderAds" class="tile">
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad1"></div>
+                </div>
+            </div>
+
+            <br/><br/><br/>
+
+            <div data-ng-dfp-ad-container ng-if="w6.renderAds" class="tile">
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

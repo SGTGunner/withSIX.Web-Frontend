@@ -1,0 +1,60 @@
+<section id="contentheader-row">
+    <div sx-multi-transclude="content-header" class="content-header container-fluid">
+        <div class="header-info">
+            <h1 class="pagetitle" sx-multi-transclude="content-title" itemprop="name headline">
+                <span sx-multi-transclude="content-title-name">{{header.title}}</span>
+                <span class="tiny" sx-multi-transclude="content-title-author"
+                      itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <span ng-if="model.author">by <a ng-href="{{model.author.profileUrl}}" rel="author">{{model.author.displayName}}</a></span>
+                </span>
+            </h1>
+
+            <div class="follow-info pull-right">
+                <div sx-multi-transclude="follow-info"></div>
+            </div>
+
+            <div class="tag-bar">
+                <span sx-multi-transclude="content-type" itemprop="genre"></span>
+                <span class="tags" sx-multi-transclude="content-tags"
+                      itemprop="keywords">
+                    <span ng-repeat="tag in header.tags" class="tag" style="margin-left: 4px">
+                        {{::tag}}
+                    </span>
+                </span>
+            </div>
+
+        </div>
+
+        <div class="row main-info" sx-multi-transclude="content-header-main">
+            <div class="content-main col-sm-8" sx-multi-transclude="content-header-gallery">
+                <div class="imageholder"
+                     itemprop="image"
+                     ng-style="{'background-image': ('url('+ header.getAvatar(w6.imageSizes.bigRectangle.w, w6.imageSizes.bigRectangle.h) +')'), position: 'relative'}">
+                    &nbsp;
+                </div>
+            </div>
+
+            <div class="content-info col-sm-4">
+                <div sx-multi-transclude="content-header-logo">
+                    <div class="imageholder"
+                         itemprop="image"
+                         ng-style="{'background-image': ('url('+ header.getAvatar(w6.imageSizes.smallRectangle.w, w6.imageSizes.smallRectangle.h) +')'), position: 'relative'}">
+                        &nbsp;
+                    </div>
+                </div>
+
+                <div class="content-subinfo" sx-multi-transclude="content-header-info"></div>
+
+                <div class="download-stars">
+                    <div class="download" sx-multi-transclude="content-header-download"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content-row">
+    <div class="container-fluid bodyheader">
+        <div class="tabbar" ng-include="'/cdn_source/app/play/shared/_tabbar.html'"></div>
+    </div>
+</section>

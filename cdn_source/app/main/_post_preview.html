@@ -1,0 +1,44 @@
+﻿<!--@helper Avatar(IClaimAccount account, int size = 72, string cls = null)
+{
+<img src="@(account.GetAvatarURL(size))" alt="@account.DisplayName" class="@cls" />
+}
+
+<article class="tile blog-tile clearfix">
+    <h3>
+        <a href="@LayoutModel.Urls.Main/blog/@Model.Slug">
+            @Model.Title
+        </a>
+    </h3>
+    <header>
+        <a href="@LayoutModel.Urls.Connect/u/@Model.Author.Slug">
+            @Avatar(Model.Author, 48)
+        </a>
+        <em class="date">
+            Posted by
+            <a href="@LayoutModel.Urls.Connect/u/@Model.Author.Slug">
+                @Model.Author.DisplayName
+            </a>
+            ,
+            <time class="timeago" datetime="@(Model.LastUpdate.Value.AsUniversal().ToString(" o"))" title="@Model.LastUpdate" itemprop="datePublished">@Model.LastUpdate.Value.Ago()</time>
+        </em>
+        <a href="@LayoutModel.Urls.Main/blog/@Model.Slug#comments" class="comments">
+            @if (Model.CommentsCount == 1) {
+            @: 1 comment
+            } else if (Model.CommentsCount > 0) {
+            @: @Model.CommentsCount comments
+            } else {
+            @: No comments yet
+            }
+        </a>
+        <br />
+    </header>
+
+    <div class="contentrender">@MvcHtmlString.Create(Model.Summary)</div>
+
+    <footer>
+        <a href="@LayoutModel.Urls.Main/blog/@Model.Slug" class="btn">
+            Read On
+            <span class="icon  icon-arrow-right"></span>
+        </a>
+    </footer>
+</article>-->

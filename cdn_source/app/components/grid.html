@@ -1,0 +1,63 @@
+﻿<div class="controls">
+    <form class="pull-right sort-bar"
+          ng-submit="views.reverseSort()">
+        <fieldset ng-disabled="!first">
+            <span class="page-info">Displaying <b>{{views.paging.startItem}} - {{views.paging.endItem}}</b> of {{views.paging.totalServerItems}} total</span>
+
+            <select ng-model="views.sortOptions.fields[0]"
+                    ng-options="s.field as 'Sort by ' + s.name for s in views.sort"></select>
+            <button type="submit"
+                    title="switch to {{sortOptions.directions[0] == 'asc' ? 'descending' : 'ascending' }}"
+                    class="btn direction-switch">
+                <span class="withSIX-icon-Arrow-Up-Dir"
+                      ng-if="views.sortOptions.directions[0] == 'asc'"></span>
+                <span class="withSIX-icon-Arrow-Down-Dir"
+                      ng-if="views.sortOptions.directions[0] == 'desc'"></span>
+            </button>
+        </fieldset>
+    </form>
+    <div class="clearfix"></div>
+</div>
+
+<div class="imageGridStyle row"
+     infinite-scroll="views.addMoreItems()"
+     infinite-scroll-distance="1">
+
+    <div ng-repeat="item in views.items">
+        <div ng-if="w6.renderAds && $index == ads[0]"
+             ng-class="views.grid.itemClass" class="collection repeated-item" data-ng-dfp-ad-container>
+            <div class="add-container-out">
+                <div class="add-container">
+                    <div class="add grid-add" ng-dfp-ad="angular-ad1"></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="w6.renderAds && $index == ads[1]"
+             ng-class="views.grid.itemClass" class="collection repeated-item" data-ng-dfp-ad-container>
+            <div class="add-container-out">
+                <div class="add-container">
+                    <div class="add grid-add" ng-dfp-ad="angular-ad2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-include="views.grid.itemTemplate"
+             ng-class="views.grid.itemClass"
+             class="collection repeated-item"
+             ng-mouseenter="views.grid.overlays[$index] = true"
+             ng-mouseleave="views.grid.overlays[$index] = false"></div>
+    </div>
+</div>
+
+<div>
+    <button class="anchor" ng-click="views.addMoreItems()"
+            type="button"
+            ng-show="!loading && views.grid.curPage < views.totalPages">
+        Load more
+    </button>
+    <span ng-show="loading">Loading...</span>
+    <span us-spinner="{top: 25, left: 0}"
+          spinner-key="fetch-spinner"
+          style="float: right; position: relative;"></span>
+</div>

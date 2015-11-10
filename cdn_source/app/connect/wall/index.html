@@ -1,0 +1,43 @@
+<!-- TODO: Consider masonry: bower install --save angular-masonry -->
+
+<div id="wall">
+    <header class="root row">
+        <div class="col-xs-3">
+            Some dropdown
+        </div>
+        <div class="col-xs-6">
+            Some menu
+        </div>
+        <div class="col-xs-3">
+            <button type="button"
+                    ng-click="showContactList()">
+                {{contactListShown ? 'Hide' : 'Show'}} contactlist
+            </button>
+        </div>
+    </header>
+
+    <div class="container-fluid"
+         ng-class="{true: 'contact-list-shown'}[contactListShown]">
+        <section class="root content small">
+            <div class="css-row">
+                <div class="css-column">
+                    <div class="tile system"
+                         ng-include="'/cdn_source/app/connect/wall/_input.html'"></div>
+                </div>
+
+                <div class="css-column"
+                     ng-repeat="post in posts">
+                    <div class="tile"
+                         ng-include="'/cdn_source/app/connect/wall/_post.html'"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="contactlist tile" ng-if="contactListShown">
+        <div class="inner">
+            <div ng-repeat="contact in contacts"
+                 ng-include="'/cdn_source/app/connect/wall/_contact.html'"></div>
+        </div>
+    </div>
+</div>

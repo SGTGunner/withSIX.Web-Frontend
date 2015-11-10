@@ -1,0 +1,28 @@
+﻿<div class="popover manage-link" style="font-size: initial" ng-init="newUser = null; addingUser = false;">
+    <div class="arrow"></div>
+    <form name="form">
+        <div class="popover-title">
+            <b>Add User to Group</b>
+        </div>
+        <div class="popover-content">
+            <span>
+                <input type="text" ng-model="newUser" ng-model-options="{ debounce: 250 }" placeholder="Search..."
+                       bs-options="author as author.displayName for author in getAuthor($viewValue)"
+                       class="form-control" typeahead-editable="false"
+                       bs-typeahead data-min-length="0" data-label="displayName" auto-focus>
+            </span>
+            <div>
+                <sx-account-card account="newUser"></sx-account-card>
+            </div>
+            <hr/>
+            <span class="btn btn-sx-save" style="visibility: hidden">
+                Add User
+            </span>
+            <button class="btn btn-sx-save pull-right"
+                    ng-disabled="!userCheck(newUser) && !addingUser"
+                    ng-click="addUserToGroup(item,$hide);">
+                Add User
+            </button>
+        </div>
+    </form>
+</div>

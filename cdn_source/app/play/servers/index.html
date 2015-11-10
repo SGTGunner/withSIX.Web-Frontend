@@ -1,0 +1,47 @@
+﻿<div class="collections-ng">
+
+    <div class="main-content">
+        <section>
+            <div class="container-fluid">
+                <header>
+                    <h1 class="pagetitle" ng-if="title || subtitle">
+                        <span ng-if="subtitle"><b>{{subtitle}}</b></span>
+                        {{title}}
+                    </h1>
+
+                    <!--
+                    <div class="pull-right">
+                        <button ng-click="views.switchView()"
+                                type="button">
+                            to
+                            <span ng-if="views.otherOptions.view == 'grid'">List</span>
+                            <span ng-if="views.otherOptions.view != 'grid'">Grid</span>
+                        </button>
+                    </div>
+                    -->
+                </header>
+
+                <section class="controls border">
+                    <div ng-include="views.filterTemplate"></div>
+                </section>
+            </div>
+        </section>
+
+        <section class="view container-fluid">
+            <div class="pull-left">
+                <button type="button"
+                        class="btn btn-default"
+                        ng-click="openAddServerDialog()">
+                    Add server
+                </button>
+            </div>
+
+            <div ng-include="views.otherOptions.view == 'grid' &&
+                views.getView() ||
+                views.getView()"></div>
+        </section>
+
+        <footer></footer>
+    </div>
+
+</div>

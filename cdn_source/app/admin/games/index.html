@@ -1,0 +1,30 @@
+﻿<div class="container-fluid">
+    <h2>Games</h2>
+    <div class="tile">
+        <!--
+        How many of each content.
+        How many distinct authors
+
+        How many have it installed, how many have each dlc installed
+        etc
+        -->
+        Total session: {{model.total | number}} in past {{model.days}} days.
+        Unique LoggedIn: {{model.totalUniqueUsers | number}}
+        Unique Clients: {{model.totalUniqueClients | number}}
+        <ul>
+            <li ng-repeat="game in model.games">
+                {{game.name}}:
+                {{game.installedCount | number}} ({{game.installedCountUniqueUser | number}} unique loggedin, {{game.installedCountUniqueClient | number}} unique client)
+                ({{(game.installedCount == 0 ? 0 : (game.installedCount / model.total)) * 100 | number:2}}%)
+                <ul>
+                    <li ng-repeat="dlc in game.dlcStats">
+                        {{dlc.name}}:
+                        {{dlc.installedCount | number}} ({{dlc.installedCountUniqueUser | number}} unique loggedin, {{dlc.installedCountUniqueClient | number}} unique client)
+                        ({{(dlc.installedCount == 0 ? 0 : (dlc.installedCount / game.installedCount)) * 100 | number:2}}% of game)
+                        ({{(dlc.installedCount == 0 ? 0 : (dlc.installedCount / model.total)) * 100 | number:2}}% of total)
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

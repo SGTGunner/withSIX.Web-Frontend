@@ -1,0 +1,17 @@
+﻿<div class="comment">
+    <header>
+        <div class="pull-right">
+            <button>+1</button> <a>reply</a> ^
+        </div>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <img class="avatar pull-left" ng-src="{{::url.calculateAvatarUrl(comment.author)}}" />
+            {{comment.author.displayName}}
+        </span>
+        responded at
+        <span class="time" am-time-ago="comment.createdAt"></span>
+    </header>
+
+    <section>
+        <p ng-bind-html="comment.content"></p>
+    </section>
+</div>

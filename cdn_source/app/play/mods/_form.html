@@ -1,0 +1,183 @@
+﻿<div class="form-group">
+    <div>
+        <span class="title">Full Name: </span>
+        <span editable-text="mod.name"
+              e-name="name"
+              e-required>{{ mod.name || 'empty' }}</span>
+    </div>
+
+    <div>
+        <span class="title">Version: </span>
+        <span editable-text="mod.modVersion"
+              e-name="modVersion"
+              e-required>{{ mod.modVersion || 'empty' }}</span>
+    </div>
+
+    <div>
+        <span class="title">Author: </span>
+        <span editable-text="mod.authorText"
+              e-name="authorText"
+              e-required>{{ mod.authorText || 'empty' }}</span>
+    </div>
+
+    <div>
+        <span class="title">Description: </span>
+        <p editable-html="mod.descriptionFull"
+           class="contentrender"
+           ng-bind-html="mod.descriptionFull"></p>
+    </div>
+
+
+    <div>
+        <span class="title">HomepageURL: </span>
+        <span editable-url="mod.homepageUrl"
+              e-name="homepageUrl">
+            {{ mod.homepageUrl || 'empty' }}
+        </span>
+    </div>
+
+    <div>
+        <span class="title">Type: </span>
+        <span editable-select="mod.type"
+              e-ng-options="s.value as s.text for s in types"
+              e-name="homepageUrl"
+              e-required>{{ mod.type || 'empty' }}</span>
+    </div>
+
+    <div>
+        <span class="title">Aliases: </span>
+        <span ng-if="!editableForm.$visible">
+            <span>{{mod.aliases}}</span>
+        </span>
+
+        <span class="edit" ng-if="editableForm.$visible">
+            <tags-input ng-model="editAliases"
+                        placeholder="add an alias"
+                        replace-spaces-with-dashes="false"
+                        min-tags="0"
+                        enable-editing-last-tag="true"
+                        display-property="key">
+            </tags-input>
+        </span>
+    </div>
+
+
+    <div>
+        <span class="title">Tags: </span>
+
+        <span ng-if="!editableForm.$visible">
+            <span>{{mod.tags}}</span>
+        </span>
+
+        <span class="edit" ng-if="editableForm.$visible">
+            <tags-input ng-model="editCategories"
+                        placeholder="add a category"
+                        replace-spaces-with-dashes="false"
+                        min-tags="0"
+                        allow-leftover-text="false"
+                        add-from-autocomplete-only="true"
+                        enable-editing-last-tag="true"
+                        display-property="key">
+                <auto-complete source="getCategories($query)"
+                               min-length="0"
+                               debounce-delay="500"
+                               display-property="text">
+                </auto-complete>
+            </tags-input>
+        </span>
+    </div>
+
+    <div>
+        <span class="title">Dependencies: </span>
+        <span ng-if="!editableForm.$visible">
+            <span ng-repeat="d in mod.dependencies">{{d.name}}, </span>
+        </span>
+
+        <span class="edit" ng-if="editableForm.$visible">
+            <tags-input ng-model="editDependencies"
+                        placeholder="add a dependency"
+                        replace-spaces-with-dashes="false"
+                        min-tags="0"
+                        allow-leftover-text="false"
+                        add-from-autocomplete-only="true"
+                        enable-editing-last-tag="true"
+                        display-property="key">
+                <auto-complete source="getDependencies($query)"
+                               min-length="0"
+                               debounce-delay="500"
+                               display-property="text">
+                </auto-complete>
+            </tags-input>
+        </span>
+    </div>
+
+    <div>
+        <div>
+            <span class="title">Logo</span>
+            <img class="img-responsive"
+                 ng-src="{{getImage(mod.avatar, mod.avatarUpdatedAt)}}" ng-if="!editableForm.$visible"/>
+
+            <span class="edit" ng-if="editableForm.$visible">
+                <input type="file" ng-file-select="onLogoFileSelect($files)" accept="image/*">
+            </span>
+        </div>
+
+        <div>
+            <span class="title">Gallery</span>
+            <img class="img-responsive"
+                 ng-src="{{img.url}}"
+                 ng-repeat="img in mod.images"/>
+            <span class="edit" ng-if="editableForm.$visible">
+                <input type="file" ng-file-select="onGalleryFileSelect($files)"
+                       multiple
+                       accept="image/*">
+            </span>
+        </div>
+    </div>
+
+    <div>
+        <h2>Readme</h2>
+
+        <a href="#" editable-checkbox="mod.info.readmeIsCustom" e-title="Is Custom?">
+            {{ mod.info.readmeIsCustom && "Is custom" || "Is not custom" }}
+        </a>
+        <br/>
+
+        <div>
+            <p editable-html="mod.info.readme"
+               class="contentrender"
+               ng-bind-html="mod.info.readme"></p>
+        </div>
+    </div>
+
+    <div>
+        <h2>License</h2>
+
+        <a href="#" editable-checkbox="mod.info.licenseIsCustom" e-title="Is Custom?">
+            {{ mod.info.licenseIsCustom && "Is custom" || "Is not custom" }}
+        </a>
+        <br/>
+
+        <div>
+            <p editable-html="mod.info.license"
+               class="contentrender"
+               ng-bind-html="mod.info.license"></p>
+        </div>
+    </div>
+
+    <div>
+        <h2>Changelog</h2>
+
+        <a href="#" editable-checkbox="mod.info.changelogIsCustom" e-title="Is Custom?">
+            {{ mod.info.changelogIsCustom && "Is custom" || "Is not custom" }}
+        </a>
+        <br/>
+
+        <div>
+            <p editable-html="mod.info.changelog"
+               class="contentrender"
+               ng-bind-html="mod.info.changelog"></p>
+        </div>
+    </div>
+
+</div>

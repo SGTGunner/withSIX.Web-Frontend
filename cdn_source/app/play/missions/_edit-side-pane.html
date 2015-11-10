@@ -1,0 +1,100 @@
+﻿<div class="edit-pane" ng-if="editConfig.canEdit() || editConfig.canManage()">
+    <div class="tile sx-border-gray">
+        <div>
+            <h3>
+                Edit Panel
+            </h3>
+        </div>
+        <p collapse="!(model.archivedAt && (editConfig.canManage() || editConfig.canEdit()))" style="color: red">
+            <strong>Mission Archived:&nbsp;</strong><sx-time time="model.archivedAt"></sx-time><br/>
+            <i>While archived a mission is not visible to the public.</i>
+        </p>
+        <div>
+            <p class="no-tween-out" collapse="!(!editConfig.isEditing && editConfig.canEdit())">
+                <i>Here you can enable edit mode for your mission to make all the changes!</i>
+            </p>
+            <p class="no-tween-out" collapse="!(!editConfig.isEditing && editConfig.canManage() && !editConfig.canEdit())">
+                <i>Here you can enable management mode for this mission!</i>
+            </p>
+        </div>
+
+        <div collapse="!editConfig.isEditing" class="no-tween-out">
+            <p>
+                <i>
+                    Click on the fields you want to edit to get started!
+                    If you need help don't hesitate to click the button below
+                </i>
+            </p>
+            <div style="margin-top: 24px">
+                <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                     collapse="!((editConfig.hasChangesProperty && !model.entityAspect.isBeingSaved) && !uploadingModImage)">
+                    <div class="col-lg-12">
+                        <button class="btn btn-sx-save sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%"
+                                ng-click="editConfig.saveChanges()">
+                            Save Changes
+                        </button>
+                    </div>
+                    <div class="col-lg-12" style="margin-top: 5px">
+                        <button class="btn btn-sx-cancel sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%"
+                                ng-click="editConfig.discardChanges()">
+                            Cancel Changes
+                        </button>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                     collapse="!model.entityAspect.isBeingSaved">
+                    <div class="col-lg-12">
+                        <span class="btn btn-sx-editing-no-changes sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%">Saving Changes</span>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                     collapse="!uploadingModImage">
+                    <div class="col-lg-12">
+                        <span class="btn btn-sx-editing-no-changes sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%">Uploading Your Image</span>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: -43px; margin-right: -37px;"
+                     collapse="!(!editConfig.hasChangesProperty && !model.entityAspect.isBeingSaved && !uploadingModImage)">
+                    <div class="col-lg-12">
+                        <span class="btn btn-sx-editing-no-changes sx-border-gray sx-border-margin sx-sm-border text-center" style="width: 100%">No Changes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="edit-pane-buttons">
+        <div class="no-shadow left-fix pull-left pane-left">
+            <div class="no-shadow left-fix pull-left">
+                <div class="left-fix pull-left sx-border-gray no-shadow-right no-shadow-top no-shadow-bottom placeholder placeholder-border">&nbsp;</div>
+            </div>
+            <div class="no-shadow left-fix pull-left">
+                <button class="btn btn-sx-help sx-border-gray sx-border-margin sx-sm-border" data-container='body' data-title="Display Help Hints" bs-tooltip>
+                    <strong>?</strong>
+                </button>
+            </div>
+            <div class="no-shadow left-fix pull-left">
+                <button ng-if="!editConfig.isEditing" class="btn btn-sx-open-editor btn-sx-left sx-border-gray sx-border-margin sx-sm-border no-tween-out" data-container='body' data-title="Edit your content!" bs-tooltip
+                        ng-click="editConfig.enableEditing()">
+                    <strong>Open Editor</strong>
+                </button>
+                <button ng-if="editConfig.isEditing" class="btn btn-sx-close-editor btn-sx-left sx-border-gray sx-border-margin sx-sm-border no-tween-out" data-container='body' data-title="Finish Editing" bs-tooltip
+                        ng-click="editConfig.closeEditing()"
+                        ng-disabled="editConfig.hasChangesProperty || model.entityAspect.isBeingSaved || uploadingModImage">
+                    <strong>Close Editor</strong>
+                </button>
+            </div>
+            <div class="no-shadow left-fix pull-left">
+                <button class="btn btn-sx-left sx-border-gray sx-border-margin sx-sm-border no-tween-out" data-container='body' data-title="Inline Editing is still missing some editing features, until then edit your stuff here!" bs-tooltip
+                        click-link="{{header.contentPath}}/edit">
+                    <strong>Full Editor</strong>
+                </button>
+            </div>
+            <span class="top-fix btn bold sx-border-gray no-shadow-top placeholder">&nbsp;</span>
+        </div>
+        <span class="top-fix btn bold sx-border-gray no-shadow-top placeholder">&nbsp;</span>
+        <!--<div class="top-fix pull-right pane-right no-shadow">
+            <span class="top-fix btn bold sx-border-gray no-shadow-top placeholder">&nbsp;</span>
+            <span sx-edit-menu></span>
+        </div>-->
+    </div>
+</div>

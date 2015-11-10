@@ -1,0 +1,55 @@
+.search-results {
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      list-style: none;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.search-form {
+  button {
+    font-size: 21px;
+  }
+}
+
+.search-modal {
+  .close {
+    font-weight: $font-weight-base;
+  }
+
+  .container {
+    height: 100%;
+  }
+
+  .modal-dialog {
+    width: 100%;
+    margin-top: 64px;
+
+    .modal-header {
+      .close {
+        button {
+          margin-top: 24px;
+          opacity: 1;
+          border: 0;
+        }
+      }
+    }
+
+    .modal-content {
+      .tile {
+        color: $colorSixMediumGray;
+      }
+
+      padding-bottom: 200px;
+    }
+  }
+}

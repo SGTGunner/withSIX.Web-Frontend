@@ -1,0 +1,84 @@
+
+<div class="content-card content-state-{{getItemStateClass(item)}}" ng-class="{'content-stateable': w6.enableBasket}" ng-mouseover="overlay = true" ng-mouseleave="overlay = false" ng-init="contentTypeUrl = url.play + '/' + item.gameSlug + '/' + item.contentType.toLowerCase() + 's'; link = contentTypeUrl + '/' + toShortId(item.id) + '/' + item.slug"
+itemscope itemtype="http://schema.org/CreativeWork">
+  <div class="content {{item.releaseState.toLowerCase()}} content-basketable content-state-c-bgd-border" ng-class="{'in-basket': isInBasket(item)}">
+    <a ng-href="{{link}}">
+      <span class="imagecontent imageholder" ng-style="{'background-image': 'url(' + url.getAssetUrl('img/play.withSIX/games/stream-bg.jpg') + ')'}">
+        <span class="imageholder" ng-style="{'background-image': 'url(' + (item.image ? url.getUsercontentUrl2(item.image, item.imageUpdatedAt) : url.getAssetUrl('img/noimage.png')) + ')'}" itemprop="image"></span>
+      </span>
+    </a>
+
+    <div class="info">
+      <button ng-if="w6.enableBasket && canAddToBasket()" class="pull-right content-basketable-button" ng-click="addToBasket(item); $event.stopPropagation();">
+        <span class="content-basketable-icon"></span>
+        <span class="content-basketable-text"></span>
+      </button>
+      <div class="cntnr">
+        <div class="title" itemprop="name">
+          <a ng-href="{{link}}">{{item.headerName}}</a>
+        </div>
+
+        <div class="subtitle">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a ng-if="item.authorSlug" ng-href="{{::url.getUserSlugUrl(item.authorSlug)}}" rel="author">{{item.author}}</a>
+            <span ng-if="!item.authorSlug">{{item.author}}</span>
+          </span>
+          <sx-time class="pull-right" time="item.updated" itemprop="dateModified"></sx-time>
+        </div>
+        <div class="followers small">{{item.contentType == 'Collection' ? item.followers : item.statInstall}} {{item.contentType == 'Collection' ? 'subscribers' : 'installs'}}</div>
+        <span class="info small">{{item.additionalInfo}}</span>
+      </div>
+
+      <div class="bottom">
+        <div class="cntnr">
+
+          <a ng-href="{{contentTypeUrl}}" itemprop="genre">
+            <span class="content-type-icon">
+              <span class="icon withSIX-icon-Nav-{{item.contentType}}"></span>
+              <span class="content-type">{{item.contentType}}</span>
+            </span>
+          </a>
+
+          <span class="pull-right">
+            <span class="version" itemprop="version">{{::item.version && item.version[0] != 'v' ? 'v' + item.version : item.version}}
+              <span class="content-state-c-fgd content-state-text"></span>
+            </span>
+            <span class="release-state {{item.releaseState.toLowerCase()}}" ng-if="!item.releaseState == 'Neutral'">{{item.releaseState}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="details-overlay tiny {{item.releaseState.toLowerCase()}}" ng-show="overlay" ng-init="maxTags = 3" itemprop="keywords">
+    <div class="row">
+      <div class="tags col-sm-3" itemprop="keywords">
+
+        <span ng-repeat="tag in item.tags.slice(0, maxTags)">
+          <a class="tag" ng-if="item.contentType == 'Mod'" ng-href="{{contentTypeUrl}}/category/{{sluggifyEntityName(tag)}}">{{tag}}</a>
+          <a class="tag" ng-if="item.contentType != 'Mod'">{{tag}}</a>
+        </span>
+
+        <span class="tag" ng-if="item.tags.length > maxTags">+{{item.tags.length - maxTags}}more</span>
+      </div>
+
+      <div class="description col-sm-9" itemprop="description">
+        <span ng-if="environment > 0">{{modInfoes[item.id].state}}</span>
+        {{item.description || 'No short description available currently'}}
+      </div>
+    </div>
+    <div class="row content-state-c-bgd details-overlay-footer" ng-if="w6.enableBasket">
+      <button class="col-sm-3 details-overlay-footer-state" ng-click="directDownload(item);">
+        <span class="content-state-icon"></span>
+        <span class="content-state-text"></span>
+      </button>
+      <div class="col-sm-6 details-overlay-footer-message">
+        <span>Latest Version {{::item.version && item.version[0] != 'v' ? 'v' + item.version : item.version}} <a href="#" style="display: none;">View Changelog</a></span>
+      </div>
+      <div class="col-sm-3 details-overlay-footer-localstate">
+        <span style="display:none;">Installed {{::item.version && item.version[0] != 'v' ? 'v' + item.version : item.version}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="details-overlay-shadow" ng-show="overlay"></div>
+</div>

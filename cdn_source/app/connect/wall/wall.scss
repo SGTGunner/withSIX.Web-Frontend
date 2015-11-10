@@ -1,0 +1,75 @@
+#wall {
+  background-color: #e5e5e5;
+
+  @media (min-width: 600px) {
+    // TODO: Only if contact list enabled
+    .container-fluid {
+      //padding-right: 80px;
+      //padding-left: 80px;
+      &.contact-list-shown {
+        padding-right: 200px;
+        padding-left: 15px;
+      }
+    }
+  }
+
+  .contactlist {
+    position: fixed;
+    right: 0;
+    top: 360px;
+    height: 100%;
+    width: 180px;
+  }
+
+  header.root {
+    height: 48px;
+    line-height: 48px;
+    margin-bottom: 48px;
+  }
+
+  .tile {
+    padding: 0px;
+
+    .inner {
+      padding: 24px;
+    }
+  }
+
+  .comment {
+    img.avatar {
+      height: 48px;
+      width: 48px;
+    }
+  }
+
+  header.root {
+    background-color: $colorSixSoftGray;
+  }
+
+  .css-row {
+    $colWidth: 30em;
+    $colGap: 30px;
+
+    column-width: $colWidth;
+    -moz-column-width: $colWidth;
+    -webkit-column-width: $colWidth;
+    column-gap: $colGap;
+    -moz-column-gap: $colGap;
+    -webkit-column-gap: $colGap;
+
+    .css-column {
+      width: 100%;
+      display: inline-block;
+    }
+  }
+
+  .post {
+    .comments {
+      background-color: $colorSixSoftGray;
+    }
+
+    img.avatar {
+      padding: 8px;
+    }
+  }
+}

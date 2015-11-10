@@ -1,0 +1,20 @@
+﻿<div class="grid-roster blog-tiles clearfix">
+    <div class="row" ng-if="comments.length > 0">
+        <div class="col-sm-4" ng-repeat="comment in comments">
+            <a href="{concat($mainUrl, '/blog/', slug, '#comments')}" title="{title}">
+                <span class="icon">
+                    <span class="icon-comment">
+                        <xsl:text> </xsl:text>
+                    </span>
+                </span>
+                <strong>
+                    <xsl:value-of select="content"/>
+                </strong>
+                <span class="date">
+                    <xsl:value-of select="concat(created/day, '-', created/month, '-', created/year)" />
+                </span>
+            </a>
+        </div>
+    </div>
+    <p ng-if="comments.length == 0">This user hasn't commented on any items</p>
+</div>

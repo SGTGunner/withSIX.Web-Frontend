@@ -1,0 +1,31 @@
+﻿<div ng-if="response.success">
+    Please find your new activation code at {{model.email}}.
+</div>
+
+<div ng-if="!response.success">
+    <h1>Resend activation code</h1>
+    <form name="resendActivation" sx-validate-on-submit="submit()"
+          sx-validate-on-blur>
+        <sx-email-field model="model.email"></sx-email-field>
+        <div class="form-group">
+            <button type="submit"
+                    class="btn btn-primary"
+                    ng-disabled="processing"
+                    http-progress="resendActivation"
+                    http-processing="processing"
+                    http-pending="Requesting..."
+                    http-success="Requested!"
+                    http-single-use="t"
+                    http-error="Failed...">
+                Submit
+            </button>
+        </div>
+
+        <div class="form-response bg-danger" ng-if="response && !response.success">
+            {{response.message}}<br/>
+            <div ng-repeat="(k, v) in response.errors">
+                <span ng-repeat="msg in v">{{msg}}</span><br/>
+            </div>
+        </div>
+    </form>
+</div>

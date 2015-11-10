@@ -1,0 +1,18 @@
+.legal {
+  ol {
+    & > li {
+      color: $color4;
+    }
+
+    h5 {
+      font-size: 16px;
+      font-weight: $font-weight-bold;
+      margin: 0;
+      margin-top: 24px;
+    }
+  }
+
+  h3 {
+    color: $color2;
+  }
+}

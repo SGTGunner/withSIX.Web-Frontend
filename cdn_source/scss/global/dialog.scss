@@ -1,0 +1,56 @@
+$modalButtonHorizPadding: 18px;
+
+.dialogs-withSix {
+  .modal-content {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .modal-header {
+    border-top-color: $colorSixBlue;
+    border-top-width: 3px;
+    border-top-style: solid;
+    border-bottom-style: none;
+
+    h1 {
+      margin-top: 1px;
+      font-weight: 300;
+      font-size: 32px;
+    }
+  }
+
+  .modal-footer {
+    background-color: $colorSixLightGray;
+    padding: 0 0 0 0;
+    min-height: 38px;
+
+    .btn {
+      margin-left: 0px;
+      border-style: none;
+      border-width: 0px;
+      height: 38px;
+      padding-left: $modalButtonHorizPadding;
+      padding-right: $modalButtonHorizPadding;
+    }
+
+    .btn-cancel {
+      background-color: $colorSixGray;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-cancel:hover {
+      background-color: $colorSixSoftRed;
+    }
+
+    .btn-primary {
+      background-color: $colorSixGreen;
+      color: white;
+    }
+
+    .btn-default {
+      background-color: $colorSixGray;
+      color: white;
+    }
+  }
+}

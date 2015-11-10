@@ -1,0 +1,6 @@
+<template>
+  <a href.bind="link" if.bind="link">
+    <template replaceable part="content"></template>
+  </a>
+  <template if.bind="!link" replaceable part="content"></template>
+</template>

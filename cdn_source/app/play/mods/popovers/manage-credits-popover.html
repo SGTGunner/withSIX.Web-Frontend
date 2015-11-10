@@ -1,0 +1,35 @@
+﻿<div class="popover manage-link" style="font-size: initial">
+    <div class="arrow"></div>
+    <form name="form">
+        <div class="popover-title">
+            <b>Manage Group</b>
+        </div>
+        <div class="popover-content">
+            <div class="checkbox-container">
+                <div class="squaredTwo ckInner">
+                    <input type="checkbox"
+                           id="group-hidden"
+                           name="group-hidden"
+                           ng-model="item.hidden"/>
+                    <label for="group-hidden"></label>
+                </div>
+                <label class="text-label" for="group-hidden">Hidden Group</label>
+            </div>
+            <div class="checkbox-container">
+                <div class="squaredTwo ckInner">
+                    <input type="checkbox"
+                           id="group-manage"
+                           name="group-manage"
+                           ng-model="item.canManage"/>
+                    <label for="group-manage"></label>
+                </div>
+                <label class="text-label" for="group-manage">Can Manage Content</label>
+            </div>
+            <button class="anchor red barebone" ng-click="item.entityAspect.setDeleted();">Delete Group</button>
+            <hr/>
+            <button class="btn btn-primary" ng-click="$hide();">
+                Close
+            </button>
+        </div>
+    </form>
+</div>

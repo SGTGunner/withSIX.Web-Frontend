@@ -1,0 +1,29 @@
+﻿<!--<sx-info-page>
+    <div name="main">
+        <div name="main-tile">
+            <div name="main-section">
+                <div name="main-box">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div name="right">
+
+    </div>
+</sx-info-page>-->
+
+<div class="info-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8" sx-multi-transclude="main">
+                <div class="tile" sx-multi-transclude="main-tile">
+                    <section sx-multi-transclude="main-section">
+                        <div sx-multi-transclude="main-box" class="box"></div>
+                    </section>
+                </div>
+            </div>
+            <aside class="col-sm-4" sx-multi-transclude="right"></aside>
+        </div>
+    </div>
+</div>

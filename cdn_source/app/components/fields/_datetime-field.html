@@ -1,0 +1,33 @@
+﻿<!-- USING separate divs because of isInvalid otherwise not working.. -->
+<div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(form.datetime) }"
+     ng-if="Modernizr.inputtypes['datetime-local']">
+    <label for="datetime-local"
+           class="control-label">{{label}}</label>
+
+    <input type="datetime-local" class="form-control"
+           id="datetime"
+           name="datetime"
+           ng-disabled="ngDisabled"
+           ng-model="model.datetime" required/>
+
+    <p ng-show="form.datetime.$invalid && !form.datetime.$pristine" class="help-block">Enter a valid {{label}}.</p>
+</div>
+
+<div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(form.datetime) }"
+     ng-if="!Modernizr.inputtypes['datetime-local']">
+    <label for="datetime"
+           class="control-label">{{label}}</label>
+    <input type="datetime-local" class="form-control"
+           name="datetime"
+           id="datetime"
+           data-autoclose="1"
+           data-max-date="today"
+           size="10"
+           bs-datepicker date-format="dd-MM-yyyy HH:mm"
+           ng-disabled="ngDisabled"
+           ng-model="model.datetime"
+           ng-blur="blurred()"
+           required/>
+
+    <p ng-show="form.datetime.$invalid && !form.datetime.$pristine" class="help-block">Enter a valid {{label}}.</p>
+</div>

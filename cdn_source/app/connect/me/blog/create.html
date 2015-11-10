@@ -1,0 +1,34 @@
+<h2>Add Blog entry</h2>
+
+<form name="postForm"
+      sx-validate-on-submit="save(postForm)"
+      sx-validate-on-blur>
+    <fieldset ng-disabled="processing">
+        <div ng-include="'/cdn_source/app/connect/me/blog/_form.html'"></div>
+
+        <button class="btn btn-success"
+                type="submit"
+                http-progress="createBlogPost"
+                http-processing="processing"
+                http-pending="Processing..."
+                http-success="Succeeded!"
+                http-error="Failed..."
+                ng-disabled="processing || !postForm.$dirty">
+            <span class="icon icon-arrow-right"></span>
+            Save
+        </button>
+
+        <button class="btn btn-cancel"
+                type="button"
+                sx-really-message="Are you sure you want to cancel editing this post?"
+                sx-really-click="cancel()"
+                ng-disabled="processing">
+            Cancel
+        </button>
+
+        <div class="has-error has-feedback"
+             ng-if="postForm.$invalid">
+            <i>Please correct the highlighted errors first</i>
+        </div>
+    </fieldset>
+</form>

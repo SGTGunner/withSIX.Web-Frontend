@@ -1,0 +1,6 @@
+**/*.css
+**/*.css.map
+**/*.js
+**/*.js.map
+!vendor/libs/**/*.js
+!vendor/libs/**/*.css

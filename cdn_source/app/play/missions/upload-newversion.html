@@ -1,0 +1,68 @@
+﻿<div class="container-fluid">
+    <h3>Upload a new Mission Version</h3>
+
+    <div class="tile">
+
+        <div ng-if="response.success" class="form-message form-message-passed">
+            <p>Successfully uploaded </p>
+            <p>
+                Go to <a ng-href="{{::url.connect}}/me/content">your content page</a> to publish this version
+            </p>
+        </div>
+
+        <div ng-if="!response.success">
+            <div ng-if="error">
+                <div class="form-message form-message-error">
+                    <p>{{error}}</p>
+                </div>
+            </div>
+
+            <form name="updateMissionForm"
+                  sx-validate-on-submit="submit(updateMissionForm)"
+                  sx-validate-on-blur>
+                <p>
+                    <label>Upload a new version</label>
+                </p>
+                <div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(updateMissionForm.mission_initial_version) }">
+                    <label class="control-label" for="mission_initial_version">.pbo file :</label> <br/>
+                    <input id="mission_initial_version" type="file" name="mission_initial_version"
+                           class="form-control"
+                           ng-model="mission_file"
+                           size="40" ng-file-select="updateFileInfo($files)"
+                           required valid-file/>
+                    <sx-validation-messages label="file" field="updateMissionForm.mission_initial_version"></sx-validation-messages>
+                    <p>
+                        The max file size is 20MB
+                        <br/>
+                        Before uploading, please make sure you have no unpublished versions in the queue on
+                        <a ng-href="{{::url.connect}}/me/content">your content page</a>.
+                    </p>
+                </div>
+                <p>
+                    <br/>
+                </p>
+
+                <p>
+                    <button type="submit" class="btn"
+                            ng-disabled="processing"
+                            http-progress="uploadNewVersion"
+                            http-processing="processing"
+                            http-pending="Processing..."
+                            http-success="Processed!"
+                            http-single-use="t"
+                            http-error="Failed...">
+                        <span class="icon icon-chevron-right"></span>
+                        <span>Upload new version</span>
+                    </button>
+                </p>
+
+                <div class="form-response bg-danger" ng-if="response && !response.success">
+                    {{response.message}}<br/>
+                    <div ng-repeat="(k, v) in response.errors">
+                        <span ng-repeat="msg in v">{{msg}}</span><br/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

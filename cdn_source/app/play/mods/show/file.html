@@ -1,0 +1,30 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="tile">
+                <h2>{{model.fileTitle}}</h2>
+                <div class="pre-content" ng-bind-html="model.fileContent"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div ng-if="w6.renderAds" class="tile">
+                <div data-ng-dfp-ad-container>
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <br/><br/><br/><br/>
+
+            <div ng-if="w6.renderAds" class="tile">
+                <div data-ng-dfp-ad-container>
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

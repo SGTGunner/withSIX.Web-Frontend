@@ -1,0 +1,17 @@
+﻿<div class="container-fluid">
+    <div class="tile">
+        <img ng-src="{{app.avatar}}"/>
+        <a ng-href="{{app.homepageUrl}}">Homepage</a>
+
+        <div ng-bind-html="app.descriptionFull"></div>
+
+        <div ng-if="app.games.length > 0">
+            <h2>Available for games</h2>
+            <ul>
+                <li ng-repeat="game in app.games">
+                    <a ng-href="/{{game.slug}}">{{game.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

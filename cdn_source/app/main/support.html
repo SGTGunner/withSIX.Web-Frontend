@@ -1,0 +1,50 @@
+<div class="container-fluid support">
+    <h1 class="pagetitle">Support</h1>
+
+    <div ng-include="'/cdn_source/app/components/ads/main-hz-large.html'" ng-if="w6.renderAds"></div>
+
+    <div class="row">
+        <div ng-class="{'col-sm-9': w6.renderAds, 'col-sm-12': !renderAds}">
+            <article class="tile">
+
+                <div class="widget" id="support" style="min-height: 540px">
+                    <div id="getsat-widget-1550">
+                        <script type="text/javascript">
+                            if (typeof GSFN !== "undefined") {
+                                GSFN.loadWidget(1550, { "containerId": "getsat-widget-1550" });
+                            }
+                        </script>
+                        <noscript>
+                            Please visit our Feedback and<br/>Support community over at:<br/>
+                            <a href="http://getsatisfaction.withsix.com/withsix" target="_blank">Get Satisfaction withSIX</a>
+                        </noscript>
+                    </div>
+                </div>
+
+                <div>
+                    (Or visit the support forums at
+                    <a href="http://getsatisfaction.withsix.com/withsix" target="_blank">Get Satisfaction withSIX</a>
+                    directly)
+                </div>
+            </article>
+        </div>
+
+        <aside class="col-sm-3" ng-if="w6.renderAds">
+            <div class="tile">
+                <div data-ng-dfp-ad-container>
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tile">
+                <div data-ng-dfp-ad-container>
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad2"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

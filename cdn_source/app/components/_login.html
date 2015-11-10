@@ -1,0 +1,143 @@
+﻿<div ng-if="w6.userInfo.id && (!response || !response.success)">
+    <p>
+        You first have to
+        <a ng-href="{{::url.connectSsl}}/logout" rel="nofollow">logout</a>
+        to acces this page
+    </p>
+</div>
+  
+<div ng-if="response.success">You've succesfully logged-in, you will be redirected shortly...</div>
+
+<div ng-if="!w6.userInfo.id">
+    <section>
+        <h4>Sign-in with one of these services:</h4>
+
+        <form name="externalLoginForm">
+            <fieldset ng-disabled="processing">
+
+                <button class="socialSignIn socialSignIn-facebook"
+                        ng-click="loginExternal('facebook')"
+                        title="Sign-in with your Facebook account">
+                    <span class="icon">&nbsp;</span>
+                </button>
+
+                <button class="socialSignIn socialSignIn-twitter"
+                        ng-click="loginExternal('twitter')"
+                        title="Sign-in with your Twitter account">
+                    <span class="icon">&nbsp;</span>
+                </button>
+
+                <button class="socialSignIn socialSignIn-google"
+                        ng-click="loginExternal('google')"
+                        title="Sign-in with your Google account">
+                    <span class="icon">&nbsp;</span>
+                </button>
+
+                <button class="socialSignIn socialSignIn-steam"
+                        ng-click="loginExternal('steam')"
+                        title="Sign-in with your Steam account">
+                    <span class="icon">&nbsp;</span>
+                </button>
+
+                <button class="socialSignIn socialSignIn-microsoft"
+                        ng-click="loginExternal('microsoft')"
+                        title="Sign-in with your Microsoft account">
+                    <span class="icon">&nbsp;</span>
+                </button>
+
+                <button class="socialSignIn socialSignIn-github"
+                        ng-click="loginExternal('github')"
+                        title="Sign-in with your Github account">
+                    <span class="icon">&nbsp;</span>
+                </button>
+            </fieldset>
+        </form>
+
+        <h4>or use your withSIX account:</h4>
+
+        <form name="loginForm" sx-validate-on-submit="login()"
+              sx-validate-on-blur>
+            <fieldset title="Login Details">
+                <sx-email-field model="model.email"
+                                show-label="false"></sx-email-field>
+
+                <sx-password-field model="model.password" validate="false"
+                                   class="pull-left"
+                                   show-label="false"></sx-password-field>
+
+                <button class="anchor forgot-password"
+                        type="button"
+                        title="I forgot my password"
+                        ng-click="openForgotPasswordDialog()">
+                    <span>?</span>
+                </button>
+
+                <div class="clearfix"></div>
+
+                <div ng-if="twoFactorRequired"
+                     class="form-group">
+                    <div class="form-group">
+                        <label for="code">Please enter the code we sent to your email</label>
+                        <input class="form-control" type="text" ng-model="model.code"
+                               id="code" name="code"
+                               required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="client-name">Name for this PC/browser</label>
+                        <input id="client-name" name="client-name"
+                               class="form-control" type="text" ng-model="model.twoFactorFriendlyName"
+                               required/>
+                    </div>
+                </div>
+
+                <div class="pull-left register">
+                    No account yet?
+                    <div>
+                        <button ng-click="openRegisterDialog()"
+                                type="button"
+                                class="anchor">
+                            <strong>Register now!</strong>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group pull-right">
+                    <button class="btn btn-success"
+                            type="submit"
+                            ng-disabled="processing"
+                            http-progress="login"
+                            http-processing="processing"
+                            http-pending="Logging in..."
+                            http-success="Logged in!"
+                            http-error="Failed..."
+                            http-single-use="t">
+                        <span class="icon icon-arrow-right">&nbsp;</span>
+                        Login
+                    </button>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="pull-right">
+                    <label for="remember"
+                           title="this is a private computer">
+                        <input type="checkbox" id="remember" name="remember" ng-model="model.rememberMe"/>
+                        &nbsp; Remember me
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="form-response bg-danger" ng-if="response && !response.success">
+                {{response.message}}<br/>
+                <div ng-repeat="(k, v) in response.errors">
+                    <span ng-repeat="msg in v">{{msg}}</span><br/>
+                    <button type="button" ng-click="openResendActivationDialog()"
+                            class="anchor"
+                            ng-if="k == 'activation'">
+                        Resend activation code
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+</div>

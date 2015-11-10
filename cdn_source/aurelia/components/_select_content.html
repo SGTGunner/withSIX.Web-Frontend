@@ -1,0 +1,49 @@
+<template>
+  <div class="status-header" title="${gameInfo.clientInfo.status.progress | progress}% @ ${gameInfo.clientInfo.status.speed | size:'B'}/s">
+    <div class="pull-left play-footer-status-icon">
+      <div class="status-header-item-icon" if.bind="model.activeDirect != undefined && model.activeDirect != null">
+        <optional-link link.bind="selectedItemUrl">
+          <template replace-part="content">
+          <div class="imagecontent imageholder status-header-item-icon-imageholder" back-img.bind="$parent.defaultBackUrl">
+            <div class="imageholder status-header-item-icon-imageholder" back-img.bind="$parent.defaultAssetUrl">
+              <div class="imageholder status-header-item-icon-imageholder" back-img.bind="$parent.model.activeDirect.model.items[0].image" if.bind="$parent.model.activeDirect.model.items[0]">
+              </div>
+            </div>
+          </div>
+        </template>
+        </optional-link>
+      </div>
+    </div>
+
+    <div class="pull-left play-footer-status basket basket-state-${activeDirectStateClass} ${directBasketProgress}">
+      <div class="pull-left status-header-icon">
+        <button>
+          <span class="icon withSIX-icon-Nav-Mod"></span>
+        </button>
+      </div>
+      <div class="pull-left status-header-title">
+        <p>${model.activeDirect.model.name}</p>
+      </div>
+
+      <div class="status-headerline">
+        <div class="basket-state-colored basket-state-progress-width">
+          <div class="status-headerline-title">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-right play-footer-status">
+      <div class="pull-right status-header-contextbutton ${creatingBasket ? 'no-top' : null}">
+        <button click.delegate="removeActive()">
+          <span class="icon withSIX-icon-Hexagon-X"></span>
+        </button>
+      </div>
+      <div class="pull-right status-header-omnibutton basket-state-colored">
+        <button class="basket-state-colored no-processing" command.bind="action">
+          <span class="icon basket-state-icon"></span>
+          <span class="basket-state-text"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,49 @@
+.mediaslider {
+  position: relative;
+  overflow: hidden;
+
+  a.btn {
+    display: block;
+    top: 0;
+    bottom: 0;
+
+    @include size(32px, auto);
+
+    background-color: $color0;
+    color: $color2;
+    position: absolute;
+    float: none;
+    padding: 0;
+
+    .icon {
+      line-height: 100px;
+      left: 8px;
+    }
+  }
+
+  a.btn-left {
+    left: 0px;
+  }
+
+  a.btn-right {
+    right: 0px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 32px;
+    padding-right: 32px;
+    width: 99999px;
+
+    li {
+      float: left;
+      padding-right: 16px;
+
+      a {
+        display: block;
+      }
+    }
+  }
+}

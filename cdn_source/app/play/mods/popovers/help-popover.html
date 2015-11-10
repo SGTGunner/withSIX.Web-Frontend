@@ -1,0 +1,13 @@
+﻿<div class="popover">
+    <div class="arrow"></div>
+    <h3 class="popover-title" ng-bind="title" ng-show="title"></h3>
+    <div class="popover-content">
+        <span sx-compile="content"></span>
+        <hr/>
+        <ul>
+            <li ng-repeat="item in helpItems" ng-if="displayCondition(item, contentScope)">
+                <button class="anchor barebone" ng-click="showSection(item);">{{item.data.title}}</button>
+            </li>
+        </ul>
+    </div>
+</div>

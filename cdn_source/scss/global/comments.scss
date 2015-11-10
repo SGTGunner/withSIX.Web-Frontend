@@ -1,0 +1,215 @@
+aside.comments {
+  $leftWidth: 96px;
+  $imgSize: 72px;
+  $noPaddingWidth: 580px;
+
+  padding-top: 32px;
+
+  h4 {
+    font-size: 1.5em;
+    color: $color3;
+    opacity: 0.7;
+    height: 56px;
+    line-height: 32px;
+  }
+
+  article.comment {
+    position: relative;
+    padding-top: 16px;
+
+    .comment-body:hover > div.actions {
+      .bar-action {
+        opacity: 1;
+      }
+    }
+
+    .comment-body > div.actions {
+      .bar-action {
+        -webkit-transition: opacity 0.5s;
+
+        /* For Safari 3.1 to 6.0 */
+        transition: opacity 0.5s;
+        opacity: 0.5;
+      }
+    }
+
+    .comment-body > hr {
+      -webkit-transition: opacity 0s;
+
+      /* For Safari 3.1 to 6.0 */
+      transition: opacity 0s;
+      margin-top: 8px;
+      margin-bottom: 0px;
+    }
+
+    .comment-message {
+      margin-top: 4px;
+      margin-bottom: 4px;
+      word-wrap: break-word;
+    }
+
+    div.actions a, div.actions button {
+      text-decoration: none;
+      padding-left: 8px;
+
+      span {
+        text-decoration: none !important;
+        padding-right: 8px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:first-child {
+        padding-left: 0px !important;
+      }
+    }
+
+    a.comment-time {
+      text-decoration: inherit;
+      color: #777;
+    }
+
+    time.timeago {
+      padding-left: 8px;
+      font-size: 0.9em;
+      color: $colorSixGray;
+    }
+
+    footer {
+      border: 0;
+      height: auto;
+      line-height: normal;
+      margin: 0;
+      padding: 0;
+      position: relative;
+
+      a.comment-author {
+        font-weight: $font-weight-bold;
+        color: $primarycolor;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      a.badge {
+        padding-left: 24px;
+        background-position: 0px center;
+        background-repeat: no-repeat;
+      }
+
+      a.badge-withSIX {
+        background-image: url(../img/mini_logo.png?v=#{$cacheBuster});
+      }
+
+      a.imgholder {
+        position: absolute;
+        left: -$leftWidth;
+
+        @media (max-width: $screen-sm-max) {
+          left: -($leftWidth / 2);
+        }
+
+        @media (max-width: $noPaddingWidth) {
+          left: 0;
+        }
+
+        img {
+          @include square($imgSize);
+
+          @media (max-width: $screen-sm-max) {
+            @include square($imgSize / 2);
+          }
+
+          display: block;
+          border: 0;
+        }
+      }
+    }
+
+    hr {
+      background-color: $color2;
+      color: $color2;
+      height: 1px;
+      box-shadow: none;
+      outline: none;
+      overflow: hidden;
+      border: 0px;
+      display: block;
+      margin-top: 32px;
+    }
+  }
+
+  // TODO: This doesnt do what it is supposed to do. indenting remains infinite instead of finite..
+  /* Comment first level */
+  & > sx-comment article {
+    &.level-1, &.level-2, &.level-3 {
+      padding-left: $leftWidth;
+
+      @media (max-width: $screen-sm-max) {
+        padding-left: $leftWidth / 2;
+      }
+
+      @media (max-width: $noPaddingWidth) {
+        padding-left: 0;
+      }
+    }
+  }
+
+  h4.reply {
+    padding-top: 32px;
+  }
+
+  .commentbox {
+    background-color: $color1;
+    padding: 16px 16px 16px 80px;
+    position: relative;
+
+    p {
+      margin-top: 10px;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      float: right;
+      color: $color1;
+      background-color: $color3;
+
+      &:hover {
+        color: $color0;
+        background-color: $calltoaction;
+      }
+
+      &.cancel {
+        &:hover {
+          background-color: $colorSixGray;
+        }
+      }
+    }
+
+    .fixedava {
+      display: block;
+
+      @include square(48px);
+
+      position: absolute;
+      left: 24px;
+      top: 16px;
+    }
+
+    #textarea-content, textarea#Content {
+      min-height: 48px;
+
+      @include basictransition;
+    }
+  }
+
+  .commentbox:hover #textarea-content, .commentbox:hover textarea#Content {
+    min-height: 220px;
+
+    @include basictransition;
+  }
+}

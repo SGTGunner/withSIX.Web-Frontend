@@ -1,0 +1,44 @@
+﻿<div class="container content-inner">
+    <div ng-if="w6.userInfo.id">
+        <div class="form-message form-message-error">
+            <p>
+                You first have to <a ng-href="{{::url.connectSsl}}/logout"
+                                     rel="nofollow">logout</a> to acces this page
+            </p>
+        </div>
+    </div>
+
+    <div class="row" ng-if="!w6.userInfo.id">
+        <div class="col-sm-8">
+            <section class="tile">
+                <h2>Can't remember/Did you forget your username?</h2>
+                <p>Don’t worry, it happens to even to the best of us...</p>
+                <div class="form-message form-message-passed" ng-if="success">
+                    <p>We sent you your username</p>
+                </div>
+
+                <form name="usernameRequestForm"
+                      ng-if="!success"
+                      sx-validate-on-submit="submit()"
+                      sx-validate-on-blur>
+                    <fieldset>
+                        <sx-email-field model="model.email"></sx-email-field>
+
+                        <button class="btn"
+                                type="submit"
+                                ng-disabled="processing"
+                                http-progress="forgotUsername"
+                                http-processing="processing"
+                                http-pending="Processing..."
+                                http-success="Processed!"
+                                http-single-use="t"
+                                http-error="Failed...">
+                            <span class="icon icon-arrow-right"></span>
+                            Send me my username
+                        </button>
+                    </fieldset>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>

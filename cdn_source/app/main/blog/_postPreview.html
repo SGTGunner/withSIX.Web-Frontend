@@ -1,0 +1,45 @@
+﻿<article class="tile blog-tile clearfix"
+         itemscope itemtype="http://schema.org/BlogPosting"
+         ng-init="postUrl = blogUrl + '/' + post.slug">
+
+    <h3 itemprop="name headline">
+        <a ng-href="{{::postUrl}}">{{post.isTeam ? '[Team] ' : ''}}{{post.title}}</a>
+    </h3>
+    <h4 ng-if="!post.isPublished">
+        <i>Not published yet!</i>
+    </h4>
+
+    <header>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a ng-href="{{post.author.profileUrl}}" rel="author">
+                <img ng-src="{{post.author.getAvatarUrl(48)}}" />
+            </a>
+            <em class="date">
+                Posted by
+                <a ng-href="{{post.author.profileUrl}}" rel="author">{{post.author.displayName}}</a>,
+            </em>
+        </span>
+        &nbsp;
+        <em>
+            <sx-time time="post.updated"></sx-time>
+        </em>
+
+        <a ng-href="{{::postUrl}}#comments" class="comments">
+            <span ng-if="post.commentsCount == 1">1 comment</span>
+            <span ng-if="post.commentsCount > 0 && post.commentsCount != 1">{{post.commentsCount}} comments</span>
+            <span ng-if="post.commentsCount == 0">No comments yet</span>
+        </a>
+        <span class="pull-right" ng-if="likedPosts">{{model.likesCount}} likes</span>
+        <br/>
+    </header>
+
+    <div class="contentrender" ng-bind-html="::post.summary | unsafe" itemprop="articleBody"></div>
+
+    <!-- Read more btn -->
+    <footer>
+        <a ng-href="{{::postUrl}}" class="btn">
+            Read On
+            <span class="icon  icon-arrow-right"></span>
+        </a>
+    </footer>
+</article>

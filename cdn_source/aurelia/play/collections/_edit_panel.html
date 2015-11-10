@@ -1,0 +1,32 @@
+<template>
+  <div class="edit-pane">
+    <div class="tile sx-border-gray">
+      <dropdown-menu class="pull-right" items.bind="menuItems"></dropdown-menu>
+      <button class="pull-right naked-button" title="Help" click.delegate="openHelp()">?</button>
+
+      <header>
+        <h2>Edit panel</h2>
+      </header>
+
+      <section>
+        Set Visibility
+        <select value.bind="model.scope">
+          <option repeat.for="scope of scopes" model.bind="scope">${$parent.CollectionScope[scope]}</option>
+        </select>
+      </section>
+      <div>Last edited ${model.updatedAt}</div>
+      <div show.bind="changed">unsaved changes</div>
+
+      <footer>
+        <div class="buttons pull-right">
+          <command-button model.bind="cancel"></command-button>
+          <command-button model.bind="save"></command-button>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+    </div>
+    <div class="button-bar">
+      <command-button model.bind="disableEditMode"></command-button>
+    </div>
+  </div>
+</template>

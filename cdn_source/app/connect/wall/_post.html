@@ -1,0 +1,43 @@
+<div class="post">
+    <div class="top inner">
+        <header>
+            <div class="pull-right">^</div>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <img class="avatar pull-left" ng-src="{{::url.calculateAvatarUrl(post.author)}}" />
+                {{post.author.displayName}}
+            </span>
+            <span>
+                posted <b>{{post.title}}</b>
+                at
+                <span class="time" am-time-ago="post.createdAt"></span>
+            </span>
+        </header>
+
+        <div class="clearfix"></div>
+
+        <section>
+            <p ng-bind-html="post.content"></p>
+        </section>
+        <section class="actions">
+            <form>
+                <button>+1</button>
+                <button>Share</button>
+                <div ng-if="post.comments.length == 0">
+                    <input type="text" placeholder="add reply"/>
+                </div>
+            </form>
+        </section>
+    </div>
+    <footer class="comments">
+        <div class="inner">
+            <div ng-repeat="comment in post.comments | limitTo:3"
+                 ng-include="'/cdn_source/app/connect/wall/_comment.html'"></div>
+            <div ng-if="post.comments.length > 3">
+                <button>Show more</button>
+            </div>
+            <div ng-if="post.comments.length > 0">
+                <input type="text" placeholder="add reply"/>
+            </div>
+        </div>
+    </footer>
+</div>

@@ -1,0 +1,200 @@
+.home-box {
+  div.icon {
+    @include size(239px, 200px);
+
+    display: block;
+    float: left;
+    background-image: url(../img/withSIX/home_icons.jpg?v=#{$cacheBuster});
+    background-repeat: no-repeat;
+    margin-right: 48px;
+  }
+
+  div.icon-alignright {
+    float: right;
+    margin-left: 48px;
+    margin-right: 0px;
+  }
+
+  .icon-manage {
+    background-position: center 0;
+  }
+
+  .icon-browse {
+    background-position: center -254px;
+  }
+
+  .icon-connect {
+    background-position: center -520px;
+  }
+}
+
+.home {
+  .latest-blog {
+    margin-top: 32px;
+
+    & > em {
+      color: #b1b2b2;
+      font-size: 0.9em;
+      display: block;
+      margin-bottom: 16px;
+
+      a {
+        color: #b1b2b2;
+
+        &:hover {
+          color: $color3;
+        }
+      }
+    }
+  }
+
+  #header-row {
+    background-position: center;
+    color: white;
+
+    .calltoaction.maindownload {
+      background-color: $calltoaction;
+
+      @include center-block;
+
+      @include size(350px, 80px);
+
+      padding-right: 32px;
+      padding-left: 96px;
+      margin-top: 32px;
+      color: $color0;
+      position: relative;
+      text-align: left;
+      font-size: 22px;
+      padding-top: 16px;
+      line-height: 26px;
+      text-decoration: none;
+      overflow: hidden;
+      margin-bottom: 32px;
+
+      em {
+        display: block;
+        font-size: 15px;
+        font-style: normal;
+        opacity: 0.5;
+        background-repeat: no-repeat;
+        background-position: 0 center;
+        background-image: url(../img/withSIX/windowslogo.png?v=#{$cacheBuster});
+        padding-left: 24px;
+      }
+
+      &:hover {
+        overflow: visible;
+
+        em {
+          opacity: 0.8;
+        }
+
+        .iconbg .icon {
+          opacity: 1;
+        }
+
+        span.requirements {
+          opacity: 1;
+          top: 100px;
+          z-index: 3;
+
+          /*@include basictransition;*/
+        }
+      }
+
+      &:active {
+        padding-top: 18px;
+      }
+
+      .iconbg {
+        background-image: url(../img/withSIX/hexacon.png?v=#{$cacheBuster});
+
+        @include size-lh(57px, 49px);
+
+        display: block;
+        position: absolute;
+        left: 16px;
+        top: 16px;
+        text-align: center;
+
+        em.icon {
+          font-size: 28px;
+          color: $calltoaction;
+          padding-left: 14px;
+          background-image: none;
+          opacity: 0.8;
+          line-height: 49px;
+        }
+      }
+
+      span.requirements {
+        background-color: $color3;
+        position: absolute;
+        top: 100px;
+        width: 220px;
+        left: 50%;
+        margin-left: -126px;
+        color: $color1;
+        padding: 16px;
+        display: block;
+        font-size: 14px;
+        opacity: 0;
+
+        /*@include basictransition;*/
+        &:after {
+          content: "";
+          position: absolute;
+
+          @include square(0);
+
+          border-width: 10px;
+          border-style: solid;
+          border-color: transparent transparent $color3 transparent;
+          top: -20px;
+          left: 50%;
+          margin-left: -10px;
+        }
+
+        span.title {
+          font-weight: $font-weight-bold;
+          display: block;
+        }
+      }
+    }
+  }
+
+  aside {
+    .requirements {
+      margin-top: 64px;
+
+      h6 {
+        font-size: 1.5em;
+        font-weight: $font-weight-base;
+        margin: 0;
+      }
+    }
+
+    .add-container {
+      margin-bottom: 64px;
+    }
+
+    .stats {
+      margin-bottom: 64px;
+
+      h3 {
+        font-size: 1.5em;
+        margin: 0 0 8px;
+      }
+
+      h4 {
+        font-size: 1em;
+        margin: 0 0 32px;
+      }
+
+      p {
+        margin: 0 0 16px;
+      }
+    }
+  }
+}

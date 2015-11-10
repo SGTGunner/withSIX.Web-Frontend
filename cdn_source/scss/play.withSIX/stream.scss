@@ -1,0 +1,246 @@
+.play-stream {
+  a {
+    text-decoration: none;
+  }
+
+  .publish-buttons {
+    float: right;
+    margin-right: 116px; // wtf?
+  }
+
+  .stream-buttons {
+    display: inline;
+  }
+
+  span.share-buttons {
+    float: right;
+
+    a {
+      color: $colorSixGray;
+      background-color: white;
+      border-bottom: 2px solid $colorSixGray;
+      padding: 8px;
+      text-decoration: none;
+      display: inline-block;
+      margin-left: 4px;
+
+      &:not(.icon) {
+        line-height: 30px;
+        padding: 0px 8px;
+      }
+    }
+  }
+
+  h2.stream-title {
+    display: inline;
+  }
+
+  div.header {
+    margin-bottom: 16px;
+
+    button {
+      margin-top: -4px;
+      padding: 4px;
+      position: absolute;
+    }
+  }
+
+  @include list;
+
+  .cntnr {
+    padding: 16px;
+  }
+
+  span.share-buttons {
+    a {
+      display: inline-block;
+      margin-left: 4px;
+
+      &:not(.icon) {
+        line-height: 32px;
+        padding: 0px 8px;
+        border-bottom: 0px;
+      }
+
+      &.icon {
+        @include icon-size(24px);
+
+        padding: 0;
+
+        @include square(32px);
+      }
+
+      &.twitter {
+        border-color: $twitterColor;
+      }
+
+      &.facebook {
+        border-color: $facebookColor;
+      }
+    }
+  }
+
+  $lovelyPadding: 12px 24px;
+
+  div.blog {
+    ul {
+      li {
+        &.post, &.month {
+          background-color: white;
+        }
+
+        a {
+          color: $colorSixGray;
+          text-decoration: none;
+        }
+
+        &.line {
+          padding: $lovelyPadding;
+
+          @include text-overflow;
+
+          @include clearfix;
+
+          a {
+            display: block;
+
+            @include square(100%);
+          }
+        }
+      }
+    }
+  }
+
+  div.posts {
+    ul {
+      li {
+        hr {
+          $hrSize: 1px;
+          $hrColor: $colorSixLightGray;
+
+          height: $hrSize;
+          border: 0;
+          border-top: $hrSize solid $hrColor;
+          color: $hrColor;
+          margin: 8px 0px;
+        }
+
+        .cntnr {
+          padding: 24px;
+        }
+
+        div.summary {
+          overflow: hidden;
+
+          p {
+            overflow: hidden;
+
+            img {
+              @include img-responsive;
+            }
+          }
+        }
+
+        h2.title {
+          padding: 0;
+          margin: 0;
+
+          $lineHeight: 1.1;
+
+          line-height: $lineHeight;
+
+          @include limit-lines(2, 1.5em, $lineHeight);
+        }
+
+        span.created {
+          margin-top: 8px;
+        }
+
+        div.bottom {
+          background-color: $colorSixLightGray;
+
+          a.readon {
+            float: right;
+          }
+
+          &.cntnr {
+            padding: $lovelyPadding;
+          }
+        }
+      }
+    }
+  }
+}
+
+.follow-info {
+  button {
+    text-decoration: none;
+  }
+}
+
+.game-stream {
+  .col-sm-4 {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      font-size: 1.2em;
+      margin: 0;
+      padding: 0;
+
+      a {
+        text-decoration: none;
+        color: $color3;
+
+        .icon {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .tile-list {
+    margin-top: 30px;
+
+    ul li {
+      background: none;
+    }
+
+    ul li a {
+      background-image: none;
+      padding-left: 15px;
+      background-size: cover;
+      background-position: -6000px center;
+      -webkit-transition: 0.5s;
+      -moz-transition: 0.5s;
+      transition: 0.5s;
+
+      &:hover {
+        background-position: 0 center;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        transition: 0.5s;
+        text-decoration: none;
+        color: $color3;
+
+        strong {
+          color: $primarycolor;
+        }
+      }
+
+      span {
+        display: block;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      em {
+        font-style: normal;
+        font-size: 0.8em;
+      }
+    }
+  }
+}

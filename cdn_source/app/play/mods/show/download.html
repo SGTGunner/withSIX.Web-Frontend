@@ -1,0 +1,69 @@
+﻿<div class="container-fluid"
+     id="download">
+    <div class="row">
+        <div class="col-sm-8">
+            <section class="tile content-download">
+                <h1 id="downloading-text" class="pagetitle">
+                    Preparing download for <a ng-href="{{header.contentUrl}}">{{header.title}}</a>,<br/>
+                    download will start in
+                    <span id="download-countdown">8</span>
+                    seconds...
+                </h1>
+
+                <div data-ng-dfp-ad-container ng-if="w6.renderAds">
+                    <div class="add-container" style="display: block !important">
+                        <div class="add" ng-dfp-ad="angular-ad1"></div>
+                    </div>
+                </div>
+
+                <div ng-if="!w6.userInfo.isPremium">
+                    Prefer not to wait, and increase your experience? Try <a ng-href="/gopremium">
+                        <strong>Premium</strong>
+                    </a>
+                </div>
+
+                <article>
+                    <h2>Description</h2>
+                    <div class="content-render" ng-bind-html="model.description | unsafe"></div>
+                </article>
+
+                <br/><br/>
+
+                <p class="problems">
+                    If the download does not start, please click
+                    <button class="anchor" id="download-button" ng-click="download()">this direct link</button>
+                    instead.
+                </p>
+            </section>
+        </div>
+
+        <div class="col-sm-4">
+
+            <div data-ng-dfp-ad-container ng-if="w6.renderAds">
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad2"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function downloadCountdown(element) {
+        var counter = 3;
+        var interval = setInterval(function() {
+            counter--;
+            element.empty().append(counter.toString());
+            // check if counter get to 0
+            if (counter < 1) {
+                // clear interval
+                clearInterval(interval);
+                $('#download-button').click();
+            }
+        }, 1000);
+    }
+
+    $("#download-countdown").each(function(idx, el) { downloadCountdown($(el)); });
+</script>

@@ -1,0 +1,167 @@
+<sx-info-page>
+    <div name="main-section">
+        <article>
+            <div class="box">
+                <h3>Description</h3>
+                <div class="editable-full">
+                    <span ng-if="editConfig.isEdited('descriptionFull')" class="withSIX-icon-Alert pull-right" style="color: red; font-size: 20px;"></span>
+                    <div editable-html="model.descriptionFull"
+                         can-edit="editConfig.isEditing" class="edit-border-blue edit-field-large contentrender"
+                         ng-bind-html="model.descriptionFull | unsafe" blur-elem="ignore" style="min-height: 50px"></div>
+                </div>
+            </div>
+
+            <div ng-include="'/cdn_source/app/components/ads/play-hz-medium.html'"></div>
+
+            <!-- Features -->
+            <div ng-if="model.features && model.features.length > 0" class="box">
+                <h3>Features</h3>
+
+                <div ng-include="'/cdn_source/app/components/_features.html'"></div>
+            </div>
+
+            <!-- Media Slider -->
+            <div ng-if="model.mediaItems && model.mediaItems.length > 0" class="box">
+                <h3>Media</h3>
+
+                <div ng-include="'/cdn_source/app/components/_media_slider.html'"></div>
+            </div>
+
+            <div ng-if="model.homepageUrl" class="box clearfix">
+                <h3>External links</h3>
+
+                <ul class="external-links">
+                    <li>
+                        <span class="icon icon-chevron-right" style="font-size: 14px"></span>
+                        &nbsp;&nbsp;
+                        <a ng-href="{{model.homepageUrl}}" rel="external" class="barebone bold"
+                           target="_blank">Bohemia Interactive Forums</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <sx-comments ng-if="model.comments"
+                             comments="model.comments"
+                             can-manage="editConfig.canManage() || editConfig.canEdit()"
+                             add-comment="addComment(comment)"
+                             delete-comment="deleteComment(comment)"
+                             save-comment="saveComment(comment)"
+                             report-comment="reportComment(comment)"
+                             like-comment="likeComment(comment)"
+                             unlike-comment="unlikeComment(comment)"
+                             like-states="commentLikeStates">
+                    <div name="comments-info">
+                        <br/><br/>
+                    </div>
+                </sx-comments>
+            </div>
+        </article>
+    </div>
+
+    <div name="right">
+        <div ng-include="'/cdn_source/app/play/missions/_edit-side-pane.html'"></div>
+
+        <div ng-if="w6.renderAds" class="tile">
+            <div data-ng-dfp-ad-container>
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad1"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tile">
+            <div>
+                <strong>Author</strong>
+                <em>
+                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                        <a class="bold-link" ng-href="{{model.author.profileUrl}}" rel="author">{{model.author.displayName}}</a>
+                    </span>
+                </em><br/>
+            </div>
+        </div>
+
+        <strong>Mission Details</strong>
+        <div class="box">
+            <span ng-if="!model.latestVersion">Loading...</span>
+            <table class="alternating-table"
+                   ng-if="model.latestVersion">
+                <tr>
+                    <td>Min. Players</td>
+                    <td>
+                        {{model.latestVersion.playerRange.min || 'N/A'}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Max. Players</td>
+                    <td>
+                        {{model.latestVersion.playerRange.max || 'N/A'}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Playability</td>
+                    <td>
+                        {{model.latestVersion.playability || 'N/A'}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>AI</td>
+                    <td>
+                        {{model.latestVersion.supportsAI ? (model.latestVersion.supportsAI ? 'Yes' : 'No') : 'N/A'}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sides</td>
+                    <td>
+                        <span ng-if="model.latestVersion.sides == null || model.latestVersion.sides.length == 0">N/A</span>
+                        <span ng-repeat="side in model.latestVersion.sides"> - {{side.side}}<br /></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Map/Island</td>
+                    <td>
+                        {{model.latestVersion.map || 'N/A'}}
+                    </td>
+                </tr>
+
+                <tr ng-if="model.latestVersion.startTime">
+                    <td>Start Time</td>
+                    <td>{{model.latestVersion.startTime | date: 'medium'}}</td>
+                </tr>
+
+                <tr>
+                    <td>Start Weather</td>
+                    <td>
+                        {{model.latestVersion.weather.getStartWeatherText()}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Forecast Weather</td>
+                    <td>
+                        {{model.latestVersion.weather.getForecastWeatherText()}}
+                    </td>
+                </tr>
+
+
+                <tr ng-if="model.latestVersion.addons && model.latestVersion.addons.length != 0">
+                    <td>Dependencies</td>
+                    <td>
+                        <ul>
+                            <li ng-repeat="dep in model.latestVersion.addons">
+                                <a href="../mods/{{dep.addon}}">{{dep.addon}}</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div ng-if="w6.renderAds" class="tile">
+            <div data-ng-dfp-ad-container>
+                <div class="add-container" style="display: block !important">
+                    <div class="add" ng-dfp-ad="angular-ad2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sx-info-page>

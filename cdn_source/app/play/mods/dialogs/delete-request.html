@@ -1,0 +1,46 @@
+﻿<div class="modal-content">
+    <form name="remove-mod-form">
+        <header class="modal-header">
+            <h1>Request Mod Deletion</h1>
+            <strong>Modification -&nbsp;</strong>{{model.name}}<br/>
+        </header>
+        <section class="modal-body">
+            <div>
+                <p>
+                    <i>
+                        We understand that sometimes you don't want your mod on our network.
+                        We do hope however you'll let us know why you want it removed, we always aim to improve ourselves.
+                    </i>
+                </p>
+                <p>
+                    <i>All request for mod removal will generally be honoured in up to 48 hours, though in extreme cases can take up to 1 week.</i>
+                </p>
+            </div>
+            <hr/>
+            <div>
+                <div>
+                    <div>
+                        <strong>Reason For Removal</strong>
+                    </div>
+                    <div style="margin-left: 10px">
+                        <textarea name="reason" ng-model="form.reason" style="height: 200px; width: 100%;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="modal-footer">
+            <button type="button"
+                    class="btn btn-cancel"
+                    ng-click="$close()"
+                    data-dismiss="modal">
+                Cancel
+            </button>
+            <button type="button"
+                    ng-click="$close()"
+                    ng-disabled="model.processing"
+                    class="btn btn-primary">
+                Not Yet Implemented
+            </button>
+        </footer>
+    </form>
+</div>

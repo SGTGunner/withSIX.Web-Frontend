@@ -1,0 +1,123 @@
+<section id="new-contentheader-row"
+         ng-style="{'background-image': ('url('+ header.getAvatar(w6.imageSizes.bigRectangle.w, w6.imageSizes.bigRectangle.h) +')'), position: 'relative'}">
+    <div class="overlay">
+        <div class="container-fluid">
+            <!-- sx-multi-transclude="content-header" -->
+            <div class="row">
+                <div class="col-lg-1 hidden-xs hidden-sm hidden-md">&nbsp;</div>
+
+                <div class="col-lg-10 col-md-12">
+                    <div class="center-panel">
+                        <div class="info-panel horizontal">
+                            <div class="my-container">
+                                <div class="left">
+                                    <div class="title">
+                                        <h1 class="pagetitle" sx-multi-transclude="content-title" itemprop="name headline">
+                                            <span class="title" sx-multi-transclude="content-title-name">{{header.title}}</span>
+                                            <span class="author" sx-multi-transclude="content-title-author"
+                                                  itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                                <span ng-if="model.author">
+                                                    by&nbsp;<a ng-href="{{model.author.profileUrl}}" rel="author" title="{{model.author.displayName}}">
+                                                        {{model.author.displayName | characters: 20 :true}}
+                                                    </a>
+                                                </span>
+                                            </span>
+                                        </h1>
+                                    </div>
+                                    <div class="bottom">
+                                        <div class="col-md-4 col-sm-2 no-horizontal-padding" sx-multi-transclude="content-header-download-outer">
+                                            <div class="action download" sx-multi-transclude="content-header-download"></div>
+                                        </div>
+                                        <div class="content-info col-md-8 col-sm-10" sx-multi-transclude="content-header-info"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="logo"
+                                 sx-multi-transclude="content-header-logo">
+                                <div itemprop="image"
+                                     class="imageholder"
+                                     ng-style="{'background-image': ('url('+ header.getAvatar(w6.imageSizes.smallRectangle.w, w6.imageSizes.smallRectangle.h) +')'), position: 'relative'}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-panel combo">
+                            <div class="title">
+                                <h1 class="pagetitle" sx-multi-transclude="content-title" itemprop="name headline">
+                                    <span class="title" sx-multi-transclude="content-title-name">{{header.title}}</span>
+                                    <span class="author" sx-multi-transclude="content-title-author"
+                                          itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                        <span ng-if="model.author">by&nbsp;<a ng-href="{{model.author.profileUrl}}" rel="author">{{model.author.displayName}}</a></span>
+                                    </span>
+                                </h1>
+                            </div>
+                            <div class="bottom">
+                                <div class="left">
+                                    <div sx-multi-transclude="content-header-download-outer">
+                                        <div class="action download" sx-multi-transclude="content-header-download"></div>
+                                    </div>
+                                    <div class="content-info" sx-multi-transclude="content-header-info"></div>
+                                </div>
+                                <div class="logo"
+                                     sx-multi-transclude="content-header-logo">
+                                    <img ng-src="{{header.getAvatar(w6.imageSizes.smallRectangle.w, w6.imageSizes.smallRectangle.h)}}" alt="logo"
+                                         itemprop="image"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-panel vertical">
+                            <div class="logo"
+                                 sx-multi-transclude="content-header-logo">
+                                <img ng-src="{{header.getAvatar(w6.imageSizes.smallRectangle.w, w6.imageSizes.smallRectangle.h)}}" alt="logo"
+                                     itemprop="image"/>
+                            </div>
+                            <div class="title">
+                                <h1 class="pagetitle" sx-multi-transclude="content-title" itemprop="name headline">
+                                    <span class="title" sx-multi-transclude="content-title-name">{{header.title}}</span>
+                                    <span class="author" sx-multi-transclude="content-title-author"
+                                          itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                        <span ng-if="model.author">by&nbsp;<a ng-href="{{model.author.profileUrl}}" rel="author">{{model.author.displayName}}</a></span>
+                                    </span>
+                                </h1>
+                            </div>
+                            <div class="bottom">
+                                <div class="action download" sx-multi-transclude="content-header-download"></div>
+                                <div class="content-info" sx-multi-transclude="content-header-info"></div>
+                            </div>
+                        </div>
+
+                        <div class="bottom tagbar">
+                            <div class="right pull-right" sx-multi-transclude="content-report">
+                                <button class="anchor flag" title="report"
+                                        name="content-report"
+                                        ng-click="reportContent()">
+                                    <i class="icon icon-flag"></i>
+                                </button>
+                            </div>
+
+                            <div class="left tag-bar">
+                                <span class="content-type" sx-multi-transclude="content-type" itemprop="genre"></span>
+
+                                <span class="tags" sx-multi-transclude="content-tags"
+                                      itemprop="keywords">
+                                    <span ng-repeat="tag in header.tags" class="tag" style="margin-left: 4px">
+                                        {{::tag}}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-1 hidden-xs hidden-sm hidden-md">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="content-row">
+    <div class="container-fluid bodyheader">
+        <div class="tabbar" ng-include="'/cdn_source/app/play/shared/_tabbar.html'"></div>
+    </div>
+</section>

@@ -1,0 +1,43 @@
+.social-buttons {
+  height: 60px;
+
+  a {
+    display: block;
+
+    @include square(50px);
+
+    text-align: center;
+    line-height: 50px;
+    margin-right: 20px;
+    float: left;
+    background-color: $color0;
+    text-decoration: none;
+    color: $color3;
+
+    &.facebook:hover {
+      background-color: #99ccff;
+      color: $color5;
+    }
+
+    &.twitter:hover {
+      background-color: #b4d7d8;
+      color: $color5;
+    }
+  }
+}
+
+.withSIX-icon-Social-Facebook {
+  color: $facebookColor;
+}
+
+.withSIX-icon-Social-Twitter {
+  color: $twitterColor;
+}
+
+.withSIX-icon-Social-Group {
+  color: $colorSixBlue;
+}
+
+.withSIX-icon-Social-Code {
+  color: $codeColor;
+}

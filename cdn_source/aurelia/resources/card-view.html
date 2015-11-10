@@ -1,0 +1,8 @@
+<template class="imageGridStyle row">
+  <template replaceable part="prepend-items"></template>
+  <template repeat.for="item of items">
+    <compose class="card ${$parent.cardCls} content-basketable"
+             model.bind="item" view-model="${$parent.viewPath}${item.type || $parent.itemType}"></compose>
+  </template>
+  <template replaceable part="additional-items"></template>
+</template>

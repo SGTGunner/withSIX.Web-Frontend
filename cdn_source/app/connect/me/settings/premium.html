@@ -1,0 +1,84 @@
+﻿<h2>Your Premium info</h2>
+
+<div ng-if="model && model != 'null'">
+    <div>{{model.description}} - (Order #{{model.orderId}})</div>
+    <!-- <span>Runs from <sx-time time="model.premiumSince"></sx-time>.</span> -->
+    <span ng-if="model.premiumType == 0">Ends: {{model.premiumUntil | date:mediumDate}}.</span>
+    <span ng-if="model.premiumType == 1">Renews: {{model.renewalDate | date:mediumDate}}.</span>
+    <span ng-if="model.premiumType == 2"><b>Lifetime subscription</b> (You rock!)</span>
+
+    <form name="premiumForm" id="premiumForm"
+          ng-submit="save(premiumForm)">
+        <fieldset ng-disabled="processingSave">
+            <h2>Your Premium settings</h2>
+
+            <label>
+                <input type="checkbox"
+                       ng-model="model.hidePremium"/>
+                Hide premium status from public
+            </label>
+
+            <br/>
+
+            <button class="btn btn-success"
+                    type="submit"
+                    ng-disabled="!premiumForm.$dirty || processingSave"
+                    http-progress="savePremium"
+                    http-processing="processingSave"
+                    http-pending="Processing..."
+                    http-success="Succeeded!"
+                    http-error="Failed...">
+                Save
+            </button>
+        </fieldset>
+    </form>
+
+    <div ng-if="model.premiumType == 1">
+        <h2>Cancel auto-renewal</h2>
+
+        <h3>We're sorry to see you go! :(</h3>
+
+        <form name="cancelPremiumForm"
+              sx-validate-on-submit="cancelPremium()"
+              sx-validate-on-blur
+              sx-really-message="do you really want to cancel your recurring premium subscription?">
+
+            <p>
+                <i>Due to security reasons please enter your password.</i>
+            </p>
+            <sx-password-field model="cancelModel.password" validate="false"></sx-password-field>
+
+            <div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(form.reason) }">
+                <label for="reason"
+                       class="control-label">Feedback</label>
+                <textarea ng-model="cancelModel.reason"
+                          id="reason" name="reason"
+                          class="form-control"></textarea>
+                <sx-validation-messages label="label" field="form.reason"/>
+            </div>
+
+            <button class="btn btn-warning"
+                    type="submit"
+                    ng-disabled="processingCancel"
+                    http-single-use="t"
+                    http-progress="cancelPremium"
+                    http-processing="processingCancel"
+                    http-pending="Processing..."
+                    http-success="Succeeded!"
+                    http-error="Failed...">
+                Cancel auto-renewal
+            </button>
+
+            <div class="form-response bg-danger" ng-if="response && !response.success">
+                {{response.message}}<br/>
+                <div ng-repeat="(k, v) in response.errors">
+                    <span ng-repeat="msg in v">{{msg}}</span><br/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div ng-if="!model || model == 'null'">
+    Not premium yet, want to <a ng-href="/gopremium">go premium?</a>
+</div>

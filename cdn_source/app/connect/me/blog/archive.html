@@ -1,0 +1,10 @@
+﻿<h2>Your Blogposts</h2>
+
+<ul class="blog-archive-list">
+    <li ng-repeat="post in model.entries" ng-class-odd="odd">
+        <a ng-href="{{ 'me.blog.edit' | routeSegmentUrl: {slug: post.slug} }}">
+            <span am-time-ago="post.created" title="{{post.created}}"></span>
+            <em>{{post.category == 1 ? '[Team] ' : ''}}{{post.isPublished ? '' : 'x '}}{{post.title}}</em>
+        </a>
+    </li>
+</ul>

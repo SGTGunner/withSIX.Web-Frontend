@@ -1,0 +1,29 @@
+<div class="share-buttons pull-right">
+    Share
+
+    <a ng-href="http://www.facebook.com/sharer.php?u={{::w6.url.urlNonSsl}}{{::header.contentUrl}}" class="facebook" rel="external"
+       target="_blank">
+        <span class="icon withSIX-icon-Social-Facebook" title="Share to Facebook"></span>
+    </a>
+
+    <a ng-href="http://twitter.com/share?text={{model.name}} {{::model.game.name}} {{::header.contentType}} on withSIX ( @withSix )&amp;url={{::w6.url.urlNonSsl}}{{::header.contentUrl}}"
+       class="twitter" rel="external"
+       target="_blank">
+        <span class="icon withSIX-icon-Social-Twitter" title="Share to Twitter"></span>
+    </a>
+
+    <a ng-href="pws://?share=~{{::header.contentPath}}"
+       class="share-six" rel="external"
+       target="_blank">
+        <span class="icon withSIX-icon-Social-Group" title="Send to Play withSIX to share to friends"></span>
+    </a>
+
+    <a href="#"
+       data-bbcode="[url={{::w6.url.urlNonSsl}}{{::header.contentUrl}}][img]http:{{::header.getBanner(384,216)}}[/img][/url]"
+       class="share-bbcode" rel="external" title="Generate bbcode to post to forum">
+        <span class="icon withSIX-icon-Social-Code"></span>
+    </a>
+</div>
+<div class="clearfix"
+     ng-init="menuItems = header.menuItems"
+     ng-include="'/cdn_source/app/components/menu.html'"></div>

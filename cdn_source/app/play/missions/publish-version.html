@@ -1,0 +1,100 @@
+﻿<div class="container-fluid"
+     ng-if="mission">
+
+    <h3>Publish: {{mission.missionName}}</h3>
+
+    <div class="form-message form-message-passed" ng-if="response.success">
+        <p>Successfully published</p>
+        <p>
+            <a ng-href="{{::url.play}}/{{routeParams.gameSlug}}/missions/{{toShortId(mission.missionId)}}/{{mission.missionSlug}}/edit">Continue Editing</a>
+        </p>
+        <p>
+            <a ng-href="{{::url.play}}/{{routeParams.gameSlug}}/missions/{{mission.missionSlug}}">View Mission</a>
+        </p>
+    </div>
+
+    <div ng-if="!response.success">
+        <form name="publishMissionForm"
+              ng-submit="publishMissionForm.$valid && submit(publishMissionForm)">
+            <div class="tile">
+                <p>
+                    Short Description:
+                    <textarea required
+                              id="description" name="description"
+                              maxlength="500"
+                              ng-model="mission.description"
+                              redactor></textarea>
+                    <br/>
+                    (Note: In the next step you can add tags, fully featured description, pictures, links to youtube promo videos and create a list of features)
+                </p>
+            </div>
+
+            <h3>Version</h3>
+            <div class="tile">
+                <p>
+                    <label>Versionnumber</label>
+                    <input type="text"
+                           name="version" id="version"
+                           ng-model="mission.version"/>
+                </p>
+            </div>
+
+            <h3>Playability</h3>
+            <div class="tile">
+                <p>
+                    How can your mission be played?
+                    <br/>
+                    <label for="mission_sp">
+                        <input type="checkbox"
+                               name="mission_sp" id="mission_sp"
+                               ng-model="mission.spSupport"/>
+                        SinglePlayer
+                    </label>
+
+                    &nbsp;
+
+                    <label for="mission_mp">
+                        <input type="checkbox"
+                               name="mission_mp" id="mission_mp"
+                               ng-model="mission.mpSupport"/>
+                        MultiPlayer
+                    </label>
+                    <br/>
+                    (must choose one or both)
+                </p>
+            </div>
+
+            <h3>Mod dependencies</h3>
+            <div class="tile">
+                <p>
+                    Dependencies (optional, format: @mod1;@mod2;... etc. e.g: @cba;@abc)
+                    <input type="text"
+                           name="dependencies" id="dependencies"
+                           ng-model="mission.dependencies"
+                           maxlength="4000"/>
+                </p>
+            </div>
+
+            <div class="tile">
+                <button type="submit"
+                        ng-disabled="!publishMissionForm.$valid || processing"
+                        http-progress="publishMission"
+                        http-processing="processing"
+                        http-pending="Processing..."
+                        http-success="Processed!"
+                        http-single-use="t"
+                        http-error="Failed...">
+                    <span class="icon icon-chevron-right"></span>
+                    Publish Version (No changes possible after publish!)
+                </button>
+            </div>
+
+            <div class="form-response bg-danger" ng-if="response && !response.success">
+                {{response.message}}<br/>
+                <div ng-repeat="(k, v) in response.errors">
+                    <span ng-repeat="msg in v">{{msg}}</span><br/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

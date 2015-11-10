@@ -1,0 +1,72 @@
+﻿<div class="messages-conversation clearfix">
+
+    <div class="col-sm-9 you new-message">
+        <form name="sendPrivateMessageForm"
+              ng-submit="sendMessage(sendPrivateMessageForm)">
+            <fieldset ng-disabled="processing">
+
+                <textarea sx-pagedown
+                          required
+                          ng-model="inputModel.body"></textarea>
+
+                <button class="btn"
+                        type="submit"
+                        ng-disabled="processing || !sendPrivateMessageForm.$dirty || sendPrivateMessageForm.$invalid"
+                        http-progress="createPrivateMessage"
+                        http-processing="processing"
+                        http-pending="Processing..."
+                        http-success="Succeeded!"
+                        http-error="Failed...">
+                    <span class="icon icon-envelope-alt"></span>
+                    <span>Send message</span>
+                </button>
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- Adding Inline Anchor-->
+    <a name="messages"></a>
+
+    <!-- Render all messages-->
+    <div ng-repeat="message in model.messages">
+
+
+        <!-- The latest message-->
+        <xsl:variable name="last" select="preceding-sibling::item[1]"/>
+
+        <!-- Current Post Date -->
+        <xsl:variable name="curDate" select="concat(send-at/day, '-', send-at/month, '-', send-at/year)"/>
+
+        <!-- Last Post Date -->
+        <xsl:variable name="lastDate"
+                      select="concat($last/send-at/day, '-', $last/send-at/month, '-', $last/send-at/year)"/>
+
+        <!-- Check if Date-Line should be added-->
+        <xsl:if test="not($lastDate = $curDate)">
+            <div class="date-line">
+                <!-- Create horizontal rule -->
+                <hr/>
+                <!-- Add day -->
+                <span>
+                    {{message.receivedAt | amDateFormat: 'MM - DD'}}
+                </span>
+            </div>
+        </xsl:if>
+
+        <article class="col-sm-9 partner" ng-class="{you: message.isAuthor}">
+            <div>
+                <img ng-src="{{::url.calculateAvatarUrl(message.isAuthor ? w6.userInfo : model.partner)}}"/>
+            </div>
+
+            <div class="message">
+                <span class="markdownrender" ng-bind-html="message.message | pagedown"></span>
+
+                <footer>
+                    <span ng-if="!message.isAuthor">{{model.partner.displayName}}</span>
+                    placed on: <sx-time time="message.receivedAt"></sx-time>
+                </footer>
+            </div>
+        </article>
+    </div>
+
+</div>

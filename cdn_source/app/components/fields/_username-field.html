@@ -1,0 +1,13 @@
+﻿<div class="form-group" ng-class="{ 'has-error has-feedback' : isInvalid(form.userName) }">
+    <label for="userName"
+           class="control-label">{{label}}</label>
+    <input name="userName" type="text"
+           id="userName"
+           class="form-control"
+           required
+           placeholder="{{placeholder}}"
+           ng-minlength="3" ng-maxlength="100"
+           ng-model="model.userName"
+           ng-blur="blurred()"/>
+    <sx-validation-messages label="label" field="form.userName"/>
+</div>
