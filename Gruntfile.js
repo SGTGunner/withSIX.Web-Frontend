@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
+    var fs = require('fs');
   	grunt.loadNpmTasks('grunt-sass');
     //grunt.loadNpmTasks('grunt-typescript');
     grunt.initConfig({
@@ -61,7 +62,7 @@ module.exports = function(grunt) {
             },
             metadata: {
                 files: [
-                    'Libraries/SN.withSIX.UpdateBreeze.Library/bin/Release/SN.withSIX.UpdateBreeze.Library.dll'
+                    '../Libraries/SN.withSIX.UpdateBreeze.Library/bin/Release/SN.withSIX.UpdateBreeze.Library.dll'
                 ],
                 tasks: ['shell:build_metadata', 'shell:toast:metadata']
             }
@@ -78,7 +79,11 @@ module.exports = function(grunt) {
         shell: {
             build_metadata: {
 // Target
-                command: 'cd ..\\Libraries\\SN.withSIX.UpdateBreeze.Node && %appdata%\\nvm\\v0.12.7\\node app.js'
+                command: function () {
+                  if (!fs.existsSync('..\\Libraries\\SN.withSIX.UpdateBreeze.Node\\app.js'))
+                    return 'echo "Not processing Metadata"';
+                return 'cd ..\\Libraries\\SN.withSIX.UpdateBreeze.Node && %appdata%\\nvm\\v0.12.7\\node app.js';
+            }
             },
             toast: {
 // Target
@@ -249,6 +254,7 @@ module.exports = function(grunt) {
                 dest: 'cdn/js/vendor/bower.js',
                 mainFiles: {
                     'angular-ui': ['build/angular-ui.js'],
+                    'angulartics': ['dist/angulartics.min.js', 'dist/angulartics-ga.min.js'],
                     'breezejs': ['breeze.debug.js', 'labs/breeze.angular.js', 'labs/breeze.metadata-helper.js', 'labs/breeze.directives.js', 'labs/breeze.getEntityGraph.js', 'labs/breeze.saveErrorExtensions.js'],
                     'ng-tags-input': ['ng-tags-input.js'],
                     'angular-ui-bootstrap': ['src/tabs/tabs.js'],
