@@ -95,7 +95,11 @@ module.exports = function(grunt) {
               command: 'bower prune && bower install --config.interactive=false'
             },
             jspm: {
-              command: 'cd ..\\buildscripts && run_jspm.bat'
+              command: function() {
+                if (!fs.existsSync('..\\buildscripts\\run_jspm.bat'))
+                  return "cd cdn\\aurelia && jspm install -y";
+                return 'cd ..\\buildscripts && run_jspm.bat';
+              }
             },
             bundle: {
               command: 'gulp bundle'
