@@ -254,7 +254,6 @@ module.exports = function(grunt) {
                 dest: 'cdn/js/vendor/bower.js',
                 mainFiles: {
                     'angular-ui': ['build/angular-ui.js'],
-                    'angulartics': ['dist/angulartics.min.js', 'dist/angulartics-ga.min.js'],
                     'breezejs': ['breeze.debug.js', 'labs/breeze.angular.js', 'labs/breeze.metadata-helper.js', 'labs/breeze.directives.js', 'labs/breeze.getEntityGraph.js', 'labs/breeze.saveErrorExtensions.js'],
                     'ng-tags-input': ['ng-tags-input.js'],
                     'angular-ui-bootstrap': ['src/tabs/tabs.js'],
